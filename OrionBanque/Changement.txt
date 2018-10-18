@@ -1,0 +1,21 @@
+﻿Orion Banque - 1.5 (Pas encore publiée) [ Afficher les bogues ] 
+=======================================
+- 0000022: [General] Dans le paramétrage du compte (administrator) - résolu.
+- 0000013: [Graphique] Problème dans les camemberts (administrator) - résolu.
+- 0000020: [General] Lorsque je filtre sur la date j'ai une erreur qui s'affiche (administrator) - résolu.
+- 0000019: [General] Colonne soldeseuil inexistante (administrator) - résolu.
+- 0000021: [Graphique] Graphique évolution du sole pas à 0 si solde toujours positif (administrator) - résolu.
+- 0000017: [General] Pour pouvoir se connecter ou créer un compte ; ce n'est pas très intuitif (administrator) - résolu.
+- 0000015: [General] Ce qu'il faudrait, c'est que dans la base, il existe déjà plusieurs mode de paiement, catégories etc... soient créés (administrator) - résolu.
+- 0000016: [General] Deux colonnes : 1 debit, 1 credit (administrator) - résolu.
+- 0000014: [Echéancier] Le double click sur une échéance ne permet pas de la modifier (administrator) - résolu.
+- 0000012: [Echéancier] Prochaine date prends la date du jour (administrator) - résolu.
+[10 bogues]
+
+Orion Banque - 1.0 (Publiée 2009-12-15) [ Afficher les bogues ] 
+=======================================
+- 0000010: [Documentation] Sous-Catégorie (administrator) - fermé.
+- 0000002: [Développement] Pouvoir rechercher Rapidement une opérations (administrator) - fermé.
+- 0000003: [Développement] Gérer les sous-Catégories (administrator) - fermé.
+- 0000008: [General] Prendre en compte les sous-catégorie (administrator) - fermé.
+[4 bogues]
