@@ -10,17 +10,26 @@ namespace OrionBanque.Outils
 {
     class ImportBP
     {
-        public static bool Lance(string fileName, Compte c)
+        public static bool Lance(string directory, string fileNameWithoutExt, string fileName, Compte c)
         {
             //Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
             if (File.Exists(fileName))
             {
-                StreamReader sr;
+                string pathFileDest = directory + @"\" + fileNameWithoutExt + @"UTF8.csv";
+                if (File.Exists(pathFileDest))
+                { 
+                    File.Delete(pathFileDest);
+                }
+                AnsiToUtf8(fileName, pathFileDest);
 
-                sr = new StreamReader(fileName, true);
+                StreamReader sr;
+                sr = new StreamReader(pathFileDest, true);
                 string contenu;
+
                 while ((contenu = sr.ReadLine()) != null)
                 {
+                    
+
                     //Date;Mode;Tiers;Libelle;Categories;Sous Categorie;Montant;Pointage
                     string[] t = contenu.Split('\t');
                     
@@ -150,6 +159,18 @@ namespace OrionBanque.Outils
                 retour = ModePaiement.ChargeParNom(mp);
             }
             return retour;
+        }
+
+        public static void AnsiToUtf8(string pathSrc, string pathDest)
+        {
+            StreamReader sr = new StreamReader(pathSrc, Encoding.Default, true);
+            StreamWriter sd = new StreamWriter(pathDest, false, Encoding.UTF8);
+
+            // invoke the ReadToEnd method
+            sd.WriteLine(sr.ReadToEnd());
+
+            sd.Close();
+            sr.Close();
         }
     }
 }
