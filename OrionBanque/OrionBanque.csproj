@@ -102,9 +102,6 @@
     <Reference Include="log4net">
       <HintPath>dll\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="mysql.data.entity">
-      <HintPath>dll\mysql.data.entity.dll</HintPath>
-    </Reference>
     <Reference Include="PdfSharp, Version=1.50.4740.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\PdfSharp.dll</HintPath>
