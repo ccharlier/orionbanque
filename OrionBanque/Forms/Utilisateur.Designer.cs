@@ -90,7 +90,7 @@
             // Fermer
             // 
             this.Fermer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Fermer.Location = new System.Drawing.Point(216, 131);
+            this.Fermer.Location = new System.Drawing.Point(115, 115);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
             this.Fermer.TabIndex = 21;
@@ -100,7 +100,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(115, 131);
+            this.OK.Location = new System.Drawing.Point(216, 115);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
             this.OK.TabIndex = 22;
