@@ -18,5 +18,16 @@ namespace OrionBanque.Classe
                     throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
+
+        public static int GetLastInsertId()
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Sql.GetLastInsertId();
+                default:
+                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
     }
 }

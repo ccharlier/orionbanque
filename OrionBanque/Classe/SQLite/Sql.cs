@@ -134,9 +134,9 @@ namespace OrionBanque.Classe.SQLite
 
         public static void InitialiseBD(string path)
         {
-            string pathComplete = "Data Source=" + path + @"\orionbanque.s3db";
+            string pathComplete = "Data Source=" + path + @"\orionbanque.db3";
             // Création de la base de données si il n'existe pas
-            if (!System.IO.File.Exists(path + @"\orionbanque.s3db"))
+            if (!System.IO.File.Exists(path + @"\orionbanque.db3"))
             {
                 #region creation fichier si pas existe
                 try
@@ -332,8 +332,18 @@ namespace OrionBanque.Classe.SQLite
         public static SQLiteConnection GetConnection()
         {
             if (((SQLiteConnection)CallContext.GetData(Classe.Sql.CLE_CONNECTION)).State != System.Data.ConnectionState.Open)
+            {
                 ((SQLiteConnection)CallContext.GetData(Classe.Sql.CLE_CONNECTION)).Open();
+            }
+
             return (SQLiteConnection)CallContext.GetData(Classe.Sql.CLE_CONNECTION);
+        }
+
+        public static int GetLastInsertId()
+        {
+            SQLiteCommand cmd = new SQLiteCommand(@"select last_insert_rowid()", SQLite.Sql.GetConnection());
+            var ret = cmd.ExecuteScalar();
+            return int.Parse(ret.ToString());
         }
     }
 }
