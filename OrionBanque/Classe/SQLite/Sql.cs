@@ -304,27 +304,8 @@ namespace OrionBanque.Classe.SQLite
                 SQLiteConnection conn = new SQLiteConnection(pathComplete); conn.Open();
                 CallContext.SetData(Classe.Sql.CLE_CONNECTION, conn);
 
-                /*Int32 VersionFuture = Int32.Parse(ConfigurationManager.AppSettings["VersionAppli"]);
-                Int32 VersionActuelle = Int32.Parse(Classe.Param.Charge(KEY.KEY_APPLI_VERSION)[0].Val1);
-                
-                string pathUpdate =  @".\SQL\Update.txt";
-                // Si il existe une mise à jour SQL, nous l'appliquons. Une instruction par ligne
-                if(System.IO.File.Exists(pathUpdate))
-                {
-                    System.IO.StreamReader sr;
-                    
-                    sr = new System.IO.StreamReader(pathUpdate);
-                    string contenu;
-                    SQLiteCommand cmd = new SQLiteCommand();
-                    cmd.Connection = conn;
-                    while((contenu = sr.ReadLine()) != null)
-                    {
-                        cmd.CommandText = contenu;
-                        cmd.ExecuteNonQuery();
-                    }
-                    sr.Close();
-                    System.IO.File.Delete(pathUpdate);
-                }*/
+                int VersionFuture = int.Parse(ConfigurationManager.AppSettings["VersionAppli"]);
+                int VersionActuelle = int.Parse(Classe.Param.Charge(KEY.KEY_APPLI_VERSION)[0].Val1);
                 #endregion
             }
         }
