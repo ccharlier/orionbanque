@@ -15,11 +15,13 @@ namespace OrionBanque
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Classe.Sql.InitialiseBD(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            Classe.Sql.InitialiseBD(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
             Forms.Connexion fc = new OrionBanque.Forms.Connexion();
             fc.ShowDialog();
             if(fc.cont)
+            {
                 Application.Run(new MainForm(fc.uA));
+            }
         }
     }
 }

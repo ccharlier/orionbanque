@@ -669,7 +669,9 @@ namespace OrionBanque
             try
             {
                 if (cbCompte.Items.Count == 0)
+                {
                     throw new Exception(erreurPasDeCompteCreer);
+                }
 
                 Forms.OperationMajGroupe OMG = new Forms.OperationMajGroupe((Int32)cbCompte.SelectedValue);
                 OMG.ShowDialog();
@@ -685,10 +687,27 @@ namespace OrionBanque
             if (OFDImport.ShowDialog() == DialogResult.OK)
             {
                 this.Cursor = Cursors.WaitCursor;
-                //Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
+                // Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
                 if (System.IO.File.Exists(OFDImport.FileName))
                 {
-                    Outils.ImportBP.Lance(OFDImport.FileName, Classe.Compte.Charge((int)cbCompte.SelectedValue));
+                    Classe.Compte cT = new Classe.Compte();
+                    cT.Libelle = System.IO.Path.GetFileNameWithoutExtension(OFDImport.FileName);
+                    cT.SoldeInitial = 0.0;
+                    cT.IdUtilisateur = uA.Id;
+                    cT.Banque = string.Empty;
+                    cT.Guichet = string.Empty;
+                    cT.NoCompte = string.Empty;
+                    cT.Clef = string.Empty;
+                    cT.MinGraphSold = DateTime.Now;
+                    cT.MaxGraphSold = DateTime.Now;
+                    cT.SeuilAlerte = 0.0;
+                    cT.SeuilAlerteFinal = 0.0;
+                    cT.TypEvol = "6 mois";
+                    Classe.Compte.Sauve(cT);
+
+                    cT = Classe.Compte.Charge(Classe.Sql.GetLastInsertId());
+
+                    Outils.ImportBP.Lance(System.IO.Path.GetDirectoryName(OFDImport.FileName), System.IO.Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
                     ChargeComboCompte();
                 }
                 this.Cursor = Cursors.Default;
