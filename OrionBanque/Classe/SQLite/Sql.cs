@@ -304,8 +304,8 @@ namespace OrionBanque.Classe.SQLite
                 SQLiteConnection conn = new SQLiteConnection(pathComplete); conn.Open();
                 CallContext.SetData(Classe.Sql.CLE_CONNECTION, conn);
 
-                int VersionFuture = int.Parse(ConfigurationManager.AppSettings["VersionAppli"]);
-                int VersionActuelle = int.Parse(Classe.Param.Charge(KEY.KEY_APPLI_VERSION)[0].Val1);
+                /*int VersionFuture = int.Parse(ConfigurationManager.AppSettings["VersionAppli"]);
+                int VersionActuelle = int.Parse(Classe.Param.Charge(KEY.KEY_APPLI_VERSION)[0].Val1);*/
                 #endregion
             }
         }

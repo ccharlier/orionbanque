@@ -449,9 +449,6 @@
     <None Include="Resources\disk.png" />
     <None Include="Resources\lightbulb.png" />
     <None Include="Resources\wand.png" />
-    <Content Include="SQL\Update2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
