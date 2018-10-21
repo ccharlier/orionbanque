@@ -19,99 +19,97 @@ namespace OrionBanque.Classe
         public string TypeRepete { get; set; }
         public DateTime? DateFin { get; set; }
 
-        static public Int32 InsereEcheance(DateTime DateInsereEch, Int32 idCompte)
+        public static int InsereEcheance(DateTime DateInsereEch, int idCompte)
         {
-            Int32 retour;
+            int retour;
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Echeancier.InsereEcheance(DateInsereEch, idCompte);
+                    retour = SQLite.Echeancier.InsereEcheance(DateInsereEch, idCompte);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
             return retour;
         }
 
-        static public void Sauve(Echeancier e)
+        public static Echeancier Sauve(Echeancier e)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Echeancier.Sauve(e);
-                    break;
+                    return SQLite.Echeancier.Sauve(e);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public List<Classe.Echeancier> ChargeTout(Int32 idCompte)
+        public static List<Echeancier> ChargeTout(int idCompte)
         {
-            List<Classe.Echeancier> le = new List<Echeancier>();
+            List<Echeancier> le = new List<Echeancier>();
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    le = OrionBanque.Classe.SQLite.Echeancier.ChargeTout(idCompte);
+                    le = SQLite.Echeancier.ChargeTout(idCompte);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
             return le;
         }
 
-        static public void Maj(Echeancier e)
+        public static Echeancier Maj(Echeancier e)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Echeancier.Maj(e);
-                    break;
+                    return SQLite.Echeancier.Maj(e);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public DataSet ChargeGrilleEcheance(Int32 idCompte)
+        public static DataSet ChargeGrilleEcheance(int idCompte)
         {
             DataSet retour = new DataSet();
 
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Echeancier.ChargeGrilleEcheance(idCompte);
+                    retour = SQLite.Echeancier.ChargeGrilleEcheance(idCompte);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
 
             return retour;
         }
 
-        static public Echeancier Charge(int id)
+        public static Echeancier Charge(int id)
         {
             Echeancier e = new Echeancier();
 
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    e = OrionBanque.Classe.SQLite.Echeancier.Charge(id);
+                    e = SQLite.Echeancier.Charge(id);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
 
             return e;
         }
 
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Echeancier.Delete(id);
+                    SQLite.Echeancier.Delete(id);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
     }

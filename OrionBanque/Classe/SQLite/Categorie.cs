@@ -7,19 +7,19 @@ namespace OrionBanque.Classe.SQLite
 {
     public class Categorie
     {
-        static public List<Classe.Categorie> ChargeTout()
+        public static List<Classe.Categorie> ChargeTout()
         {
-            Classe.Log.Logger.Debug("Debut Categorie.ChargeTout()");
+            Log.Logger.Debug("Debut Categorie.ChargeTout()");
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             try
             {
                 Classe.Categorie c = new Classe.Categorie();
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_ALL, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_ALL);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_ALL, Sql.GetConnection());
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_ALL);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    Classe.Log.Logger.Info("Chargement de la Categorie n°" + rdr.GetInt32(0) + ", Libelle " + rdr.GetString(1) + ", IdParent " + rdr.GetInt32(2));
+                    Log.Logger.Info("Chargement de la Categorie n°" + rdr.GetInt32(0) + ", Libelle " + rdr.GetString(1) + ", IdParent " + rdr.GetInt32(2));
                     c = new Classe.Categorie
                     {
                         Id = rdr.GetInt32(0),
@@ -33,47 +33,47 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Categorie.ChargeTout() avec " + lc.Count + " elements");
+            Log.Logger.Debug("Fin Categorie.ChargeTout() avec " + lc.Count + " elements");
             return lc;
         }
 
-        static public List<Classe.Categorie> ChargeToutIdent()
+        public static List<Classe.Categorie> ChargeToutIdent()
         {
-            Classe.Log.Logger.Debug("Debut Categorie.ChargeToutIdent()");
-            List<Classe.Categorie> retour = new List<OrionBanque.Classe.Categorie>();
-            List<Classe.Categorie> lcParent = Classe.SQLite.Categorie.ChargeCategorieParent();
+            Log.Logger.Debug("Debut Categorie.ChargeToutIdent()");
+            List<Classe.Categorie> retour = new List<Classe.Categorie>();
+            List<Classe.Categorie> lcParent = ChargeCategorieParent();
             foreach (Classe.Categorie c in lcParent)
             {
                 retour.Add(c);
-                Classe.Log.Logger.Info("Chargement de la Categorie Parent n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
+                Log.Logger.Info("Chargement de la Categorie Parent n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
                 List<Classe.Categorie> lcEnfant = Classe.Categorie.ChargeCategorieDeParent(c.Id);
                 foreach (Classe.Categorie c2 in lcEnfant)
                 {
-                    Classe.Log.Logger.Info("Chargement de la Categorie Enfant n°" + c2.Id + ", Libelle " + c2.Libelle + ", IdParent " + c2.IdParent);
+                    Log.Logger.Info("Chargement de la Categorie Enfant n°" + c2.Id + ", Libelle " + c2.Libelle + ", IdParent " + c2.IdParent);
                     c2.Libelle = "\t-> " + c2.Libelle;
                     retour.Add(c2);
                 }
             }
-            Classe.Log.Logger.Debug("Fin Categorie.ChargeToutIdent() avec " + retour.Count + " elements");
+            Log.Logger.Debug("Fin Categorie.ChargeToutIdent() avec " + retour.Count + " elements");
             return retour;
         }
 
-        static public List<Classe.Categorie> ChargeCategorieParent()
+        public static List<Classe.Categorie> ChargeCategorieParent()
         {
-            Classe.Log.Logger.Debug("Debut Categorie.ChargeCategorieParent()");
+            Log.Logger.Debug("Debut Categorie.ChargeCategorieParent()");
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             try
             {
                 Classe.Categorie c = new Classe.Categorie();
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_PARENT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_PARENT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_PARENT, Sql.GetConnection());
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_PARENT);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    Classe.Log.Logger.Info("Chargement de la Categorie n°" + rdr.GetInt32(0) + ", Libelle " + rdr.GetString(1) + ", IdParent " + rdr.GetInt32(2));
+                    Log.Logger.Info("Chargement de la Categorie n°" + rdr.GetInt32(0) + ", Libelle " + rdr.GetString(1) + ", IdParent " + rdr.GetInt32(2));
                     c = new Classe.Categorie
                     {
                         Id = rdr.GetInt32(0),
@@ -87,29 +87,29 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Categorie.ChargeCategorieParent() avec " + lc.Count + " elements");
+            Log.Logger.Debug("Fin Categorie.ChargeCategorieParent() avec " + lc.Count + " elements");
             return lc;
         }
 
-        static public List<Classe.Categorie> ChargeCategorieDeParent(int idCat)
+        public static List<Classe.Categorie> ChargeCategorieDeParent(int idCat)
         {
-            Classe.Log.Logger.Debug("Debut Categorie.ChargeCategorieDeParent(" + idCat + ")");
+            Log.Logger.Debug("Debut Categorie.ChargeCategorieDeParent(" + idCat + ")");
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             Classe.Categorie c = new Classe.Categorie();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_DE_PARENT,SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_DE_PARENT, Sql.GetConnection());
                 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id_parent", idCat);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_DE_PARENT);
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_DE_PARENT);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    Classe.Log.Logger.Info("Chargement de la Categorie n°" + rdr.GetInt32(0) + ", Libelle " + rdr.GetString(1) + ", IdParent " + rdr.GetInt32(2));
+                    Log.Logger.Info("Chargement de la Categorie n°" + rdr.GetInt32(0) + ", Libelle " + rdr.GetString(1) + ", IdParent " + rdr.GetInt32(2));
                     c = new Classe.Categorie
                     {
                         Id = rdr.GetInt32(0),
@@ -123,24 +123,24 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Categorie.ChargeCategorieDeParent() avec " + lc.Count + " elements");
+            Log.Logger.Debug("Fin Categorie.ChargeCategorieDeParent() avec " + lc.Count + " elements");
             return lc;
         }
 
-        static public Classe.Categorie Charge(Int32 id)
+        public static Classe.Categorie Charge(int id)
         {
-            Classe.Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
+            Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
             Classe.Categorie c = new Classe.Categorie();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(Classe.SQLite.Sql.CATEGORIES_ID, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_ID, Sql.GetConnection());
                 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_ID);
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_ID);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -152,14 +152,14 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Categorie.Charge() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
+            Log.Logger.Debug("Fin Categorie.Charge() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
             return c;
         }
 
-        static public Classe.Categorie ChargeParNom(string nom)
+        public static Classe.Categorie ChargeParNom(string nom)
         {
             Log.Logger.Debug("Debut Categorie.ChargeParNom(" + nom + ")");
             Classe.Categorie c = new Classe.Categorie();
@@ -182,23 +182,23 @@ namespace OrionBanque.Classe.SQLite
             catch (SQLiteException ex)
             {
                 Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             Log.Logger.Debug("Fin Categorie.ChargeParNom() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
             return c;
         }
 
-        static public void DeletePossible(Int32 id)
+        public static void DeletePossible(int id)
         {
-            Classe.Log.Logger.Debug("Debut Categorie.DeletePossible(" + id + ")");
+            Log.Logger.Debug("Debut Categorie.DeletePossible(" + id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_DELETE_POSSIBLE, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_DELETE_POSSIBLE, Sql.GetConnection());
 
                 cmd.Prepare();
                 cmd.Parameters.Add("@id_categories", DbType.Int32);
                 cmd.Parameters["@id_categories"].Value = id;
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_DELETE_POSSIBLE);
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_DELETE_POSSIBLE);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -208,85 +208,88 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             catch (Exception ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
+                Log.Logger.Error(ex.Message);
                 throw;
             }
             Classe.Log.Logger.Debug("Fin Categorie.DeletePossible()");
         }
 
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
-            Classe.Log.Logger.Debug("Debut Categorie.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Categorie.Delete(" + id + ")");
             try
             {
                 Classe.Categorie.DeletePossible(id);
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_DELETE_ID, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_DELETE_ID, Sql.GetConnection());
 
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_DELETE_ID);
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_DELETE_ID);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             catch (Exception ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
+                Log.Logger.Error(ex.Message);
                 throw;
             }
-            Classe.Log.Logger.Debug("Fin Categorie.DeletePossible()");
+            Log.Logger.Debug("Fin Categorie.DeletePossible()");
         }
 
-        static public void Maj(Classe.Categorie c)
+        public static Classe.Categorie Maj(Classe.Categorie c)
         {
-            Classe.Log.Logger.Debug("Debut Categorie.Maj() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.IdParent );
+            Log.Logger.Debug("Debut Categorie.Maj() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.IdParent );
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_UPDATE_ID, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_UPDATE_ID, Sql.GetConnection());
                 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@libelle", c.Libelle);
                 cmd.Parameters.AddWithValue("@id_parent", c.IdParent);
                 cmd.Parameters.AddWithValue("@id", c.Id);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_UPDATE_ID);
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_UPDATE_ID);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Categorie.Maj()");
+            Log.Logger.Debug("Fin Categorie.Maj()");
+            return c;
         }
 
-        static public void Sauve(Classe.Categorie c)
+        public static Classe.Categorie Sauve(Classe.Categorie c)
         {
-            Classe.Log.Logger.Debug("Debut Categorie.Sauve() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.IdParent);
+            Log.Logger.Debug("Debut Categorie.Sauve() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.IdParent);
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.CATEGORIES_INSERT, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_INSERT, Sql.GetConnection());
                 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@libelle", c.Libelle);
                 cmd.Parameters.AddWithValue("@id_parent", c.IdParent);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.CATEGORIES_INSERT);
+                Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_INSERT);
                 cmd.ExecuteNonQuery();
+                c.Id = Sql.GetLastInsertId();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Categorie.Sauve()");
+            Log.Logger.Debug("Fin Categorie.Sauve()");
+            return c;
         }
     }
 }

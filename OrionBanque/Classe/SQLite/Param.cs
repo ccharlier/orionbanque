@@ -16,17 +16,17 @@ namespace OrionBanque.Classe.SQLite
         /// </summary>
         /// <param name="id">Id du parametre</param>
         /// <returns>Parametre charge</returns>
-        static public Classe.Param Charge(Int32 id)
+        public static Classe.Param Charge(int id)
         {
-            Classe.Log.Logger.Debug("Debut Param.Charge(" + id + ")");
+            Log.Logger.Debug("Debut Param.Charge(" + id + ")");
             Classe.Param p = new Classe.Param();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(Classe.SQLite.Sql.PARAM_ID, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_ID, Sql.GetConnection());
 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.PARAM_ID);
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_ID);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if(rdr.Read())
                 {
@@ -49,10 +49,10 @@ namespace OrionBanque.Classe.SQLite
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Param.Charge()");
+            Log.Logger.Debug("Fin Param.Charge()");
             return p;
         }
 
@@ -61,21 +61,21 @@ namespace OrionBanque.Classe.SQLite
         /// </summary>
         /// <param name="ident">Identifiant de la liste de parametre a charger</param>
         /// <returns>Liste de Parametre</returns>
-        static public List<Classe.Param> Charge(String ident)
+        public static List<Classe.Param> Charge(string ident)
         {
-            Classe.Log.Logger.Debug("Debut Param.Charge(" + ident + ")");
+            Log.Logger.Debug("Debut Param.Charge(" + ident + ")");
             List<Classe.Param> lp = new List<Classe.Param>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(Classe.SQLite.Sql.PARAM_IDENT, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_IDENT, Sql.GetConnection());
 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@ident", ident);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.PARAM_IDENT);
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_IDENT);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while(rdr.Read())
                 {
-                    Classe.Param p = new OrionBanque.Classe.Param
+                    Classe.Param p = new Classe.Param
                     {
                         Id = rdr.GetInt32(0),
                         Ident = rdr.GetString(1),
@@ -98,10 +98,10 @@ namespace OrionBanque.Classe.SQLite
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Param.Charge() avec " + lp.Count() + " elements");
+            Log.Logger.Debug("Fin Param.Charge() avec " + lp.Count() + " elements");
             return lp;
         }
 
@@ -109,72 +109,72 @@ namespace OrionBanque.Classe.SQLite
         /// Pouvoir supprimer un parametre celon son id
         /// </summary>
         /// <param name="id">Id du parametre a supprimer</param>
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
-            Classe.Log.Logger.Debug("Debut Param.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Param.Delete(" + id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.PARAM_DELETE_ID, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_DELETE_ID, Sql.GetConnection());
                 
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Prepare();
 
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.PARAM_DELETE_ID);
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_DELETE_ID);
                 cmd.ExecuteNonQuery();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             catch(Exception ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
+                Log.Logger.Error(ex.Message);
                 throw;
             }
-            Classe.Log.Logger.Debug("Fin Param.Delete()");
+            Log.Logger.Debug("Fin Param.Delete()");
         }
 
         /// <summary>
         /// Pouvoir supprimer un ou plusieurs parametre celon l'identifiant
         /// </summary>
         /// <param name="ident">Identifiant du ou des parametre a supprimer</param>
-        static public void Delete(String ident)
+        public static void Delete(string ident)
         {
-            Classe.Log.Logger.Debug("Debut Param.Delete(" + ident + ")");
+            Log.Logger.Debug("Debut Param.Delete(" + ident + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.PARAM_DELETE_IDENT, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_DELETE_IDENT, Sql.GetConnection());
 
                 cmd.Parameters.AddWithValue("@ident", ident);
                 cmd.Prepare();
 
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.PARAM_DELETE_IDENT);
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_DELETE_IDENT);
                 cmd.ExecuteNonQuery();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             catch(Exception ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
+                Log.Logger.Error(ex.Message);
                 throw;
             }
-            Classe.Log.Logger.Debug("Fin Param.Delete()");
+            Log.Logger.Debug("Fin Param.Delete()");
         }
         
         /// <summary>
         /// Permet de mettre a jour un parametre
         /// </summary>
         /// <param name="p">Parametre a mettre a jour</param>
-        static public void Maj(Classe.Param p)
+        public static Classe.Param Maj(Classe.Param p)
         {
-            Classe.Log.Logger.Debug("Debut Param.Maj()");
+            Log.Logger.Debug("Debut Param.Maj()");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.PARAM_UPDATE_ID, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_UPDATE_ID, Sql.GetConnection());
 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@ident", p.Ident);
@@ -183,27 +183,28 @@ namespace OrionBanque.Classe.SQLite
                 cmd.Parameters.AddWithValue("@dec1", p.Dec1); cmd.Parameters.AddWithValue("@dec2", p.Dec2); cmd.Parameters.AddWithValue("@dec3", p.Dec3);
                 cmd.Parameters.AddWithValue("@dat1", p.Dat1); cmd.Parameters.AddWithValue("@dat2", p.Dat2); cmd.Parameters.AddWithValue("@dat3", p.Dat3);
                 cmd.Parameters.AddWithValue("@id", p.Id);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.PARAM_UPDATE_ID);
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_UPDATE_ID);
                 cmd.ExecuteNonQuery();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Param.Maj()");
+            Log.Logger.Debug("Fin Param.Maj()");
+            return p;
         }
  
         /// <summary>
         /// Permet de creer un parametre
         /// </summary>
         /// <param name="p">Parametre a creer</param>
-        static public void Sauve(Classe.Param p)
+        public static Classe.Param Sauve(Classe.Param p)
         {
-            Classe.Log.Logger.Debug("Debut Param.Sauve()");
+            Log.Logger.Debug("Debut Param.Sauve()");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.PARAM_INSERT, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_INSERT, Sql.GetConnection());
 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@ident", p.Ident);
@@ -211,15 +212,17 @@ namespace OrionBanque.Classe.SQLite
                 cmd.Parameters.AddWithValue("@int1", p.Int1); cmd.Parameters.AddWithValue("@int2", p.Int2); cmd.Parameters.AddWithValue("@int3", p.Int3);
                 cmd.Parameters.AddWithValue("@dec1", p.Dec1); cmd.Parameters.AddWithValue("@dec2", p.Dec2); cmd.Parameters.AddWithValue("@dec3", p.Dec3);
                 cmd.Parameters.AddWithValue("@dat1", p.Dat1); cmd.Parameters.AddWithValue("@dat2", p.Dat2); cmd.Parameters.AddWithValue("@dat3", p.Dat3);
-                Classe.Log.Logger.Debug("Execution requete : " + SQLite.Sql.PARAM_INSERT);
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_INSERT);
                 cmd.ExecuteNonQuery();
+                p.Id = Sql.GetLastInsertId();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Param.Sauve()");
+            Log.Logger.Debug("Fin Param.Sauve()");
+            return p;
         }
     }
 }

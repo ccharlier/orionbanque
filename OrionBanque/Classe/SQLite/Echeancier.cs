@@ -8,20 +8,20 @@ namespace OrionBanque.Classe.SQLite
 {
     class Echeancier
     {
-        static public Int32 InsereEcheance(DateTime DateInsereEch, Int32 idCompte)
+        public static int InsereEcheance(DateTime DateInsereEch, int idCompte)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Delete(" + DateInsereEch + ", " + idCompte + ")");
+            Log.Logger.Debug("Debut Compte.Delete(" + DateInsereEch + ", " + idCompte + ")");
             List<Classe.Echeancier> lec = new List<Classe.Echeancier>();
            
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_APPLIQUE, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_APPLIQUE);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_APPLIQUE, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_APPLIQUE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idCompte);
-                Classe.Log.Logger.Debug("idCompte=" + idCompte);
+                Log.Logger.Debug("idCompte=" + idCompte);
                 cmd.Parameters.AddWithValue("@date", DateInsereEch);
-                Classe.Log.Logger.Debug("DateInsereEch=" + DateInsereEch);
+                Log.Logger.Debug("DateInsereEch=" + DateInsereEch);
                 
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -45,12 +45,20 @@ namespace OrionBanque.Classe.SQLite
 
                     Classe.Operation.Sauve(o);
 
-                    if (ec.TypeRepete == "J")
+                    if (ec.TypeRepete == KEY.ECHEANCIER_JOUR)
+                    {
                         ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
-                    if (ec.TypeRepete == "M")
+                    }
+
+                    if (ec.TypeRepete == KEY.ECHEANCIER_MOIS)
+                    {
                         ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
-                    if (ec.TypeRepete == "A")
+                    }
+
+                    if (ec.TypeRepete == KEY.ECHEANCIER_ANNEE)
+                    {
                         ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
+                    }
 
                     Classe.Echeancier.Maj(ec);
                 }
@@ -59,124 +67,127 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Debut Compte.Delete() avec " + lec.Count + " elements");
+            Log.Logger.Debug("Debut Compte.Delete() avec " + lec.Count + " elements");
             return lec.Count();
         }
 
-        static public void Sauve(Classe.Echeancier e)
+        public static Classe.Echeancier Sauve(Classe.Echeancier e)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Sauve(" + e.Id + ")");
+            Log.Logger.Debug("Debut Compte.Sauve(" + e.Id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_INSERT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_INSERT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_INSERT, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_INSERT);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id_mode_paiement", e.IdModePaiement);
-                Classe.Log.Logger.Debug("IdModePaiement=" + e.IdModePaiement);
+                Log.Logger.Debug("IdModePaiement=" + e.IdModePaiement);
                 cmd.Parameters.AddWithValue("@tiers", e.Tiers);
-                Classe.Log.Logger.Debug("Tiers=" + e.Tiers);
+                Log.Logger.Debug("Tiers=" + e.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", e.Libelle);
-                Classe.Log.Logger.Debug("Libelle=" + e.Libelle);
+                Log.Logger.Debug("Libelle=" + e.Libelle);
                 cmd.Parameters.AddWithValue("@id_categories", e.IdCategorie);
-                Classe.Log.Logger.Debug("IdCategorie=" + e.IdCategorie);
+                Log.Logger.Debug("IdCategorie=" + e.IdCategorie);
                 cmd.Parameters.AddWithValue("@montant", e.Montant);
-                Classe.Log.Logger.Debug("Montant=" + e.Montant);
+                Log.Logger.Debug("Montant=" + e.Montant);
                 cmd.Parameters.AddWithValue("@id_compte", e.IdCompte);
-                Classe.Log.Logger.Debug("IdCompte=" + e.IdCompte);
+                Log.Logger.Debug("IdCompte=" + e.IdCompte);
                 cmd.Parameters.AddWithValue("@repete", e.Repete);
-                Classe.Log.Logger.Debug("Repete=" + e.Repete);
+                Log.Logger.Debug("Repete=" + e.Repete);
                 cmd.Parameters.AddWithValue("@date_fin", e.DateFin);
-                Classe.Log.Logger.Debug("DateFin=" + e.DateFin);
+                Log.Logger.Debug("DateFin=" + e.DateFin);
                 cmd.Parameters.AddWithValue("@type_repete", e.TypeRepete);
-                Classe.Log.Logger.Debug("TypeRepete=" + e.TypeRepete);
+                Log.Logger.Debug("TypeRepete=" + e.TypeRepete);
                 cmd.Parameters.AddWithValue("@prochaine", e.Prochaine);
-                Classe.Log.Logger.Debug("Prochaine=" + e.Prochaine);
+                Log.Logger.Debug("Prochaine=" + e.Prochaine);
                 cmd.ExecuteNonQuery();
+                e.Id = Sql.GetLastInsertId();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Debut Compte.Sauve()");
+            Log.Logger.Debug("Debut Compte.Sauve()");
+            return e;
         }
 
-        static public void Maj(Classe.Echeancier e)
+        public static Classe.Echeancier Maj(Classe.Echeancier e)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Maj(" + e.Id + ")");
+            Log.Logger.Debug("Debut Compte.Maj(" + e.Id + ")");
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_UPDATE, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_UPDATE);
+                Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_UPDATE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id_mode_paiement", e.IdModePaiement);
-                Classe.Log.Logger.Debug("IdModePaiement=" + e.IdModePaiement);
+                Log.Logger.Debug("IdModePaiement=" + e.IdModePaiement);
                 cmd.Parameters.AddWithValue("@tiers", e.Tiers);
-                Classe.Log.Logger.Debug("Tiers=" + e.Tiers);
+                Log.Logger.Debug("Tiers=" + e.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", e.Libelle);
-                Classe.Log.Logger.Debug("Libelle=" + e.Libelle);
+                Log.Logger.Debug("Libelle=" + e.Libelle);
                 cmd.Parameters.AddWithValue("@id_categories", e.IdCategorie);
-                Classe.Log.Logger.Debug("IdCategorie=" + e.IdCategorie);
+                Log.Logger.Debug("IdCategorie=" + e.IdCategorie);
                 cmd.Parameters.AddWithValue("@montant", e.Montant);
-                Classe.Log.Logger.Debug("Montant=" + e.Montant);
+                Log.Logger.Debug("Montant=" + e.Montant);
                 cmd.Parameters.AddWithValue("@id_compte", e.IdCompte);
-                Classe.Log.Logger.Debug("IdCompte=" + e.IdCompte);
+                Log.Logger.Debug("IdCompte=" + e.IdCompte);
                 cmd.Parameters.AddWithValue("@id", e.Id);
-                Classe.Log.Logger.Debug("Id=" + e.Id);
+                Log.Logger.Debug("Id=" + e.Id);
                 cmd.Parameters.AddWithValue("@repete", e.Repete);
-                Classe.Log.Logger.Debug("Repete=" + e.Repete);
+                Log.Logger.Debug("Repete=" + e.Repete);
                 cmd.Parameters.AddWithValue("@date_fin", e.DateFin);
-                Classe.Log.Logger.Debug("DateFin=" + e.DateFin);
+                Log.Logger.Debug("DateFin=" + e.DateFin);
                 cmd.Parameters.AddWithValue("@type_repete", e.TypeRepete);
-                Classe.Log.Logger.Debug("TypeRepete=" + e.TypeRepete);
+                Log.Logger.Debug("TypeRepete=" + e.TypeRepete);
                 cmd.Parameters.AddWithValue("@prochaine", e.Prochaine);
-                Classe.Log.Logger.Debug("Prochaine=" + e.Prochaine);
+                Log.Logger.Debug("Prochaine=" + e.Prochaine);
 
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Debut Compte.Maj(" + e.Id + ")");
+            Log.Logger.Debug("Debut Compte.Maj(" + e.Id + ")");
+            return e;
         }
 
-        static public DataSet ChargeGrilleEcheance(Int32 idCompte)
+        public static DataSet ChargeGrilleEcheance(int idCompte)
         {
-            Classe.Log.Logger.Debug("Debut Compte.ChargeGrilleEcheance(" + idCompte + ")");
+            Log.Logger.Debug("Debut Compte.ChargeGrilleEcheance(" + idCompte + ")");
             DataSet retour = new DataSet();
             try
             {
-                SQLiteDataAdapter dsOpe = new SQLiteDataAdapter(String.Format(SQLite.Sql.ECHEANCIERS_GRILLE, idCompte), SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_GRILLE);
+                SQLiteDataAdapter dsOpe = new SQLiteDataAdapter(string.Format(Sql.ECHEANCIERS_GRILLE, idCompte), Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_GRILLE);
                 SQLiteCommandBuilder cb = new SQLiteCommandBuilder(dsOpe);
 
                 dsOpe.Fill(retour, "Echeancier");
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Debut Compte.ChargeGrilleEcheance()");
+            Log.Logger.Debug("Debut Compte.ChargeGrilleEcheance()");
             return retour;
         }
 
-        static public Classe.Echeancier Charge(int id)
+        public static Classe.Echeancier Charge(int id)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Charge(" + id + ")");
+            Log.Logger.Debug("Debut Compte.Charge(" + id + ")");
             Classe.Echeancier e = new Classe.Echeancier();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Id=" + id);
+                Log.Logger.Debug("Id=" + id);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -204,25 +215,25 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Debut Compte.Charge()");
+            Log.Logger.Debug("Debut Compte.Charge()");
             return e;
         }
 
-        static public List<Classe.Echeancier> ChargeTout(Int32 idC)
+        public static List<Classe.Echeancier> ChargeTout(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Compte.ChargeTout(" + idC + ")");
+            Log.Logger.Debug("Debut Compte.ChargeTout(" + idC + ")");
             List<Classe.Echeancier> ls = new List<Classe.Echeancier>();
             
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", idC);
-                Classe.Log.Logger.Debug("Id=" + idC);
+                Log.Logger.Debug("Id=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -232,38 +243,38 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.ChargeTout() avec " + ls.Count + " elements");
+            Log.Logger.Debug("Fin Compte.ChargeTout() avec " + ls.Count + " elements");
             return ls;
         }
 
-        static public void Delete(Classe.Echeancier ec)
+        public static void Delete(Classe.Echeancier ec)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Delete(" + ec.Id + ")");
-            Classe.SQLite.Echeancier.Delete(ec.Id);
-            Classe.Log.Logger.Debug("Fin Compte.Delete()");
+            Log.Logger.Debug("Debut Compte.Delete(" + ec.Id + ")");
+            Echeancier.Delete(ec.Id);
+            Log.Logger.Debug("Fin Compte.Delete()");
         }
 
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Compte.Delete(" + id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_DELETE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_DELETE_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_DELETE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_DELETE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Id=" + id);
+                Log.Logger.Debug("Id=" + id);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.Delete()");
+            Log.Logger.Debug("Fin Compte.Delete()");
         }
     }
 }

@@ -17,308 +17,243 @@ namespace OrionBanque.Classe
         public int IdCategorie { get; set; }
         public int IdCompte { get; set; }
 
-        static public List<Classe.Operation> ChargeTout(Int32 idCompte)
+        public static List<Operation> ChargeTout(int idCompte)
         {
-            List<Classe.Operation> ls = new List<Operation>();
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    ls = OrionBanque.Classe.SQLite.Operation.ChargeTout(idCompte);
-                    break;
+                    return SQLite.Operation.ChargeTout(idCompte);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-            return ls;
         }
 
-        static public Int32 ChercheChequeSuivant(Int32 idCompte)
-        {
-            Int32 retour = 0;
-            switch(ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.ChercheChequeSuivant(idCompte);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return retour;
-        }
-
-        static public void MajCategorieOperations(Int32 idCompte, Int32 idCatOri, Int32 idCatDest)
+        public static int ChercheChequeSuivant(int idCompte)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Operation.MajCategorieOperations(idCompte, idCatOri, idCatDest);
-                    break;
+                    return SQLite.Operation.ChercheChequeSuivant(idCompte);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public double SoldeCompteAt(DateTime dt, Int32 idC)
+        public static void MajCategorieOperations(int idCompte, int idCatOri, int idCatDest)
         {
-            double retour = 0.0;
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.SoldeCompteAt(dt, idC);
+                    SQLite.Operation.MajCategorieOperations(idCompte, idCatOri, idCatDest);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-            return retour;
         }
 
-        static public DateTime GetMaxDate(Int32 idC)
-        {
-            DateTime retour = DateTime.Now;
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.GetMaxDate(idC);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return retour;
-        }
-
-        static public DateTime GetMinDate(Int32 idC)
-        {
-            DateTime retour = DateTime.Now;
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.GetMinDate(idC);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return retour;
-        }
-
-        static public void Sauve(Classe.Operation o)
+        public static double SoldeCompteAt(DateTime dt, int idC)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Operation.Sauve(o);
-                    break;
+                    return SQLite.Operation.SoldeCompteAt(dt, idC);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public List<String> ChargeToutTiers(Int32 idCompte)
-        {
-            List<String> ls = new List<String>();
-            
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    ls = OrionBanque.Classe.SQLite.Operation.ChargeToutTiers(idCompte);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            
-            return ls;
-        }
-
-        static public double CalculAVenir(Int32 idCompte)
-        {
-            double retour = 0.0;
-
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.CalculAVenir(idCompte);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-
-            return retour;
-        }
-
-        static public double CalculSoldOpePoint(Int32 idCompte)
-        {
-            double retour = 0.0;
-
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.CalculSoldOpePoint(idCompte);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-
-            return retour;
-        }
-
-        static public void Maj(Classe.Operation o)
+        public static DateTime GetMaxDate(int idC)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Operation.Maj(o);
-                    break;
+                    return SQLite.Operation.GetMaxDate(idC);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public List<string[]> GroupByTiers(Int32 idC)
+        public static DateTime GetMinDate(int idC)
         {
-            List<string[]> retour = new List<string[]>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.GroupByTiers(idC);
-                    break;
+                    return SQLite.Operation.GetMinDate(idC);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return retour;
         }
 
-        static public List<string[]> GroupByTiersDC(Int32 idC)
+        public static void Sauve(Operation o)
         {
-            List<string[]> retour = new List<string[]>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.GroupByTiersDC(idC);
+                    SQLite.Operation.Sauve(o);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return retour;
         }
 
-        static public List<string[]> GroupByCategories(Int32 idC)
+        public static List<string> ChargeToutTiers(int idCompte)
         {
-            List<string[]> retour = new List<string[]>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.GroupByCategories(idC);
-                    break;
+                    return SQLite.Operation.ChargeToutTiers(idCompte);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return retour;
         }
 
-        static public List<string[]> GroupByCategoriesDC(Int32 idC)
+        public static double CalculAVenir(int idCompte)
         {
-            List<string[]> retour = new List<string[]>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.GroupByCategoriesDC(idC);
-                    break;
+                    return SQLite.Operation.CalculAVenir(idCompte);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return retour;
         }
 
-        static public DataSet ChargeGrilleOperation(Int32 idCompte)
+        public static double CalculSoldOpePoint(int idCompte)
         {
-            DataSet retour = new DataSet();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.ChargeGrilleOperation(idCompte);
-                    break;
+                    return SQLite.Operation.CalculSoldOpePoint(idCompte);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return retour;
         }
 
-        static public DataSet ChargeGrilleOperationFiltre(int idCompte,
+        public static void Maj(Operation o)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    SQLite.Operation.Maj(o);
+                    break;
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static List<string[]> GroupByTiers(int idC)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Operation.GroupByTiers(idC);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static List<string[]> GroupByTiersDC(int idC)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Operation.GroupByTiersDC(idC);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static List<string[]> GroupByCategories(int idC)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Operation.GroupByCategories(idC);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static List<string[]> GroupByCategoriesDC(int idC)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Operation.GroupByCategoriesDC(idC);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static DataSet ChargeGrilleOperation(int idCompte)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Operation.ChargeGrilleOperation(idCompte);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static DataSet ChargeGrilleOperationFiltre(int idCompte,
                                 bool bDate, string cbFiltreDate, DateTime txtFiltreDate,
                                 bool bModePaiement, string txtFiltreModePaiement,
                                 bool bTiers, string txtFiltreTiers,
                                 bool bCategorie, string txtFiltreCategorie,
                                 bool bMontant, string cbFiltreMontant, double txtFiltreMontant, bool bNonPointe)
         {
-            DataSet retour = new DataSet();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.ChargeGrilleOperationFiltre(idCompte,
+                    return SQLite.Operation.ChargeGrilleOperationFiltre(idCompte,
                                 bDate, cbFiltreDate, txtFiltreDate,
                                 bModePaiement, txtFiltreModePaiement,
                                 bTiers, txtFiltreTiers,
                                 bCategorie, txtFiltreCategorie,
                                 bMontant, cbFiltreMontant, txtFiltreMontant, bNonPointe);
-                    break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return retour;
         }
 
-        static public List<Classe.Operation> ChargeGrilleListeOperation(Int32 idCompte)
-        {
-            List<Classe.Operation> retour = new List<Classe.Operation>();
-
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    retour = OrionBanque.Classe.SQLite.Operation.ChargeGrilleListeOperation(idCompte);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-
-            return retour;
-        }
-
-        static public Operation Charge(int id)
-        {
-            Operation o = new Operation();
-            
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    o = OrionBanque.Classe.SQLite.Operation.Charge(id);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            
-            return o;
-        }
-
-        static public void Delete(int id)
+        public static List<Operation> ChargeGrilleListeOperation(int idCompte)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Operation.Delete(id);
+                    return SQLite.Operation.ChargeGrilleListeOperation(idCompte);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Operation Charge(int id)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Operation.Charge(id);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static void Delete(int id)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    SQLite.Operation.Delete(id);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
+        }
+
+        static public void Delete(Operation o)
+        {
+            Operation.Delete(o.Id);
         }
     }
 }

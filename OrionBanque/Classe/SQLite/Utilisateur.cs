@@ -7,41 +7,36 @@ namespace OrionBanque.Classe.SQLite
 {
     public class Utilisateur
     {
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
-            Classe.Log.Logger.Debug("Debut Utilisateur.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Utilisateur.Delete(" + id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(Classe.SQLite.Sql.UTILISATEURS_DELETE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.UTILISATEURS_DELETE_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.UTILISATEURS_DELETE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.UTILISATEURS_DELETE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("id=" + id);
+                Log.Logger.Debug("id=" + id);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
         }
 
-        static public void Delete(Classe.Utilisateur u)
+        public static Classe.Utilisateur Charge(int id)
         {
-            Utilisateur.Delete(u.Id);
-        }
-
-        static public Classe.Utilisateur Charge(int id)
-        {
-            Classe.Log.Logger.Debug("Debut Utilisateur.Charge(" + id + ")");
+            Log.Logger.Debug("Debut Utilisateur.Charge(" + id + ")");
             Classe.Utilisateur u = new Classe.Utilisateur();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(Classe.SQLite.Sql.UTILISATEURS_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.UTILISATEURS_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.UTILISATEURS_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.UTILISATEURS_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("id=" + id);
+                Log.Logger.Debug("id=" + id);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -53,24 +48,24 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return u;
         }
 
-        static public Classe.Utilisateur Charge(string login)
+        public static Classe.Utilisateur Charge(string login)
         {
-            Classe.Log.Logger.Debug("Debut Utilisateur.Charge(" + login + ")");
+            Log.Logger.Debug("Debut Utilisateur.Charge(" + login + ")");
             Classe.Utilisateur u = new Classe.Utilisateur();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.UTILISATEURS_LOGIN, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.UTILISATEURS_LOGIN);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.UTILISATEURS_LOGIN, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.UTILISATEURS_LOGIN);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@login", login);
-                Classe.Log.Logger.Debug("login=" + login);
+                Log.Logger.Debug("login=" + login);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -82,54 +77,57 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return u;
         }
 
-        static public void Maj(Classe.Utilisateur u)
+        public static Classe.Utilisateur Maj(Classe.Utilisateur u)
         {
-            Classe.Log.Logger.Debug("Debut Utilisateur.Maj(" + u.Id + ")");
+            Log.Logger.Debug("Debut Utilisateur.Maj(" + u.Id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.UTILISATEURS_UPDATE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_UPDATE_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.UTILISATEURS_UPDATE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_UPDATE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", u.Id);
-                Classe.Log.Logger.Debug("id=" + u.Id);
+                Log.Logger.Debug("id=" + u.Id);
                 cmd.Parameters.AddWithValue("@login", u.Login);
-                Classe.Log.Logger.Debug("login=" + u.Login);
+                Log.Logger.Debug("login=" + u.Login);
                 cmd.Parameters.AddWithValue("@mdp", u.Mdp);
-                Classe.Log.Logger.Debug("mdp=" + u.Mdp);
+                Log.Logger.Debug("mdp=" + u.Mdp);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
+            return u;
         }
 
-        static public void Sauve(Classe.Utilisateur u)
+        public static Classe.Utilisateur Sauve(Classe.Utilisateur u)
         {
-            Classe.Log.Logger.Debug("Debut Utilisateur.Sauve(" + u.Id + ")");
+            Log.Logger.Debug("Debut Utilisateur.Sauve(" + u.Id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.UTILISATEURS_INSERT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.UTILISATEURS_INSERT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.UTILISATEURS_INSERT, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.UTILISATEURS_INSERT);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@login", u.Login);
-                Classe.Log.Logger.Debug("login=" + u.Login);
+                Log.Logger.Debug("login=" + u.Login);
                 cmd.Parameters.AddWithValue("@mdp", u.Mdp);
-                Classe.Log.Logger.Debug("mdp=" + u.Mdp);
+                Log.Logger.Debug("mdp=" + u.Mdp);
                 cmd.ExecuteNonQuery();
+                u.Id = Sql.GetLastInsertId();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
+            return u;
         }
 
         public static List<Classe.Utilisateur> ChargeTout()

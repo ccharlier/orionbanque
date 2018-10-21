@@ -25,94 +25,86 @@ namespace OrionBanque.Classe
 
         public Param()
         {
-            this.Ident = string.Empty;
-            this.Val1 = string.Empty;
-            this.Val2 = string.Empty;
-            this.Val3 = string.Empty;
-            this.Int1 = Int32.MinValue;
-            this.Int2 = Int32.MinValue;
-            this.Int3 = Int32.MinValue;
-            this.Dec1 = Double.MinValue;
-            this.Dec2 = Double.MinValue;
-            this.Dec3 = Double.MinValue;
-            this.Dat1 = DateTime.MinValue;
-            this.Dat2 = DateTime.MinValue;
-            this.Dat3 = DateTime.MinValue;
+            Ident = string.Empty;
+            Val1 = string.Empty;
+            Val2 = string.Empty;
+            Val3 = string.Empty;
+            Int1 = int.MinValue;
+            Int2 = int.MinValue;
+            Int3 = int.MinValue;
+            Dec1 = double.MinValue;
+            Dec2 = double.MinValue;
+            Dec3 = double.MinValue;
+            Dat1 = DateTime.MinValue;
+            Dat2 = DateTime.MinValue;
+            Dat3 = DateTime.MinValue;
         }
 
-        static public Param Charge(Int32 id)
-        {
-            Param p = new Param();
-            switch(ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    p = OrionBanque.Classe.SQLite.Param.Charge(id);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return p;
-        }
-
-        static public List<Param> Charge(String ident)
-        {
-            List<Param> p = new List<Param>();
-            switch(ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    p = OrionBanque.Classe.SQLite.Param.Charge(ident);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return p;
-        }
-
-        static public void Delete(int id)
+        public static Param Charge(int id)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Delete(id);
-                    break;
+                    return SQLite.Param.Charge(id);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Delete(String ident)
+        public static List<Param> Charge(string ident)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Delete(ident);
-                    break;
+                    return SQLite.Param.Charge(ident);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Maj(Classe.Param p)
+        public static void Delete(int id)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Maj(p);
+                    SQLite.Param.Delete(id);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Sauve(Classe.Param p)
+        public static void Delete(string ident)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Sauve(p);
+                    SQLite.Param.Delete(ident);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Param Maj(Param p)
+        {
+            switch(ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Param.Maj(p);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Param Sauve(Param p)
+        {
+            switch(ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Param.Sauve(p);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
     }
