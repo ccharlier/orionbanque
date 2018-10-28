@@ -17,18 +17,18 @@ namespace OrionBanque.Classe.SQLite
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@date", o.Date);
                 Log.Logger.Debug("date=" + o.Date);
-                cmd.Parameters.AddWithValue("@id_mode_paiement", o.IdModePaiement);
-                Log.Logger.Debug("id_mode_paiement=" + o.IdModePaiement);
+                cmd.Parameters.AddWithValue("@id_mode_paiement", o.ModePaiement.Id);
+                Log.Logger.Debug("id_mode_paiement=" + o.ModePaiement.Id);
                 cmd.Parameters.AddWithValue("@tiers", o.Tiers);
                 Log.Logger.Debug("tiers=" + o.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", o.Libelle);
                 Log.Logger.Debug("libelle=" + o.Libelle);
-                cmd.Parameters.AddWithValue("@id_categories", o.IdCategorie);
-                Log.Logger.Debug("id_categories=" + o.IdCategorie);
+                cmd.Parameters.AddWithValue("@id_categories", o.Categorie.Id);
+                Log.Logger.Debug("id_categories=" + o.Categorie.Id);
                 cmd.Parameters.AddWithValue("@montant", o.Montant);
                 Log.Logger.Debug("montant=" + o.Montant);
-                cmd.Parameters.AddWithValue("@id_compte", o.IdCompte);
-                Log.Logger.Debug("id_compte=" + o.IdCompte);
+                cmd.Parameters.AddWithValue("@id_compte", o.Compte.Id);
+                Log.Logger.Debug("id_compte=" + o.Compte.Id);
                 cmd.Parameters.AddWithValue("@date_pointage", o.DatePointage);
                 Log.Logger.Debug("date_pointage=" + o.DatePointage);
                 cmd.ExecuteNonQuery();
@@ -53,6 +53,32 @@ namespace OrionBanque.Classe.SQLite
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idC", idC);
                 Log.Logger.Debug("idC=" + idC);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ls.Add(Classe.Operation.Charge(rdr.GetInt32(0)));
+                }
+                rdr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+            }
+            return ls;
+        }
+
+        public static List<Classe.Operation> ChargeToutUtilisateur(Classe.Utilisateur u)
+        {
+            Log.Logger.Debug("Debut Operations.ChargeToutUtilisateur(" + u.Id + ")");
+            List<Classe.Operation> ls = new List<Classe.Operation>();
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_UTILISATEUR, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_UTILISATEUR);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@idU", u.Id);
+                Log.Logger.Debug("idU=" + u.Id);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -211,18 +237,18 @@ namespace OrionBanque.Classe.SQLite
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@date", o.Date);
                 Log.Logger.Debug("date=" + o.Date);
-                cmd.Parameters.AddWithValue("@id_mode_paiement", o.IdModePaiement);
-                Log.Logger.Debug("id_mode_paiement=" + o.IdModePaiement);
+                cmd.Parameters.AddWithValue("@id_mode_paiement", o.ModePaiement.Id);
+                Log.Logger.Debug("id_mode_paiement=" + o.ModePaiement.Id);
                 cmd.Parameters.AddWithValue("@tiers", o.Tiers);
                 Log.Logger.Debug("tiers=" + o.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", o.Libelle);
                 Log.Logger.Debug("libelle=" + o.Libelle);
-                cmd.Parameters.AddWithValue("@id_categories", o.IdCategorie);
-                Log.Logger.Debug("id_categories=" + o.IdCategorie);
+                cmd.Parameters.AddWithValue("@id_categories", o.Categorie.Id);
+                Log.Logger.Debug("id_categories=" + o.Categorie.Id);
                 cmd.Parameters.AddWithValue("@montant", o.Montant);
                 Log.Logger.Debug("montant=" + o.Montant);
-                cmd.Parameters.AddWithValue("@id_compte", o.IdCompte);
-                Log.Logger.Debug("id_compte=" + o.IdCompte);
+                cmd.Parameters.AddWithValue("@id_compte", o.Compte.Id);
+                Log.Logger.Debug("id_compte=" + o.Compte.Id);
                 cmd.Parameters.AddWithValue("@id", o.Id);
                 Log.Logger.Debug("id=" + o.Id);
                 cmd.Parameters.AddWithValue("@date_pointage", o.DatePointage);
@@ -603,9 +629,9 @@ namespace OrionBanque.Classe.SQLite
                     {
                         o.DatePointage = null;
                     }
-                    o.IdCategorie = rdr.GetInt32(5);
-                    o.IdCompte = rdr.GetInt32(8);
-                    o.IdModePaiement = rdr.GetInt32(2);
+                    o.Categorie = Classe.Categorie.Charge(rdr.GetInt32(5));
+                    o.Compte = Classe.Compte.Charge(rdr.GetInt32(8));
+                    o.ModePaiement = Classe.ModePaiement.Charge(rdr.GetInt32(2));
                     o.Libelle = rdr.GetString(4);
                     o.Montant = rdr.GetDouble(6);
                     o.Tiers = rdr.GetString(3);

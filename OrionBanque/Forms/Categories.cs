@@ -25,7 +25,7 @@ namespace OrionBanque.Forms
                 List<Classe.Categorie> lct = new List<OrionBanque.Classe.Categorie>();
                 foreach (Classe.Categorie c in lc)
                 {
-                    if (c.IdParent.Equals(0))
+                    if (c.CategorieParent.Id.Equals(0))
                     {
                         lct.Add(c);
                         TreeNode tn = new TreeNode(c.Libelle)
@@ -34,7 +34,7 @@ namespace OrionBanque.Forms
                         };
                         foreach (Classe.Categorie ctemp in lc)
                         {
-                            if (ctemp.IdParent == c.Id)
+                            if (ctemp.CategorieParent.Id == c.Id)
                             {
                                 TreeNode tne = new TreeNode(ctemp.Libelle)
                                 {
@@ -87,9 +87,13 @@ namespace OrionBanque.Forms
                     Libelle = txtLibelleAdd.Text.Trim()
                 };
                 if (kryptonCheckBox1.Checked)
-                    c.IdParent = (Int32)cbCategorieParent.SelectedValue;
+                {
+                    c.CategorieParent = Classe.Categorie.Charge((Int32)cbCategorieParent.SelectedValue);
+                }
                 else
-                    c.IdParent = 0;
+                {
+                    c.CategorieParent = new Classe.Categorie();
+                }
 
                 Classe.Categorie.Sauve(c);
 
@@ -110,10 +114,13 @@ namespace OrionBanque.Forms
                 Classe.Categorie c = Classe.Categorie.Charge(Int32.Parse(tvCategorie.SelectedNode.Name));
                 c.Libelle = txtLibelleMod.Text.Trim();
                 if (kryptonCheckBox2.Checked)
-                    c.IdParent = (Int32)cbModCatPa.SelectedValue;
+                {
+                    c.CategorieParent = Classe.Categorie.Charge((Int32)cbModCatPa.SelectedValue);
+                }
                 else
-                    c.IdParent = 0;
-
+                {
+                    c.CategorieParent = new Classe.Categorie();
+                }
 
                 Classe.Categorie.Maj(c);
 
@@ -141,12 +148,14 @@ namespace OrionBanque.Forms
             {
                 Classe.Categorie c = Classe.Categorie.Charge(Int32.Parse(tvCategorie.SelectedNode.Name));
                 txtLibelleMod.Text = c.Libelle;
-                if (c.IdParent.Equals(0))
+                if (c.CategorieParent.Id.Equals(0))
+                {
                     kryptonCheckBox2.Checked = false;
+                }
                 else
                 {
                     kryptonCheckBox2.Checked = true;
-                    cbModCatPa.SelectedValue = c.IdParent;
+                    cbModCatPa.SelectedValue = c.CategorieParent.Id;
                 }
             }
             catch (Exception ex)

@@ -12,6 +12,49 @@ namespace OrionBanque.Classe.SQLite
     class Param
     {
         /// <summary>
+        /// Chargement de tous les parametres
+        /// </summary>
+        /// <returns>Lsite de Param</returns>
+        public static List<Classe.Param> ChargeTout()
+        {
+            Log.Logger.Debug("Debut Param.ChargeTout()");
+            List<Classe.Param> lp = new List<Classe.Param>();
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(Sql.PARAM_ALL, Sql.GetConnection());
+                Log.Logger.Debug("Execution requete : " + Sql.PARAM_ALL);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Classe.Param p = new Classe.Param();
+                    p.Id = rdr.GetInt32(0);
+                    p.Ident = rdr.GetString(1);
+                    p.Val1 = rdr.GetString(2);
+                    p.Val2 = rdr.GetString(3);
+                    p.Val3 = rdr.GetString(4);
+                    p.Int1 = rdr.GetInt32(5);
+                    p.Int2 = rdr.GetInt32(6);
+                    p.Int3 = rdr.GetInt32(7);
+                    p.Dec1 = rdr.GetDouble(8);
+                    p.Dec2 = rdr.GetDouble(9);
+                    p.Dec3 = rdr.GetDouble(10);
+                    p.Dat1 = rdr.GetDateTime(11);
+                    p.Dat2 = rdr.GetDateTime(12);
+                    p.Dat3 = rdr.GetDateTime(13);
+                    lp.Add(p);
+                }
+                rdr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+            }
+            Log.Logger.Debug("Fin Param.ChargeTout()");
+            return lp;
+        }
+
+        /// <summary>
         /// Chargement d'un parametre
         /// </summary>
         /// <param name="id">Id du parametre</param>

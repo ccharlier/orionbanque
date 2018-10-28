@@ -35,9 +35,9 @@ namespace OrionBanque.Classe.SQLite
                     Classe.Operation o = new Classe.Operation
                     {
                         Date = ec.Prochaine,
-                        IdCategorie = ec.IdCategorie,
-                        IdCompte = ec.IdCompte,
-                        IdModePaiement = ec.IdModePaiement,
+                        Categorie = ec.Categorie,
+                        Compte = ec.Compte,
+                        ModePaiement = ec.ModePaiement,
                         Libelle = ec.Libelle,
                         Montant = ec.Montant,
                         Tiers = ec.Tiers
@@ -82,18 +82,18 @@ namespace OrionBanque.Classe.SQLite
                 SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_INSERT, Sql.GetConnection());
                 Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_INSERT);
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@id_mode_paiement", e.IdModePaiement);
-                Log.Logger.Debug("IdModePaiement=" + e.IdModePaiement);
+                cmd.Parameters.AddWithValue("@id_mode_paiement", e.ModePaiement.Id);
+                Log.Logger.Debug("IdModePaiement=" + e.ModePaiement.Id);
                 cmd.Parameters.AddWithValue("@tiers", e.Tiers);
                 Log.Logger.Debug("Tiers=" + e.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", e.Libelle);
                 Log.Logger.Debug("Libelle=" + e.Libelle);
-                cmd.Parameters.AddWithValue("@id_categories", e.IdCategorie);
-                Log.Logger.Debug("IdCategorie=" + e.IdCategorie);
+                cmd.Parameters.AddWithValue("@id_categories", e.Categorie.Id);
+                Log.Logger.Debug("IdCategorie=" + e.Categorie.Id);
                 cmd.Parameters.AddWithValue("@montant", e.Montant);
                 Log.Logger.Debug("Montant=" + e.Montant);
-                cmd.Parameters.AddWithValue("@id_compte", e.IdCompte);
-                Log.Logger.Debug("IdCompte=" + e.IdCompte);
+                cmd.Parameters.AddWithValue("@id_compte", e.Compte.Id);
+                Log.Logger.Debug("IdCompte=" + e.Compte.Id);
                 cmd.Parameters.AddWithValue("@repete", e.Repete);
                 Log.Logger.Debug("Repete=" + e.Repete);
                 cmd.Parameters.AddWithValue("@date_fin", e.DateFin);
@@ -122,18 +122,18 @@ namespace OrionBanque.Classe.SQLite
                 SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.ECHEANCIERS_UPDATE, SQLite.Sql.GetConnection());
                 Log.Logger.Debug("Requete :" + SQLite.Sql.ECHEANCIERS_UPDATE);
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@id_mode_paiement", e.IdModePaiement);
-                Log.Logger.Debug("IdModePaiement=" + e.IdModePaiement);
+                cmd.Parameters.AddWithValue("@id_mode_paiement", e.ModePaiement.Id);
+                Log.Logger.Debug("IdModePaiement=" + e.ModePaiement.Id);
                 cmd.Parameters.AddWithValue("@tiers", e.Tiers);
                 Log.Logger.Debug("Tiers=" + e.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", e.Libelle);
                 Log.Logger.Debug("Libelle=" + e.Libelle);
-                cmd.Parameters.AddWithValue("@id_categories", e.IdCategorie);
-                Log.Logger.Debug("IdCategorie=" + e.IdCategorie);
+                cmd.Parameters.AddWithValue("@id_categories", e.Categorie.Id);
+                Log.Logger.Debug("IdCategorie=" + e.Categorie.Id);
                 cmd.Parameters.AddWithValue("@montant", e.Montant);
                 Log.Logger.Debug("Montant=" + e.Montant);
-                cmd.Parameters.AddWithValue("@id_compte", e.IdCompte);
-                Log.Logger.Debug("IdCompte=" + e.IdCompte);
+                cmd.Parameters.AddWithValue("@id_compte", e.Compte.Id);
+                Log.Logger.Debug("IdCompte=" + e.Compte.Id);
                 cmd.Parameters.AddWithValue("@id", e.Id);
                 Log.Logger.Debug("Id=" + e.Id);
                 cmd.Parameters.AddWithValue("@repete", e.Repete);
@@ -193,9 +193,9 @@ namespace OrionBanque.Classe.SQLite
                 {
                     e.Id = rdr.GetInt32(0);
                     e.Prochaine = rdr.GetDateTime(1);
-                    e.IdCategorie = rdr.GetInt32(5);
-                    e.IdCompte = rdr.GetInt32(7);
-                    e.IdModePaiement = rdr.GetInt32(2);
+                    e.Categorie = Classe.Categorie.Charge(rdr.GetInt32(5));
+                    e.Compte = Classe.Compte.Charge(rdr.GetInt32(7));
+                    e.ModePaiement = Classe.ModePaiement.Charge(rdr.GetInt32(2));
                     e.Libelle = rdr.GetString(4);
                     e.Montant = rdr.GetDouble(6);
                     e.Tiers = rdr.GetString(3);
@@ -247,6 +247,34 @@ namespace OrionBanque.Classe.SQLite
                 throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             Log.Logger.Debug("Fin Compte.ChargeTout() avec " + ls.Count + " elements");
+            return ls;
+        }
+
+        public static List<Classe.Echeancier> ChargeToutUtilisateur(Classe.Utilisateur u)
+        {
+            Log.Logger.Debug("Debut Compte.ChargeToutUtilisateur(" + u.Id + ")");
+            List<Classe.Echeancier> ls = new List<Classe.Echeancier>();
+
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_UTILISATEUR, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_UTILISATEUR);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@idU", u.Id);
+                Log.Logger.Debug("idU=" + u.Id);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ls.Add(Classe.Echeancier.Charge(rdr.GetInt32(0)));
+                }
+                rdr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+            }
+            Log.Logger.Debug("Fin Compte.ChargeToutUtilisateur() avec " + ls.Count + " elements");
             return ls;
         }
 

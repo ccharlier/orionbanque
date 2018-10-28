@@ -63,7 +63,7 @@ namespace OrionBanque.Classe.SQLite
                     c.Id = rdr.GetInt32(0);
                     c.Libelle = rdr.GetString(1);
                     c.SoldeInitial = rdr.GetDouble(2);
-                    c.IdUtilisateur = rdr.GetInt32(3);
+                    c.Utilisateur = Utilisateur.Charge(rdr.GetInt32(3));
                     c.Banque = rdr.GetString(4);
                     c.Guichet = rdr.GetString(5);
                     c.NoCompte = rdr.GetString(6);
@@ -85,25 +85,65 @@ namespace OrionBanque.Classe.SQLite
             return c;
         }
 
-        public static List<Classe.Compte> ChargeTout(int idU)
+        public static List<Classe.Compte> ChargeTout()
         {
-            Log.Logger.Debug("Debut Compte.ChargeTout(" + idU + ")");
-            List <Classe.Compte> lc = new List<Classe.Compte>();
+            Log.Logger.Debug("Debut Compte.ChargeTout()");
+            List<Classe.Compte> lc = new List<Classe.Compte>();
             try
             {
                 Classe.Compte c = new Classe.Compte();
                 SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_ALL, Sql.GetConnection());
                 Log.Logger.Debug("Requete :" + Sql.COMPTES_ALL);
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@idU", idU);
-                Log.Logger.Debug("IdUtilisateur=" + idU);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     c.Id = rdr.GetInt32(0);
                     c.Libelle = rdr.GetString(1);
                     c.SoldeInitial = rdr.GetDouble(2);
-                    c.IdUtilisateur = rdr.GetInt32(3);
+                    c.Utilisateur = Utilisateur.Charge(rdr.GetInt32(3));
+                    c.Banque = rdr.GetString(4);
+                    c.Guichet = rdr.GetString(5);
+                    c.NoCompte = rdr.GetString(6);
+                    c.Clef = rdr.GetString(7);
+                    c.MinGraphSold = rdr.GetDateTime(8);
+                    c.MaxGraphSold = rdr.GetDateTime(9);
+                    c.SeuilAlerte = rdr.GetDouble(10);
+                    c.TypEvol = rdr.GetString(11);
+                    c.SeuilAlerteFinal = rdr.GetDouble(12);
+                    lc.Add(c);
+                    c = new OrionBanque.Classe.Compte();
+                }
+                rdr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+            }
+            Log.Logger.Debug("Fin Compte.ChargeTout() avec " + lc.Count + " elements");
+            return lc;
+        }
+
+        public static List<Classe.Compte> ChargeTout(Classe.Utilisateur u)
+        {
+            Log.Logger.Debug("Debut Compte.ChargeTout(" + u.Id + ")");
+            List <Classe.Compte> lc = new List<Classe.Compte>();
+            try
+            {
+                Classe.Compte c = new Classe.Compte();
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_ALL_UTILISATEUR, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_ALL_UTILISATEUR);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@idU", u.Id);
+                Log.Logger.Debug("IdUtilisateur=" + u.Id);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    c.Id = rdr.GetInt32(0);
+                    c.Libelle = rdr.GetString(1);
+                    c.SoldeInitial = rdr.GetDouble(2);
+                    c.Utilisateur = Utilisateur.Charge(rdr.GetInt32(3));
                     c.Banque = rdr.GetString(4);
                     c.Guichet = rdr.GetString(5);
                     c.NoCompte = rdr.GetString(6);
@@ -141,8 +181,8 @@ namespace OrionBanque.Classe.SQLite
                 Log.Logger.Debug("Libelle=" + c.Libelle);
                 cmd.Parameters.AddWithValue("@SoldeInitial", c.SoldeInitial);
                 Log.Logger.Debug("SoldeInitial=" + c.SoldeInitial);
-                cmd.Parameters.AddWithValue("@id_utilisateur", c.IdUtilisateur);
-                Log.Logger.Debug("IdUtilisateur=" + c.IdUtilisateur);
+                cmd.Parameters.AddWithValue("@id_utilisateur", c.Utilisateur.Id);
+                Log.Logger.Debug("IdUtilisateur=" + c.Utilisateur.Id);
                 cmd.Parameters.AddWithValue("@banque", c.Banque);
                 Log.Logger.Debug("Banque=" + c.Banque);
                 cmd.Parameters.AddWithValue("@compte", c.NoCompte);
@@ -184,8 +224,8 @@ namespace OrionBanque.Classe.SQLite
                 Log.Logger.Debug("Libelle=" + c.Libelle);
                 cmd.Parameters.AddWithValue("@solde_initial", c.SoldeInitial);
                 Log.Logger.Debug("SoldeInitial=" + c.SoldeInitial);
-                cmd.Parameters.AddWithValue("@id_utilisateur", c.IdUtilisateur);
-                Log.Logger.Debug("IdUtilisateur=" + c.IdUtilisateur);
+                cmd.Parameters.AddWithValue("@id_utilisateur", c.Utilisateur.Id);
+                Log.Logger.Debug("IdUtilisateur=" + c.Utilisateur.Id);
                 cmd.Parameters.AddWithValue("@banque", c.Banque);
                 Log.Logger.Debug("Banque=" + c.Banque);
                 cmd.Parameters.AddWithValue("@guichet", c.Guichet);

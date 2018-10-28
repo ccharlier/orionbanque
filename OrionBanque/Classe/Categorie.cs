@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
 {
+    [DataContract(Name = "Categorie", Namespace = "https://www.orionbanque.com")]
+    [Serializable]
     public class Categorie
     {
+        [DataMember()]
         public int Id { get; set; }
+        [DataMember()]
         public string Libelle { get; set; }
-        public int IdParent { get; set; }
+        [DataMember()]
+        public Categorie CategorieParent { get; set; }
 
         /// <summary>
         /// Récupère l'ensemble des catégories
@@ -16,18 +22,15 @@ namespace OrionBanque.Classe
         /// <returns>Liste de Categorie</returns>
         public static List<Categorie> ChargeTout()
         {
-            List<Categorie> lc = new List<Categorie>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    lc = SQLite.Categorie.ChargeTout();
-                    break;
+                    return SQLite.Categorie.ChargeTout();
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.ChargeTout();
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return lc;
         }
 
         /// <summary>
@@ -36,16 +39,15 @@ namespace OrionBanque.Classe
         /// <returns>Liste de Categorie</returns>
         public static List<Categorie> ChargeToutIdent()
         {
-            List<Categorie> lc = new List<Categorie>();
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    lc = SQLite.Categorie.ChargeToutIdent();
-                    break;
+                    return SQLite.Categorie.ChargeToutIdent();
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.ChargeToutIdent();
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-            return lc;
         }
 
         /// <summary>
@@ -54,18 +56,15 @@ namespace OrionBanque.Classe
         /// <returns>Liste de Categorie</returns>
         public static List<Categorie> ChargeCategorieParent()
         {
-            List<Categorie> lc = new List<Categorie>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    lc = SQLite.Categorie.ChargeCategorieParent();
-                    break;
+                    return SQLite.Categorie.ChargeCategorieParent();
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.ChargeCategorieParent();
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return lc;
         }
 
         /// <summary>
@@ -75,18 +74,15 @@ namespace OrionBanque.Classe
         /// <returns>Liste de Categorie</returns>
         public static List<Categorie> ChargeCategorieDeParent(int idCat)
         {
-            List<Categorie> lc = new List<Categorie>();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    lc = SQLite.Categorie.ChargeCategorieDeParent(idCat);
-                    break;
+                    return SQLite.Categorie.ChargeCategorieDeParent(idCat);
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.ChargeCategorieDeParent(idCat);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return lc;
         }
 
         /// <summary>
@@ -96,18 +92,15 @@ namespace OrionBanque.Classe
         /// <returns>Categorie</returns>
         public static Categorie Charge(int id)
         {
-            Categorie c = new Categorie();
-            
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    c = SQLite.Categorie.Charge(id);
-                    break;
+                    return SQLite.Categorie.Charge(id);
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.Charge(id);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return c;
         }
 
         /// <summary>
@@ -117,18 +110,15 @@ namespace OrionBanque.Classe
         /// <returns>Categorie</returns>
         public static Categorie ChargeParNom(string nom)
         {
-            Categorie c = new Categorie();
-
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    c = SQLite.Categorie.ChargeParNom(nom);
-                    break;
+                    return SQLite.Categorie.ChargeParNom(nom);
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.ChargeParNom(nom);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
-
-            return c;
         }
 
         public static void DeletePossible(int id)
@@ -137,6 +127,9 @@ namespace OrionBanque.Classe
             {
                 case Configuration.BD_SQLITE:
                     SQLite.Categorie.DeletePossible(id);
+                    break;
+                case Configuration.BD_BINARY:
+                    Binary.Categorie.DeletePossible(id);
                     break;
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -154,6 +147,9 @@ namespace OrionBanque.Classe
                 case Configuration.BD_SQLITE:
                     SQLite.Categorie.Delete(id);
                     break;
+                case Configuration.BD_BINARY:
+                    Binary.Categorie.Delete(id);
+                    break;
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
@@ -169,6 +165,8 @@ namespace OrionBanque.Classe
             {
                 case Configuration.BD_SQLITE:
                     return SQLite.Categorie.Maj(c);
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.Maj(c);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
@@ -184,6 +182,8 @@ namespace OrionBanque.Classe
             {
                 case Configuration.BD_SQLITE:
                     return SQLite.Categorie.Sauve(c);
+                case Configuration.BD_BINARY:
+                    return Binary.Categorie.Sauve(c);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }

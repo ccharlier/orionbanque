@@ -22,7 +22,7 @@ namespace OrionBanque.Forms
             else if(mode.Equals("UPDATE"))
             {
                 O = Classe.Operation.Charge(id);
-                idC = O.IdCompte;
+                idC = O.Compte.Id;
             }
             RemplisCb();
         }
@@ -42,12 +42,15 @@ namespace OrionBanque.Forms
                 try
                 {
                     txtDateMvt.Value = O.Date;
-                    txtCategorie.SelectedValue = O.IdCategorie;
+                    txtCategorie.SelectedValue = O.Categorie.Id;
                     txtLibelle.Text = O.Libelle;
-                    txtModePaiement.SelectedValue = O.IdModePaiement;
+                    txtModePaiement.SelectedValue = O.ModePaiement.Id;
                     txtMontant.Value = new Decimal(O.Montant);
                     if (O.DatePointage != null)
+                    {
                         txtPointage.Checked = true;
+                    }
+
                     txtTiers.Text = O.Tiers;
                 }
                 catch (Exception ex)
@@ -91,7 +94,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<String> ls = Classe.Operation.ChargeToutTiers(idC);
+                List<string> ls = Classe.Operation.ChargeToutTiers(idC);
                 txtTiers.DataSource = ls;
             }
             catch (Exception ex)
@@ -107,19 +110,24 @@ namespace OrionBanque.Forms
                 try
                 {
                     O.Date = txtDateMvt.Value;
-                    O.IdCategorie = (Int32)txtCategorie.SelectedValue;
-                    O.IdModePaiement = (Int32)txtModePaiement.SelectedValue;
+                    O.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
+                    O.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
                     O.Libelle = txtLibelle.Text;
-                    O.Montant = Double.Parse(txtMontant.Value.ToString());
+                    O.Montant = double.Parse(txtMontant.Value.ToString());
                     O.Tiers = txtTiers.Text;
                     if (txtPointage.Checked && PointageModif)
+                    {
                         O.DatePointage = DateTime.Now;
+                    }
+
                     if (!txtPointage.Checked)
+                    {
                         O.DatePointage = null;
+                    }
 
                     Classe.Operation.Maj(O);
                     cont = true;
-                    this.Close();
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -133,21 +141,26 @@ namespace OrionBanque.Forms
                     Classe.Operation o = new OrionBanque.Classe.Operation
                     {
                         Date = txtDateMvt.Value,
-                        IdCategorie = (Int32)txtCategorie.SelectedValue,
-                        IdCompte = idC,
-                        IdModePaiement = (Int32)txtModePaiement.SelectedValue,
+                        Categorie = Classe.Categorie.Charge((int)txtCategorie.SelectedValue),
+                        Compte = Classe.Compte.Charge(idC),
+                        ModePaiement = Classe.ModePaiement.Charge((int)txtModePaiement.SelectedValue),
                         Libelle = txtLibelle.Text,
-                        Montant = Double.Parse(txtMontant.Value.ToString()),
+                        Montant = double.Parse(txtMontant.Value.ToString()),
                         Tiers = txtTiers.Text
                     };
                     if (txtPointage.Checked && PointageModif)
+                    {
                         o.DatePointage = DateTime.Now;
+                    }
+
                     if (!txtPointage.Checked)
+                    {
                         o.DatePointage = null;
+                    }
 
                     Classe.Operation.Sauve(o);
                     cont = true;
-                    this.Close();
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -165,7 +178,7 @@ namespace OrionBanque.Forms
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Forms.ModePaiement fm = new ModePaiement();
+                ModePaiement fm = new ModePaiement();
                 fm.ShowDialog();
                 RemplisModePaiements();
             }
@@ -175,7 +188,7 @@ namespace OrionBanque.Forms
         {
             if (((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Forms.Categories fm = new Forms.Categories();
+                Categories fm = new Categories();
                 fm.ShowDialog();
                 RemplisCategories();
             }

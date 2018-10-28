@@ -39,6 +39,8 @@
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enregistrerSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unFichierCSVBPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.modeDePaiementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.catégoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,8 +121,6 @@
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.importerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unFichierCSVBPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -229,6 +229,22 @@
             this.quitterToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.quitterToolStripMenuItem.Text = "&Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItem_Click);
+            // 
+            // importerToolStripMenuItem
+            // 
+            this.importerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unFichierCSVBPToolStripMenuItem});
+            this.importerToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
+            this.importerToolStripMenuItem.Name = "importerToolStripMenuItem";
+            this.importerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.importerToolStripMenuItem.Text = "Importer";
+            // 
+            // unFichierCSVBPToolStripMenuItem
+            // 
+            this.unFichierCSVBPToolStripMenuItem.Name = "unFichierCSVBPToolStripMenuItem";
+            this.unFichierCSVBPToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.unFichierCSVBPToolStripMenuItem.Text = "Un fichier CSV BP";
+            this.unFichierCSVBPToolStripMenuItem.Click += new System.EventHandler(this.unFichierCSVBPToolStripMenuItem_Click);
             // 
             // tsmConfiguration
             // 
@@ -515,6 +531,7 @@
             this.xGraph.ScrollMinY2 = 0D;
             this.xGraph.Size = new System.Drawing.Size(297, 299);
             this.xGraph.TabIndex = 12;
+            this.xGraph.UseExtendedPrintDialog = true;
             // 
             // kryptonLabel3
             // 
@@ -784,6 +801,7 @@
             this.dgvOperations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOperations.Size = new System.Drawing.Size(926, 548);
             this.dgvOperations.TabIndex = 0;
+            this.dgvOperations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOperations_CellFormatting);
             this.dgvOperations.DoubleClick += new System.EventHandler(this.DgvOperations_DoubleClick);
             // 
             // contextMenuStrip1
@@ -1053,22 +1071,6 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            // 
-            // importerToolStripMenuItem
-            // 
-            this.importerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unFichierCSVBPToolStripMenuItem});
-            this.importerToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
-            this.importerToolStripMenuItem.Name = "importerToolStripMenuItem";
-            this.importerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.importerToolStripMenuItem.Text = "Importer";
-            // 
-            // unFichierCSVBPToolStripMenuItem
-            // 
-            this.unFichierCSVBPToolStripMenuItem.Name = "unFichierCSVBPToolStripMenuItem";
-            this.unFichierCSVBPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.unFichierCSVBPToolStripMenuItem.Text = "Un fichier CSV BP";
-            this.unFichierCSVBPToolStripMenuItem.Click += new System.EventHandler(this.unFichierCSVBPToolStripMenuItem_Click);
             // 
             // OFDImport
             // 

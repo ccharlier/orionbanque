@@ -23,7 +23,7 @@ namespace OrionBanque.Classe.SQLite
                     c = new Classe.Categorie
                     {
                         Id = rdr.GetInt32(0),
-                        IdParent = rdr.GetInt32(2),
+                        CategorieParent = Charge(rdr.GetInt32(2)),
                         Libelle = rdr.GetString(1)
                     };
 
@@ -48,11 +48,11 @@ namespace OrionBanque.Classe.SQLite
             foreach (Classe.Categorie c in lcParent)
             {
                 retour.Add(c);
-                Log.Logger.Info("Chargement de la Categorie Parent n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
+                Log.Logger.Info("Chargement de la Categorie Parent n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.CategorieParent.Id);
                 List<Classe.Categorie> lcEnfant = Classe.Categorie.ChargeCategorieDeParent(c.Id);
                 foreach (Classe.Categorie c2 in lcEnfant)
                 {
-                    Log.Logger.Info("Chargement de la Categorie Enfant n°" + c2.Id + ", Libelle " + c2.Libelle + ", IdParent " + c2.IdParent);
+                    Log.Logger.Info("Chargement de la Categorie Enfant n°" + c2.Id + ", Libelle " + c2.Libelle + ", IdParent " + c2.CategorieParent.Id);
                     c2.Libelle = "\t-> " + c2.Libelle;
                     retour.Add(c2);
                 }
@@ -77,7 +77,7 @@ namespace OrionBanque.Classe.SQLite
                     c = new Classe.Categorie
                     {
                         Id = rdr.GetInt32(0),
-                        IdParent = rdr.GetInt32(2),
+                        CategorieParent = Charge(rdr.GetInt32(2)),
                         Libelle = rdr.GetString(1)
                     };
 
@@ -113,7 +113,7 @@ namespace OrionBanque.Classe.SQLite
                     c = new Classe.Categorie
                     {
                         Id = rdr.GetInt32(0),
-                        IdParent = rdr.GetInt32(2),
+                        CategorieParent = Charge(rdr.GetInt32(2)),
                         Libelle = rdr.GetString(1)
                     };
 
@@ -132,6 +132,11 @@ namespace OrionBanque.Classe.SQLite
 
         public static Classe.Categorie Charge(int id)
         {
+            if(id.Equals(0))
+            {
+                return new Classe.Categorie();
+            }
+
             Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
             Classe.Categorie c = new Classe.Categorie();
             try
@@ -146,7 +151,7 @@ namespace OrionBanque.Classe.SQLite
                 {
                     c.Id = rdr.GetInt32(0);
                     c.Libelle = rdr.GetString(1);
-                    c.IdParent = rdr.GetInt32(2);
+                    c.CategorieParent = Charge(rdr.GetInt32(2));
                 }
                 rdr.Close();
             }
@@ -155,7 +160,7 @@ namespace OrionBanque.Classe.SQLite
                 Log.Logger.Error(ex.Message);
                 throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Log.Logger.Debug("Fin Categorie.Charge() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
+            Log.Logger.Debug("Fin Categorie.Charge() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.CategorieParent.Id);
             return c;
         }
 
@@ -175,7 +180,7 @@ namespace OrionBanque.Classe.SQLite
                 {
                     c.Id = rdr.GetInt32(0);
                     c.Libelle = rdr.GetString(1);
-                    c.IdParent = rdr.GetInt32(2);
+                    c.CategorieParent = Charge(rdr.GetInt32(2));
                 }
                 rdr.Close();
             }
@@ -184,7 +189,7 @@ namespace OrionBanque.Classe.SQLite
                 Log.Logger.Error(ex.Message);
                 throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Log.Logger.Debug("Fin Categorie.ChargeParNom() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.IdParent);
+            Log.Logger.Debug("Fin Categorie.ChargeParNom() : n°" + c.Id + ", Libelle " + c.Libelle + ", IdParent " + c.CategorieParent.Id);
             return c;
         }
 
@@ -248,14 +253,14 @@ namespace OrionBanque.Classe.SQLite
 
         public static Classe.Categorie Maj(Classe.Categorie c)
         {
-            Log.Logger.Debug("Debut Categorie.Maj() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.IdParent );
+            Log.Logger.Debug("Debut Categorie.Maj() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.CategorieParent.Id );
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_UPDATE_ID, Sql.GetConnection());
                 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@libelle", c.Libelle);
-                cmd.Parameters.AddWithValue("@id_parent", c.IdParent);
+                cmd.Parameters.AddWithValue("@id_parent", c.CategorieParent.Id);
                 cmd.Parameters.AddWithValue("@id", c.Id);
                 Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_UPDATE_ID);
                 cmd.ExecuteNonQuery();
@@ -271,14 +276,14 @@ namespace OrionBanque.Classe.SQLite
 
         public static Classe.Categorie Sauve(Classe.Categorie c)
         {
-            Log.Logger.Debug("Debut Categorie.Sauve() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.IdParent);
+            Log.Logger.Debug("Debut Categorie.Sauve() : id " + c.Id + ", libelle " + c.Libelle + ", idparent " + c.CategorieParent.Id);
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(Sql.CATEGORIES_INSERT, Sql.GetConnection());
                 
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@libelle", c.Libelle);
-                cmd.Parameters.AddWithValue("@id_parent", c.IdParent);
+                cmd.Parameters.AddWithValue("@id_parent", c.CategorieParent.Id);
                 Log.Logger.Debug("Execution requete : " + Sql.CATEGORIES_INSERT);
                 cmd.ExecuteNonQuery();
                 c.Id = Sql.GetLastInsertId();
