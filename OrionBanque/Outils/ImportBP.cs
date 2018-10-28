@@ -28,8 +28,6 @@ namespace OrionBanque.Outils
 
                 while ((contenu = sr.ReadLine()) != null)
                 {
-                    
-
                     //Date;Mode;Tiers;Libelle;Categories;Sous Categorie;Montant;Pointage
                     string[] t = contenu.Split('\t');
 
