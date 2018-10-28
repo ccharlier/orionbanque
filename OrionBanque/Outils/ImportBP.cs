@@ -28,30 +28,24 @@ namespace OrionBanque.Outils
 
                 while ((contenu = sr.ReadLine()) != null)
                 {
-                    
-
                     //Date;Mode;Tiers;Libelle;Categories;Sous Categorie;Montant;Pointage
                     string[] t = contenu.Split('\t');
-                    
-                    Operation o = new Operation();
 
-                    // Prise en charge du compte
-                    o.IdCompte = c.Id;
-
-                    // Prise en charge de la date
-                    o.Date = new DateTime( int.Parse(t[0].Split('/')[2]), int.Parse(t[0].Split('/')[1]), int.Parse(t[0].Split('/')[0]) );
-
-                    // Prise en charge du mode de paiement
-                    o.IdModePaiement = GetModePaiement(t[1], t[6]).Id;
-
-                    // Prise en charge du Tiers
-                    o.Tiers = t[2];
-
-                    // Prise en charge du libelle
-                    o.Libelle = t[3];
-
-                    // Prise en charge de la categorie
-                    o.IdCategorie = GetCategorie(t[4], t[5]).Id;
+                    Operation o = new Operation
+                    {
+                        // Prise en charge du compte
+                        Compte = c,
+                        // Prise en charge de la date
+                        Date = new DateTime(int.Parse(t[0].Split('/')[2]), int.Parse(t[0].Split('/')[1]), int.Parse(t[0].Split('/')[0])),
+                        // Prise en charge du mode de paiement
+                        ModePaiement = GetModePaiement(t[1], t[6]),
+                        // Prise en charge du Tiers
+                        Tiers = t[2],
+                        // Prise en charge du libelle
+                        Libelle = t[3],
+                        // Prise en charge de la categorie
+                        Categorie = GetCategorie(t[4], t[5])
+                    };
 
                     // Prise en charge du montant
                     if (t[2] == "Solde initial")
@@ -84,11 +78,17 @@ namespace OrionBanque.Outils
 
         public static Categorie GetCategorie(string catL, string scatL)
         {
-            Categorie retour = Categorie.ChargeParNom(catL);
+            if(catL == string.Empty)
+            {
+                catL = "Aucune";
+            }
+                Categorie retour = Categorie.ChargeParNom(catL);
             if (retour.Id == 0)
             {
                 // Création de la categorie elle n'existe pas
                 retour.Libelle = catL;
+                retour.CategorieParent = new Categorie();
+
                 Categorie.Sauve(retour);
                 retour = Categorie.ChargeParNom(catL);
             }
@@ -113,9 +113,11 @@ namespace OrionBanque.Outils
                 if (!found)
                 {
                     // On n'a pas trouvé la sous catégorie, on doit la créer
-                    Categorie scat = new Categorie();
-                    scat.Libelle = scatL;
-                    scat.IdParent = retour.Id;
+                    Categorie scat = new Categorie
+                    {
+                        Libelle = scatL,
+                        CategorieParent = Categorie.Charge(retour.Id)
+                    };
                     Categorie.Sauve(scat);
 
                     lscat = Categorie.ChargeCategorieDeParent(retour.Id);

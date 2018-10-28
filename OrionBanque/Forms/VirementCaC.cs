@@ -25,12 +25,12 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA.Id);
+                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA);
                 cbCompteOri.DisplayMember = "libelle";
                 cbCompteOri.ValueMember = "id";
                 cbCompteOri.DataSource = lc;
 
-                List<Classe.Compte> lc2 = Classe.Compte.ChargeTout(uA.Id);
+                List<Classe.Compte> lc2 = Classe.Compte.ChargeTout(uA);
                 cbCompteDest.DisplayMember = "libelle";
                 cbCompteDest.ValueMember = "id";
                 cbCompteDest.DataSource = lc2;
@@ -71,17 +71,17 @@ namespace OrionBanque.Forms
             Classe.Operation op1 = new OrionBanque.Classe.Operation
             {
                 Date = txtDateMvt.Value,
-                IdCategorie = Int32.Parse(txtCategorie.SelectedValue.ToString()),
-                IdCompte = Int32.Parse(cbCompteOri.SelectedValue.ToString()),
-                IdModePaiement = 4,
+                Categorie = Classe.Categorie.Charge(Int32.Parse(txtCategorie.SelectedValue.ToString())),
+                Compte = Classe.Compte.Charge(Int32.Parse(cbCompteOri.SelectedValue.ToString())),
+                ModePaiement = Classe.ModePaiement.Charge(4),
                 Libelle = txtLibelle.Text,
                 Montant = Double.Parse(txtMontant.Value.ToString()),
                 Tiers = string.Empty
             };
             Classe.Operation.Sauve(op1);
 
-            op1.IdCompte = Int32.Parse(cbCompteDest.SelectedValue.ToString());
-            op1.IdModePaiement = 5;
+            op1.Compte = Classe.Compte.Charge(Int32.Parse(cbCompteDest.SelectedValue.ToString()));
+            op1.ModePaiement = Classe.ModePaiement.Charge(5);
             Classe.Operation.Sauve(op1);
 
             this.Close();

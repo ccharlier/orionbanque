@@ -3,116 +3,152 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
 {
+    [DataContract(Name = "Operation", Namespace = "https://www.orionbanque.com")]
+    [Serializable]
     public class Param
     {
+        [DataMember()]
         public int Id { get; set; }
+        [DataMember()]
         public string Ident { get; set; }
+        [DataMember()]
         public string Val1 { get; set; }
+        [DataMember()]
         public string Val2 { get; set; }
+        [DataMember()]
         public string Val3 { get; set; }
+        [DataMember()]
         public int Int1 { get; set; }
+        [DataMember()]
         public int Int2 { get; set; }
+        [DataMember()]
         public int Int3 { get; set; }
+        [DataMember()]
         public double Dec1 { get; set; }
+        [DataMember()]
         public double Dec2 { get; set; }
+        [DataMember()]
         public double Dec3 { get; set; }
+        [DataMember()]
         public DateTime Dat1 { get; set; }
+        [DataMember()]
         public DateTime Dat2 { get; set; }
+        [DataMember()]
         public DateTime Dat3 { get; set; }
 
         public Param()
         {
-            this.Ident = string.Empty;
-            this.Val1 = string.Empty;
-            this.Val2 = string.Empty;
-            this.Val3 = string.Empty;
-            this.Int1 = Int32.MinValue;
-            this.Int2 = Int32.MinValue;
-            this.Int3 = Int32.MinValue;
-            this.Dec1 = Double.MinValue;
-            this.Dec2 = Double.MinValue;
-            this.Dec3 = Double.MinValue;
-            this.Dat1 = DateTime.MinValue;
-            this.Dat2 = DateTime.MinValue;
-            this.Dat3 = DateTime.MinValue;
+            Ident = string.Empty;
+            Val1 = string.Empty;
+            Val2 = string.Empty;
+            Val3 = string.Empty;
+            Int1 = int.MinValue;
+            Int2 = int.MinValue;
+            Int3 = int.MinValue;
+            Dec1 = double.MinValue;
+            Dec2 = double.MinValue;
+            Dec3 = double.MinValue;
+            Dat1 = DateTime.MinValue;
+            Dat2 = DateTime.MinValue;
+            Dat3 = DateTime.MinValue;
         }
 
-        static public Param Charge(Int32 id)
+        public static List<Param> ChargeTout()
         {
-            Param p = new Param();
-            switch(ConfigurationManager.AppSettings["typeConnection"])
+            switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    p = OrionBanque.Classe.SQLite.Param.Charge(id);
-                    break;
+                    return SQLite.Param.ChargeTout();
+                case Configuration.BD_BINARY:
+                    return Binary.Param.ChargeTout();
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return p;
-        }
-
-        static public List<Param> Charge(String ident)
-        {
-            List<Param> p = new List<Param>();
-            switch(ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    p = OrionBanque.Classe.SQLite.Param.Charge(ident);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-            return p;
-        }
-
-        static public void Delete(int id)
-        {
-            switch(ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Delete(id);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Delete(String ident)
+        public static Param Charge(int id)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Delete(ident);
-                    break;
+                    return SQLite.Param.Charge(id);
+                case Configuration.BD_BINARY:
+                    return Binary.Param.Charge(id);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Maj(Classe.Param p)
+        public static List<Param> Charge(string ident)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Maj(p);
-                    break;
+                    return SQLite.Param.Charge(ident);
+                case Configuration.BD_BINARY:
+                    return Binary.Param.Charge(ident);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Sauve(Classe.Param p)
+        public static void Delete(int id)
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Param.Sauve(p);
+                    SQLite.Param.Delete(id);
+                    break;
+                case Configuration.BD_BINARY:
+                    Binary.Param.Delete(id);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static void Delete(string ident)
+        {
+            switch(ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    SQLite.Param.Delete(ident);
+                    break;
+                case Configuration.BD_BINARY:
+                    Binary.Param.Delete(ident);
+                    break;
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Param Maj(Param p)
+        {
+            switch(ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Param.Maj(p);
+                case Configuration.BD_BINARY:
+                    return Binary.Param.Maj(p);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Param Sauve(Param p)
+        {
+            switch(ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Param.Sauve(p);
+                case Configuration.BD_BINARY:
+                    return Binary.Param.Sauve(p);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
     }

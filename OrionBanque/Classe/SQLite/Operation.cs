@@ -7,50 +7,52 @@ namespace OrionBanque.Classe.SQLite
 {
     class Operation
     {
-        static public void Sauve(Classe.Operation o)
+        public static Classe.Operation Sauve(Classe.Operation o)
         {
-            Classe.Log.Logger.Debug("Debut Operations.Sauve(" + o.Id + ")");
+            Log.Logger.Debug("Debut Operations.Sauve(" + o.Id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_INSERT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_INSERT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_INSERT, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_INSERT);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@date", o.Date);
-                Classe.Log.Logger.Debug("date=" + o.Date);
-                cmd.Parameters.AddWithValue("@id_mode_paiement", o.IdModePaiement);
-                Classe.Log.Logger.Debug("id_mode_paiement=" + o.IdModePaiement);
+                Log.Logger.Debug("date=" + o.Date);
+                cmd.Parameters.AddWithValue("@id_mode_paiement", o.ModePaiement.Id);
+                Log.Logger.Debug("id_mode_paiement=" + o.ModePaiement.Id);
                 cmd.Parameters.AddWithValue("@tiers", o.Tiers);
-                Classe.Log.Logger.Debug("tiers=" + o.Tiers);
+                Log.Logger.Debug("tiers=" + o.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", o.Libelle);
-                Classe.Log.Logger.Debug("libelle=" + o.Libelle);
-                cmd.Parameters.AddWithValue("@id_categories", o.IdCategorie);
-                Classe.Log.Logger.Debug("id_categories=" + o.IdCategorie);
+                Log.Logger.Debug("libelle=" + o.Libelle);
+                cmd.Parameters.AddWithValue("@id_categories", o.Categorie.Id);
+                Log.Logger.Debug("id_categories=" + o.Categorie.Id);
                 cmd.Parameters.AddWithValue("@montant", o.Montant);
-                Classe.Log.Logger.Debug("montant=" + o.Montant);
-                cmd.Parameters.AddWithValue("@id_compte", o.IdCompte);
-                Classe.Log.Logger.Debug("id_compte=" + o.IdCompte);
+                Log.Logger.Debug("montant=" + o.Montant);
+                cmd.Parameters.AddWithValue("@id_compte", o.Compte.Id);
+                Log.Logger.Debug("id_compte=" + o.Compte.Id);
                 cmd.Parameters.AddWithValue("@date_pointage", o.DatePointage);
-                Classe.Log.Logger.Debug("date_pointage=" + o.DatePointage);
+                Log.Logger.Debug("date_pointage=" + o.DatePointage);
                 cmd.ExecuteNonQuery();
+                o.Id = Sql.GetLastInsertId();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
+            return o;
         }
 
-        static public List<Classe.Operation> ChargeTout(Int32 idC)
+        public static List<Classe.Operation> ChargeTout(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.ChargeTout(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.ChargeTout(" + idC + ")");
             List<Classe.Operation> ls = new List<Classe.Operation>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_ALL, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_ALL);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_ALL, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_ALL);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idC", idC);
-                Classe.Log.Logger.Debug("idC=" + idC);
+                Log.Logger.Debug("idC=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -60,56 +62,84 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return ls;
         }
 
-        static public Int32 ChercheChequeSuivant(Int32 idC)
+        public static List<Classe.Operation> ChargeToutUtilisateur(Classe.Utilisateur u)
         {
-            Classe.Log.Logger.Debug("Debut Operations.ChercheChequeSuivant(" + idC + ")");
-            Int32 retour = 0;
+            Log.Logger.Debug("Debut Operations.ChargeToutUtilisateur(" + u.Id + ")");
+            List<Classe.Operation> ls = new List<Classe.Operation>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_CHEQUE_SUIVANT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_CHEQUE_SUIVANT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_UTILISATEUR, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_UTILISATEUR);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@idU", u.Id);
+                Log.Logger.Debug("idU=" + u.Id);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    ls.Add(Classe.Operation.Charge(rdr.GetInt32(0)));
+                }
+                rdr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+            }
+            return ls;
+        }
+
+        public static int ChercheChequeSuivant(int idC)
+        {
+            Log.Logger.Debug("Debut Operations.ChercheChequeSuivant(" + idC + ")");
+            int retour = 0;
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_CHEQUE_SUIVANT, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_CHEQUE_SUIVANT);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idC", idC);
-                Classe.Log.Logger.Debug("idC=" + idC);
+                Log.Logger.Debug("idC=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if(rdr.Read())
                 {
                     string[] tab = rdr.GetString(0).Split('°');
                     if(tab.Length > 1)
                     {
-                        bool b = Int32.TryParse(tab[1], out retour);
+                        bool b = int.TryParse(tab[1], out retour);
                         retour++;
                         if(!b)
+                        {
                             retour = 0;
+                        }
                     }
                 }
                 rdr.Close();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return retour;
         }
 
-        static public List<String> ChargeToutTiers(Int32 idC)
+        public static List<string> ChargeToutTiers(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.ChargeToutTiers(" + idC + ")");
-            List<String> ls = new List<String>();
+            Log.Logger.Debug("Debut Operations.ChargeToutTiers(" + idC + ")");
+            List<string> ls = new List<string>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_ALL_TIERS, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_ALL_TIERS);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_ALL_TIERS, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_ALL_TIERS);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idC", idC);
-                Classe.Log.Logger.Debug("idC=" + idC);
+                Log.Logger.Debug("idC=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -119,121 +149,132 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return ls;
         }
 
-        static public double CalculAVenir(Int32 idCompte)
+        public static double CalculAVenir(int idCompte)
         {
-            Classe.Log.Logger.Debug("Debut Operations.CalculAVenir(" + idCompte + ")");
+            Log.Logger.Debug("Debut Operations.CalculAVenir(" + idCompte + ")");
             double rPositif = 0.0;
             double rNegatif = 0.0;
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_CALCUL_AVENIR, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_CALCUL_AVENIR);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_CALCUL_AVENIR, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_CALCUL_AVENIR);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idCompte);
-                Classe.Log.Logger.Debug("idCompte=" + idCompte);
+                Log.Logger.Debug("idCompte=" + idCompte);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     if (rdr.GetString(0).Equals("D"))
+                    {
                         rNegatif += rdr.GetDouble(1);
+                    }
+
                     if (rdr.GetString(0).Equals("C"))
+                    {
                         rPositif += rdr.GetDouble(1);
+                    }
                 }
                 rdr.Close();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return rPositif - rNegatif;
         }
 
-        static public double CalculSoldOpePoint(Int32 idCompte)
+        public static double CalculSoldOpePoint(int idCompte)
         {
-            Classe.Log.Logger.Debug("Debut Operations.CalculSoldOpePoint(" + idCompte + ")");
-            double rSoldIni = Classe.SQLite.Compte.Charge(idCompte).SoldeInitial;
+            Log.Logger.Debug("Debut Operations.CalculSoldOpePoint(" + idCompte + ")");
+            double rSoldIni = Compte.Charge(idCompte).SoldeInitial;
             double rPositif = 0.0;
             double rNegatif = 0.0;
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_CALCUL_SOLD_OPE_POINT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_CALCUL_SOLD_OPE_POINT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_CALCUL_SOLD_OPE_POINT, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_CALCUL_SOLD_OPE_POINT);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idCompte);
-                Classe.Log.Logger.Debug("idCompte=" + idCompte);
+                Log.Logger.Debug("idCompte=" + idCompte);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     if (rdr.GetString(0).Equals("D"))
+                    {
                         rNegatif += rdr.GetDouble(1);
+                    }
+
                     if (rdr.GetString(0).Equals("C"))
+                    {
                         rPositif += rdr.GetDouble(1);
+                    }
                 }
                 rdr.Close();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return rSoldIni + rPositif - rNegatif;
         }
 
-        static public void Maj(Classe.Operation o)
+        public static Classe.Operation Maj(Classe.Operation o)
         {
-            Classe.Log.Logger.Debug("Debut Operations.Maj(" + o.Id + ")");
+            Log.Logger.Debug("Debut Operations.Maj(" + o.Id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_UPDATE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_UPDATE_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_UPDATE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_UPDATE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@date", o.Date);
-                Classe.Log.Logger.Debug("date=" + o.Date);
-                cmd.Parameters.AddWithValue("@id_mode_paiement", o.IdModePaiement);
-                Classe.Log.Logger.Debug("id_mode_paiement=" + o.IdModePaiement);
+                Log.Logger.Debug("date=" + o.Date);
+                cmd.Parameters.AddWithValue("@id_mode_paiement", o.ModePaiement.Id);
+                Log.Logger.Debug("id_mode_paiement=" + o.ModePaiement.Id);
                 cmd.Parameters.AddWithValue("@tiers", o.Tiers);
-                Classe.Log.Logger.Debug("tiers=" + o.Tiers);
+                Log.Logger.Debug("tiers=" + o.Tiers);
                 cmd.Parameters.AddWithValue("@libelle", o.Libelle);
-                Classe.Log.Logger.Debug("libelle=" + o.Libelle);
-                cmd.Parameters.AddWithValue("@id_categories", o.IdCategorie);
-                Classe.Log.Logger.Debug("id_categories=" + o.IdCategorie);
+                Log.Logger.Debug("libelle=" + o.Libelle);
+                cmd.Parameters.AddWithValue("@id_categories", o.Categorie.Id);
+                Log.Logger.Debug("id_categories=" + o.Categorie.Id);
                 cmd.Parameters.AddWithValue("@montant", o.Montant);
-                Classe.Log.Logger.Debug("montant=" + o.Montant);
-                cmd.Parameters.AddWithValue("@id_compte", o.IdCompte);
-                Classe.Log.Logger.Debug("id_compte=" + o.IdCompte);
+                Log.Logger.Debug("montant=" + o.Montant);
+                cmd.Parameters.AddWithValue("@id_compte", o.Compte.Id);
+                Log.Logger.Debug("id_compte=" + o.Compte.Id);
                 cmd.Parameters.AddWithValue("@id", o.Id);
-                Classe.Log.Logger.Debug("id=" + o.Id);
+                Log.Logger.Debug("id=" + o.Id);
                 cmd.Parameters.AddWithValue("@date_pointage", o.DatePointage);
-                Classe.Log.Logger.Debug("date_pointage=" + o.DatePointage);
+                Log.Logger.Debug("date_pointage=" + o.DatePointage);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
+            return o;
         }
 
-        static public List<string[]> GroupByTiers(Int32 idC)
+        public static List<string[]> GroupByTiers(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.GroupByTiers(" + idC + ")");   
+            Log.Logger.Debug("Debut Operations.GroupByTiers(" + idC + ")");   
             List<string[]> ls = new List<string[]>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_GROUP_BY_TIERS, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_GROUP_BY_TIERS, Sql.GetConnection());
                 string[] t = new string[2];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_GROUP_BY_TIERS);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_GROUP_BY_TIERS);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -241,39 +282,45 @@ namespace OrionBanque.Classe.SQLite
                     t[0] = rdr.GetString(0);
                     t[1] = rdr.GetDouble(1).ToString();
                     if (t[0] == null || t[0] == string.Empty)
+                    {
                         t[0] = "Sans Tiers";
+                    }
+
                     ls.Add(t);
                 }
                 rdr.Close();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return ls;
         }
 
-        static public List<string[]> GroupByTiersDC(Int32 idC)
+        public static List<string[]> GroupByTiersDC(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + idC + ")"); 
+            Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + idC + ")"); 
             List<string[]> ls = new List<string[]>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_GROUP_BY_TIERS_DC, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_GROUP_BY_TIERS_DC, Sql.GetConnection());
                 string[] t = new string[3];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_GROUP_BY_TIERS_DC);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_GROUP_BY_TIERS_DC);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     t = new string[3];
                     t[0] = rdr.GetString(0);
                     if (t[0] == null || t[0] == string.Empty)
+                    {
                         t[0] = "Sans Tiers";
+                    }
+
                     t[1] = rdr.GetDouble(1).ToString();
                     t[2] = rdr.GetDouble(2).ToString();
                     ls.Add(t);
@@ -282,24 +329,24 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return ls;
         }
 
-        static public List<string[]> GroupByCategories(Int32 idC)
+        public static List<string[]> GroupByCategories(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.GroupByCategories(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GroupByCategories(" + idC + ")");
             List<string[]> ls = new List<string[]>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_GROUP_BY_CATEGORIES, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_GROUP_BY_CATEGORIES, Sql.GetConnection());
                 string[] t = new string[2];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_GROUP_BY_CATEGORIES);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_GROUP_BY_CATEGORIES);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -307,39 +354,45 @@ namespace OrionBanque.Classe.SQLite
                     t[0] = rdr.GetString(0);
                     t[1] = rdr.GetDouble(1).ToString();
                     if (t[0] == null || t[0] == string.Empty)
+                    {
                         t[0] = "Sans Catégories";
+                    }
+
                     ls.Add(t);
                 }
                 rdr.Close();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return ls;
         }
 
-        static public List<string[]> GroupByCategoriesDC(Int32 idC)
+        public static List<string[]> GroupByCategoriesDC(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.GroupByCategoriesDC(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GroupByCategoriesDC(" + idC + ")");
             List<string[]> ls = new List<string[]>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_GROUP_BY_CATEGORIES_DC, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_GROUP_BY_CATEGORIES_DC, Sql.GetConnection());
                 string[] t = new string[3];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_GROUP_BY_CATEGORIES_DC);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_GROUP_BY_CATEGORIES_DC);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     t = new string[3];
                     t[0] = rdr.GetString(0);
                     if (t[0] == null || t[0] == string.Empty)
+                    {
                         t[0] = "Sans Catégories";
+                    }
+
                     t[1] = rdr.GetDouble(1).ToString();
                     t[2] = rdr.GetDouble(2).ToString();
                     ls.Add(t);
@@ -348,27 +401,27 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return ls;
         }
 
-        static public double SoldeCompteAt(DateTime dt, Int32 idC)
+        public static double SoldeCompteAt(DateTime dt, int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.SoldeCompteAt(" + dt + "," + idC + ")");
+            Log.Logger.Debug("Debut Operations.SoldeCompteAt(" + dt + "," + idC + ")");
             double retour = 0.0;
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_SOLDE_DATE, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_SOLDE_DATE, Sql.GetConnection());
                 string[] t = new string[3];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_SOLDE_DATE);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_SOLDE_DATE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 cmd.Parameters.AddWithValue("@date", dt);
-                Classe.Log.Logger.Debug("date=" + dt);
+                Log.Logger.Debug("date=" + dt);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -386,25 +439,25 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return retour;
         }
 
-        static public DateTime GetMaxDate(Int32 idC)
+        public static DateTime GetMaxDate(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.GetMaxDate(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GetMaxDate(" + idC + ")");
             DateTime retour = DateTime.Now;
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_MAX_DATE, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_MAX_DATE, Sql.GetConnection());
                 string[] t = new string[3];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_MAX_DATE);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_MAX_DATE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -414,25 +467,25 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return retour;
         }
 
-        static public DateTime GetMinDate(Int32 idC)
+        public static DateTime GetMinDate(int idC)
         {
-            Classe.Log.Logger.Debug("Debut Operations.GetMinDate(" + idC + ")");   
+            Log.Logger.Debug("Debut Operations.GetMinDate(" + idC + ")");   
             DateTime retour = DateTime.Now;
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_MIN_DATE, SQLite.Sql.GetConnection());
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_MIN_DATE, Sql.GetConnection());
                 string[] t = new string[3];
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_MIN_DATE);
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_MIN_DATE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idC);
-                Classe.Log.Logger.Debug("idCompte=" + idC);
+                Log.Logger.Debug("idCompte=" + idC);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -442,43 +495,43 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return retour;
         }
 
-        static public DataSet ChargeGrilleOperation(Int32 idCompte)
+        public static DataSet ChargeGrilleOperation(int idCompte)
         {
-            Classe.Log.Logger.Debug("Debut Operations.ChargeGrilleOperation(" + idCompte + ")");
+            Log.Logger.Debug("Debut Operations.ChargeGrilleOperation(" + idCompte + ")");
             DataSet retour = new DataSet();
             try
             {
-                SQLiteDataAdapter dsOpe = new SQLiteDataAdapter(String.Format(SQLite.Sql.OPERATIONS_CHARGE_GRILLE, idCompte), SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_CHARGE_GRILLE);
+                SQLiteDataAdapter dsOpe = new SQLiteDataAdapter(string.Format(Sql.OPERATIONS_CHARGE_GRILLE, idCompte), Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_CHARGE_GRILLE);
                 SQLiteCommandBuilder cb = new SQLiteCommandBuilder(dsOpe);
                 dsOpe.Fill(retour, "Operations");
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return retour;
         }
 
-        static public List<Classe.Operation> ChargeGrilleListeOperation(Int32 idCompte)
+        public static List<Classe.Operation> ChargeGrilleListeOperation(int idCompte)
         {
-            Classe.Log.Logger.Debug("Debut Operations.ChargeGrilleListeOperation(" + idCompte + ")");
+            Log.Logger.Debug("Debut Operations.ChargeGrilleListeOperation(" + idCompte + ")");
             List<Classe.Operation> retour = new List<Classe.Operation>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_CHARGE_LISTE_GRILLE, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_CHARGE_LISTE_GRILLE);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_CHARGE_LISTE_GRILLE, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_CHARGE_LISTE_GRILLE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", idCompte);
-                Classe.Log.Logger.Debug("id=" + idCompte);
+                Log.Logger.Debug("id=" + idCompte);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -488,63 +541,81 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return retour;
         }
 
-        static public DataSet ChargeGrilleOperationFiltre(int idCompte,
+        public static DataSet ChargeGrilleOperationFiltre(int idCompte,
                                 bool bDate, string cbFiltreDate, DateTime txtFiltreDate,
                                 bool bModePaiement, string txtFiltreModePaiement,
                                 bool bTiers, string txtFiltreTiers,
                                 bool bCategorie, string txtFiltreCategorie,
                                 bool bMontant, string cbFiltreMontant, double txtFiltreMontant, bool bNonPointe)
         {
-            Classe.Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
+            Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
             DataSet retour = new DataSet();
             try
             {
-                string sql = String.Format(SQLite.Sql.OPERATIONS_CHARGE_GRILLE_FILTRE, idCompte);
+                string sql = string.Format(Sql.OPERATIONS_CHARGE_GRILLE_FILTRE, idCompte);
                 
                 if (bDate)
+                {
                     sql += " AND strftime('%Y-%m-%d',o.date)" + cbFiltreDate + "'" + txtFiltreDate.Year + "-" + txtFiltreDate.Month.ToString("00") + "-" + txtFiltreDate.Day.ToString("00") + "'";
+                }
+
                 if (bModePaiement)
+                {
                     sql += " AND mp.id=" + txtFiltreModePaiement;
+                }
+
                 if (bTiers)
+                {
                     sql += " AND o.tiers='" + txtFiltreTiers + "'";
+                }
+
                 if (bCategorie)
+                {
                     sql += " AND ca.id=" + txtFiltreCategorie;
+                }
+
                 if (bMontant)
+                {
                     sql += " AND o.montant" + cbFiltreMontant + txtFiltreMontant;
-                if(bNonPointe)
+                }
+
+                if (bNonPointe)
+                {
                     sql += " AND date_pointage IS NULL";
+                }
+
                 sql += " ORDER BY date_pointage ASC, date ASC";
-                Classe.Log.Logger.Debug("Requete :" + sql);
-                SQLiteDataAdapter dsOpe = new SQLiteDataAdapter(sql, SQLite.Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + sql);
+                SQLiteDataAdapter dsOpe = new SQLiteDataAdapter(sql, Sql.GetConnection());
                 SQLiteCommandBuilder cb = new SQLiteCommandBuilder(dsOpe);
                 dsOpe.Fill(retour, "Operations");
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
             return retour;
         }
 
-        static public Classe.Operation Charge(int id)
+        public static Classe.Operation Charge(int id)
         {
-            Classe.Log.Logger.Debug("Debut Operations.Charge(" + id + ")");
+            Log.Logger.Debug("Debut Operations.Charge(" + id + ")");
             Classe.Operation o = new Classe.Operation();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("id=" + id);
+                Log.Logger.Debug("id=" + id);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
@@ -558,9 +629,9 @@ namespace OrionBanque.Classe.SQLite
                     {
                         o.DatePointage = null;
                     }
-                    o.IdCategorie = rdr.GetInt32(5);
-                    o.IdCompte = rdr.GetInt32(8);
-                    o.IdModePaiement = rdr.GetInt32(2);
+                    o.Categorie = Classe.Categorie.Charge(rdr.GetInt32(5));
+                    o.Compte = Classe.Compte.Charge(rdr.GetInt32(8));
+                    o.ModePaiement = Classe.ModePaiement.Charge(rdr.GetInt32(2));
                     o.Libelle = rdr.GetString(4);
                     o.Montant = rdr.GetDouble(6);
                     o.Tiers = rdr.GetString(3);
@@ -569,52 +640,52 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
 
             return o;
         }
 
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
-            Classe.Log.Logger.Debug("Debut Operations.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Operations.Delete(" + id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_DELETE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_DELETE_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_DELETE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_DELETE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("id=" + id);
+                Log.Logger.Debug("id=" + id);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
         }
 
-        static public void MajCategorieOperations(Int32 idCompte, Int32 idCatOri, Int32 idCatDest)
+        public static void MajCategorieOperations(int idCompte, int idCatOri, int idCatDest)
         {
-            Classe.Log.Logger.Debug("Debut Operations.MajCategorieOperations(" + idCompte + ", " + idCatOri + ", " + idCatDest + ")");
+            Log.Logger.Debug("Debut Operations.MajCategorieOperations(" + idCompte + ", " + idCatOri + ", " + idCatDest + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.OPERATIONS_MAJ_CATEGORIE, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.OPERATIONS_MAJ_CATEGORIE);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_MAJ_CATEGORIE, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_MAJ_CATEGORIE);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idCompte", idCompte);
-                Classe.Log.Logger.Debug("idCompte=" + idCompte);
+                Log.Logger.Debug("idCompte=" + idCompte);
                 cmd.Parameters.AddWithValue("@idCatOri", idCatOri);
-                Classe.Log.Logger.Debug("idCatOri=" + idCatOri);
+                Log.Logger.Debug("idCatOri=" + idCatOri);
                 cmd.Parameters.AddWithValue("@idCatDest", idCatDest);
-                Classe.Log.Logger.Debug("idCatDest=" + idCatDest);
+                Log.Logger.Debug("idCatDest=" + idCatDest);
                 cmd.ExecuteNonQuery();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
         }
     }

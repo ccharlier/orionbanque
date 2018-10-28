@@ -24,7 +24,9 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\projet\VS\Publish\orionbanque\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -37,13 +39,11 @@
     <SupportUrl>http://code.google.com/p/orionbanque/</SupportUrl>
     <ProductName>OrionBanque</ProductName>
     <PublisherName>Charlier</PublisherName>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,6 +124,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -143,6 +144,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classe\Binary\Categorie.cs" />
+    <Compile Include="Classe\Binary\Compte.cs" />
+    <Compile Include="Classe\Binary\Echeancier.cs" />
+    <Compile Include="Classe\Binary\ModePaiement.cs" />
+    <Compile Include="Classe\Binary\Operation.cs" />
+    <Compile Include="Classe\Binary\Param.cs" />
+    <Compile Include="Classe\Binary\Sql.cs" />
+    <Compile Include="Classe\Binary\Utilisateur.cs" />
     <Compile Include="Classe\Categorie.cs" />
     <Compile Include="Classe\Compte.cs" />
     <Compile Include="Classe\Configuration.cs" />
@@ -152,6 +161,7 @@
     <Compile Include="Classe\ModePaiement.cs" />
     <Compile Include="Classe\Operation.cs" />
     <Compile Include="Classe\OrionAide.cs" />
+    <Compile Include="Classe\OrionBanque.cs" />
     <Compile Include="Classe\Param.cs" />
     <Compile Include="Classe\Sql.cs" />
     <Compile Include="Classe\SQLite\Categorie.cs" />
@@ -248,7 +258,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Outils\Export.cs" />
+    <Compile Include="Outils\GestionFichier.cs" />
     <Compile Include="Outils\ImportBP.cs" />
     <Compile Include="Outils\RIB.cs" />
     <Compile Include="Program.cs" />

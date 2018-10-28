@@ -17,7 +17,7 @@ namespace OrionBanque.Forms
             if (mode.Equals("UPDATE"))
             {
                 ec = Classe.Echeancier.Charge(idEch);
-                idC = ec.IdCompte;
+                idC = ec.Compte.Id;
                 ChargeForm();
             }
             else if (mode.Equals("INSERT"))
@@ -37,17 +37,26 @@ namespace OrionBanque.Forms
                     txtIllimete.Checked = false;
                     txtDateFin.Value = ec.DateFin.Value;
                 }
-                txtCategorie.SelectedValue = ec.IdCategorie;
-                txtModePaiement.SelectedValue = ec.IdModePaiement;
+                txtCategorie.SelectedValue = ec.Categorie.Id;
+                txtModePaiement.SelectedValue = ec.ModePaiement.Id;
                 txtLibelle.Text = ec.Libelle;
                 txtMontant.Value = new Decimal(ec.Montant);
                 txtTiers.Text = ec.Tiers;
-                if (ec.TypeRepete == "J")
+                if (ec.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
+                {
                     txtTypeRepete.Text = "Jour(s)";
-                if (ec.TypeRepete == "M")
+                }
+
+                if (ec.TypeRepete == Classe.KEY.ECHEANCIER_MOIS)
+                {
                     txtTypeRepete.Text = "Mois";
-                if (ec.TypeRepete == "A")
+                }
+
+                if (ec.TypeRepete == Classe.KEY.ECHEANCIER_ANNEE)
+                {
                     txtTypeRepete.Text = "Année(s)";
+                }
+
                 txtRepete.Value = new Decimal(ec.Repete);
                 txtProchaine.Value = ec.Prochaine;
             }
@@ -118,17 +127,26 @@ namespace OrionBanque.Forms
                         ec.DateFin = null;
                     else
                         ec.DateFin = txtDateFin.Value;
-                    ec.IdCategorie = (Int32)txtCategorie.SelectedValue;
-                    ec.IdModePaiement = (Int32)txtModePaiement.SelectedValue;
+                    ec.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
+                    ec.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
                     ec.Libelle = txtLibelle.Text;
                     ec.Montant = Double.Parse(txtMontant.Value.ToString());
                     ec.Tiers = txtTiers.Text;
                     if (txtTypeRepete.Text == "Jour(s)")
-                        ec.TypeRepete = "J";
+                    {
+                        ec.TypeRepete = Classe.KEY.ECHEANCIER_JOUR;
+                    }
+
                     if (txtTypeRepete.Text == "Mois")
-                        ec.TypeRepete = "M";
+                    {
+                        ec.TypeRepete = Classe.KEY.ECHEANCIER_MOIS;
+                    }
+
                     if (txtTypeRepete.Text == "Année(s)")
-                        ec.TypeRepete = "A";
+                    {
+                        ec.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
+                    }
+
                     ec.Repete = Int32.Parse(txtRepete.Value.ToString());
                     ec.Prochaine = txtProchaine.Value;
 
@@ -150,18 +168,27 @@ namespace OrionBanque.Forms
                         e.DateFin = null;
                     else
                         e.DateFin = txtDateFin.Value;
-                    e.IdCategorie = (Int32)txtCategorie.SelectedValue;
-                    e.IdCompte = idC;
-                    e.IdModePaiement = (Int32)txtModePaiement.SelectedValue;
+                    e.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
+                    e.Compte = Classe.Compte.Charge(idC);
+                    e.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
                     e.Libelle = txtLibelle.Text;
                     e.Montant = Double.Parse(txtMontant.Value.ToString());
                     e.Tiers = txtTiers.Text;
                     if (txtTypeRepete.Text == "Jour(s)")
-                        e.TypeRepete = "J";
+                    {
+                        e.TypeRepete = Classe.KEY.ECHEANCIER_JOUR;
+                    }
+
                     if (txtTypeRepete.Text == "Mois")
-                        e.TypeRepete = "M";
+                    {
+                        e.TypeRepete = Classe.KEY.ECHEANCIER_MOIS;
+                    }
+
                     if (txtTypeRepete.Text == "Année(s)")
-                        e.TypeRepete = "A";
+                    {
+                        e.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
+                    }
+
                     e.Repete = Int32.Parse(txtRepete.Value.ToString());
                     e.Prochaine = txtProchaine.Value;
 

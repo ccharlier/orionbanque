@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using ZedGraph;
 
@@ -199,9 +200,10 @@ namespace OrionBanque
         {
             try
             {
-                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA.Id);
-                cbCompte.DisplayMember = "libelle";
-                cbCompte.ValueMember = "id";
+                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA);
+                cbCompte.DisplayMember = "Libelle";
+                cbCompte.ValueMember = "Id";
+
                 cbCompte.DataSource = lc;
             }
             catch (Exception ex)
@@ -366,15 +368,35 @@ namespace OrionBanque
 
             try
             {
-                DataSet ds = Classe.Operation.ChargeGrilleOperation((Int32)cbCompte.SelectedValue);
-                dgvOperations.DataSource = ds;
+                dgvOperations.DataSource = Classe.Operation.ChargeGrilleOperation((Int32)cbCompte.SelectedValue);
                 dgvOperations.DataMember = "Operations";
-                dgvOperations.Columns[0].Visible = false;
-                dgvOperations.Columns[6].DefaultCellStyle.ForeColor = Color.Red;
+                dgvOperations.Columns["Id"].Visible = false;
+                dgvOperations.Columns["ModePaiementType"].Visible = false;
+                dgvOperations.Columns["Montant"].DefaultCellStyle.Format = "c";
+                dgvOperations.Columns["DatePointage"].DefaultCellStyle.Format = "d";
+                dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvOperations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow r in dgvOperations.Rows)
+            {
+                if (Convert.ToString(r.Cells["ModePaiementType"].Value) == Classe.KEY.MODEPAIEMENT_DEBIT)
+                {
+                    r.Cells["Montant"].Style.ForeColor = Color.Red;
+                    r.Cells["Montant"].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                }
+                else
+                {
+                    r.Cells["Montant"].Style.ForeColor = Color.Black;
+                    r.Cells["Montant"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
             }
         }
 
@@ -688,24 +710,24 @@ namespace OrionBanque
             {
                 this.Cursor = Cursors.WaitCursor;
                 // Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
-                if (System.IO.File.Exists(OFDImport.FileName))
+                if (File.Exists(OFDImport.FileName))
                 {
-                    Classe.Compte cT = new Classe.Compte();
-                    cT.Libelle = System.IO.Path.GetFileNameWithoutExtension(OFDImport.FileName);
-                    cT.SoldeInitial = 0.0;
-                    cT.IdUtilisateur = uA.Id;
-                    cT.Banque = string.Empty;
-                    cT.Guichet = string.Empty;
-                    cT.NoCompte = string.Empty;
-                    cT.Clef = string.Empty;
-                    cT.MinGraphSold = DateTime.Now;
-                    cT.MaxGraphSold = DateTime.Now;
-                    cT.SeuilAlerte = 0.0;
-                    cT.SeuilAlerteFinal = 0.0;
-                    cT.TypEvol = "6 mois";
-                    Classe.Compte.Sauve(cT);
-
-                    cT = Classe.Compte.Charge(Classe.Sql.GetLastInsertId());
+                    Classe.Compte cT = new Classe.Compte
+                    {
+                        Libelle = Path.GetFileNameWithoutExtension(OFDImport.FileName),
+                        SoldeInitial = 0.0,
+                        Utilisateur = Classe.Utilisateur.Charge(uA.Id),
+                        Banque = string.Empty,
+                        Guichet = string.Empty,
+                        NoCompte = string.Empty,
+                        Clef = string.Empty,
+                        MinGraphSold = DateTime.Now,
+                        MaxGraphSold = DateTime.Now,
+                        SeuilAlerte = 0.0,
+                        SeuilAlerteFinal = 0.0,
+                        TypEvol = "6 mois"
+                    };
+                    cT = Classe.Compte.Sauve(cT);
 
                     Outils.ImportBP.Lance(System.IO.Path.GetDirectoryName(OFDImport.FileName), System.IO.Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
                     ChargeComboCompte();
@@ -713,5 +735,7 @@ namespace OrionBanque
                 this.Cursor = Cursors.Default;
             }
         }
+
+       
     }
 }

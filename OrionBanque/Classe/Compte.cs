@@ -1,95 +1,123 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
 {
+    [DataContract(Name = "Compte", Namespace = "https://www.orionbanque.com")]
+    [Serializable]
     public class Compte
     {
+        [DataMember()]
         public int Id { get; set; }
+        [DataMember()]
         public string Libelle { get; set; }
+        [DataMember()]
         public double SoldeInitial { get; set; }
-        public int IdUtilisateur { get; set; }
+        [DataMember()]
+        public Utilisateur Utilisateur { get; set; }
+        [DataMember()]
         public string Banque { get; set; }
+        [DataMember()]
         public string Guichet { get; set; }
+        [DataMember()]
         public string NoCompte { get; set; }
+        [DataMember()]
         public string Clef { get; set; }
+        [DataMember()]
         public DateTime MinGraphSold { get; set; }
+        [DataMember()]
         public DateTime MaxGraphSold { get; set; }
+        [DataMember()]
         public double SeuilAlerte { get; set; }
+        [DataMember()]
         public double SeuilAlerteFinal { get; set; }
+        [DataMember()]
         public string TypEvol { get; set; }
 
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Compte.Delete(id);
+                    SQLite.Compte.Delete(id);
+                    break;
+                case Configuration.BD_BINARY:
+                    Binary.Compte.Delete(id);
                     break;
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Delete(Compte c)
+        public static void Delete(Compte c)
         {
             Compte.Delete(c.Id);
         }
 
-        static public Compte Charge(int id)
-        {
-            Compte c = new Compte();
-            
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    c = OrionBanque.Classe.SQLite.Compte.Charge(id);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-
-            return c;
-        }
-
-        static public List<Compte> ChargeTout(Int32 idU)
-        {
-            List<Compte> lc = new List<Compte>();
-
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    lc = OrionBanque.Classe.SQLite.Compte.ChargeTout(idU);
-                    break;
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-
-            return lc;
-        }
-
-        static public void Maj(Compte c)
+        public static Compte Charge(int id)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Compte.Maj(c);
-                    break;
+                    return SQLite.Compte.Charge(id);
+                case Configuration.BD_BINARY:
+                    return Binary.Compte.Charge(id);
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
 
-        static public void Sauve(Compte c)
+        public static List<Compte> ChargeTout()
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
                 case Configuration.BD_SQLITE:
-                    OrionBanque.Classe.SQLite.Compte.Sauve(c);
-                    break;
+                    return SQLite.Compte.ChargeTout();
+                case Configuration.BD_BINARY:
+                    return Binary.Compte.ChargeTout();
                 default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static List<Compte> ChargeTout(Utilisateur u)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Compte.ChargeTout(u);
+                case Configuration.BD_BINARY:
+                    return Binary.Compte.ChargeTout(u);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Compte Maj(Compte c)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Compte.Maj(c);
+                case Configuration.BD_BINARY:
+                    return Binary.Compte.Maj(c);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+            }
+        }
+
+        public static Compte Sauve(Compte c)
+        {
+            switch (ConfigurationManager.AppSettings["typeConnection"])
+            {
+                case Configuration.BD_SQLITE:
+                    return SQLite.Compte.Sauve(c);
+                case Configuration.BD_BINARY:
+                    return Binary.Compte.Sauve(c);
+                default:
+                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
             }
         }
     }

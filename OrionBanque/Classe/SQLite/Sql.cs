@@ -10,6 +10,7 @@ namespace OrionBanque.Classe.SQLite
     {
         #region Requete
         /** Requête SQL Param */
+        public const string PARAM_ALL = "SELECT * FROM param";
         public const string PARAM_ID = "SELECT * FROM param WHERE id=@id";
         public const string PARAM_IDENT = "SELECT * FROM param WHERE Ident=@ident";
         public const string PARAM_DELETE_ID = "DELETE FROM param WHERE id=@id";
@@ -37,7 +38,8 @@ namespace OrionBanque.Classe.SQLite
         public const string UTILISATEURS_INSERT = "INSERT INTO utilisateurs(id,login,mdp) VALUES(null,@login,@mdp)";
 
         /** Requête SQL Compte */
-        public const string COMPTES_ALL = "SELECT * FROM comptes WHERE id_utilisateur=@idU ORDER BY libelle";
+        public const string COMPTES_ALL = "SELECT * FROM comptes";
+        public const string COMPTES_ALL_UTILISATEUR = "SELECT * FROM comptes WHERE id_utilisateur=@idU ORDER BY libelle";
         public const string COMPTES_ID = "SELECT * FROM comptes WHERE id=@id";
         public const string COMPTES_DELETE_ID = "DELETE FROM comptes WHERE id=@id";
         public const string COMPTES_UPDATE_ID = "UPDATE comptes SET soldeseuilfinal=@soldeseuilfinal,soldeseuil=@soldeseuil,mingraphsold=@mingraphsold,maxgraphsold=@maxgraphsold,libelle=@libelle, solde_initial=@SoldeInitial, banque=@banque, guichet=@guichet, compte=@compte, clef=@clef, typevol=@typevol WHERE id=@id";
@@ -59,6 +61,7 @@ namespace OrionBanque.Classe.SQLite
                                 "WHERE id_compte={0} " +
                                 "ORDER BY prochaine";
         public const string ECHEANCIERS_ID = "SELECT id,prochaine,id_mode_paiement,tiers,libelle,id_categories,montant,id_compte,repete,type_repete,date_fin FROM echeanciers WHERE id=@id";
+        public const string ECHEANCIERS_UTILISATEUR = "SELECT echeanciers.id,prochaine,id_mode_paiement,tiers,echeanciers.libelle,id_categories,montant,id_compte,repete,type_repete,date_fin FROM echeanciers INNER JOIN comptes ON id_compte = comptes.id WHERE id_utilisateur=@idU";
         public const string ECHEANCIERS_DELETE_ID = "DELETE FROM echeanciers WHERE id=@id";
 
         /** Requête SQL Mode de paiement */
@@ -74,6 +77,7 @@ namespace OrionBanque.Classe.SQLite
         public const string OPERATIONS_CHEQUE_SUIVANT = "SELECT libelle FROM operations WHERE id_mode_paiement=8 AND id_compte=@idC ORDER BY date DESC";
         public const string OPERATIONS_ALL_TIERS = "SELECT distinct tiers FROM operations WHERE id_compte=@idC order by tiers";
         public const string OPERATIONS_ALL = "SELECT * FROM operations WHERE id_compte=@idC";
+        public const string OPERATIONS_UTILISATEUR = "SELECT * FROM operations INNER JOIN comptes ON id_compte = comptes.id WHERE id_utilisateur=@idU";
         public const string OPERATIONS_CALCUL_AVENIR = "SELECT type,montant FROM" +
                             " operations o INNER JOIN mode_paiement mp ON o.id_mode_paiement = mp.id" +
                             " WHERE id_compte = @idCompte" +

@@ -6,9 +6,9 @@ namespace OrionBanque.Classe.SQLite
 {
     public class Compte
     {
-        static public void Delete(int id)
+        public static void Delete(int id)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Compte.Delete(" + id + ")");
             try
             {
                 // Suppression des opérations associées aux comptes
@@ -24,46 +24,46 @@ namespace OrionBanque.Classe.SQLite
                 {
                     Classe.Echeancier.Delete(e.Id);
                 }
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.COMPTES_DELETE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.COMPTES_DELETE_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_DELETE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_DELETE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Id=" + id);
+                Log.Logger.Debug("Id=" + id);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.Delete()");
+            Log.Logger.Debug("Fin Compte.Delete()");
         }
 
-        static public void Delete(Classe.Compte c)
+        public static void Delete(Classe.Compte c)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Delete(Compte : id=" + c.Id + ")");
+            Log.Logger.Debug("Debut Compte.Delete(Compte : id=" + c.Id + ")");
             Compte.Delete(c.Id);
-            Classe.Log.Logger.Debug("Fin Compte.Delete()");
+            Log.Logger.Debug("Fin Compte.Delete()");
         }
 
-        static public Classe.Compte Charge(int id)
+        public static Classe.Compte Charge(int id)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Charge(" + id + ")");
+            Log.Logger.Debug("Debut Compte.Charge(" + id + ")");
             Classe.Compte c = new Classe.Compte();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.COMPTES_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.COMPTES_ID);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", id);
-                Classe.Log.Logger.Debug("Id=" + id);
+                Log.Logger.Debug("Id=" + id);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
                     c.Id = rdr.GetInt32(0);
                     c.Libelle = rdr.GetString(1);
                     c.SoldeInitial = rdr.GetDouble(2);
-                    c.IdUtilisateur = rdr.GetInt32(3);
+                    c.Utilisateur = Utilisateur.Charge(rdr.GetInt32(3));
                     c.Banque = rdr.GetString(4);
                     c.Guichet = rdr.GetString(5);
                     c.NoCompte = rdr.GetString(6);
@@ -78,32 +78,30 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.Charge()");
+            Log.Logger.Debug("Fin Compte.Charge()");
             return c;
         }
 
-        static public List<Classe.Compte> ChargeTout(Int32 idU)
+        public static List<Classe.Compte> ChargeTout()
         {
-            Classe.Log.Logger.Debug("Debut Compte.ChargeTout(" + idU + ")");
-            List <Classe.Compte> lc = new List<Classe.Compte>();
+            Log.Logger.Debug("Debut Compte.ChargeTout()");
+            List<Classe.Compte> lc = new List<Classe.Compte>();
             try
             {
                 Classe.Compte c = new Classe.Compte();
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.COMPTES_ALL, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.COMPTES_ALL);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_ALL, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_ALL);
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@idU", idU);
-                Classe.Log.Logger.Debug("IdUtilisateur=" + idU);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     c.Id = rdr.GetInt32(0);
                     c.Libelle = rdr.GetString(1);
                     c.SoldeInitial = rdr.GetDouble(2);
-                    c.IdUtilisateur = rdr.GetInt32(3);
+                    c.Utilisateur = Utilisateur.Charge(rdr.GetInt32(3));
                     c.Banque = rdr.GetString(4);
                     c.Guichet = rdr.GetString(5);
                     c.NoCompte = rdr.GetString(6);
@@ -120,97 +118,142 @@ namespace OrionBanque.Classe.SQLite
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.ChargeTout() avec " + lc.Count + " elements");
+            Log.Logger.Debug("Fin Compte.ChargeTout() avec " + lc.Count + " elements");
             return lc;
         }
 
-        static public void Maj(Classe.Compte c)
+        public static List<Classe.Compte> ChargeTout(Classe.Utilisateur u)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Maj(Compte : id=" + c.Id + ")");
+            Log.Logger.Debug("Debut Compte.ChargeTout(" + u.Id + ")");
+            List <Classe.Compte> lc = new List<Classe.Compte>();
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.COMPTES_UPDATE_ID, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.COMPTES_UPDATE_ID);
+                Classe.Compte c = new Classe.Compte();
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_ALL_UTILISATEUR, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_ALL_UTILISATEUR);
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@idU", u.Id);
+                Log.Logger.Debug("IdUtilisateur=" + u.Id);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    c.Id = rdr.GetInt32(0);
+                    c.Libelle = rdr.GetString(1);
+                    c.SoldeInitial = rdr.GetDouble(2);
+                    c.Utilisateur = Utilisateur.Charge(rdr.GetInt32(3));
+                    c.Banque = rdr.GetString(4);
+                    c.Guichet = rdr.GetString(5);
+                    c.NoCompte = rdr.GetString(6);
+                    c.Clef = rdr.GetString(7);
+                    c.MinGraphSold = rdr.GetDateTime(8);
+                    c.MaxGraphSold = rdr.GetDateTime(9);
+                    c.SeuilAlerte = rdr.GetDouble(10);
+                    c.TypEvol = rdr.GetString(11);
+                    c.SeuilAlerteFinal = rdr.GetDouble(12);
+                    lc.Add(c);
+                    c = new OrionBanque.Classe.Compte();
+                }
+                rdr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+            }
+            Log.Logger.Debug("Fin Compte.ChargeTout() avec " + lc.Count + " elements");
+            return lc;
+        }
+
+        public static Classe.Compte Maj(Classe.Compte c)
+        {
+            Log.Logger.Debug("Debut Compte.Maj(Compte : id=" + c.Id + ")");
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_UPDATE_ID, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_UPDATE_ID);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@id", c.Id);
-                Classe.Log.Logger.Debug("Id=" + c.Id);
+                Log.Logger.Debug("Id=" + c.Id);
                 cmd.Parameters.AddWithValue("@libelle", c.Libelle);
-                Classe.Log.Logger.Debug("Libelle=" + c.Libelle);
+                Log.Logger.Debug("Libelle=" + c.Libelle);
                 cmd.Parameters.AddWithValue("@SoldeInitial", c.SoldeInitial);
-                Classe.Log.Logger.Debug("SoldeInitial=" + c.SoldeInitial);
-                cmd.Parameters.AddWithValue("@id_utilisateur", c.IdUtilisateur);
-                Classe.Log.Logger.Debug("IdUtilisateur=" + c.IdUtilisateur);
+                Log.Logger.Debug("SoldeInitial=" + c.SoldeInitial);
+                cmd.Parameters.AddWithValue("@id_utilisateur", c.Utilisateur.Id);
+                Log.Logger.Debug("IdUtilisateur=" + c.Utilisateur.Id);
                 cmd.Parameters.AddWithValue("@banque", c.Banque);
-                Classe.Log.Logger.Debug("Banque=" + c.Banque);
+                Log.Logger.Debug("Banque=" + c.Banque);
                 cmd.Parameters.AddWithValue("@compte", c.NoCompte);
-                Classe.Log.Logger.Debug("NoCompte=" + c.NoCompte);
+                Log.Logger.Debug("NoCompte=" + c.NoCompte);
                 cmd.Parameters.AddWithValue("@clef", c.Clef);
-                Classe.Log.Logger.Debug("Clef=" + c.Clef);
+                Log.Logger.Debug("Clef=" + c.Clef);
                 cmd.Parameters.AddWithValue("@mingraphsold", c.MinGraphSold);
-                Classe.Log.Logger.Debug("MinGraphSold=" + c.MinGraphSold);
+                Log.Logger.Debug("MinGraphSold=" + c.MinGraphSold);
                 cmd.Parameters.AddWithValue("@maxgraphsold", c.MaxGraphSold);
-                Classe.Log.Logger.Debug("MaxGraphSold=" + c.MaxGraphSold);
+                Log.Logger.Debug("MaxGraphSold=" + c.MaxGraphSold);
                 cmd.Parameters.AddWithValue("@soldeseuil", c.SeuilAlerte);
-                Classe.Log.Logger.Debug("SeuilAlerte=" + c.SeuilAlerte);
+                Log.Logger.Debug("SeuilAlerte=" + c.SeuilAlerte);
                 cmd.Parameters.AddWithValue("@soldeseuilfinal", c.SeuilAlerteFinal);
-                Classe.Log.Logger.Debug("SeuilAlerteFinal=" + c.SeuilAlerteFinal);
+                Log.Logger.Debug("SeuilAlerteFinal=" + c.SeuilAlerteFinal);
                 cmd.Parameters.AddWithValue("@typevol", c.TypEvol);
-                Classe.Log.Logger.Debug("TypEvol=" + c.TypEvol);
+                Log.Logger.Debug("TypEvol=" + c.TypEvol);
                 cmd.Parameters.AddWithValue("@guichet", c.Guichet);
-                Classe.Log.Logger.Debug("Guichet=" + c.Guichet);
+                Log.Logger.Debug("Guichet=" + c.Guichet);
                 cmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.Maj()");
+            Log.Logger.Debug("Fin Compte.Maj()");
+            return c;
         }
 
-        static public void Sauve(Classe.Compte c)
+        static public Classe.Compte Sauve(Classe.Compte c)
         {
-            Classe.Log.Logger.Debug("Debut Compte.Sauve(Compte : id=" + c.Id + ")");
+            Log.Logger.Debug("Debut Compte.Sauve(Compte : id=" + c.Id + ")");
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(SQLite.Sql.COMPTES_INSERT, SQLite.Sql.GetConnection());
-                Classe.Log.Logger.Debug("Requete :" + SQLite.Sql.COMPTES_INSERT);
+                SQLiteCommand cmd = new SQLiteCommand(Sql.COMPTES_INSERT, Sql.GetConnection());
+                Log.Logger.Debug("Requete :" + Sql.COMPTES_INSERT);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@libelle", c.Libelle);
-                Classe.Log.Logger.Debug("Libelle=" + c.Libelle);
+                Log.Logger.Debug("Libelle=" + c.Libelle);
                 cmd.Parameters.AddWithValue("@solde_initial", c.SoldeInitial);
-                Classe.Log.Logger.Debug("SoldeInitial=" + c.SoldeInitial);
-                cmd.Parameters.AddWithValue("@id_utilisateur", c.IdUtilisateur);
-                Classe.Log.Logger.Debug("IdUtilisateur=" + c.IdUtilisateur);
+                Log.Logger.Debug("SoldeInitial=" + c.SoldeInitial);
+                cmd.Parameters.AddWithValue("@id_utilisateur", c.Utilisateur.Id);
+                Log.Logger.Debug("IdUtilisateur=" + c.Utilisateur.Id);
                 cmd.Parameters.AddWithValue("@banque", c.Banque);
-                Classe.Log.Logger.Debug("Banque=" + c.Banque);
+                Log.Logger.Debug("Banque=" + c.Banque);
                 cmd.Parameters.AddWithValue("@guichet", c.Guichet);
-                Classe.Log.Logger.Debug("Guichet=" + c.Guichet);
+                Log.Logger.Debug("Guichet=" + c.Guichet);
                 cmd.Parameters.AddWithValue("@compte", c.NoCompte);
-                Classe.Log.Logger.Debug("NoCompte=" + c.NoCompte);
+                Log.Logger.Debug("NoCompte=" + c.NoCompte);
                 cmd.Parameters.AddWithValue("@clef", c.Clef);
-                Classe.Log.Logger.Debug("Clef=" + c.Clef);
+                Log.Logger.Debug("Clef=" + c.Clef);
                 cmd.Parameters.AddWithValue("@mingraphsold", c.MinGraphSold);
-                Classe.Log.Logger.Debug("MinGraphSold=" + c.MinGraphSold);
+                Log.Logger.Debug("MinGraphSold=" + c.MinGraphSold);
                 cmd.Parameters.AddWithValue("@maxgraphsold", c.MaxGraphSold);
-                Classe.Log.Logger.Debug("MaxGraphSold=" + c.MaxGraphSold);
+                Log.Logger.Debug("MaxGraphSold=" + c.MaxGraphSold);
                 cmd.Parameters.AddWithValue("@soldeseuil", c.SeuilAlerte);
-                Classe.Log.Logger.Debug("SeuilAlerte=" + c.SeuilAlerte);
+                Log.Logger.Debug("SeuilAlerte=" + c.SeuilAlerte);
                 cmd.Parameters.AddWithValue("@typevol", c.TypEvol);
-                Classe.Log.Logger.Debug("TypEvol=" + c.TypEvol);
+                Log.Logger.Debug("TypEvol=" + c.TypEvol);
                 cmd.Parameters.AddWithValue("@soldeseuilfinal", c.SeuilAlerteFinal);
-                Classe.Log.Logger.Debug("SeuilAlerteFinal=" + c.SeuilAlerteFinal);
+                Log.Logger.Debug("SeuilAlerteFinal=" + c.SeuilAlerteFinal);
                 cmd.ExecuteNonQuery();
+                c.Id = Sql.GetLastInsertId();
             }
             catch(SQLiteException ex)
             {
-                Classe.Log.Logger.Error(ex.Message);
-                throw new Exception(String.Format(Classe.SQLite.Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                Log.Logger.Error(ex.Message);
+                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
             }
-            Classe.Log.Logger.Debug("Fin Compte.Sauve()");
+            Log.Logger.Debug("Fin Compte.Sauve()");
+            return c;
         }
     }
 }

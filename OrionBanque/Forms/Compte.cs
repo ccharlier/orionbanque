@@ -107,7 +107,7 @@ namespace OrionBanque.Forms
                         {
                             Libelle = txtLibelle.Text.Trim(),
                             SoldeInitial = Double.Parse(txtSoldeInitial.Value.ToString()),
-                            IdUtilisateur = uA.Id,
+                            Utilisateur = Classe.Utilisateur.Charge(uA.Id),
                             Banque = kBanque.Text,
                             Guichet = kGuichet.Text,
                             NoCompte = kCompte.Text,

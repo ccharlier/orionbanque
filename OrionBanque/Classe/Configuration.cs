@@ -8,6 +8,7 @@ namespace OrionBanque.Classe
     public class Configuration
     {
         public const string BD_SQLITE = "SQLite";
+        public const string BD_BINARY = "Binary";
         public const string BD_MYSQL = "MySQL";
     }
 
@@ -33,8 +34,10 @@ namespace OrionBanque.Classe
 			sFileName = fileName;
 
 			if (File.Exists(fileName))
-				Load(fileName);
-		}
+            {
+                Load(fileName);
+            }
+        }
 
 		/// <summary>
 		/// Ajoute une section [section] au fichier ini
@@ -43,8 +46,10 @@ namespace OrionBanque.Classe
 		public void AddSection (string section)
 		{
 			if (!Sections.ContainsKey(section))
-				Sections.Add(section,new Section());
-		}
+            {
+                Sections.Add(section,new Section());
+            }
+        }
 
 		/// <summary>
 		/// Ajoute une section [section] au fichier ini ainsi qu'une clef et une valeur
@@ -65,8 +70,10 @@ namespace OrionBanque.Classe
 		public void RemoveSection (string section)
 		{
 			if (Sections.ContainsKey(section))
-				Sections.Remove(section);
-		}
+            {
+                Sections.Remove(section);
+            }
+        }
 
 		/// <summary>
 		/// Modifie ou crée une valeur d'une clef dans une section
@@ -95,8 +102,10 @@ namespace OrionBanque.Classe
 				return defaut.ToString();
 			}
 			else
-				return val;
-		}
+            {
+                return val;
+            }
+        }
 
 		/// <summary>
 		/// Retourne la valeur d'une clef dans une section
@@ -115,15 +124,20 @@ namespace OrionBanque.Classe
 			get
 			{
 				if (!Sections.ContainsKey(section))
-					AddSection(section);
+                {
+                    AddSection(section);
+                }
 
-				return (Section) Sections[section];
+                return (Section) Sections[section];
 			}
 			set
 			{
 				if (!Sections.ContainsKey(section))
-					AddSection(section);
-				Sections[section] = value;
+                {
+                    AddSection(section);
+                }
+
+                Sections[section] = value;
 			}
 		}
 
@@ -133,8 +147,10 @@ namespace OrionBanque.Classe
 		public void Save ()
 		{
 			if (sFileName != "")
-				Save (sFileName);
-		}
+            {
+                Save (sFileName);
+            }
+        }
 
 		/// <summary>
 		/// Sauvegarde le fichier INI sous un nom spécifique
@@ -193,7 +209,7 @@ namespace OrionBanque.Classe
 					this[currentSection].SetKey(scts[0],scts[1]);
 				}
 			}
-			this.sFileName = fileName;
+			sFileName = fileName;
 
 			str.Close();
 		}
@@ -213,14 +229,20 @@ namespace OrionBanque.Classe
 			/// <param name="value">Valeur de la clef</param>
 			public void SetKey (string key, string value)
 			{
-				if (key.IndexOf("=") > 0) 
-					throw new Exception("Caractère '=' interdit");
+				if (key.IndexOf("=") > 0)
+                {
+                    throw new Exception("Caractère '=' interdit");
+                }
 
-				if (clefs.ContainsKey(key))
-					clefs[key] = value;
-				else
-					clefs.Add(key,value);
-			}
+                if (clefs.ContainsKey(key))
+                {
+                    clefs[key] = value;
+                }
+                else
+                {
+                    clefs.Add(key,value);
+                }
+            }
 
 			/// <summary>
 			/// Supprime une clefs
@@ -229,8 +251,10 @@ namespace OrionBanque.Classe
 			public void DeleteKey (string key)
 			{
 				if (clefs.ContainsKey(key))
-					clefs.Remove(key);
-			}
+                {
+                    clefs.Remove(key);
+                }
+            }
 
 			/// <summary>
 			/// Les clefs contenues dans la section
@@ -251,8 +275,10 @@ namespace OrionBanque.Classe
 				get
 				{
 					if (clefs.ContainsKey(key))
-						return clefs[key].ToString();
-					else
+                    {
+                        return clefs[key].ToString();
+                    }
+                    else
 					{
 						SetKey (key,"");
 						return "";
