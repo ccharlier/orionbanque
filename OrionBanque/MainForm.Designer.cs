@@ -122,6 +122,7 @@
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
+            this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -162,7 +163,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsUser,
             this.toolStripStatusLabel1,
-            this.tsDate});
+            this.tsDate,
+            this.tsNbLigne});
             this.statusStrip1.Location = new System.Drawing.Point(0, 632);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
@@ -181,8 +183,8 @@
             // 
             this.toolStripStatusLabel1.Image = global::OrionBanque.Properties.Resources.calendar_view_day;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(29, 17);
-            this.toolStripStatusLabel1.Text = " :";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel1.Text = " : --";
             // 
             // tsDate
             // 
@@ -1076,6 +1078,13 @@
             // 
             this.OFDImport.Title = "Fichier d\'Opérations à importer";
             // 
+            // tsNbLigne
+            // 
+            this.tsNbLigne.Image = global::OrionBanque.Properties.Resources.table1;
+            this.tsNbLigne.Name = "tsNbLigne";
+            this.tsNbLigne.Size = new System.Drawing.Size(42, 17);
+            this.tsNbLigne.Text = " : --";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1231,6 +1240,7 @@
         private System.Windows.Forms.ToolStripMenuItem importerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unFichierCSVBPToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OFDImport;
+        private System.Windows.Forms.ToolStripStatusLabel tsNbLigne;
     }
 }
 

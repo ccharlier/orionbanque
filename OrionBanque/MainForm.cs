@@ -25,7 +25,7 @@ namespace OrionBanque
         {
             uA = u;
             InitializeComponent();
-            tsDate.Text = DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
+            tsDate.Text = ": " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
 
             ApresConnexion();
         }
@@ -229,10 +229,21 @@ namespace OrionBanque
                     DateTime max = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     switch(c.TypEvol)
                     {
-                        case "1 mois": max = max.AddMonths(1); break;
-                        case "3 mois": max = max.AddMonths(1); min = min.AddMonths(-2); break;
-                        case "6 mois": max = max.AddMonths(1); min = min.AddMonths(-5); break;
-                        case "1 an": max = max.AddMonths(1); min = min.AddMonths(-11); break;
+                        case Classe.KEY.COMPTE_VISU_1MOIS:
+                            max = max.AddMonths(1);
+                            break;
+                        case Classe.KEY.COMPTE_VISU_3MOIS:
+                            max = max.AddMonths(1);
+                            min = min.AddMonths(-2);
+                            break;
+                        case Classe.KEY.COMPTE_VISU_6MOIS:
+                            max = max.AddMonths(1);
+                            min = min.AddMonths(-5);
+                            break;
+                        case Classe.KEY.COMPTE_VISU_1AN:
+                            max = max.AddMonths(1);
+                            min = min.AddMonths(-11);
+                            break;
                     }
                     txtEvolSoldeMin.Value = min;
                     txtEvolSoldMax.Value = max;
@@ -243,6 +254,10 @@ namespace OrionBanque
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                tsNbLigne.Text = ": " + dgvOperations.Rows.Count;
             }
         }
 
