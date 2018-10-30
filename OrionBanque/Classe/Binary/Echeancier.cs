@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 
@@ -11,45 +10,17 @@ namespace OrionBanque.Classe.Binary
     {
         public static int InsereEcheance(DateTime DateInsereEch, int idCompte)
         {
-            return 0;
-            // TODO: Insérer les échéances à une date donnée
-
-            /*Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + idCompte + ")");
+            Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + idCompte + ")");
+            List<Classe.Echeancier> le = ChargeTout(idCompte);
             try
             {
-                List<Classe.Echeancier> le = ChargeTout(idCompte);
+                le = le
+                    .Where(w => w.Compte.Id == idCompte)
+                    .Where( w1 => w1.DateFin is null || w1.Prochaine <= w1.DateFin)
+                    .Where(w2 => w2.Prochaine <= DateInsereEch)
+                    .ToList();
 
-            }
-            catch (Exception ex)
-            {
-                Log.Logger.Error(ex.Message);
-                throw;
-            }
-            Log.Logger.Debug("Fin Echeancier.ChargeTout(id)");
-            return le;
-
-
-            Log.Logger.Debug("Debut Compte.Delete(" + DateInsereEch + ", " + idCompte + ")");
-            List<Classe.Echeancier> lec = new List<Classe.Echeancier>();
-           
-            try
-            {
-                SQLiteCommand cmd = new SQLiteCommand(Sql.ECHEANCIERS_APPLIQUE, Sql.GetConnection());
-                Log.Logger.Debug("Requete :" + Sql.ECHEANCIERS_APPLIQUE);
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@idCompte", idCompte);
-                Log.Logger.Debug("idCompte=" + idCompte);
-                cmd.Parameters.AddWithValue("@date", DateInsereEch);
-                Log.Logger.Debug("DateInsereEch=" + DateInsereEch);
-                
-                SQLiteDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    lec.Add(Classe.Echeancier.Charge(rdr.GetInt32(0)));
-                }
-                rdr.Close();
-                
-                foreach (Classe.Echeancier ec in lec)
+                foreach (Classe.Echeancier ec in le)
                 {
                     Classe.Operation o = new Classe.Operation
                     {
@@ -64,33 +35,29 @@ namespace OrionBanque.Classe.Binary
 
                     Classe.Operation.Sauve(o);
 
-                    if (ec.TypeRepete == KEY.ECHEANCIER_JOUR)
+                    switch (ec.TypeRepete)
                     {
-                        ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
-                    }
-
-                    if (ec.TypeRepete == KEY.ECHEANCIER_MOIS)
-                    {
-                        ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
-                    }
-
-                    if (ec.TypeRepete == KEY.ECHEANCIER_ANNEE)
-                    {
-                        ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
+                        case KEY.ECHEANCIER_JOUR:
+                            ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
+                            break;
+                        case KEY.ECHEANCIER_MOIS:
+                            ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
+                            break;
+                        case KEY.ECHEANCIER_ANNEE:
+                            ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
+                            break;
                     }
 
                     Classe.Echeancier.Maj(ec);
                 }
-
-                
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
-                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
+                throw;
             }
-            Log.Logger.Debug("Debut Compte.Delete() avec " + lec.Count + " elements");
-            return lec.Count();*/
+            
+            return le.Count;
         }
 
         public static Classe.Echeancier Sauve(Classe.Echeancier e)
