@@ -67,13 +67,17 @@ namespace OrionBanque.Classe.Binary
                     ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Dépôt de chèque", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
                     ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Chèque émis", Type = Classe.KEY.MODEPAIEMENT_DEBIT });
 
-                    Outils.GestionFichier.Sauvegarde(path + @"\orionbanque.obq", ob);
+                    CallContext.SetData(Classe.KEY.OB, ob);
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
                 #endregion
+            }
+            else
+            {
+                CallContext.SetData(Classe.KEY.OB, Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE));
             }
         }
     }

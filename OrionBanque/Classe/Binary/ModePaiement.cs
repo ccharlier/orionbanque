@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -12,7 +13,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.ModePaiement> lmp = new List<Classe.ModePaiement>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lmp = ob.ModePaiements.OrderBy(mp => mp.Libelle).ToList();
             }
             catch (Exception ex)
@@ -29,7 +30,7 @@ namespace OrionBanque.Classe.Binary
             Classe.ModePaiement mp = new Classe.ModePaiement();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 mp = ob.ModePaiements.Where(mpt => mpt.Id == id).First();
             }
             catch (Exception ex)
@@ -46,7 +47,7 @@ namespace OrionBanque.Classe.Binary
             Classe.ModePaiement mp = new Classe.ModePaiement();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 mp = ob.ModePaiements.Where(mpt => mpt.Libelle == nom).First();
             }
             catch (Exception ex)
@@ -62,11 +63,11 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut ModePaiement.DeletePossible(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 List<Classe.Operation> lo = ob.Operations.Where(o => o.ModePaiement.Id == id).ToList();
                 if (lo.Count != 0)
                 {
-                    throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur cette Catégorie.");
+                    throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur ce Mode de Paiement.");
                 }
             }
             catch (Exception ex)
@@ -82,16 +83,15 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut ModePaiement.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.ModePaiements.RemoveAll((mp) => mp.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin ModePaiement.Delete");
         }
 
         public static Classe.ModePaiement Maj(Classe.ModePaiement mpA)
@@ -99,13 +99,13 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut ModePaiement.Maj(" + mpA.Id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
 
                 Classe.ModePaiement mp = ob.ModePaiements.Find((mptemp) => mptemp.Id == mpA.Id);
                 mp.Libelle = mpA.Libelle;
                 mp.Type = mpA.Type;
-                
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -120,10 +120,10 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut ModePaiement.Sauve(" + mpA.Libelle + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 mpA.Id = ob.ModePaiements.Count != 0 ? ob.ModePaiements.Max(u => u.Id) + 1 : 1;
                 ob.ModePaiements.Add(mpA);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {

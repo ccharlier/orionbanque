@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -95,10 +96,10 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Echeancier.Sauve(" + e.Libelle + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 e.Id = ob.Echeanciers.Count != 0 ? ob.Echeanciers.Max(u => u.Id) + 1 : 1;
                 ob.Echeanciers.Add(e);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -113,7 +114,7 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Echeancier.Maj(" + eA.Id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 Classe.Echeancier e = ob.Echeanciers.Find((etemp) => etemp.Id == eA.Id);
                 e.ModePaiement = eA.ModePaiement;
                 e.Tiers = eA.Tiers;
@@ -125,7 +126,7 @@ namespace OrionBanque.Classe.Binary
                 e.DateFin = eA.DateFin;
                 e.TypeRepete = eA.TypeRepete;
                 e.Prochaine = eA.Prochaine;
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -146,7 +147,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Echeancier e = new Classe.Echeancier();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 e = ob.Echeanciers.Find(et => et.Id == id);
             }
             catch (Exception ex)
@@ -154,7 +155,6 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Echeancier.Charge(id)");
             return e;
         }
 
@@ -164,16 +164,14 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Echeancier> le = new List<Classe.Echeancier>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 le = ob.Echeanciers.Where(et => et.Compte.Id == idC).ToList();
-
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Echeancier.ChargeTout(id)");
             return le;
         }
 
@@ -183,24 +181,20 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Echeancier> le = new List<Classe.Echeancier>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 le = ob.Echeanciers.Where(et => et.Compte.Utilisateur.Id == u.Id).ToList();
-
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Echeancier.ChargeToutUtilisateur()");
             return le;
         }
 
         public static void Delete(Classe.Echeancier ec)
         {
-            Log.Logger.Debug("Debut Compte.Delete(" + ec.Id + ")");
             Echeancier.Delete(ec.Id);
-            Log.Logger.Debug("Fin Compte.Delete()");
         }
 
         public static void Delete(int id)
@@ -208,16 +202,15 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Echeancier.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Echeanciers.RemoveAll((e) => e.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Echencier.Delete(id)");
         }
 
         public static DataSet ToDataSet(List<Classe.Echeancier> list)

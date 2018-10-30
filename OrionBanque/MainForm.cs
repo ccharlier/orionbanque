@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using ZedGraph;
 
@@ -387,7 +388,9 @@ namespace OrionBanque
                 dgvOperations.DataMember = "Operations";
                 dgvOperations.Columns["Id"].Visible = false;
                 dgvOperations.Columns["ModePaiementType"].Visible = false;
-                dgvOperations.Columns["Montant"].DefaultCellStyle.Format = "c";
+                dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
+                dgvOperations.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
+                dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Format = "d";
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -400,7 +403,7 @@ namespace OrionBanque
 
         private void dgvOperations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow r in dgvOperations.Rows)
+            /*foreach (DataGridViewRow r in dgvOperations.Rows)
             {
                 if (Convert.ToString(r.Cells["ModePaiementType"].Value) == Classe.KEY.MODEPAIEMENT_DEBIT)
                 {
@@ -412,7 +415,7 @@ namespace OrionBanque
                     r.Cells["Montant"].Style.ForeColor = Color.Black;
                     r.Cells["Montant"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
-            }
+            }*/
         }
 
         private void DgvOperations_DoubleClick(object sender, EventArgs e)
@@ -751,6 +754,13 @@ namespace OrionBanque
             }
         }
 
-       
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+            Outils.GestionFichier.Sauvegarde(
+                Classe.KEY.BINARY_PATH_COMPLETE,
+                ob
+            );
+        }
     }
 }

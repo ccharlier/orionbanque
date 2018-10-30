@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -19,16 +20,14 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Param> lp = new List<Classe.Param>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lp = ob.Params;
-
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Categorie.ChargeTout() avec " + lp.Count + " elements");
             return lp;
         }
 
@@ -43,16 +42,14 @@ namespace OrionBanque.Classe.Binary
             Classe.Param p = new Classe.Param();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 p = ob.Params.Find(pt => pt.Id == id);
-
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Param.Charge(id)");
             return p;
         }
 
@@ -67,9 +64,8 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Param> lp = new List<Classe.Param>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lp = ob.Params.Where(pt => pt.Ident == ident).ToList();
-
             }
             catch (Exception ex)
             {
@@ -89,9 +85,9 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Param.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Params.RemoveAll((p) => p.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -110,9 +106,9 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Param.Delete(" + ident + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Params.RemoveAll((p) => p.Ident == ident);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -131,14 +127,14 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Param.Maj(" + pA.Id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 Classe.Param p = ob.Params.Find((ptemp) => ptemp.Id == pA.Id);
                 p.Ident = pA.Ident;
                 p.Val1 = pA.Val1; p.Val2 = pA.Val2; p.Val3 = pA.Val3;
                 p.Int1 = pA.Int1; p.Int2 = pA.Int2; p.Int3 = pA.Int3;
                 p.Dec1 = pA.Dec1; p.Dec2 = pA.Dec2; p.Dec3 = pA.Dec3;
                 p.Dat1 = pA.Dat1; p.Dat2 = pA.Dat2; p.Dat3 = pA.Dat3;
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -157,10 +153,10 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Param.Sauve(" + p.Ident + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 p.Id = ob.Params.Count != 0 ? ob.Params.Max(u => u.Id) + 1 : 1;
                 ob.Params.Add(p);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {

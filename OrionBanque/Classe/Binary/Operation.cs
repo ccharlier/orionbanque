@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -13,10 +14,10 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Operation.Sauve(" + o.Libelle + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 o.Id = ob.Operations.Count != 0 ? ob.Operations.Max(u => u.Id) + 1 : 1;
                 ob.Operations.Add(o);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -32,7 +33,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Operation> lo = new List<Classe.Operation>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lo = ob.Operations.Where(ot => ot.Compte.Id == idC).ToList();
             }
             catch (Exception ex)
@@ -40,7 +41,6 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Operation.ChargeTout(id)");
             return lo;
         }
 
@@ -50,7 +50,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Operation> lo = new List<Classe.Operation>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lo = ob.Operations.Where(ot => ot.Compte.Utilisateur.Id == u.Id).ToList();
             }
             catch (Exception ex)
@@ -58,7 +58,6 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Echeancier.ChargeToutUtilisateur()");
             return lo;
         }
 
@@ -68,7 +67,7 @@ namespace OrionBanque.Classe.Binary
             int retour = 0;
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 List<Classe.Operation> lo = ob.Operations.Where(ot => ot.Compte.Id == idC && ot.ModePaiement.Id == 8).OrderByDescending(ot => ot.Date).ToList();
                 if(lo.Count > 0)
                 {
@@ -90,7 +89,6 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Echeancier.ChercheChequeSuivant()");
             return retour;
         }
 
@@ -159,7 +157,7 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Operation.Maj(" + oA.Id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 Classe.Operation o = ob.Operations.Find((otemp) => otemp.Id == oA.Id);
                 o.ModePaiement = oA.ModePaiement;
                 o.Tiers = oA.Tiers;
@@ -169,7 +167,7 @@ namespace OrionBanque.Classe.Binary
                 o.Compte = oA.Compte;
                 o.Date = oA.Date;
                 o.DatePointage = oA.DatePointage;
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -218,7 +216,7 @@ namespace OrionBanque.Classe.Binary
             double retour = 0.0;
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 retour = ob.Operations.Where(ot => ot.Compte.Id == idC && ot.Date <= dt && ot.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_CREDIT).Sum(s => s.Montant);
                 retour = retour - ob.Operations.Where(ot => ot.Compte.Id == idC && ot.Date <= dt && ot.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_DEBIT).Sum(s => s.Montant);
             }
@@ -236,7 +234,7 @@ namespace OrionBanque.Classe.Binary
             DateTime retour = DateTime.Now;
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 retour = ob.Operations.Where(ot => ot.Compte.Id == idC).Max(ot => ot.Date);
             }
             catch (Exception ex)
@@ -253,7 +251,7 @@ namespace OrionBanque.Classe.Binary
             DateTime retour = DateTime.Now;
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 retour = ob.Operations.Where(ot => ot.Compte.Id == idC).Min(ot => ot.Date);
             }
             catch (Exception ex)
@@ -275,6 +273,7 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.ChargeGrilleListeOperation(" + idCompte + ")");
             List<Classe.Operation> retour = new List<Classe.Operation>();
+
             return retour;
         }
 
@@ -287,6 +286,7 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
             DataSet retour = new DataSet();
+
             return retour;
         }
 
@@ -296,7 +296,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Operation o = new Classe.Operation();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 o = ob.Operations.Find(ot => ot.Id == id);
             }
             catch (Exception ex)
@@ -312,16 +312,15 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Operation.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Operations.RemoveAll((o) => o.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Operation.Delete(id)");
         }
 
         public static void MajCategorieOperations(int idCompte, int idCatOri, int idCatDest)
@@ -334,7 +333,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Operation> lo = new List<Classe.Operation>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lo = ob.Operations.Where(ot => ot.Compte.Id == idCompte && ot.Categorie == catOri).ToList();
                 foreach(Classe.Operation o in lo)
                 {
@@ -363,7 +362,8 @@ namespace OrionBanque.Classe.Binary
             t.Columns.Add("ModePaiement", typeof(string));
             t.Columns.Add("ModePaiementType", typeof(string));
             t.Columns.Add("Categorie", typeof(string));
-            t.Columns.Add("Montant", typeof(double));
+            t.Columns.Add("Montant Débit", typeof(double));
+            t.Columns.Add("Montant Crédit", typeof(double));
             t.Columns.Add("DatePointage", typeof(DateTime));
             
             //go through each property on T and add each value to the table
@@ -377,7 +377,17 @@ namespace OrionBanque.Classe.Binary
                 row["Libelle"] = item.Libelle;
                 row["ModePaiement"] = item.ModePaiement.Libelle;
                 row["ModePaiementType"] = item.ModePaiement.Type;
-                row["Montant"] = item.Montant;
+
+                if (item.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_CREDIT)
+                {
+                    row["Montant Crédit"] = item.Montant;
+                    row["Montant Débit"] = DBNull.Value;
+                } 
+                else
+                {
+                    row["Montant Débit"] = item.Montant;
+                    row["Montant Crédit"] = DBNull.Value;
+                }
                 row["Categorie"] = item.Categorie.Libelle;
                 if (item.DatePointage == null)
                 {

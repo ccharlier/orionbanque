@@ -15,7 +15,7 @@ namespace OrionBanque.Outils
             try
             {
                 DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Classe.OB));
-                ser.WriteObject(writer, (Classe.OB)CallContext.GetData(Classe.KEY.KEY_OB));
+                ser.WriteObject(writer, (Classe.OB)CallContext.GetData(Classe.KEY.OB));
             }
             catch (SerializationException e)
             {
@@ -34,7 +34,7 @@ namespace OrionBanque.Outils
             try
             {
                 XmlSerializer ser = new XmlSerializer(typeof(Classe.OB));
-                ser.Serialize(writer, (Classe.OB)CallContext.GetData(Classe.KEY.KEY_OB));
+                ser.Serialize(writer, (Classe.OB)CallContext.GetData(Classe.KEY.OB));
             }
             catch (SerializationException e)
             {
@@ -74,7 +74,7 @@ namespace OrionBanque.Outils
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 ob = (Classe.OB)formatter.Deserialize(reader);
-                CallContext.SetData(Classe.KEY.KEY_OB, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (SerializationException e)
             {

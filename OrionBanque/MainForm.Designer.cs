@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsDate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enregistrerSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +122,6 @@
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
-            this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -190,6 +189,13 @@
             // 
             this.tsDate.Name = "tsDate";
             this.tsDate.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tsNbLigne
+            // 
+            this.tsNbLigne.Image = global::OrionBanque.Properties.Resources.table1;
+            this.tsNbLigne.Name = "tsNbLigne";
+            this.tsNbLigne.Size = new System.Drawing.Size(42, 17);
+            this.tsNbLigne.Text = " : --";
             // 
             // menuStrip1
             // 
@@ -786,8 +792,6 @@
             this.dgvOperations.AllowUserToAddRows = false;
             this.dgvOperations.AllowUserToDeleteRows = false;
             this.dgvOperations.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOperations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOperations.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvOperations.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1078,13 +1082,6 @@
             // 
             this.OFDImport.Title = "Fichier d\'Opérations à importer";
             // 
-            // tsNbLigne
-            // 
-            this.tsNbLigne.Image = global::OrionBanque.Properties.Resources.table1;
-            this.tsNbLigne.Name = "tsNbLigne";
-            this.tsNbLigne.Size = new System.Drawing.Size(42, 17);
-            this.tsNbLigne.Text = " : --";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1099,6 +1096,7 @@
             this.Name = "MainForm";
             this.Text = "OrionBanque - Gestion de Comptes Bancaires";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

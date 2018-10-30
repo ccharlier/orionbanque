@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -8,20 +9,18 @@ namespace OrionBanque.Classe.Binary
     {
         public static List<Classe.Categorie> ChargeTout()
         {
-            Log.Logger.Debug("Debut Categorie.ChargeTout()");
+            Log.Logger.Debug("Categorie.ChargeTout()");
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lc = ob.Categories.OrderBy(c => c.Libelle).ToList();
-
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Categorie.ChargeTout() avec " + lc.Count + " elements");
             return lc;
         }
 
@@ -48,7 +47,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lc = ob.Categories.Where(c => c.CategorieParent.Id ==0).OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -56,7 +55,6 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Categorie.ChargeCategorieParent() avec " + lc.Count + " elements");
             return lc;
         }
 
@@ -66,7 +64,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lc = ob.Categories.Where(c => c.CategorieParent.Id == idCat).OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -74,14 +72,12 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Categorie.ChargeCategorieParent() avec " + lc.Count + " elements");
             return lc;
         }
 
         public static Classe.Categorie Charge(int id)
         {
             Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
-
             if (id.Equals(0))
             {
                 return new Classe.Categorie();
@@ -90,7 +86,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Categorie c = new Classe.Categorie();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 c = ob.Categories.Where(ct => ct.Id == id).First();
             }
             catch (Exception ex)
@@ -107,7 +103,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Categorie c;
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 c = ob.Categories.Where(ct => ct.Libelle == nom).DefaultIfEmpty().First();
             }
             catch (Exception ex)
@@ -115,7 +111,7 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            c = c == null ? new Classe.Categorie() : c;
+            c = c ?? new Classe.Categorie();
             return c;
         }
 
@@ -124,7 +120,7 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Categorie.DeletePossible(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 List<Classe.Operation> lo = ob.Operations.Where(o => o.Categorie.Id == id).ToList();
                 if (lo.Count !=0)
                 {
@@ -136,7 +132,6 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Classe.Log.Logger.Debug("Fin Categorie.DeletePossible()");
         }
 
         public static void Delete(int id)
@@ -144,16 +139,15 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Categorie.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Categories.RemoveAll((c) => c.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Categorie.Delete");
         }
 
         public static Classe.Categorie Maj(Classe.Categorie cA)
@@ -161,11 +155,11 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Categorie.Maj(" + cA.Id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 Classe.Categorie c = ob.Categories.Find((ctemp) => ctemp.Id == cA.Id);
                 c.Libelle = cA.Libelle;
                 c.CategorieParent = cA.CategorieParent;
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -180,10 +174,10 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Categorie.Sauve(" + cA.Libelle + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 cA.Id = ob.Categories.Count != 0 ? ob.Categories.Max(u => u.Id) + 1 : 1;
                 ob.Categories.Add(cA);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {

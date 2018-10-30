@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -11,9 +12,9 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Utilisateur.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Utilisateurs.RemoveAll((u) => u.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -29,7 +30,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Utilisateur retour = new Classe.Utilisateur();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 retour = ob.Utilisateurs.Find((u) => u.Id == id);
             }
             catch (Exception ex)
@@ -46,7 +47,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Utilisateur retour = new Classe.Utilisateur();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 retour = ob.Utilisateurs.Find((u) => u.Login == login);
             }
             catch (Exception ex)
@@ -63,12 +64,12 @@ namespace OrionBanque.Classe.Binary
             Classe.Utilisateur retour = new Classe.Utilisateur();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 Classe.Utilisateur u = ob.Utilisateurs.Find((utemp) => utemp.Id == uA.Id);
                 u.Login = uA.Login;
                 u.Mdp = uA.Mdp;
 
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -83,10 +84,10 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Utilisateur.Sauve(" + uA.Login + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 uA.Id = ob.Utilisateurs.Count != 0 ? ob.Utilisateurs.Max(u => u.Id) + 1 : 1;
                 ob.Utilisateurs.Add(uA);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -102,9 +103,8 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Utilisateur> lu = new List<Classe.Utilisateur>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lu = ob.Utilisateurs;
-
             }
             catch (Exception ex)
             {

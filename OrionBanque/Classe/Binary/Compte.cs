@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe.Binary
 {
@@ -11,25 +12,24 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Compte.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
-                ob.Comptes.RemoveAll((c) => c.Id == id);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Operations.RemoveAll((c) => c.Compte.Id == id);
+                ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 ob.Echeanciers.RemoveAll((c) => c.Compte.Id == id);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                ob.Comptes.RemoveAll((c) => c.Id == id);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Compte.Delete");
         }
 
         public static void Delete(Classe.Compte c)
         {
-            Log.Logger.Debug("Debut Compte.Delete(Compte : id=" + c.Id + ")");
             Compte.Delete(c.Id);
-            Log.Logger.Debug("Fin Compte.Delete()");
         }
 
         public static Classe.Compte Charge(int id)
@@ -38,7 +38,7 @@ namespace OrionBanque.Classe.Binary
             Classe.Compte c = new Classe.Compte();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 c = ob.Comptes.Where(ct => ct.Id == id).First();
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Compte> lc = new List<Classe.Compte>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lc = ob.Comptes.OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace OrionBanque.Classe.Binary
             List<Classe.Compte> lc = new List<Classe.Compte>();
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 lc = ob.Comptes.Where(c => c.Utilisateur.Id == u.Id).OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Compte.Maj(" + cA.Id + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
 
                 Classe.Compte c = ob.Comptes.Find((ctemp) => ctemp.Id == cA.Id);
                 c.Libelle = cA.Libelle;
@@ -104,7 +104,7 @@ namespace OrionBanque.Classe.Binary
                 c.TypEvol = cA.TypEvol;
                 c.Utilisateur = cA.Utilisateur;
 
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -114,15 +114,15 @@ namespace OrionBanque.Classe.Binary
             return cA;
         }
 
-        static public Classe.Compte Sauve(Classe.Compte c)
+        public static Classe.Compte Sauve(Classe.Compte c)
         {
             Log.Logger.Debug("Debut Copmpte.Sauve(" + c.Libelle + ")");
             try
             {
-                Classe.OB ob = Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 c.Id = ob.Comptes.Count != 0 ? ob.Comptes.Max(u => u.Id) + 1 : 1;
                 ob.Comptes.Add(c);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.BINARY_PATH_COMPLETE, ob);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)
             {
