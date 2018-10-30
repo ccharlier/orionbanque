@@ -284,19 +284,6 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static List<Operation> ChargeGrilleListeOperation(int idCompte)
-        {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case Configuration.BD_SQLITE:
-                    return SQLite.Operation.ChargeGrilleListeOperation(idCompte);
-                case Configuration.BD_BINARY:
-                    return Binary.Operation.ChargeGrilleListeOperation(idCompte);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-        }
-
         public static Operation Charge(int id)
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])

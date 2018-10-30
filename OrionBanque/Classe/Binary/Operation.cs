@@ -181,7 +181,9 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.GroupByTiers(" + idC + ")");   
             List<string[]> ls = new List<string[]>();
-            
+
+            // TODO: Operations.GroupByTiers
+
             return ls;
         }
 
@@ -189,7 +191,9 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + idC + ")"); 
             List<string[]> ls = new List<string[]>();
-           
+
+            // TODO: Operations.GroupByTiersDC
+
             return ls;
         }
 
@@ -197,7 +201,9 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.GroupByCategories(" + idC + ")");
             List<string[]> ls = new List<string[]>();
-           
+
+            // TODO: Operations.GroupByCategories
+
             return ls;
         }
 
@@ -205,7 +211,9 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.GroupByCategoriesDC(" + idC + ")");
             List<string[]> ls = new List<string[]>();
-            
+
+            // TODO: Operations.GroupByCategoriesDC
+
             return ls;
         }
 
@@ -269,14 +277,6 @@ namespace OrionBanque.Classe.Binary
             return ToDataSet(lo);
         }
 
-        public static List<Classe.Operation> ChargeGrilleListeOperation(int idCompte)
-        {
-            Log.Logger.Debug("Debut Operations.ChargeGrilleListeOperation(" + idCompte + ")");
-            List<Classe.Operation> retour = new List<Classe.Operation>();
-
-            return retour;
-        }
-
         public static DataSet ChargeGrilleOperationFiltre(int idCompte,
                                 bool bDate, string cbFiltreDate, DateTime txtFiltreDate,
                                 bool bModePaiement, string txtFiltreModePaiement,
@@ -286,6 +286,8 @@ namespace OrionBanque.Classe.Binary
         {
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
             DataSet retour = new DataSet();
+
+            // TODO: Operations.ChargeGrilleOperationFiltre
 
             return retour;
         }

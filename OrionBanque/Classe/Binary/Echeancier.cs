@@ -12,6 +12,8 @@ namespace OrionBanque.Classe.Binary
         public static int InsereEcheance(DateTime DateInsereEch, int idCompte)
         {
             return 0;
+            // TODO: Insérer les échéances à une date donnée
+
             /*Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + idCompte + ")");
             try
             {

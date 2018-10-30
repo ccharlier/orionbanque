@@ -521,33 +521,6 @@ namespace OrionBanque.Classe.SQLite
             return retour;
         }
 
-        public static List<Classe.Operation> ChargeGrilleListeOperation(int idCompte)
-        {
-            Log.Logger.Debug("Debut Operations.ChargeGrilleListeOperation(" + idCompte + ")");
-            List<Classe.Operation> retour = new List<Classe.Operation>();
-            try
-            {
-                SQLiteCommand cmd = new SQLiteCommand(Sql.OPERATIONS_CHARGE_LISTE_GRILLE, Sql.GetConnection());
-                Log.Logger.Debug("Requete :" + Sql.OPERATIONS_CHARGE_LISTE_GRILLE);
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@id", idCompte);
-                Log.Logger.Debug("id=" + idCompte);
-                SQLiteDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    retour.Add(Classe.Operation.Charge(rdr.GetInt32(0)));
-                }
-                rdr.Close();
-            }
-            catch (SQLiteException ex)
-            {
-                Log.Logger.Error(ex.Message);
-                throw new Exception(string.Format(Messages.SQLite_ERROR_GENERAL, ex.ErrorCode, ex.Message));
-            }
-
-            return retour;
-        }
-
         public static DataSet ChargeGrilleOperationFiltre(int idCompte,
                                 bool bDate, string cbFiltreDate, DateTime txtFiltreDate,
                                 bool bModePaiement, string txtFiltreModePaiement,
