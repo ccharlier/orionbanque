@@ -19,7 +19,7 @@ namespace OrionBanque.Outils
             }
             catch (SerializationException e)
             {
-                Classe.Log.Logger.Debug("Failed to serialize. Reason: " + e.Message);
+                Classe.Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
                 throw;
             }
             finally
@@ -38,7 +38,7 @@ namespace OrionBanque.Outils
             }
             catch (SerializationException e)
             {
-                Classe.Log.Logger.Debug("Failed to serialize. Reason: " + e.Message);
+                Classe.Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
                 throw;
             }
             finally
@@ -57,7 +57,7 @@ namespace OrionBanque.Outils
             }
             catch (SerializationException e)
             {
-                Classe.Log.Logger.Debug("Failed to serialize. Reason: " + e.Message);
+                Classe.Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
                 throw;
             }
             finally
@@ -66,26 +66,24 @@ namespace OrionBanque.Outils
             }
         }
 
-        public static Classe.OB Charge(string fileName)
+        public static void Charge(string fileName)
         {
             FileStream reader = new FileStream(fileName, FileMode.Open);
-            Classe.OB ob;
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                ob = (Classe.OB)formatter.Deserialize(reader);
+                Classe.OB ob = (Classe.OB)formatter.Deserialize(reader);
                 CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (SerializationException e)
             {
-                Classe.Log.Logger.Debug("Failed to deserialize. Reason: " + e.Message);
+                Classe.Log.Logger.Error("Failed to deserialize. Reason: " + e.Message);
                 throw;
             }
             finally
             {
                 reader.Close();
             }
-            return ob;
         }
     }
 }

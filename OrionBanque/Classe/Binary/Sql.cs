@@ -10,12 +10,10 @@ namespace OrionBanque.Classe.Binary
     {
         public static void InitialiseBD(string path)
         {
-            string pathComplete = path + @"\orionbanque.obq";
-            Classe.OB ob = new Classe.OB();
-
-            if (!System.IO.File.Exists(pathComplete))
+            
+            if (!System.IO.File.Exists(Classe.KEY.BINARY_PATH_COMPLETE))
             {
-                #region creation fichier si pas existe
+                Classe.OB ob = new Classe.OB();
                 try
                 {
                     var c1 = new Classe.Categorie { Id = 1, Libelle = "Aucune", CategorieParent = new Classe.Categorie() };
@@ -62,10 +60,10 @@ namespace OrionBanque.Classe.Binary
                     ob.ModePaiements.Add(new Classe.ModePaiement { Id = 2, Libelle = "Retrait DAB", Type = Classe.KEY.MODEPAIEMENT_DEBIT });
                     ob.ModePaiements.Add(new Classe.ModePaiement { Id = 3, Libelle = "Prélèvement", Type = Classe.KEY.MODEPAIEMENT_DEBIT });
                     ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Virement émis", Type = Classe.KEY.MODEPAIEMENT_DEBIT });
-                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Virement reçu", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
-                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Versement", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
-                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Dépôt de chèque", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
-                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 4, Libelle = "Chèque émis", Type = Classe.KEY.MODEPAIEMENT_DEBIT });
+                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 5, Libelle = "Virement reçu", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
+                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 6, Libelle = "Versement", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
+                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 7, Libelle = "Dépôt de chèque", Type = Classe.KEY.MODEPAIEMENT_CREDIT });
+                    ob.ModePaiements.Add(new Classe.ModePaiement { Id = 8, Libelle = "Chèque émis", Type = Classe.KEY.MODEPAIEMENT_DEBIT });
 
                     CallContext.SetData(Classe.KEY.OB, ob);
                 }
@@ -73,11 +71,10 @@ namespace OrionBanque.Classe.Binary
                 {
                     throw ex;
                 }
-                #endregion
             }
             else
             {
-                CallContext.SetData(Classe.KEY.OB, Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE));
+                Outils.GestionFichier.Charge(Classe.KEY.BINARY_PATH_COMPLETE);
             }
         }
     }
