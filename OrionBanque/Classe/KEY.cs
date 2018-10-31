@@ -15,6 +15,9 @@ namespace OrionBanque.Classe
         public const string ECHEANCIER_ANNEE_TEXTE = "A";
         public const string MODEPAIEMENT_DEBIT = "D";
         public const string MODEPAIEMENT_CREDIT = "C";
+        public const string COMPARAISON_INF_EGALE = "<=";
+        public const string COMPARAISON_EGALE = "=";
+        public const string COMPARAISON_SUP_EGALE = ">=";
         public const string COMPTE_VISU_1MOIS = "1 mois";
         public const string COMPTE_VISU_3MOIS = "3 mois";
         public const string COMPTE_VISU_6MOIS = "6 mois";

@@ -34,7 +34,7 @@ namespace OrionBanque.Classe.Binary
             try
             {
                 Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                lo = ob.Operations.Where(ot => ot.Compte.Id == idC).ToList();
+                lo = ob.Operations.Where(ot => ot.Compte.Id == idC).OrderByDescending(x => x.Date).ToList();
             }
             catch (Exception ex)
             {
@@ -179,42 +179,129 @@ namespace OrionBanque.Classe.Binary
 
         public static List<string[]> GroupByTiers(int idC)
         {
-            Log.Logger.Debug("Debut Operations.GroupByTiers(" + idC + ")");   
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
+            Log.Logger.Debug("Debut Operations.GroupByTiers(" + idC + ")");
+
+            IDictionary<string, double> dict = new Dictionary<string, double>();
             List<string[]> ls = new List<string[]>();
 
-            // TODO: Operations.GroupByTiers
+            foreach(Classe.Operation o in ChargeTout(idC))
+            {
+                string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
+                double montant = o.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                dict[temp] = dict.ContainsKey(temp) ? dict[temp] + montant : montant;
+            }
+
+            foreach (string key in dict.Keys)
+            {
+                string[] t = new string[2];
+                t[0] = key;
+                t[1] = Convert.ToString(dict[key]);
+                ls.Add(t);
+            }
 
             return ls;
         }
 
         public static List<string[]> GroupByTiersDC(int idC)
         {
-            Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + idC + ")"); 
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
+            Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + idC + ")");
+
+            Dictionary<string, double> dictC = new Dictionary<string, double>();
+            Dictionary<string, double> dictD = new Dictionary<string, double>();
+            List<string> lt = new List<string>();
             List<string[]> ls = new List<string[]>();
 
-            // TODO: Operations.GroupByTiersDC
+            foreach (Classe.Operation o in ChargeTout(idC))
+            {
+                string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
+                if(o.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_DEBIT)
+                {
+                    dictD[temp] = dictD.ContainsKey(temp) ? dictD[temp] + o.Montant : o.Montant;
+                }
+                else
+                {
+                    dictC[temp] = dictC.ContainsKey(temp) ? dictC[temp] + o.Montant : o.Montant;
+                }
+                if (!lt.Contains(temp))
+                {
+                    lt.Add(temp);
+                }
+            }
 
-            return ls;
+            foreach (string key in lt)
+            {
+                string[] t = new string[3];
+                t[0] = key;
+                t[1] = dictD.ContainsKey(key) ? Convert.ToString(dictD[key]) : Convert.ToString(0.0);
+                t[2] = dictC.ContainsKey(key) ? Convert.ToString(dictC[key]) : Convert.ToString(0.0);
+                ls.Add(t);
+            }
+            return ls.ToList();
         }
 
         public static List<string[]> GroupByCategories(int idC)
         {
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
             Log.Logger.Debug("Debut Operations.GroupByCategories(" + idC + ")");
+
+            Dictionary<int, double> dict = new Dictionary<int, double>();
             List<string[]> ls = new List<string[]>();
 
-            // TODO: Operations.GroupByCategories
+            foreach (Classe.Operation o in ChargeTout(idC))
+            {
+                double montant = o.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
+            }
+
+            foreach (int key in dict.Keys)
+            {
+                string[] t = new string[2];
+                t[0] = Classe.Categorie.Charge(key).Libelle;
+                t[1] = Convert.ToString(dict[key]);
+                ls.Add(t);
+            }
 
             return ls;
         }
 
         public static List<string[]> GroupByCategoriesDC(int idC)
         {
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
             Log.Logger.Debug("Debut Operations.GroupByCategoriesDC(" + idC + ")");
-            List<string[]> ls = new List<string[]>();
 
-            // TODO: Operations.GroupByCategoriesDC
+            Dictionary<int, double> dictC = new Dictionary<int, double>();
+            Dictionary<int, double> dictD = new Dictionary<int, double>();
+            List<int> lt = new List<int>();
+            List<string[]> retour = new List<string[]>();
 
-            return ls;
+            foreach (Classe.Operation o in ChargeTout(idC))
+            {
+                if (o.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_DEBIT)
+                {
+                    dictD[o.Categorie.Id] = dictD.ContainsKey(o.Categorie.Id) ? dictD[o.Categorie.Id] + o.Montant : o.Montant;
+                }
+                else
+                {
+                    dictC[o.Categorie.Id] = dictC.ContainsKey(o.Categorie.Id) ? dictC[o.Categorie.Id] + o.Montant : o.Montant;
+                }
+
+                if (!lt.Contains(o.Categorie.Id))
+                {
+                    lt.Add(o.Categorie.Id);
+                }
+            }
+
+            foreach (int key in lt)
+            {
+                string[] t = new string[3];
+                t[0] = Classe.Categorie.Charge(key).Libelle;
+                t[1] = dictD.ContainsKey(key) ? Convert.ToString(dictD[key]) : Convert.ToString(0.0);
+                t[2] = dictC.ContainsKey(key) ? Convert.ToString(dictC[key]) : Convert.ToString(0.0);
+                retour.Add(t);
+            }
+            return retour.ToList();
         }
 
         public static double SoldeCompteAt(DateTime dt, int idC)
@@ -287,9 +374,60 @@ namespace OrionBanque.Classe.Binary
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
             DataSet retour = new DataSet();
 
-            // TODO: Operations.ChargeGrilleOperationFiltre
+            List<Classe.Operation> lo = ChargeTout(idCompte);
+            if (bDate)
+            {
+                switch(cbFiltreDate)
+                {
+                    case Classe.KEY.COMPARAISON_INF_EGALE:
+                        lo = lo.Where(x => x.Date.Date <= txtFiltreDate.Date).ToList();
+                        break;
+                    case Classe.KEY.COMPARAISON_EGALE:
+                        lo = lo.Where(x => x.Date.Date == txtFiltreDate.Date).ToList();
+                        break;
+                    case Classe.KEY.COMPARAISON_SUP_EGALE:
+                        lo = lo.Where(x => x.Date.Date >= txtFiltreDate.Date).ToList();
+                        break;
+                }
+            }
 
-            return retour;
+            if(bModePaiement)
+            {
+                lo = lo.Where(x => x.ModePaiement.Id == Convert.ToInt32(txtFiltreModePaiement)).ToList();
+            }
+
+            if (bTiers)
+            {
+                lo = lo.Where(x => x.Tiers == txtFiltreTiers).ToList();
+            }
+
+            if (bCategorie)
+            {
+                lo = lo.Where(x => x.Categorie.Id == Convert.ToInt32(txtFiltreCategorie)).ToList();
+            }
+
+            if (bMontant)
+            {
+                switch (cbFiltreMontant)
+                {
+                    case Classe.KEY.COMPARAISON_INF_EGALE:
+                        lo = lo.Where(x => x.Montant <= txtFiltreMontant).ToList();
+                        break;
+                    case Classe.KEY.COMPARAISON_EGALE:
+                        lo = lo.Where(x => x.Montant == txtFiltreMontant).ToList();
+                        break;
+                    case Classe.KEY.COMPARAISON_SUP_EGALE:
+                        lo = lo.Where(x => x.Montant >= txtFiltreMontant).ToList();
+                        break;
+                }
+            }
+
+            if(bNonPointe)
+            {
+                lo = lo.Where(x => x.DatePointage is null).ToList();
+            }
+
+            return ToDataSet(lo.OrderByDescending(x => x.Date).ToList());
         }
 
         public static Classe.Operation Charge(int id)

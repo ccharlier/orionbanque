@@ -13,7 +13,7 @@ namespace OrionBanque.Classe.Binary
             string pathComplete = path + @"\orionbanque.obq";
             Classe.OB ob = new Classe.OB();
 
-            if (!System.IO.File.Exists(path + @"\orionbanque.obq"))
+            if (!System.IO.File.Exists(pathComplete))
             {
                 #region creation fichier si pas existe
                 try
