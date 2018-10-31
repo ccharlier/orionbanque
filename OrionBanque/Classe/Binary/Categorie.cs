@@ -34,7 +34,6 @@ namespace OrionBanque.Classe.Binary
                 List<Classe.Categorie> lcEnfant = Classe.Categorie.ChargeCategorieDeParent(c.Id);
                 foreach (Classe.Categorie c2 in lcEnfant)
                 {
-                    c2.Libelle = "\t-> " + c2.Libelle;
                     retour.Add(c2);
                 }
             }
@@ -60,7 +59,7 @@ namespace OrionBanque.Classe.Binary
 
         public static List<Classe.Categorie> ChargeCategorieDeParent(int idCat)
         {
-            Log.Logger.Debug("Debut Categorie.ChargeCategorieParent()");
+            Log.Logger.Debug("Debut Categorie.ChargeCategorieDeParent()");
             List<Classe.Categorie> lc = new List<Classe.Categorie>();
             try
             {

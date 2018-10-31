@@ -15,6 +15,7 @@ namespace OrionBanque.Classe
         public string Libelle { get; set; }
         [DataMember()]
         public Categorie CategorieParent { get; set; }
+        public string LibelleIdent { get => CategorieParent.Id == 0 ? Libelle : "\t->" + Libelle; }
 
         /// <summary>
         /// Récupère l'ensemble des catégories

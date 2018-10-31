@@ -596,7 +596,7 @@ namespace OrionBanque
             try
             {
                 List<Classe.Categorie> lc = Classe.Categorie.ChargeToutIdent();
-                txtFiltreCategorie.DisplayMember = "Libelle";
+                txtFiltreCategorie.DisplayMember = "LibelleIdent";
                 txtFiltreCategorie.ValueMember = "Id";
                 txtFiltreCategorie.DataSource = lc;
             }

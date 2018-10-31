@@ -82,7 +82,7 @@ namespace OrionBanque.Outils
             {
                 catL = "Aucune";
             }
-                Categorie retour = Categorie.ChargeParNom(catL);
+            Categorie retour = Categorie.ChargeParNom(catL);
             if (retour.Id == 0)
             {
                 // Création de la categorie elle n'existe pas
