@@ -79,7 +79,7 @@ namespace OrionBanque.Forms
                 Tiers = string.Empty
             };
             Classe.Operation.Sauve(op1);
-
+            
             Classe.Operation op2 = new OrionBanque.Classe.Operation
             {
                 Date = txtDateMvt.Value.Date,

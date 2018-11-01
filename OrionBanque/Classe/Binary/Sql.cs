@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data.SQLite;
 using System.Runtime.Remoting.Messaging;
 using System.Collections.Generic;

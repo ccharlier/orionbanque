@@ -71,12 +71,14 @@ namespace OrionBanque.Classe.Binary
                 Log.Logger.Error(ex.Message);
                 throw;
             }
+            Log.Logger.Debug("Fin Categorie.ChargeCategorieParent() avec " + lc.Count + " elements");
             return lc;
         }
 
         public static Classe.Categorie Charge(int id)
         {
             Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
+
             if (id.Equals(0))
             {
                 return new Classe.Categorie();
