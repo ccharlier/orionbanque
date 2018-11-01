@@ -22,6 +22,6 @@ namespace OrionBanque.Classe
         public const string COMPTE_VISU_3MOIS = "3 mois";
         public const string COMPTE_VISU_6MOIS = "6 mois";
         public const string COMPTE_VISU_1AN = "1 an";
-        public static string BINARY_PATH_COMPLETE = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + @"\orionbanque.obq";
+        public static string BINARY_PATH_COMPLETE = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\orionbanque.obq";
     }
 }

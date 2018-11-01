@@ -15,7 +15,7 @@ namespace OrionBanque
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Classe.Sql.InitialiseBD(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
+            Classe.Sql.InitialiseBD(System.IO.Path.GetDirectoryName(Classe.KEY.BINARY_PATH_COMPLETE));
             Forms.Connexion fc = new Forms.Connexion();
             fc.ShowDialog();
             if(fc.cont)

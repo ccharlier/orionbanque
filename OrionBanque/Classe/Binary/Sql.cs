@@ -10,7 +10,11 @@ namespace OrionBanque.Classe.Binary
     {
         public static void InitialiseBD(string path)
         {
-            
+            if(!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+
             if (!System.IO.File.Exists(Classe.KEY.BINARY_PATH_COMPLETE))
             {
                 Classe.OB ob = new Classe.OB();
