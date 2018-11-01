@@ -73,5 +73,13 @@ namespace OrionBanque.Forms
                 btnAddCompte.Visible = false;
             }
         }
+
+        private void kBtnSupprimeFichier_Click(object sender, EventArgs e)
+        {
+            Outils.GestionFichier.Delete(Classe.KEY.BINARY_PATH_COMPLETE);
+            Classe.Sql.InitialiseBD(System.IO.Path.GetDirectoryName(Classe.KEY.BINARY_PATH_COMPLETE));
+            btnAddCompte.Visible = true;
+            kBtnSupprimeFichier.Visible = false;
+        }
     }
 }

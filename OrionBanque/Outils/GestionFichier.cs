@@ -9,6 +9,14 @@ namespace OrionBanque.Outils
 {
     public class GestionFichier
     {
+        public static void Delete(string fileName)
+        {
+            if(File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+        }
+
         public static void ExportJson(string fileName)
         {
             FileStream writer = new FileStream(fileName, FileMode.Create);
