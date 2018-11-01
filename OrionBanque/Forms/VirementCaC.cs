@@ -46,7 +46,7 @@ namespace OrionBanque.Forms
             try
             {
                 List<Classe.Categorie> lc = Classe.Categorie.ChargeToutIdent();
-                txtCategorie.DisplayMember = "Libelle";
+                txtCategorie.DisplayMember = "LibelleIdent";
                 txtCategorie.ValueMember = "Id";
                 txtCategorie.DataSource = lc;
             }
@@ -70,19 +70,28 @@ namespace OrionBanque.Forms
             }
             Classe.Operation op1 = new OrionBanque.Classe.Operation
             {
-                Date = txtDateMvt.Value,
-                Categorie = Classe.Categorie.Charge(Int32.Parse(txtCategorie.SelectedValue.ToString())),
-                Compte = Classe.Compte.Charge(Int32.Parse(cbCompteOri.SelectedValue.ToString())),
+                Date = txtDateMvt.Value.Date,
+                Categorie = Classe.Categorie.Charge(int.Parse(txtCategorie.SelectedValue.ToString())),
+                Compte = Classe.Compte.Charge(int.Parse(cbCompteOri.SelectedValue.ToString())),
                 ModePaiement = Classe.ModePaiement.Charge(4),
                 Libelle = txtLibelle.Text,
-                Montant = Double.Parse(txtMontant.Value.ToString()),
+                Montant = double.Parse(txtMontant.Value.ToString()),
                 Tiers = string.Empty
             };
             Classe.Operation.Sauve(op1);
 
-            op1.Compte = Classe.Compte.Charge(Int32.Parse(cbCompteDest.SelectedValue.ToString()));
-            op1.ModePaiement = Classe.ModePaiement.Charge(5);
-            Classe.Operation.Sauve(op1);
+            Classe.Operation op2 = new OrionBanque.Classe.Operation
+            {
+                Date = txtDateMvt.Value.Date,
+                Categorie = Classe.Categorie.Charge(int.Parse(txtCategorie.SelectedValue.ToString())),
+                Compte = Classe.Compte.Charge(int.Parse(cbCompteDest.SelectedValue.ToString())),
+                ModePaiement = Classe.ModePaiement.Charge(5),
+                Libelle = txtLibelle.Text,
+                Montant = double.Parse(txtMontant.Value.ToString()),
+                Tiers = string.Empty
+            };
+
+            Classe.Operation.Sauve(op2);
 
             this.Close();
          }
