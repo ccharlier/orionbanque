@@ -90,7 +90,6 @@ namespace OrionBanque.Forms
                 Montant = double.Parse(txtMontant.Value.ToString()),
                 Tiers = string.Empty
             };
-
             Classe.Operation.Sauve(op2);
 
             this.Close();
@@ -98,12 +97,12 @@ namespace OrionBanque.Forms
 
         private void CbCompteOri_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblTotOri.Text = String.Format("{0,12:0,0.00}", Classe.Operation.CalculSoldOpePoint(Int32.Parse(cbCompteOri.SelectedValue.ToString()))) + " €";
+            lblTotOri.Text = String.Format("{0,12:0,0.00}", Classe.Operation.CalculSoldOpePoint(int.Parse(cbCompteOri.SelectedValue.ToString()))) + " €";
         }
 
         private void CbCompteDest_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblTotDest.Text = String.Format("{0,12:0,0.00}", Classe.Operation.CalculSoldOpePoint(Int32.Parse(cbCompteDest.SelectedValue.ToString()))) + " €";
+            lblTotDest.Text = String.Format("{0,12:0,0.00}", Classe.Operation.CalculSoldOpePoint(int.Parse(cbCompteDest.SelectedValue.ToString()))) + " €";
         }
 
         private void PictureBox6_Click(object sender, EventArgs e)
