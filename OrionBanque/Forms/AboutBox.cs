@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace OrionBanque.Forms
@@ -40,7 +41,7 @@ namespace OrionBanque.Forms
         {
             get
             {
-                return "1.5";
+                return "1.0.1.7 BETA";
             }
         }
 
