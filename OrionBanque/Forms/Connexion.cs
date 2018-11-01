@@ -66,6 +66,12 @@ namespace OrionBanque.Forms
         {
             Forms.Utilisateur ua = new Forms.Utilisateur();
             ua.ShowDialog();
+
+            // S'il existe un utilisateur, la création ne sera possible que si on est connecté
+            if (Classe.Utilisateur.ChargeTout().Count != 0)
+            {
+                btnAddCompte.Visible = false;
+            }
         }
     }
 }

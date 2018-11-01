@@ -17,9 +17,9 @@ namespace OrionBanque.Classe.Binary
 
             if (!System.IO.File.Exists(Classe.KEY.BINARY_PATH_COMPLETE))
             {
-                Classe.OB ob = new Classe.OB();
                 try
                 {
+                    Classe.OB ob = new Classe.OB();
                     var c1 = new Classe.Categorie { Id = 1, Libelle = "Aucune", CategorieParent = new Classe.Categorie() };
                     var c2 = new Classe.Categorie { Id = 2, Libelle = "Alimentation", CategorieParent = new Classe.Categorie() };
                     var c3 = new Classe.Categorie { Id = 3, Libelle = "Epicerie", CategorieParent = c2 };
@@ -73,7 +73,8 @@ namespace OrionBanque.Classe.Binary
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    Classe.Log.Logger.Error(ex.Message);
+                    throw;
                 }
             }
             else
