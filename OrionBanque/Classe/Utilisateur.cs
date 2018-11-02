@@ -28,7 +28,6 @@ namespace OrionBanque.Classe
                     break;
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-
             }
         }
 
@@ -47,7 +46,6 @@ namespace OrionBanque.Classe
                     return Binary.Utilisateur.Charge(id);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-
             }
         }
 

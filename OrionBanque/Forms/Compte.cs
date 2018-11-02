@@ -68,7 +68,6 @@ namespace OrionBanque.Forms
             {
                 if(cA != null)
                 {
-
                     try
                     {
                         cA.Libelle = txtLibelle.Text.Trim();

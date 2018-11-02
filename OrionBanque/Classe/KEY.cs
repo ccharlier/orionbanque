@@ -1,4 +1,3 @@
-
 namespace OrionBanque.Classe
 {
     class KEY

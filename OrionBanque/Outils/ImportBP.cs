@@ -64,7 +64,6 @@ namespace OrionBanque.Outils
                     }
 
                     Operation.Sauve(o);
-
                 }
                 sr.Close();
             }

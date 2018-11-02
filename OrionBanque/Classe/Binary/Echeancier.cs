@@ -184,7 +184,6 @@ namespace OrionBanque.Classe.Binary
 
         public static DataSet ToDataSet(List<Classe.Echeancier> list)
         {
-
             Type elementType = typeof(Classe.Echeancier);
             DataSet ds = new DataSet();
             DataTable t = new DataTable();

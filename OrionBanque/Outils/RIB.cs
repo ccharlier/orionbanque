@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-using System.IO;
-using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-
 
 namespace OrionBanque.Outils
 {
@@ -29,7 +22,7 @@ namespace OrionBanque.Outils
             int g = int.Parse(codeGuichet);
             int c = int.Parse(numCompte);
 
-            int k = 97 - ( (89*b + 15*g + 3*c) % 97);
+            int k = 97 - (((89 * b) + (15 * g) + (3 * c)) % 97);
 
             return k.ToString("00");
         }

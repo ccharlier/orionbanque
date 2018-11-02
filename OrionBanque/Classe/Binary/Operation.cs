@@ -82,7 +82,6 @@ namespace OrionBanque.Classe.Binary
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
