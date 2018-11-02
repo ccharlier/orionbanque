@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
@@ -17,177 +19,185 @@ namespace OrionBanque.Classe
         public Categorie CategorieParent { get; set; }
         public string LibelleIdent { get => CategorieParent.Id == 0 ? Libelle : "\t->" + Libelle; }
 
-        /// <summary>
-        /// Récupère l'ensemble des catégories
-        /// </summary>
-        /// <returns>Liste de Categorie</returns>
-        public static List<Categorie> ChargeTout()
+        public static List<Classe.Categorie> ChargeTout()
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Categorie.ChargeTout()");
+            List<Classe.Categorie> lc = new List<Classe.Categorie>();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.ChargeTout();
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.ChargeTout();
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                lc = ob.Categories.OrderBy(c => c.Libelle).ToList();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return lc;
         }
 
-        /// <summary>
-        /// Récupère l'ensemble des catégories dont le libellé affiche le chemin avec le parent
-        /// </summary>
-        /// <returns>Liste de Categorie</returns>
-        public static List<Categorie> ChargeToutIdent()
+        public static List<Classe.Categorie> ChargeToutIdent()
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            List<Classe.Categorie> retour = new List<Classe.Categorie>();
+            List<Classe.Categorie> lcParent = ChargeCategorieParent();
+            foreach (Classe.Categorie c in lcParent)
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.ChargeToutIdent();
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.ChargeToutIdent();
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                retour.Add(c);
+                List<Classe.Categorie> lcEnfant = Classe.Categorie.ChargeCategorieDeParent(c.Id);
+                foreach (Classe.Categorie c2 in lcEnfant)
+                {
+                    retour.Add(c2);
+                }
             }
+            return retour;
         }
 
-        /// <summary>
-        /// Récupère l'ensemble des catégories de premier niveau
-        /// </summary>
-        /// <returns>Liste de Categorie</returns>
-        public static List<Categorie> ChargeCategorieParent()
+        public static List<Classe.Categorie> ChargeCategorieParent()
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.ChargeCategorieParent()");
+            List<Classe.Categorie> lc = new List<Classe.Categorie>();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.ChargeCategorieParent();
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.ChargeCategorieParent();
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                lc = ob.Categories.Where(c => c.CategorieParent.Id == 0).OrderBy(c => c.Libelle).ToList();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return lc;
         }
 
-        /// <summary>
-        /// Récupère l'ensemble des catégoeie enfant de la catégorie passée en paramètre
-        /// </summary>
-        /// <param name="idCat">Identifiant de la catégorie Parente</param>
-        /// <returns>Liste de Categorie</returns>
-        public static List<Categorie> ChargeCategorieDeParent(int idCat)
+        public static List<Classe.Categorie> ChargeCategorieDeParent(int idCat)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.ChargeCategorieDeParent()");
+            List<Classe.Categorie> lc = new List<Classe.Categorie>();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.ChargeCategorieDeParent(idCat);
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.ChargeCategorieDeParent(idCat);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                lc = ob.Categories.Where(c => c.CategorieParent.Id == idCat).OrderBy(c => c.Libelle).ToList();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            Log.Logger.Debug("Fin Categorie.ChargeCategorieParent() avec " + lc.Count + " elements");
+            return lc;
         }
 
-        /// <summary>
-        /// Récupère la catégorie dont l'identifiant est passé en paramêtre
-        /// </summary>
-        /// <param name="id">Identifiant de la catégorie</param>
-        /// <returns>Categorie</returns>
-        public static Categorie Charge(int id)
+        public static Classe.Categorie Charge(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
+
+            if (id.Equals(0))
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.Charge(id);
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.Charge(id);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                return new Classe.Categorie();
             }
+
+            Classe.Categorie c = new Classe.Categorie();
+            try
+            {
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                c = ob.Categories.Where(ct => ct.Id == id).First();
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return c;
         }
 
-        /// <summary>
-        /// Récupère la catégorie dont le nom est passé en paramêtre
-        /// </summary>
-        /// <param name="nom">Nom de la catégorie</param>
-        /// <returns>Categorie</returns>
-        public static Categorie ChargeParNom(string nom)
+        public static Classe.Categorie ChargeParNom(string nom)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.Charge(" + nom + ")");
+            Classe.Categorie c;
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.ChargeParNom(nom);
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.ChargeParNom(nom);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                c = ob.Categories.Where(ct => ct.Libelle == nom).DefaultIfEmpty().First();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            c = c ?? new Classe.Categorie();
+            return c;
         }
 
         public static void DeletePossible(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.DeletePossible(" + id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    SQLite.Categorie.DeletePossible(id);
-                    break;
-                case KEY.BD_BINARY:
-                    Binary.Categorie.DeletePossible(id);
-                    break;
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                List<Classe.Operation> lo = ob.Operations.Where(o => o.Categorie.Id == id).ToList();
+                if (lo.Count != 0)
+                {
+                    throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur cette Catégorie.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
             }
         }
 
-        /// <summary>
-        /// Supprime la Categorie dont l'identifiant est passé en paramêtre
-        /// </summary>
-        /// <param name="id">Identifiant de la Cateogie à supprimer</param>
         public static void Delete(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.Delete(" + id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    SQLite.Categorie.Delete(id);
-                    break;
-                case KEY.BD_BINARY:
-                    Binary.Categorie.Delete(id);
-                    break;
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                ob.Categories.RemoveAll((c) => c.Id == id);
+                CallContext.SetData(Classe.KEY.OB, ob);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
             }
         }
 
-        /// <summary>
-        /// Met à jour la Categorie passée en paramêtre
-        /// </summary>
-        /// <param name="c">Categoie à mettre à jour</param>
-        public static Categorie Maj(Categorie c)
+        public static Classe.Categorie Maj(Classe.Categorie cA)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.Maj(" + cA.Id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.Maj(c);
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.Maj(c);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                Classe.Categorie c = ob.Categories.Find((ctemp) => ctemp.Id == cA.Id);
+                c.Libelle = cA.Libelle;
+                c.CategorieParent = cA.CategorieParent;
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return cA;
         }
 
-        /// <summary>
-        /// Créer la Categorie passée en paramêtre
-        /// </summary>
-        /// <param name="c">Categorie à créer</param>
-        public static Categorie Sauve(Categorie c)
+        public static Classe.Categorie Sauve(Classe.Categorie cA)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Categorie.Sauve(" + cA.Libelle + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Categorie.Sauve(c);
-                case KEY.BD_BINARY:
-                    return Binary.Categorie.Sauve(c);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                cA.Id = ob.Categories.Count != 0 ? ob.Categories.Max(u => u.Id) + 1 : 1;
+                ob.Categories.Add(cA);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return cA;
         }
     }
 }

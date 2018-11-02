@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
@@ -16,99 +17,130 @@ namespace OrionBanque.Classe
         [DataMember()]
         public string Type { get; set; }
 
-        public static List<ModePaiement> ChargeTout()
+        public static List<Classe.ModePaiement> ChargeTout()
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.ChargeTout()");
+            List<Classe.ModePaiement> lmp = new List<Classe.ModePaiement>();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.ModePaiement.ChargeTout();
-                case KEY.BD_BINARY:
-                    return Binary.ModePaiement.ChargeTout();
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                lmp = ob.ModePaiements.OrderBy(mp => mp.Libelle).ToList();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return lmp;
         }
 
-        public static ModePaiement Charge(int id)
+        public static Classe.ModePaiement Charge(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.Charge(" + id + ")");
+            Classe.ModePaiement mp = new Classe.ModePaiement();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.ModePaiement.Charge(id);
-                case KEY.BD_BINARY:
-                    return Binary.ModePaiement.Charge(id);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                mp = ob.ModePaiements.Where(mpt => mpt.Id == id).First();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return mp;
         }
 
-        public static ModePaiement ChargeParNom(string nom)
+        public static Classe.ModePaiement ChargeParNom(string nom)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.ChargeParNom(" + nom + ")");
+            Classe.ModePaiement mp = new Classe.ModePaiement();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.ModePaiement.ChargeParNom(nom);
-                case KEY.BD_BINARY:
-                    return Binary.ModePaiement.ChargeParNom(nom);
-                default:
-                    throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                mp = ob.ModePaiements.Where(mpt => mpt.Libelle == nom).First();
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return mp;
         }
 
         public static void DeletePossible(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.DeletePossible(" + id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    SQLite.ModePaiement.DeletePossible(id);
-                    break;
-                case KEY.BD_BINARY:
-                    Binary.ModePaiement.DeletePossible(id);
-                    break;
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                List<Classe.Operation> lo = ob.Operations.Where(o => o.ModePaiement.Id == id).ToList();
+                if (lo.Count != 0)
+                {
+                    throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur ce Mode de Paiement.");
+                }
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            Classe.Log.Logger.Debug("Fin ModePaiement.DeletePossible()");
         }
 
         public static void Delete(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.Delete(" + id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    SQLite.ModePaiement.Delete(id);
-                    break;
-                case KEY.BD_BINARY:
-                    Binary.ModePaiement.Delete(id);
-                    break;
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                ob.ModePaiements.RemoveAll((mp) => mp.Id == id);
+                CallContext.SetData(Classe.KEY.OB, ob);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
             }
         }
 
-        public static ModePaiement Maj(ModePaiement mp)
+        public static Classe.ModePaiement Maj(Classe.ModePaiement mpA)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.Maj(" + mpA.Id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.ModePaiement.Maj(mp);
-                case KEY.BD_BINARY:
-                    return Binary.ModePaiement.Maj(mp);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+
+                Classe.ModePaiement mp = ob.ModePaiements.Find((mptemp) => mptemp.Id == mpA.Id);
+                mp.Libelle = mpA.Libelle;
+                mp.Type = mpA.Type;
+
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return mpA;
         }
 
-        public static ModePaiement Sauve(ModePaiement mp)
+        public static Classe.ModePaiement Sauve(Classe.ModePaiement mpA)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut ModePaiement.Sauve(" + mpA.Libelle + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.ModePaiement.Sauve(mp);
-                case KEY.BD_BINARY:
-                    return Binary.ModePaiement.Sauve(mp);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                mpA.Id = ob.ModePaiements.Count != 0 ? ob.ModePaiements.Max(u => u.Id) + 1 : 1;
+                ob.ModePaiements.Add(mpA);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return mpA;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
@@ -16,89 +17,116 @@ namespace OrionBanque.Classe
         [DataMember()]
         public string Mdp { get; set; }
 
-        public static void Delete(int id)
-        {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
-            {
-                case KEY.BD_SQLITE:
-                    SQLite.Utilisateur.Delete(id);
-                    break;
-                case KEY.BD_BINARY:
-                    Binary.Utilisateur.Delete(id);
-                    break;
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
-            }
-        }
-
         public static void Delete(Utilisateur u)
         {
-            Utilisateur.Delete(u.Id);
+            Delete(u.Id);
         }
 
-        public static Utilisateur Charge(int id)
+        public static void Delete(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Utilisateur.Delete(" + id + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Utilisateur.Charge(id);
-                case KEY.BD_BINARY:
-                    return Binary.Utilisateur.Charge(id);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                ob.Utilisateurs.RemoveAll((u) => u.Id == id);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            Log.Logger.Debug("Fin Utilisateur.Delete");
         }
 
-        public static Utilisateur Charge(string login)
+        public static Classe.Utilisateur Charge(int id)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Utilisateur.Charge(" + id + ")");
+            Classe.Utilisateur retour = new Classe.Utilisateur();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Utilisateur.Charge(login);
-                case KEY.BD_BINARY:
-                    return Binary.Utilisateur.Charge(login);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                retour = ob.Utilisateurs.Find((u) => u.Id == id);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return retour;
         }
 
-        public static Utilisateur Maj(Utilisateur u)
+        public static Classe.Utilisateur Charge(string login)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Utilisateur.Charge(" + login + ")");
+            Classe.Utilisateur retour = new Classe.Utilisateur();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Utilisateur.Maj(u);
-                case KEY.BD_BINARY:
-                    return Binary.Utilisateur.Maj(u);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                retour = ob.Utilisateurs.Find((u) => u.Login == login);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return retour;
         }
 
-        public static Utilisateur Sauve(Utilisateur u)
+        public static Classe.Utilisateur Maj(Classe.Utilisateur uA)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Utilisateur.Maj(" + uA.Id + ")");
+            Classe.Utilisateur retour = new Classe.Utilisateur();
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Utilisateur.Sauve(u);
-                case KEY.BD_BINARY:
-                    return Binary.Utilisateur.Sauve(u);
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                Classe.Utilisateur u = ob.Utilisateurs.Find((utemp) => utemp.Id == uA.Id);
+                u.Login = uA.Login;
+                u.Mdp = uA.Mdp;
+
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return retour;
         }
 
-        public static List<Utilisateur> ChargeTout()
+        public static Classe.Utilisateur Sauve(Classe.Utilisateur uA)
         {
-            switch (ConfigurationManager.AppSettings["typeConnection"])
+            Log.Logger.Debug("Debut Utilisateur.Sauve(" + uA.Login + ")");
+            try
             {
-                case KEY.BD_SQLITE:
-                    return SQLite.Utilisateur.ChargeTout();
-                case KEY.BD_BINARY:
-                    return Binary.Utilisateur.ChargeTout();
-                default:
-                    throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                uA.Id = ob.Utilisateurs.Count != 0 ? ob.Utilisateurs.Max(u => u.Id) + 1 : 1;
+                ob.Utilisateurs.Add(uA);
+                CallContext.SetData(Classe.KEY.OB, ob);
             }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return uA;
+        }
+
+        public static List<Classe.Utilisateur> ChargeTout()
+        {
+            Log.Logger.Debug("Debut Utilisateur.ChargeTous()");
+            List<Classe.Utilisateur> lu = new List<Classe.Utilisateur>();
+            try
+            {
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                lu = ob.Utilisateurs;
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return lu;
         }
     }
 }
