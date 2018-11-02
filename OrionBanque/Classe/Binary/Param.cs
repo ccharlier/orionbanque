@@ -130,10 +130,18 @@ namespace OrionBanque.Classe.Binary
                 Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
                 Classe.Param p = ob.Params.Find((ptemp) => ptemp.Id == pA.Id);
                 p.Ident = pA.Ident;
-                p.Val1 = pA.Val1; p.Val2 = pA.Val2; p.Val3 = pA.Val3;
-                p.Int1 = pA.Int1; p.Int2 = pA.Int2; p.Int3 = pA.Int3;
-                p.Dec1 = pA.Dec1; p.Dec2 = pA.Dec2; p.Dec3 = pA.Dec3;
-                p.Dat1 = pA.Dat1; p.Dat2 = pA.Dat2; p.Dat3 = pA.Dat3;
+                p.Val1 = pA.Val1;
+                p.Val2 = pA.Val2;
+                p.Val3 = pA.Val3;
+                p.Int1 = pA.Int1;
+                p.Int2 = pA.Int2;
+                p.Int3 = pA.Int3;
+                p.Dec1 = pA.Dec1;
+                p.Dec2 = pA.Dec2;
+                p.Dec3 = pA.Dec3;
+                p.Dat1 = pA.Dat1;
+                p.Dat2 = pA.Dat2;
+                p.Dat3 = pA.Dat3;
                 CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (Exception ex)

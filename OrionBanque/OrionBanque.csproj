@@ -196,6 +196,7 @@
     <Compile Include="Classe\Compte.cs" />
     <Compile Include="Classe\Configuration.cs" />
     <Compile Include="Classe\Echeancier.cs" />
+    <Compile Include="Classe\IniFile.cs" />
     <Compile Include="Classe\KEY.cs" />
     <Compile Include="Classe\Log.cs" />
     <Compile Include="Classe\ModePaiement.cs" />
