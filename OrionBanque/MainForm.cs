@@ -88,12 +88,12 @@ namespace OrionBanque
                 else
                     lblSoldFinal.ForeColor = Color.Red;
 
-
                 if(soldOpePoint <= c.SeuilAlerte)
                 {
                     pb.Visible = true;
                     this.toolTipG.SetToolTip(this.pb, "Attention, seuil d'alerte (" + c.SeuilAlerte + " €)" + " atteint ou dépassé : " + Math.Round(soldOpePoint,2) + " €");
-                } else
+                }
+                else
                 {
                     pb.Visible = false;
                 }
@@ -108,7 +108,8 @@ namespace OrionBanque
                     pbSoldeFinal.Visible = false;
                 }
 
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -284,7 +285,8 @@ namespace OrionBanque
                 if (dTemp < dYMini)
                     dYMini = dTemp;
                 dMin = dMin.AddDays(1.0);
-            } while (dMin <= dMax);
+            }
+            while (dMin <= dMax);
 
             
             myPane.Title.IsVisible = true;
@@ -657,7 +659,6 @@ namespace OrionBanque
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void BtnValidDateEvol_Click(object sender, EventArgs e)
