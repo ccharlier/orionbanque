@@ -2,6 +2,9 @@ namespace OrionBanque.Classe
 {
     class KEY
     {
+        public const string BD_SQLITE = "SQLite";
+        public const string BD_BINARY = "Binary";
+        public const string BD_MYSQL = "MySQL";
         public const string OB = "DonneesOrionBanque";
         public const string VERSION = "2.0.0";
         public const string KEY_USER_CONNECTED = "KEY_USER_CONNECTED";

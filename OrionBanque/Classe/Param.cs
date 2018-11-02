@@ -61,9 +61,9 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.Param.ChargeTout();
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.Param.ChargeTout();
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -74,9 +74,9 @@ namespace OrionBanque.Classe
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.Param.Charge(id);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.Param.Charge(id);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -87,9 +87,9 @@ namespace OrionBanque.Classe
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.Param.Charge(ident);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.Param.Charge(ident);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -100,10 +100,10 @@ namespace OrionBanque.Classe
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     SQLite.Param.Delete(id);
                     break;
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     Binary.Param.Delete(id);
                     break;
                 default:
@@ -115,10 +115,10 @@ namespace OrionBanque.Classe
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     SQLite.Param.Delete(ident);
                     break;
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     Binary.Param.Delete(ident);
                     break;
                 default:
@@ -130,9 +130,9 @@ namespace OrionBanque.Classe
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.Param.Maj(p);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.Param.Maj(p);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -143,9 +143,9 @@ namespace OrionBanque.Classe
         {
             switch(ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.Param.Sauve(p);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.Param.Sauve(p);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));

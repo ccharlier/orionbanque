@@ -194,7 +194,6 @@
     <Compile Include="Classe\Binary\Utilisateur.cs" />
     <Compile Include="Classe\Categorie.cs" />
     <Compile Include="Classe\Compte.cs" />
-    <Compile Include="Classe\Configuration.cs" />
     <Compile Include="Classe\Echeancier.cs" />
     <Compile Include="Classe\IniFile.cs" />
     <Compile Include="Classe\KEY.cs" />

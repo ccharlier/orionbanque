@@ -20,9 +20,9 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.ModePaiement.ChargeTout();
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.ModePaiement.ChargeTout();
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -33,9 +33,9 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.ModePaiement.Charge(id);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.ModePaiement.Charge(id);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -46,9 +46,9 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.ModePaiement.ChargeParNom(nom);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.ModePaiement.ChargeParNom(nom);
                 default:
                     throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -59,10 +59,10 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     SQLite.ModePaiement.DeletePossible(id);
                     break;
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     Binary.ModePaiement.DeletePossible(id);
                     break;
                 default:
@@ -74,10 +74,10 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     SQLite.ModePaiement.Delete(id);
                     break;
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     Binary.ModePaiement.Delete(id);
                     break;
                 default:
@@ -89,9 +89,9 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.ModePaiement.Maj(mp);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.ModePaiement.Maj(mp);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
@@ -102,9 +102,9 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.ModePaiement.Sauve(mp);
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     return Binary.ModePaiement.Sauve(mp);
                 default:
                     throw new Exception(string.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));

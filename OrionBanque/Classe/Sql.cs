@@ -11,10 +11,10 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     SQLite.Sql.InitialiseBD(path);
                     break;
-                case Configuration.BD_BINARY:
+                case KEY.BD_BINARY:
                     Binary.Sql.InitialiseBD(path);
                     break;
                 default:
@@ -26,7 +26,7 @@ namespace OrionBanque.Classe
         {
             switch (ConfigurationManager.AppSettings["typeConnection"])
             {
-                case Configuration.BD_SQLITE:
+                case KEY.BD_SQLITE:
                     return SQLite.Sql.GetLastInsertId();
                 default:
                     throw new Exception(String.Format("Ce mode de connection({0}) n'est pas autorisé.", ConfigurationManager.AppSettings["typeConnection"]));
