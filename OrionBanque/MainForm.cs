@@ -123,24 +123,28 @@ namespace OrionBanque
         {
             Forms.ModePaiement mp = new Forms.ModePaiement();
             mp.ShowDialog();
+            tsSave.Enabled = true;
         }
 
         private void TsGestionModePaiement_Click(object sender, EventArgs e)
         {
             Forms.ModePaiement mp = new Forms.ModePaiement();
             mp.ShowDialog();
+            tsSave.Enabled = true;
         }
 
         private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forms.Categories c = new Forms.Categories();
             c.ShowDialog();
+            tsSave.Enabled = true;
         }
 
         private void TsGestionCategories_Click(object sender, EventArgs e)
         {
             Forms.Categories c = new Forms.Categories();
             c.ShowDialog();
+            tsSave.Enabled = true;
         }
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
@@ -156,6 +160,8 @@ namespace OrionBanque
                 Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
+
+                tsSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -168,12 +174,14 @@ namespace OrionBanque
         {
             Forms.Utilisateur ua = new Forms.Utilisateur();
             ua.ShowDialog();
+            tsSave.Enabled = true;
         }
 
         private void TsModUser_Click(object sender, EventArgs e)
         {
             Forms.Utilisateur um = new Forms.Utilisateur(uA);
             um.ShowDialog();
+            tsSave.Enabled = true;
         }
 
         private void TsSupUser_Click(object sender, EventArgs e)
@@ -187,6 +195,7 @@ namespace OrionBanque
                     tsModUser.Enabled = false;
                     tsmConfiguration.Enabled = false;
                     tsUser.Text = " : ";
+                    tsSave.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -316,7 +325,7 @@ namespace OrionBanque
             xGraph.GraphPane = myPane;
 
             // Leave a small margin around the outside of the control
-            xGraph.Size = new Size(this.xGraph.Size.Width - 5, this.xGraph.Size.Height - 5);
+            xGraph.Size = new Size(xGraph.Size.Width - 5, xGraph.Size.Height - 5);
 
             // Calculate the Axis Scale Ranges
             xGraph.AxisChange();
@@ -326,7 +335,8 @@ namespace OrionBanque
         {
             Forms.Compte ca = new Forms.Compte(uA);
             ca.ShowDialog();
-            if(ca.cont)
+            tsSave.Enabled = true;
+            if (ca.cont)
             {
                 ChargeComboCompte();
             }
@@ -343,6 +353,8 @@ namespace OrionBanque
                 cm.ShowDialog();
                 if (cm.cont)
                     ChargeComboCompte();
+
+                tsSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -364,6 +376,7 @@ namespace OrionBanque
                     lblSoldPoint.Text = new double().ToString("#0.00");
                     lblAVenir.Text = new double().ToString("#0.00");
                     lblSoldFinal.Text = new double().ToString("#0.00");
+                    tsSave.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -441,6 +454,8 @@ namespace OrionBanque
                 Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);
                 ChargeOperations(c);
                 ChargesIndicateurs(c);
+
+                tsSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -465,6 +480,8 @@ namespace OrionBanque
                         Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);
                         ChargeOperations(c);
                         ChargesIndicateurs(c);
+
+                        tsSave.Enabled = true;
                     }
                     catch (Exception ex)
                     {
@@ -525,6 +542,8 @@ namespace OrionBanque
                 Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
+
+                tsSave.Enabled = true;
             }
             catch(Exception ex)
             {
@@ -560,6 +579,8 @@ namespace OrionBanque
                 Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
+
+                tsSave.Enabled = true;
             }
             catch(Exception ex)
             {
@@ -634,22 +655,22 @@ namespace OrionBanque
                 Forms.Graphique g;
                 if (tsGraphChoix.SelectedItem.ToString() == "Par Tiers")
                 {
-                    g = new OrionBanque.Forms.Graphique("tiers", (Int32)cbCompte.SelectedValue);
+                    g = new Forms.Graphique("tiers", (Int32)cbCompte.SelectedValue);
                     g.ShowDialog();
                 }
                 if (tsGraphChoix.SelectedItem.ToString() == "Par Catégories")
                 {
-                    g = new OrionBanque.Forms.Graphique("categories", (Int32)cbCompte.SelectedValue);
+                    g = new Forms.Graphique("categories", (Int32)cbCompte.SelectedValue);
                     g.ShowDialog();
                 }
                 if (tsGraphChoix.SelectedItem.ToString() == "Par Tiers Dissociés")
                 {
-                    g = new OrionBanque.Forms.Graphique("tiersDC", (Int32)cbCompte.SelectedValue);
+                    g = new Forms.Graphique("tiersDC", (Int32)cbCompte.SelectedValue);
                     g.ShowDialog();
                 }
                 if (tsGraphChoix.SelectedItem.ToString() == "Par Catégories Dissociées")
                 {
-                    g = new OrionBanque.Forms.Graphique("categoriesDC", (Int32)cbCompte.SelectedValue);
+                    g = new Forms.Graphique("categoriesDC", (Int32)cbCompte.SelectedValue);
                     g.ShowDialog();
                 }
             }
@@ -676,10 +697,11 @@ namespace OrionBanque
             {
                 try
                 {
-                    string filori = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\orionbanque.s3db";
+                    // TODO: Enregistrer sous MainForm
+                    /*string filori = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\orionbanque.s3db";
                     string fildest = folderBrowserDialog.SelectedPath + @"orionbanque.s3db";
-                    System.IO.File.Copy(filori, fildest, true);
-                    MessageBox.Show(String.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    File.Copy(filori, fildest, true);
+                    MessageBox.Show(String.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);*/
                 }
                 catch (Exception ex)
                 {
@@ -714,6 +736,8 @@ namespace OrionBanque
 
                 Forms.OperationMajGroupe OMG = new Forms.OperationMajGroupe((Int32)cbCompte.SelectedValue);
                 OMG.ShowDialog();
+
+                tsSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -742,12 +766,14 @@ namespace OrionBanque
                         MaxGraphSold = DateTime.Now,
                         SeuilAlerte = 0.0,
                         SeuilAlerteFinal = 0.0,
-                        TypEvol = "6 mois"
+                        TypEvol = Classe.KEY.COMPTE_VISU_6MOIS
                     };
                     cT = Classe.Compte.Sauve(cT);
 
-                    Outils.ImportBP.Lance(System.IO.Path.GetDirectoryName(OFDImport.FileName), System.IO.Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
+                    Outils.ImportBP.Lance(Path.GetDirectoryName(OFDImport.FileName), Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
                     ChargeComboCompte();
+
+                    tsSave.Enabled = true;
                 }
                 this.Cursor = Cursors.Default;
             }
@@ -755,11 +781,37 @@ namespace OrionBanque
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (tsSave.Enabled)
+            {
+                if (MessageBox.Show("Souhaitez-vous sauvegarder avant de quitter ?", "Sauvegarde", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                    Outils.GestionFichier.Sauvegarde(
+                        Classe.KEY.FILE_PATH,
+                        ob
+                    );
+                }
+            }
+        }
+
+        private void tsSave_Click(object sender, EventArgs e)
+        {
+            LanceSauvegarde();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                LanceSauvegarde();
+            }
+        }
+
+        private void LanceSauvegarde()
+        {
             Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-            Outils.GestionFichier.Sauvegarde(
-                Classe.KEY.FILE_PATH,
-                ob
-            );
+            Outils.GestionFichier.Sauvegarde(Classe.KEY.FILE_PATH, ob);
+            tsSave.Enabled = false;
         }
     }
 }

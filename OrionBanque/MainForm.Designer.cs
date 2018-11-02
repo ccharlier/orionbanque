@@ -104,6 +104,8 @@
             this.tsModUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsSupUser = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsGestGeneral = new System.Windows.Forms.ToolStrip();
             this.tsGestionModePaiement = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -152,6 +154,7 @@
             this.contextMenuStrip1.SuspendLayout();
             this.tsConnection.SuspendLayout();
             this.tsGestionUser.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.tsGestGeneral.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
             this.SuspendLayout();
@@ -409,6 +412,7 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsGestGeneral);
             // 
             // splitContainer1
@@ -939,6 +943,27 @@
             this.tsSupUser.ToolTipText = "Supprimer l\'Utilisateur";
             this.tsSupUser.Click += new System.EventHandler(this.TsSupUser_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSave});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip1.TabIndex = 5;
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Enabled = false;
+            this.tsSave.Image = global::OrionBanque.Properties.Resources.disk;
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
             // tsGestGeneral
             // 
             this.tsGestGeneral.Dock = System.Windows.Forms.DockStyle.None;
@@ -956,7 +981,7 @@
             this.tsAjoutOperation,
             this.toolStripSeparator2,
             this.tsVirementCaC});
-            this.tsGestGeneral.Location = new System.Drawing.Point(3, 0);
+            this.tsGestGeneral.Location = new System.Drawing.Point(38, 0);
             this.tsGestGeneral.Name = "tsGestGeneral";
             this.tsGestGeneral.Size = new System.Drawing.Size(303, 25);
             this.tsGestGeneral.TabIndex = 4;
@@ -1092,11 +1117,13 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.toolStripContainer2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "OrionBanque - Gestion de Comptes Bancaires";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -1136,6 +1163,8 @@
             this.tsConnection.PerformLayout();
             this.tsGestionUser.ResumeLayout(false);
             this.tsGestionUser.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.tsGestGeneral.ResumeLayout(false);
             this.tsGestGeneral.PerformLayout();
             this.toolStripContainer2.ResumeLayout(false);
@@ -1239,6 +1268,8 @@
         private System.Windows.Forms.ToolStripMenuItem unFichierCSVBPToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog OFDImport;
         private System.Windows.Forms.ToolStripStatusLabel tsNbLigne;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsSave;
     }
 }
 
