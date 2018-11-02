@@ -1,6 +1,6 @@
 namespace OrionBanque.Classe
 {
-    class KEY
+    public class KEY
     {
         public const string CLE_CONNECTION = "CLE_CONNECTION";
         public const string BD_SQLITE = "SQLite";
@@ -25,6 +25,7 @@ namespace OrionBanque.Classe
         public const string COMPTE_VISU_3MOIS = "3 mois";
         public const string COMPTE_VISU_6MOIS = "6 mois";
         public const string COMPTE_VISU_1AN = "1 an";
-        public static string BINARY_PATH_COMPLETE = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\orionbanque.obq";
+        public static string FILE_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\orionbanque.obq";
+        public static string DIRECTORY_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\";
     }
 }

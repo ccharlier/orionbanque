@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace OrionBanque
@@ -15,7 +13,7 @@ namespace OrionBanque
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Classe.Sql.InitialiseBD(System.IO.Path.GetDirectoryName(Classe.KEY.BINARY_PATH_COMPLETE));
+            Classe.Sql.InitialiseBD(Classe.KEY.DIRECTORY_PATH);
             Forms.Connexion fc = new Forms.Connexion();
             fc.ShowDialog();
             if(fc.cont)

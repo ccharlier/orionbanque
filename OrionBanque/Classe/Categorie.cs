@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
@@ -19,13 +18,13 @@ namespace OrionBanque.Classe
         public Categorie CategorieParent { get; set; }
         public string LibelleIdent { get => CategorieParent.Id == 0 ? Libelle : "\t->" + Libelle; }
 
-        public static List<Classe.Categorie> ChargeTout()
+        public static List<Categorie> ChargeTout()
         {
             Log.Logger.Debug("Categorie.ChargeTout()");
-            List<Classe.Categorie> lc = new List<Classe.Categorie>();
+            List<Categorie> lc = new List<Categorie>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 lc = ob.Categories.OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -36,15 +35,15 @@ namespace OrionBanque.Classe
             return lc;
         }
 
-        public static List<Classe.Categorie> ChargeToutIdent()
+        public static List<Categorie> ChargeToutIdent()
         {
-            List<Classe.Categorie> retour = new List<Classe.Categorie>();
-            List<Classe.Categorie> lcParent = ChargeCategorieParent();
-            foreach (Classe.Categorie c in lcParent)
+            List<Categorie> retour = new List<Categorie>();
+            List<Categorie> lcParent = ChargeCategorieParent();
+            foreach (Categorie c in lcParent)
             {
                 retour.Add(c);
-                List<Classe.Categorie> lcEnfant = Classe.Categorie.ChargeCategorieDeParent(c.Id);
-                foreach (Classe.Categorie c2 in lcEnfant)
+                List<Categorie> lcEnfant = ChargeCategorieDeParent(c.Id);
+                foreach (Categorie c2 in lcEnfant)
                 {
                     retour.Add(c2);
                 }
@@ -52,13 +51,13 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static List<Classe.Categorie> ChargeCategorieParent()
+        public static List<Categorie> ChargeCategorieParent()
         {
             Log.Logger.Debug("Debut Categorie.ChargeCategorieParent()");
-            List<Classe.Categorie> lc = new List<Classe.Categorie>();
+            List<Categorie> lc = new List<Categorie>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 lc = ob.Categories.Where(c => c.CategorieParent.Id == 0).OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -69,13 +68,13 @@ namespace OrionBanque.Classe
             return lc;
         }
 
-        public static List<Classe.Categorie> ChargeCategorieDeParent(int idCat)
+        public static List<Categorie> ChargeCategorieDeParent(int idCat)
         {
             Log.Logger.Debug("Debut Categorie.ChargeCategorieDeParent()");
-            List<Classe.Categorie> lc = new List<Classe.Categorie>();
+            List<Categorie> lc = new List<Categorie>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 lc = ob.Categories.Where(c => c.CategorieParent.Id == idCat).OrderBy(c => c.Libelle).ToList();
             }
             catch (Exception ex)
@@ -87,19 +86,17 @@ namespace OrionBanque.Classe
             return lc;
         }
 
-        public static Classe.Categorie Charge(int id)
+        public static Categorie Charge(int id)
         {
             Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
-
             if (id.Equals(0))
             {
-                return new Classe.Categorie();
+                return new Categorie();
             }
-
-            Classe.Categorie c = new Classe.Categorie();
+            Categorie c = new Categorie();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 c = ob.Categories.Where(ct => ct.Id == id).First();
             }
             catch (Exception ex)
@@ -110,13 +107,13 @@ namespace OrionBanque.Classe
             return c;
         }
 
-        public static Classe.Categorie ChargeParNom(string nom)
+        public static Categorie ChargeParNom(string nom)
         {
             Log.Logger.Debug("Debut Categorie.Charge(" + nom + ")");
-            Classe.Categorie c;
+            Categorie c;
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(Classe.KEY.OB);
                 c = ob.Categories.Where(ct => ct.Libelle == nom).DefaultIfEmpty().First();
             }
             catch (Exception ex)
@@ -124,7 +121,7 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            c = c ?? new Classe.Categorie();
+            c = c ?? new Categorie();
             return c;
         }
 
@@ -133,8 +130,8 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Categorie.DeletePossible(" + id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                List<Classe.Operation> lo = ob.Operations.Where(o => o.Categorie.Id == id).ToList();
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                List<Operation> lo = ob.Operations.Where(o => o.Categorie.Id == id).ToList();
                 if (lo.Count != 0)
                 {
                     throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur cette Catégorie.");
@@ -152,9 +149,9 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Categorie.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 ob.Categories.RemoveAll((c) => c.Id == id);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -163,13 +160,13 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static Classe.Categorie Maj(Classe.Categorie cA)
+        public static Categorie Maj(Categorie cA)
         {
             Log.Logger.Debug("Debut Categorie.Maj(" + cA.Id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                Classe.Categorie c = ob.Categories.Find((ctemp) => ctemp.Id == cA.Id);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                Categorie c = ob.Categories.Find((ctemp) => ctemp.Id == cA.Id);
                 c.Libelle = cA.Libelle;
                 c.CategorieParent = cA.CategorieParent;
                 CallContext.SetData(Classe.KEY.OB, ob);
@@ -182,15 +179,15 @@ namespace OrionBanque.Classe
             return cA;
         }
 
-        public static Classe.Categorie Sauve(Classe.Categorie cA)
+        public static Categorie Sauve(Categorie cA)
         {
             Log.Logger.Debug("Debut Categorie.Sauve(" + cA.Libelle + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 cA.Id = ob.Categories.Count != 0 ? ob.Categories.Max(u => u.Id) + 1 : 1;
                 ob.Categories.Add(cA);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {

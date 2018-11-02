@@ -27,9 +27,9 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Utilisateur.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 ob.Utilisateurs.RemoveAll((u) => u.Id == id);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -39,13 +39,13 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Fin Utilisateur.Delete");
         }
 
-        public static Classe.Utilisateur Charge(int id)
+        public static Utilisateur Charge(int id)
         {
             Log.Logger.Debug("Debut Utilisateur.Charge(" + id + ")");
-            Classe.Utilisateur retour = new Classe.Utilisateur();
+            Utilisateur retour = new Utilisateur();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 retour = ob.Utilisateurs.Find((u) => u.Id == id);
             }
             catch (Exception ex)
@@ -56,13 +56,13 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static Classe.Utilisateur Charge(string login)
+        public static Utilisateur Charge(string login)
         {
             Log.Logger.Debug("Debut Utilisateur.Charge(" + login + ")");
-            Classe.Utilisateur retour = new Classe.Utilisateur();
+            Utilisateur retour = new Utilisateur();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 retour = ob.Utilisateurs.Find((u) => u.Login == login);
             }
             catch (Exception ex)
@@ -73,18 +73,18 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static Classe.Utilisateur Maj(Classe.Utilisateur uA)
+        public static Utilisateur Maj(Utilisateur uA)
         {
             Log.Logger.Debug("Debut Utilisateur.Maj(" + uA.Id + ")");
-            Classe.Utilisateur retour = new Classe.Utilisateur();
+            Utilisateur retour = new Utilisateur();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                Classe.Utilisateur u = ob.Utilisateurs.Find((utemp) => utemp.Id == uA.Id);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                Utilisateur u = ob.Utilisateurs.Find((utemp) => utemp.Id == uA.Id);
                 u.Login = uA.Login;
                 u.Mdp = uA.Mdp;
 
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -94,15 +94,15 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static Classe.Utilisateur Sauve(Classe.Utilisateur uA)
+        public static Utilisateur Sauve(Utilisateur uA)
         {
             Log.Logger.Debug("Debut Utilisateur.Sauve(" + uA.Login + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 uA.Id = ob.Utilisateurs.Count != 0 ? ob.Utilisateurs.Max(u => u.Id) + 1 : 1;
                 ob.Utilisateurs.Add(uA);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -112,13 +112,13 @@ namespace OrionBanque.Classe
             return uA;
         }
 
-        public static List<Classe.Utilisateur> ChargeTout()
+        public static List<Utilisateur> ChargeTout()
         {
             Log.Logger.Debug("Debut Utilisateur.ChargeTous()");
-            List<Classe.Utilisateur> lu = new List<Classe.Utilisateur>();
+            List<Utilisateur> lu = new List<Utilisateur>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 lu = ob.Utilisateurs;
             }
             catch (Exception ex)

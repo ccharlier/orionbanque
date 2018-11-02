@@ -60,13 +60,13 @@ namespace OrionBanque.Classe
         /// Chargement de tous les parametres
         /// </summary>
         /// <returns>Lsite de Param</returns>
-        public static List<Classe.Param> ChargeTout()
+        public static List<Param> ChargeTout()
         {
             Log.Logger.Debug("Debut Param.ChargeTout()");
-            List<Classe.Param> lp = new List<Classe.Param>();
+            List<Param> lp = new List<Classe.Param>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 lp = ob.Params;
             }
             catch (Exception ex)
@@ -82,13 +82,13 @@ namespace OrionBanque.Classe
         /// </summary>
         /// <param name="id">Id du parametre</param>
         /// <returns>Parametre charge</returns>
-        public static Classe.Param Charge(int id)
+        public static Param Charge(int id)
         {
             Log.Logger.Debug("Debut Categorie.Charge(" + id + ")");
-            Classe.Param p = new Classe.Param();
+            Param p = new Param();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 p = ob.Params.Find(pt => pt.Id == id);
             }
             catch (Exception ex)
@@ -104,13 +104,13 @@ namespace OrionBanque.Classe
         /// </summary>
         /// <param name="ident">Identifiant de la liste de parametre a charger</param>
         /// <returns>Liste de Parametre</returns>
-        public static List<Classe.Param> Charge(string ident)
+        public static List<Param> Charge(string ident)
         {
             Log.Logger.Debug("Debut Categorie.Charge(" + ident + ")");
-            List<Classe.Param> lp = new List<Classe.Param>();
+            List<Param> lp = new List<Param>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 lp = ob.Params.Where(pt => pt.Ident == ident).ToList();
             }
             catch (Exception ex)
@@ -118,7 +118,6 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Param.Charge(ident)");
             return lp;
         }
 
@@ -131,16 +130,15 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Param.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 ob.Params.RemoveAll((p) => p.Id == id);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Param.Delete");
         }
 
         /// <summary>
@@ -152,29 +150,28 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Param.Delete(" + ident + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 ob.Params.RemoveAll((p) => p.Ident == ident);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Param.Delete(ident)");
         }
 
         /// <summary>
         /// Permet de mettre a jour un parametre
         /// </summary>
         /// <param name="p">Parametre a mettre a jour</param>
-        public static Classe.Param Maj(Classe.Param pA)
+        public static Param Maj(Param pA)
         {
             Log.Logger.Debug("Debut Param.Maj(" + pA.Id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                Classe.Param p = ob.Params.Find((ptemp) => ptemp.Id == pA.Id);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                Param p = ob.Params.Find((ptemp) => ptemp.Id == pA.Id);
                 p.Ident = pA.Ident;
                 p.Val1 = pA.Val1;
                 p.Val2 = pA.Val2;
@@ -188,7 +185,7 @@ namespace OrionBanque.Classe
                 p.Dat1 = pA.Dat1;
                 p.Dat2 = pA.Dat2;
                 p.Dat3 = pA.Dat3;
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -202,15 +199,15 @@ namespace OrionBanque.Classe
         /// Permet de creer un parametre
         /// </summary>
         /// <param name="p">Parametre a creer</param>
-        public static Classe.Param Sauve(Classe.Param p)
+        public static Param Sauve(Param p)
         {
             Log.Logger.Debug("Debut Param.Sauve(" + p.Ident + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 p.Id = ob.Params.Count != 0 ? ob.Params.Max(u => u.Id) + 1 : 1;
                 ob.Params.Add(p);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {

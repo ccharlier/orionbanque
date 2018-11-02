@@ -37,7 +37,7 @@ namespace OrionBanque.Classe
         public static int InsereEcheance(DateTime DateInsereEch, int idCompte)
         {
             Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + idCompte + ")");
-            List<Classe.Echeancier> le = ChargeTout(idCompte);
+            List<Echeancier> le = ChargeTout(idCompte);
             try
             {
                 le = le
@@ -46,9 +46,9 @@ namespace OrionBanque.Classe
                     .Where(w2 => w2.Prochaine <= DateInsereEch)
                     .ToList();
 
-                foreach (Classe.Echeancier ec in le)
+                foreach (Echeancier ec in le)
                 {
-                    Classe.Operation o = new Classe.Operation
+                    Operation o = new Operation
                     {
                         Date = ec.Prochaine,
                         Categorie = ec.Categorie,
@@ -59,7 +59,7 @@ namespace OrionBanque.Classe
                         Tiers = ec.Tiers
                     };
 
-                    Classe.Operation.Sauve(o);
+                    Operation.Sauve(o);
 
                     switch (ec.TypeRepete)
                     {
@@ -74,7 +74,7 @@ namespace OrionBanque.Classe
                             break;
                     }
 
-                    Classe.Echeancier.Maj(ec);
+                    Maj(ec);
                 }
             }
             catch (Exception ex)
@@ -86,15 +86,15 @@ namespace OrionBanque.Classe
             return le.Count;
         }
 
-        public static Classe.Echeancier Sauve(Classe.Echeancier e)
+        public static Echeancier Sauve(Echeancier e)
         {
             Log.Logger.Debug("Debut Echeancier.Sauve(" + e.Libelle + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 e.Id = ob.Echeanciers.Count != 0 ? ob.Echeanciers.Max(u => u.Id) + 1 : 1;
                 ob.Echeanciers.Add(e);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -104,13 +104,13 @@ namespace OrionBanque.Classe
             return e;
         }
 
-        public static Classe.Echeancier Maj(Classe.Echeancier eA)
+        public static Echeancier Maj(Echeancier eA)
         {
             Log.Logger.Debug("Debut Echeancier.Maj(" + eA.Id + ")");
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                Classe.Echeancier e = ob.Echeanciers.Find((etemp) => etemp.Id == eA.Id);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                Echeancier e = ob.Echeanciers.Find((etemp) => etemp.Id == eA.Id);
                 e.ModePaiement = eA.ModePaiement;
                 e.Tiers = eA.Tiers;
                 e.Libelle = eA.Libelle;
@@ -121,7 +121,7 @@ namespace OrionBanque.Classe
                 e.DateFin = eA.DateFin;
                 e.TypeRepete = eA.TypeRepete;
                 e.Prochaine = eA.Prochaine;
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {
@@ -136,13 +136,13 @@ namespace OrionBanque.Classe
             return ToDataSet(ChargeTout(idCompte));
         }
 
-        public static Classe.Echeancier Charge(int id)
+        public static Echeancier Charge(int id)
         {
             Log.Logger.Debug("Debut Echeancier.Charge(" + id + ")");
-            Classe.Echeancier e = new Classe.Echeancier();
+            Echeancier e = new Echeancier();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 e = ob.Echeanciers.Find(et => et.Id == id);
             }
             catch (Exception ex)
@@ -153,13 +153,13 @@ namespace OrionBanque.Classe
             return e;
         }
 
-        public static List<Classe.Echeancier> ChargeTout(int idC)
+        public static List<Echeancier> ChargeTout(int idC)
         {
             Log.Logger.Debug("Debut Echeancier.Charge(" + idC + ")");
-            List<Classe.Echeancier> le = new List<Classe.Echeancier>();
+            List<Echeancier> le = new List<Echeancier>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 le = ob.Echeanciers.Where(et => et.Compte.Id == idC).ToList();
             }
             catch (Exception ex)
@@ -170,13 +170,13 @@ namespace OrionBanque.Classe
             return le;
         }
 
-        public static List<Classe.Echeancier> ChargeToutUtilisateur(Classe.Utilisateur u)
+        public static List<Echeancier> ChargeToutUtilisateur(Utilisateur u)
         {
             Log.Logger.Debug("Debut Echeancier.ChargeToutUtilisateur(" + u.Login + ")");
-            List<Classe.Echeancier> le = new List<Classe.Echeancier>();
+            List<Echeancier> le = new List<Echeancier>();
             try
             {
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 le = ob.Echeanciers.Where(et => et.Compte.Utilisateur.Id == u.Id).ToList();
             }
             catch (Exception ex)
@@ -187,9 +187,9 @@ namespace OrionBanque.Classe
             return le;
         }
 
-        public static void Delete(Classe.Echeancier ec)
+        public static void Delete(Echeancier ec)
         {
-            Echeancier.Delete(ec.Id);
+            Delete(ec.Id);
         }
 
         public static void Delete(int id)
@@ -197,7 +197,7 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Echeancier.Delete(" + id + ")");
             try
             {
-                Classe.OB ob = (OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 ob.Echeanciers.RemoveAll((e) => e.Id == id);
                 CallContext.SetData(Classe.KEY.OB, ob);
             }
@@ -208,9 +208,9 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static DataSet ToDataSet(List<Classe.Echeancier> list)
+        public static DataSet ToDataSet(List<Echeancier> list)
         {
-            Type elementType = typeof(Classe.Echeancier);
+            Type elementType = typeof(Echeancier);
             DataSet ds = new DataSet();
             DataTable t = new DataTable();
             ds.Tables.Add(t);
@@ -222,7 +222,7 @@ namespace OrionBanque.Classe
             }
 
             //go through each property on T and add each value to the table
-            foreach (Classe.Echeancier item in list)
+            foreach (Echeancier item in list)
             {
                 DataRow row = t.NewRow();
                 foreach (var propInfo in elementType.GetProperties())
