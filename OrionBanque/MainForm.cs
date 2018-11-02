@@ -107,7 +107,6 @@ namespace OrionBanque
                 {
                     pbSoldeFinal.Visible = false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -288,7 +287,6 @@ namespace OrionBanque
             }
             while (dMin <= dMax);
 
-            
             myPane.Title.IsVisible = true;
             myPane.Title.Text = "Evolution du solde";
 
