@@ -31,17 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.kBtnSupprimeFichier = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnAddCompte = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Fermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.OK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtMdp = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtLogin = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.kBtnSupprimeFichier = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.txtLogin = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +62,17 @@
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(266, 139);
             this.kryptonPanel1.TabIndex = 0;
+            // 
+            // kBtnSupprimeFichier
+            // 
+            this.kBtnSupprimeFichier.Location = new System.Drawing.Point(12, 104);
+            this.kBtnSupprimeFichier.Name = "kBtnSupprimeFichier";
+            this.kBtnSupprimeFichier.Size = new System.Drawing.Size(23, 23);
+            this.kBtnSupprimeFichier.TabIndex = 30;
+            this.toolTip1.SetToolTip(this.kBtnSupprimeFichier, "Suppression du fichier OrionBanque");
+            this.kBtnSupprimeFichier.Values.Image = global::OrionBanque.Properties.Resources.cancel1;
+            this.kBtnSupprimeFichier.Values.Text = "";
+            this.kBtnSupprimeFichier.Click += new System.EventHandler(this.kBtnSupprimeFichier_Click);
             // 
             // kryptonLabel2
             // 
@@ -114,13 +125,6 @@
             this.txtMdp.TabIndex = 23;
             this.txtMdp.UseSystemPasswordChar = true;
             // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(117, 49);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(124, 23);
-            this.txtLogin.TabIndex = 22;
-            // 
             // kryptonLabel1
             // 
             this.kryptonLabel1.Location = new System.Drawing.Point(21, 78);
@@ -129,6 +133,17 @@
             this.kryptonLabel1.TabIndex = 21;
             this.kryptonLabel1.Values.Text = "Mot de passe :";
             // 
+            // kryptonManager1
+            // 
+            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(117, 49);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(124, 23);
+            this.txtLogin.TabIndex = 22;
+            // 
             // kryptonLabel3
             // 
             this.kryptonLabel3.Location = new System.Drawing.Point(39, 52);
@@ -136,21 +151,6 @@
             this.kryptonLabel3.Size = new System.Drawing.Size(72, 20);
             this.kryptonLabel3.TabIndex = 20;
             this.kryptonLabel3.Values.Text = "Utilisateur :";
-            // 
-            // kryptonManager1
-            // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
-            // 
-            // kBtnSupprimeFichier
-            // 
-            this.kBtnSupprimeFichier.Location = new System.Drawing.Point(12, 104);
-            this.kBtnSupprimeFichier.Name = "kBtnSupprimeFichier";
-            this.kBtnSupprimeFichier.Size = new System.Drawing.Size(23, 23);
-            this.kBtnSupprimeFichier.TabIndex = 30;
-            this.toolTip1.SetToolTip(this.kBtnSupprimeFichier, "Suppression du fichier OrionBanque");
-            this.kBtnSupprimeFichier.Values.Image = global::OrionBanque.Properties.Resources.cancel1;
-            this.kBtnSupprimeFichier.Values.Text = "";
-            this.kBtnSupprimeFichier.Click += new System.EventHandler(this.kBtnSupprimeFichier_Click);
             // 
             // Connexion
             // 
@@ -178,9 +178,7 @@
 
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtMdp;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLogin;
         private ComponentFactory.Krypton.Toolkit.KryptonButton Fermer;
         private ComponentFactory.Krypton.Toolkit.KryptonButton OK;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddCompte;
@@ -188,5 +186,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnSupprimeFichier;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLogin;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
     }
 }
