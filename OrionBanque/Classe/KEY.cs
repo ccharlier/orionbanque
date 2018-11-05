@@ -3,6 +3,8 @@ namespace OrionBanque.Classe
     public class KEY
     {
         public const string CLE_CONNECTION = "CLE_CONNECTION";
+        public const string REP_BACKUP = "backup";
+        public const string REP_FICHIER_OP = "fichier_op";
         public const string BD_SQLITE = "SQLite";
         public const string BD_BINARY = "Binary";
         public const string BD_MYSQL = "MySQL";

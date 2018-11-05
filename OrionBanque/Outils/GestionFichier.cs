@@ -79,18 +79,23 @@ namespace OrionBanque.Outils
         public static void RoulementSauvegarde(string fileName)
         {
             string fn = Path.GetFileNameWithoutExtension(fileName);
-            string dir = Path.GetDirectoryName(fileName);
+            string dir = Path.GetDirectoryName(fileName) + @"\" + Classe.KEY.REP_BACKUP;
+
+            if(!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
 
             DirectoryInfo monrepertoire = new DirectoryInfo(dir);
-            FileInfo[] mesfichiers = monrepertoire.GetFiles("bck_" + fn + ".*");
+            FileInfo[] mesfichiers = monrepertoire.GetFiles(fn + ".*");
 
             if(mesfichiers.Length > 20)
             {
-                FileSystemInfo fileInfo = new DirectoryInfo(dir).GetFileSystemInfos().Where(x => x.Name.Contains("bck_" + fn)).OrderBy(fi => fi.CreationTime).First();
+                FileSystemInfo fileInfo = new DirectoryInfo(dir).GetFileSystemInfos().Where(x => x.Name.Contains(fn)).OrderBy(fi => fi.CreationTime).First();
                 File.Delete(fileInfo.FullName);
             }
 
-            File.Copy(fileName, dir + @"\" + "bck_" + fn + ".obq" + System.DateTime.Now.Year + System.DateTime.Now.Month + System.DateTime.Now.Day + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second + System.DateTime.Now.Millisecond);
+            File.Copy(fileName, dir + fn + ".obq" + System.DateTime.Now.Year + System.DateTime.Now.Month + System.DateTime.Now.Day + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second + System.DateTime.Now.Millisecond);
         }
 
         public static void Charge(string fileName)
