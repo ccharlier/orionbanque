@@ -28,7 +28,6 @@ namespace OrionBanque.Forms
                 dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
                 dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
                 dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
-
             }
             catch (Exception ex)
             {
