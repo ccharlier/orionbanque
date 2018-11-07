@@ -63,8 +63,8 @@ namespace OrionBanque
         {
             try
             {
-                double soldOpePoint = Classe.Operation.CalculSoldOpePoint(c.Id);
-                double aVenir = Classe.Operation.CalculAVenir(c.Id);
+                double soldOpePoint = Classe.Operation.CalculSoldOpePoint(c);
+                double aVenir = Classe.Operation.CalculAVenir(c);
                 double soldFinal = soldOpePoint + aVenir;
 
                 lblSoldPoint.Text = String.Format("{0,12:0,0.00}", soldOpePoint) + " €";

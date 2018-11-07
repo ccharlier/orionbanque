@@ -124,10 +124,15 @@ namespace OrionBanque.Classe
             return ls.Distinct().ToList();
         }
 
-        public static double CalculAVenir(int idCompte)
+        public static double CalculAVenir(int c)
         {
-            Log.Logger.Debug("Debut Operations.CalculAVenir(" + idCompte + ")");
-            List<Operation> lo = ChargeTout(idCompte).Where(o => o.DatePointage is null).ToList();
+            return CalculAVenir(Compte.Charge(c));
+        }
+
+        public static double CalculAVenir(Compte c)
+        {
+            Log.Logger.Debug("Debut Operations.CalculAVenir(" + c.Id + ")");
+            List<Operation> lo = ChargeTout(c.Id).Where(o => o.DatePointage is null).ToList();
 
             double rPositif = 0.0;
             double rNegatif = 0.0;
@@ -148,10 +153,15 @@ namespace OrionBanque.Classe
             return rPositif - rNegatif;
         }
 
-        public static double CalculSoldOpePoint(int idCompte)
+        public static double CalculSoldOpePoint(int c)
         {
-            Log.Logger.Debug("Debut Operations.CalculSoldOpePoint(" + idCompte + ")");
-            List<Operation> lo = ChargeTout(idCompte).Where(o => o.DatePointage != null).ToList();
+            return CalculSoldOpePoint(Compte.Charge(c));
+        }
+
+        public static double CalculSoldOpePoint(Compte c)
+        {
+            Log.Logger.Debug("Debut Operations.CalculSoldOpePoint(" + c.Id + ")");
+            List<Operation> lo = ChargeTout(c.Id).Where(o => o.DatePointage != null).ToList();
 
             double rPositif = 0.0;
             double rNegatif = 0.0;
@@ -169,7 +179,7 @@ namespace OrionBanque.Classe
                 }
             }
 
-            return rPositif - rNegatif;
+            return rPositif - rNegatif + c.SoldeInitial;
         }
 
         public static Operation Maj(Operation oA)
