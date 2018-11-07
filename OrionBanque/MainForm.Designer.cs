@@ -124,6 +124,8 @@
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.gérerLécchéancierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -270,7 +272,7 @@
             // 
             this.modeDePaiementToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.creditcards;
             this.modeDePaiementToolStripMenuItem.Name = "modeDePaiementToolStripMenuItem";
-            this.modeDePaiementToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.modeDePaiementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modeDePaiementToolStripMenuItem.Text = "&Modes de paiement";
             this.modeDePaiementToolStripMenuItem.Click += new System.EventHandler(this.ModeDePaiementToolStripMenuItem_Click);
             // 
@@ -278,7 +280,7 @@
             // 
             this.catégoriesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
             this.catégoriesToolStripMenuItem.Name = "catégoriesToolStripMenuItem";
-            this.catégoriesToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.catégoriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.catégoriesToolStripMenuItem.Text = "&Catégories";
             this.catégoriesToolStripMenuItem.Click += new System.EventHandler(this.CatégoriesToolStripMenuItem_Click);
             // 
@@ -287,7 +289,9 @@
             this.comptesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ajouterToolStripMenuItem,
             this.modifierToolStripMenuItem1,
-            this.supprimerToolStripMenuItem1});
+            this.supprimerToolStripMenuItem1,
+            this.toolStripSeparator4,
+            this.gérerLécchéancierToolStripMenuItem});
             this.comptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins1;
             this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
             this.comptesToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
@@ -297,7 +301,7 @@
             // 
             this.ajouterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins_add;
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ajouterToolStripMenuItem.Text = "&Ajouter";
             this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItem_Click);
             // 
@@ -305,7 +309,7 @@
             // 
             this.modifierToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.coins1;
             this.modifierToolStripMenuItem1.Name = "modifierToolStripMenuItem1";
-            this.modifierToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.modifierToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.modifierToolStripMenuItem1.Text = "&Modifier";
             this.modifierToolStripMenuItem1.Click += new System.EventHandler(this.ModifierToolStripMenuItem1_Click);
             // 
@@ -313,7 +317,7 @@
             // 
             this.supprimerToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.coins_delete;
             this.supprimerToolStripMenuItem1.Name = "supprimerToolStripMenuItem1";
-            this.supprimerToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.supprimerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.supprimerToolStripMenuItem1.Text = "&Supprimer";
             this.supprimerToolStripMenuItem1.Click += new System.EventHandler(this.SupprimerToolStripMenuItem1_Click);
             // 
@@ -1023,7 +1027,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.ToolTipText = "Gérer l\'échéancier";
+            this.toolStripButton1.ToolTipText = "Gérer l\'Echéancier";
             this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // toolStripSeparator9
@@ -1106,6 +1110,19 @@
             // OFDImport
             // 
             this.OFDImport.Title = "Fichier d\'Opérations à importer";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // gérerLécchéancierToolStripMenuItem
+            // 
+            this.gérerLécchéancierToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.calendar_2;
+            this.gérerLécchéancierToolStripMenuItem.Name = "gérerLécchéancierToolStripMenuItem";
+            this.gérerLécchéancierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gérerLécchéancierToolStripMenuItem.Text = "Gérer l\'&Echéancier";
+            this.gérerLécchéancierToolStripMenuItem.Click += new System.EventHandler(this.gérerLécchéancierToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1270,6 +1287,8 @@
         private System.Windows.Forms.ToolStripStatusLabel tsNbLigne;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem gérerLécchéancierToolStripMenuItem;
     }
 }
 
