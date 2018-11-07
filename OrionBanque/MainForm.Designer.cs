@@ -726,7 +726,7 @@
             // txtFiltreCategorie
             // 
             this.txtFiltreCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtFiltreCategorie.DropDownWidth = 166;
+            this.txtFiltreCategorie.DropDownWidth = 300;
             this.txtFiltreCategorie.Location = new System.Drawing.Point(514, 11);
             this.txtFiltreCategorie.Name = "txtFiltreCategorie";
             this.txtFiltreCategorie.Size = new System.Drawing.Size(96, 21);
