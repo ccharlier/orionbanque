@@ -212,25 +212,68 @@ namespace OrionBanque.Classe
         {
             Type elementType = typeof(Echeancier);
             DataSet ds = new DataSet();
-            DataTable t = new DataTable();
+            DataTable t = new DataTable("echeancier");
             ds.Tables.Add(t);
 
-            //add a column to table for each public property on T
-            foreach (var propInfo in elementType.GetProperties())
-            {
-                t.Columns.Add(propInfo.Name, propInfo.PropertyType);
-            }
+            t.Columns.Add("Id", typeof(int));
+            t.Columns.Add("Prochaine", typeof(DateTime));
+            t.Columns.Add("Tiers", typeof(string));
+            t.Columns.Add("Libelle", typeof(string));
+            t.Columns.Add("ModePaiement", typeof(string));
+            t.Columns.Add("ModePaiementType", typeof(string));
+            t.Columns.Add("Montant Débit", typeof(double));
+            t.Columns.Add("Montant Crédit", typeof(double));
+            t.Columns.Add("Categorie", typeof(string));
+            t.Columns.Add("Répétition", typeof(string));
+            t.Columns.Add("DateFin", typeof(DateTime));
 
             //go through each property on T and add each value to the table
             foreach (Echeancier item in list)
             {
                 DataRow row = t.NewRow();
-                foreach (var propInfo in elementType.GetProperties())
+
+                row["Id"] = item.Id;
+                row["Prochaine"] = item.Prochaine;
+                row["Tiers"] = item.Tiers;
+                row["Libelle"] = item.Libelle;
+                row["ModePaiement"] = item.ModePaiement.Libelle;
+                row["ModePaiementType"] = item.ModePaiement.Type;
+
+                if (item.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT)
                 {
-                    row[propInfo.Name] = propInfo.GetValue(item, null);
+                    row["Montant Crédit"] = item.Montant;
+                    row["Montant Débit"] = DBNull.Value;
+                }
+                else
+                {
+                    row["Montant Débit"] = item.Montant;
+                    row["Montant Crédit"] = DBNull.Value;
+                }
+                row["Categorie"] = item.Categorie.Libelle;
+
+                if (item.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
+                {
+                    row["Répétition"] = item.Repete + " " + "Jour(s)";
                 }
 
-                //This line was missing:
+                if (item.TypeRepete == Classe.KEY.ECHEANCIER_MOIS)
+                {
+                    row["Répétition"] = item.Repete + " " + "Mois";
+                }
+
+                if (item.TypeRepete == Classe.KEY.ECHEANCIER_ANNEE)
+                {
+                    row["Répétition"] = item.Repete + " " + "Année(s)";
+                }
+                if (item.DateFin == null)
+                {
+                    row["DateFin"] = DBNull.Value;
+                }
+                else
+                {
+                    row["DateFin"] = item.DateFin;
+                }
+
                 t.Rows.Add(row);
             }
             return ds;

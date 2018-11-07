@@ -93,7 +93,7 @@ namespace OrionBanque.Forms
             try
             {
                 List<Classe.Categorie> lc = Classe.Categorie.ChargeToutIdent();
-                txtCategorie.DisplayMember = "Libelle";
+                txtCategorie.DisplayMember = "LibelleIdent";
                 txtCategorie.ValueMember = "Id";
                 txtCategorie.DataSource = lc;
             }
@@ -124,9 +124,14 @@ namespace OrionBanque.Forms
                 {
                     ec = Classe.Echeancier.Charge(ec.Id);
                     if (txtIllimete.Checked)
+                    {
                         ec.DateFin = null;
+                    }
                     else
-                        ec.DateFin = txtDateFin.Value;
+                    {
+                        ec.DateFin = txtDateFin.Value.Date;
+                    }
+
                     ec.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
                     ec.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
                     ec.Libelle = txtLibelle.Text;
@@ -148,7 +153,7 @@ namespace OrionBanque.Forms
                     }
 
                     ec.Repete = Int32.Parse(txtRepete.Value.ToString());
-                    ec.Prochaine = txtProchaine.Value;
+                    ec.Prochaine = txtProchaine.Value.Date;
 
                     Classe.Echeancier.Maj(ec);
                     cont = true;
@@ -165,9 +170,14 @@ namespace OrionBanque.Forms
                 {
                     Classe.Echeancier e = new Classe.Echeancier();
                     if (txtIllimete.Checked)
+                    {
                         e.DateFin = null;
+                    }
                     else
-                        e.DateFin = txtDateFin.Value;
+                    {
+                        e.DateFin = txtDateFin.Value.Date;
+                    }
+
                     e.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
                     e.Compte = Classe.Compte.Charge(idC);
                     e.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
@@ -190,7 +200,7 @@ namespace OrionBanque.Forms
                     }
 
                     e.Repete = Int32.Parse(txtRepete.Value.ToString());
-                    e.Prochaine = txtProchaine.Value;
+                    e.Prochaine = txtProchaine.Value.Date;
 
                     Classe.Echeancier.Sauve(e);
                     cont = true;

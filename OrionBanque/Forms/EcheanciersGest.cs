@@ -22,8 +22,13 @@ namespace OrionBanque.Forms
             {
                 DataSet ds = Classe.Echeancier.ChargeGrilleEcheance(idC);
                 dgvEcheance.DataSource = ds;
-                dgvEcheance.DataMember = "Echeancier";
-                dgvEcheance.Columns[6].DefaultCellStyle.ForeColor = Color.Red;
+                dgvEcheance.DataMember = "echeancier";
+                dgvEcheance.Columns["Id"].Visible = false;
+                dgvEcheance.Columns["ModePaiementType"].Visible = false;
+                dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
+                dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
+                dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
+
             }
             catch (Exception ex)
             {
@@ -52,7 +57,7 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Classe.Echeancier.Delete(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Ident. Echeance"].Value.ToString()));
+                    Classe.Echeancier.Delete(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()));
                     ChargeGrille();
                 }
                 catch (Exception ex)
@@ -66,7 +71,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Forms.Echeancier em = new Echeancier(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Ident. Echeance"].Value.ToString()), "UPDATE");
+                Forms.Echeancier em = new Echeancier(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()), "UPDATE");
                 em.ShowDialog();
 
                 ChargeGrille();
@@ -95,7 +100,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Forms.Echeancier em = new Echeancier(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Ident. Echeance"].Value.ToString()), "UPDATE");
+                Forms.Echeancier em = new Echeancier(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()), "UPDATE");
                 em.ShowDialog();
 
                 ChargeGrille();

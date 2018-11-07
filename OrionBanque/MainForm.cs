@@ -149,10 +149,22 @@ namespace OrionBanque
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
+            LanceGestionEcheancier();
+        }
+
+        private void gérerLécchéancierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanceGestionEcheancier();
+        }
+
+        private void LanceGestionEcheancier()
+        {
             try
             {
                 if (cbCompte.Items.Count == 0)
+                {
                     throw new Exception(erreurPasDeCompteCreer);
+                }
 
                 Forms.EcheanciersGest ec = new Forms.EcheanciersGest((Int32)cbCompte.SelectedValue);
                 ec.ShowDialog();
