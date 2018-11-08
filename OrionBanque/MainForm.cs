@@ -825,5 +825,14 @@ namespace OrionBanque
             Outils.GestionFichier.Sauvegarde(Classe.KEY.FILE_PATH, ob);
             tsSave.Enabled = false;
         }
+
+        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Outils.GestionFichier.ExportCSV(folderBrowserDialog.SelectedPath + @"\" + c.Libelle + ".csv", ((DataSet)dgvOperations.DataSource).Tables["Operations"]);
+            }
+        }
     }
 }

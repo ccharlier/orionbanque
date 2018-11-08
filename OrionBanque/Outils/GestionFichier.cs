@@ -5,11 +5,57 @@ using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.Runtime.Remoting.Messaging;
 using System.Linq;
+using System.Text;
+using System.Data;
+using System;
 
 namespace OrionBanque.Outils
 {
     public class GestionFichier
     {
+        public static void ExportCSV(string fileName, DataTable dTable)
+        {
+            StreamWriter writer = File.CreateText(fileName);
+            writer.AutoFlush = true;
+
+            int intClmn = dTable.Columns.Count;
+
+            int i = 0;
+            for (i = 0; i <= intClmn - 1; i += 1)
+            {
+                writer.Write(@"""" + dTable.Columns[i].ColumnName.ToString() + @"""");
+                if (i == intClmn - 1)
+                {
+                    writer.Write(" ");
+                }
+                else
+                {
+                    writer.Write(",");
+                }
+            }
+            writer.Write(Environment.NewLine);
+
+            foreach (DataRow row in dTable.Rows)
+            {
+                int ir = 0;
+                for (ir = 0; ir <= intClmn - 1; ir += 1)
+                {
+                    writer.Write(@"""" + row[ir].ToString().Replace(@"""", @"""""") + @"""");
+                    if (ir == intClmn - 1)
+                    {
+                        writer.Write(" ");
+                    }
+                    else
+                    {
+                        writer.Write(",");
+                    }
+
+                }
+                writer.Write(Environment.NewLine);
+            }
+            writer.Close();
+        }
+
         public static void Delete(string fileName)
         {
             if(File.Exists(fileName))

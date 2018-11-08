@@ -26,7 +26,7 @@ namespace OrionBanque.Outils
                 sr = new StreamReader(pathFileDest, true);
                 string contenu;
 
-                while ((contenu = sr.ReadLine()) != string.Empty)
+                while (!string.IsNullOrEmpty(contenu = sr.ReadLine()))
                 {
                     //Date;Mode;Tiers;Libelle;Categories;Sous Categorie;Montant;Pointage
                     string[] t = contenu.Split('\t');
