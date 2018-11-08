@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 
 namespace OrionBanque.Forms
@@ -32,8 +33,6 @@ namespace OrionBanque.Forms
                     {
                         uA.Mdp = txtMdp.Text.Trim();
                         Classe.Utilisateur.Maj(uA);
-
-                        this.Close();
                     }
                     catch (Exception ex)
                     {
@@ -49,16 +48,18 @@ namespace OrionBanque.Forms
                             Login = txtLogin.Text.Trim(),
                             Mdp = txtMdp.Text.Trim()
                         };
-
                         Classe.Utilisateur.Sauve(u);
-
-                        this.Close();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+
+                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                Outils.GestionFichier.Sauvegarde(Classe.KEY.FILE_PATH, ob);
+
+                Close();
             }
         }
 
