@@ -36,7 +36,9 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.cbCompte = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtProchaine = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
@@ -53,16 +55,16 @@
             this.txtMontant = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.cbCompte = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
             this.kryptonGroupBox1.Panel.SuspendLayout();
@@ -71,8 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTip1
@@ -152,6 +152,17 @@
             this.toolTip1.SetToolTip(this.pictureBox2, "Clique Droit => Accèder à la gestion");
             this.pictureBox2.Click += new System.EventHandler(this.PictureBox2_Click);
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox7.Image = global::OrionBanque.Properties.Resources.money_euro;
+            this.pictureBox7.Location = new System.Drawing.Point(94, 58);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox7.TabIndex = 53;
+            this.pictureBox7.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox7, "Clique Droit => Accèder à la gestion");
+            // 
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.pictureBox7);
@@ -177,6 +188,17 @@
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(424, 306);
             this.kryptonPanel1.TabIndex = 0;
+            // 
+            // cbCompte
+            // 
+            this.cbCompte.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCompte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCompte.DropDownWidth = 121;
+            this.cbCompte.Location = new System.Drawing.Point(116, 55);
+            this.cbCompte.Name = "cbCompte";
+            this.cbCompte.Size = new System.Drawing.Size(219, 21);
+            this.cbCompte.TabIndex = 52;
             // 
             // kryptonLabel3
             // 
@@ -217,11 +239,11 @@
             this.txtIllimete.Checked = true;
             this.txtIllimete.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
             this.txtIllimete.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.txtIllimete.Location = new System.Drawing.Point(72, 5);
+            this.txtIllimete.Location = new System.Drawing.Point(71, 5);
             this.txtIllimete.Name = "txtIllimete";
-            this.txtIllimete.Size = new System.Drawing.Size(57, 20);
+            this.txtIllimete.Size = new System.Drawing.Size(60, 20);
             this.txtIllimete.TabIndex = 46;
-            this.txtIllimete.Values.Text = "Illimté";
+            this.txtIllimete.Values.Text = "Illimité";
             this.txtIllimete.CheckedChanged += new System.EventHandler(this.TxtIlimete_CheckedChanged);
             // 
             // kryptonLabel2
@@ -348,28 +370,6 @@
             this.txtModePaiement.Size = new System.Drawing.Size(185, 21);
             this.txtModePaiement.TabIndex = 35;
             // 
-            // cbCompte
-            // 
-            this.cbCompte.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCompte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCompte.DropDownWidth = 121;
-            this.cbCompte.Location = new System.Drawing.Point(116, 55);
-            this.cbCompte.Name = "cbCompte";
-            this.cbCompte.Size = new System.Drawing.Size(219, 21);
-            this.cbCompte.TabIndex = 52;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox7.Image = global::OrionBanque.Properties.Resources.money_euro;
-            this.pictureBox7.Location = new System.Drawing.Point(94, 58);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox7.TabIndex = 53;
-            this.pictureBox7.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox7, "Clique Droit => Accèder à la gestion");
-            // 
             // Echeancier
             // 
             this.AcceptButton = this.OK;
@@ -392,9 +392,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
             this.kryptonGroupBox1.Panel.ResumeLayout(false);
             this.kryptonGroupBox1.Panel.PerformLayout();
@@ -404,8 +406,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
