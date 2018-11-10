@@ -49,7 +49,6 @@ namespace OrionBanque.Outils
                     {
                         writer.Write(",");
                     }
-
                 }
                 writer.Write(Environment.NewLine);
             }
