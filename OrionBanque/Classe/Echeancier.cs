@@ -34,56 +34,61 @@ namespace OrionBanque.Classe
         [DataMember()]
         public DateTime? DateFin { get; set; }
 
-        public static int InsereEcheance(DateTime DateInsereEch, int idCompte)
+        public static int InsereEcheance(DateTime DateInsereEch, Classe.Utilisateur u)
         {
-            Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + idCompte + ")");
-            List<Echeancier> le = ChargeTout(idCompte);
-            try
-            {
-                le = le
-                    .Where(w => w.Compte.Id == idCompte)
-                    .Where(w1 => w1.DateFin is null || w1.Prochaine <= w1.DateFin)
-                    .Where(w2 => w2.Prochaine <= DateInsereEch)
-                    .ToList();
-
-                foreach (Echeancier ec in le)
+            List<Compte> lc = Compte.ChargeTout(u);
+            int retour = 0;
+            foreach(Compte c in lc)
+            { 
+                Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + c.Id + ")");
+                List<Echeancier> le = ChargeTout(c.Id);
+                try
                 {
-                    Operation o = new Operation
-                    {
-                        Date = ec.Prochaine,
-                        Categorie = ec.Categorie,
-                        Compte = ec.Compte,
-                        ModePaiement = ec.ModePaiement,
-                        Libelle = ec.Libelle,
-                        Montant = ec.Montant,
-                        Tiers = ec.Tiers
-                    };
+                    le = le
+                        .Where(w => w.Compte.Id == c.Id)
+                        .Where(w1 => w1.DateFin is null || w1.Prochaine <= w1.DateFin)
+                        .Where(w2 => w2.Prochaine <= DateInsereEch)
+                        .ToList();
 
-                    Operation.Sauve(o);
-
-                    switch (ec.TypeRepete)
+                    foreach (Echeancier ec in le)
                     {
-                        case KEY.ECHEANCIER_JOUR:
-                            ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
-                            break;
-                        case KEY.ECHEANCIER_MOIS:
-                            ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
-                            break;
-                        case KEY.ECHEANCIER_ANNEE:
-                            ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
-                            break;
+                        Operation o = new Operation
+                        {
+                            Date = ec.Prochaine,
+                            Categorie = ec.Categorie,
+                            Compte = ec.Compte,
+                            ModePaiement = ec.ModePaiement,
+                            Libelle = ec.Libelle,
+                            Montant = ec.Montant,
+                            Tiers = ec.Tiers
+                        };
+
+                        Operation.Sauve(o);
+
+                        switch (ec.TypeRepete)
+                        {
+                            case KEY.ECHEANCIER_JOUR:
+                                ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
+                                break;
+                            case KEY.ECHEANCIER_MOIS:
+                                ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
+                                break;
+                            case KEY.ECHEANCIER_ANNEE:
+                                ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
+                                break;
+                        }
+
+                        Maj(ec);
+                        retour++;
                     }
-
-                    Maj(ec);
+                }
+                catch (Exception ex)
+                {
+                    Log.Logger.Error(ex.Message);
+                    throw;
                 }
             }
-            catch (Exception ex)
-            {
-                Log.Logger.Error(ex.Message);
-                throw;
-            }
-
-            return le.Count;
+            return retour;
         }
 
         public static Echeancier Sauve(Echeancier e)
@@ -131,9 +136,9 @@ namespace OrionBanque.Classe
             return eA;
         }
 
-        public static DataSet ChargeGrilleEcheance(int idCompte)
+        public static DataSet ChargeGrilleEcheance(Utilisateur u)
         {
-            return ToDataSet(ChargeTout(idCompte));
+            return ToDataSet(ChargeToutUtilisateur(u));
         }
 
         public static Echeancier Charge(int id)
@@ -216,6 +221,7 @@ namespace OrionBanque.Classe
             ds.Tables.Add(t);
 
             t.Columns.Add("Id", typeof(int));
+            t.Columns.Add("Compte", typeof(string));
             t.Columns.Add("Prochaine", typeof(DateTime));
             t.Columns.Add("Tiers", typeof(string));
             t.Columns.Add("Libelle", typeof(string));
@@ -233,6 +239,7 @@ namespace OrionBanque.Classe
                 DataRow row = t.NewRow();
 
                 row["Id"] = item.Id;
+                row["Compte"] = item.Compte.Libelle;
                 row["Prochaine"] = item.Prochaine;
                 row["Tiers"] = item.Tiers;
                 row["Libelle"] = item.Libelle;

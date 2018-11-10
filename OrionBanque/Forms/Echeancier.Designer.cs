@@ -53,6 +53,8 @@
             this.txtMontant = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.cbCompte = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -69,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTip1
@@ -84,7 +88,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::OrionBanque.Properties.Resources.calendar_2;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 52);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 88);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.TabIndex = 50;
@@ -95,7 +99,7 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox6.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
-            this.pictureBox6.Location = new System.Drawing.Point(11, 105);
+            this.pictureBox6.Location = new System.Drawing.Point(11, 141);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(16, 16);
             this.pictureBox6.TabIndex = 32;
@@ -107,7 +111,7 @@
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = global::OrionBanque.Properties.Resources.user_business;
-            this.pictureBox5.Location = new System.Drawing.Point(11, 78);
+            this.pictureBox5.Location = new System.Drawing.Point(11, 114);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(16, 16);
             this.pictureBox5.TabIndex = 31;
@@ -118,7 +122,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = global::OrionBanque.Properties.Resources.comment1;
-            this.pictureBox4.Location = new System.Drawing.Point(205, 79);
+            this.pictureBox4.Location = new System.Drawing.Point(205, 115);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(16, 16);
             this.pictureBox4.TabIndex = 30;
@@ -129,7 +133,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::OrionBanque.Properties.Resources.money1;
-            this.pictureBox3.Location = new System.Drawing.Point(205, 105);
+            this.pictureBox3.Location = new System.Drawing.Point(205, 141);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(16, 16);
             this.pictureBox3.TabIndex = 29;
@@ -140,7 +144,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::OrionBanque.Properties.Resources.creditcards;
-            this.pictureBox2.Location = new System.Drawing.Point(205, 52);
+            this.pictureBox2.Location = new System.Drawing.Point(205, 88);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.TabIndex = 28;
@@ -150,6 +154,8 @@
             // 
             // kryptonPanel1
             // 
+            this.kryptonPanel1.Controls.Add(this.pictureBox7);
+            this.kryptonPanel1.Controls.Add(this.cbCompte);
             this.kryptonPanel1.Controls.Add(this.kryptonLabel3);
             this.kryptonPanel1.Controls.Add(this.pictureBox1);
             this.kryptonPanel1.Controls.Add(this.txtProchaine);
@@ -169,7 +175,7 @@
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(424, 261);
+            this.kryptonPanel1.Size = new System.Drawing.Size(424, 306);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // kryptonLabel3
@@ -184,14 +190,14 @@
             // txtProchaine
             // 
             this.txtProchaine.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtProchaine.Location = new System.Drawing.Point(33, 49);
+            this.txtProchaine.Location = new System.Drawing.Point(33, 85);
             this.txtProchaine.Name = "txtProchaine";
             this.txtProchaine.Size = new System.Drawing.Size(166, 21);
             this.txtProchaine.TabIndex = 49;
             // 
             // kryptonGroupBox1
             // 
-            this.kryptonGroupBox1.Location = new System.Drawing.Point(11, 130);
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(11, 166);
             this.kryptonGroupBox1.Name = "kryptonGroupBox1";
             // 
             // kryptonGroupBox1.Panel
@@ -277,7 +283,7 @@
             // Fermer
             // 
             this.Fermer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Fermer.Location = new System.Drawing.Point(227, 226);
+            this.Fermer.Location = new System.Drawing.Point(227, 262);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
             this.Fermer.TabIndex = 40;
@@ -286,7 +292,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(384, 223);
+            this.OK.Location = new System.Drawing.Point(384, 259);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
             this.OK.TabIndex = 41;
@@ -298,7 +304,7 @@
             // 
             this.txtCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtCategorie.DropDownWidth = 166;
-            this.txtCategorie.Location = new System.Drawing.Point(33, 103);
+            this.txtCategorie.Location = new System.Drawing.Point(33, 139);
             this.txtCategorie.Name = "txtCategorie";
             this.txtCategorie.Size = new System.Drawing.Size(166, 21);
             this.txtCategorie.TabIndex = 39;
@@ -308,7 +314,7 @@
             this.txtTiers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtTiers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtTiers.DropDownWidth = 166;
-            this.txtTiers.Location = new System.Drawing.Point(33, 76);
+            this.txtTiers.Location = new System.Drawing.Point(33, 112);
             this.txtTiers.Name = "txtTiers";
             this.txtTiers.Size = new System.Drawing.Size(166, 21);
             this.txtTiers.TabIndex = 38;
@@ -316,7 +322,7 @@
             // txtMontant
             // 
             this.txtMontant.DecimalPlaces = 2;
-            this.txtMontant.Location = new System.Drawing.Point(227, 102);
+            this.txtMontant.Location = new System.Drawing.Point(227, 138);
             this.txtMontant.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -328,7 +334,7 @@
             // 
             // txtLibelle
             // 
-            this.txtLibelle.Location = new System.Drawing.Point(227, 76);
+            this.txtLibelle.Location = new System.Drawing.Point(227, 112);
             this.txtLibelle.Name = "txtLibelle";
             this.txtLibelle.Size = new System.Drawing.Size(185, 23);
             this.txtLibelle.TabIndex = 36;
@@ -337,10 +343,32 @@
             // 
             this.txtModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtModePaiement.DropDownWidth = 185;
-            this.txtModePaiement.Location = new System.Drawing.Point(227, 49);
+            this.txtModePaiement.Location = new System.Drawing.Point(227, 85);
             this.txtModePaiement.Name = "txtModePaiement";
             this.txtModePaiement.Size = new System.Drawing.Size(185, 21);
             this.txtModePaiement.TabIndex = 35;
+            // 
+            // cbCompte
+            // 
+            this.cbCompte.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCompte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCompte.DropDownWidth = 121;
+            this.cbCompte.Location = new System.Drawing.Point(116, 55);
+            this.cbCompte.Name = "cbCompte";
+            this.cbCompte.Size = new System.Drawing.Size(219, 21);
+            this.cbCompte.TabIndex = 52;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox7.Image = global::OrionBanque.Properties.Resources.money_euro;
+            this.pictureBox7.Location = new System.Drawing.Point(94, 58);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox7.TabIndex = 53;
+            this.pictureBox7.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox7, "Clique Droit => Accèder à la gestion");
             // 
             // Echeancier
             // 
@@ -348,7 +376,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Fermer;
-            this.ClientSize = new System.Drawing.Size(424, 261);
+            this.ClientSize = new System.Drawing.Size(424, 306);
             this.Controls.Add(this.kryptonPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -376,6 +404,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,5 +436,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker txtProchaine;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbCompte;
     }
 }

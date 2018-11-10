@@ -71,8 +71,8 @@
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton3);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton2);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton1);
-            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1052, 456);
-            this.kryptonSplitContainer1.SplitterDistance = 392;
+            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1292, 552);
+            this.kryptonSplitContainer1.SplitterDistance = 482;
             this.kryptonSplitContainer1.TabIndex = 0;
             // 
             // dgvEcheance
@@ -87,7 +87,7 @@
             this.dgvEcheance.Name = "dgvEcheance";
             this.dgvEcheance.ReadOnly = true;
             this.dgvEcheance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEcheance.Size = new System.Drawing.Size(1052, 392);
+            this.dgvEcheance.Size = new System.Drawing.Size(1292, 482);
             this.dgvEcheance.TabIndex = 0;
             this.dgvEcheance.DoubleClick += new System.EventHandler(this.DgvEcheance_DoubleClick);
             // 
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 456);
+            this.ClientSize = new System.Drawing.Size(1292, 552);
             this.Controls.Add(this.kryptonSplitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

@@ -6,23 +6,19 @@ namespace OrionBanque.Forms
 {
     public partial class Echeancier : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Int32 idC;
-        private Classe.Echeancier ec;
+        private Classe.Utilisateur uA;
+        private Classe.Echeancier eA;
         public bool cont = false;
 
-        public Echeancier(Int32 idEch, string mode)
+        public Echeancier(Classe.Echeancier e, Classe.Utilisateur u, string mode)
         {
             InitializeComponent();
+            uA = u;
+            eA = e;
             RemplisCb();
             if (mode.Equals("UPDATE"))
             {
-                ec = Classe.Echeancier.Charge(idEch);
-                idC = ec.Compte.Id;
                 ChargeForm();
-            }
-            else if (mode.Equals("INSERT"))
-            {
-                idC = idEch;
             }
         }
 
@@ -30,35 +26,38 @@ namespace OrionBanque.Forms
         {
             try
             {
-                if (ec.DateFin == null)
+                cbCompte.SelectedValue = eA.Compte.Id;
+                if (eA.DateFin == null)
+                {
                     txtIllimete.Checked = true;
+                }
                 else
                 {
                     txtIllimete.Checked = false;
-                    txtDateFin.Value = ec.DateFin.Value;
+                    txtDateFin.Value = eA.DateFin.Value;
                 }
-                txtCategorie.SelectedValue = ec.Categorie.Id;
-                txtModePaiement.SelectedValue = ec.ModePaiement.Id;
-                txtLibelle.Text = ec.Libelle;
-                txtMontant.Value = new Decimal(ec.Montant);
-                txtTiers.Text = ec.Tiers;
-                if (ec.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
+                txtCategorie.SelectedValue = eA.Categorie.Id;
+                txtModePaiement.SelectedValue = eA.ModePaiement.Id;
+                txtLibelle.Text = eA.Libelle;
+                txtMontant.Value = new Decimal(eA.Montant);
+                txtTiers.Text = eA.Tiers;
+                if (eA.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
                 {
                     txtTypeRepete.Text = "Jour(s)";
                 }
 
-                if (ec.TypeRepete == Classe.KEY.ECHEANCIER_MOIS)
+                if (eA.TypeRepete == Classe.KEY.ECHEANCIER_MOIS)
                 {
                     txtTypeRepete.Text = "Mois";
                 }
 
-                if (ec.TypeRepete == Classe.KEY.ECHEANCIER_ANNEE)
+                if (eA.TypeRepete == Classe.KEY.ECHEANCIER_ANNEE)
                 {
                     txtTypeRepete.Text = "Année(s)";
                 }
 
-                txtRepete.Value = new Decimal(ec.Repete);
-                txtProchaine.Value = ec.Prochaine;
+                txtRepete.Value = new Decimal(eA.Repete);
+                txtProchaine.Value = eA.Prochaine;
             }
             catch (Exception ex)
             {
@@ -68,9 +67,26 @@ namespace OrionBanque.Forms
 
         private void RemplisCb()
         {
+            ChargeComboCompte();
             RemplisModePaiements();
             RemplisTiers();
             RemplisCategories();
+        }
+
+        private void ChargeComboCompte()
+        {
+            try
+            {
+                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA);
+                cbCompte.DisplayMember = "Libelle";
+                cbCompte.ValueMember = "Id";
+
+                cbCompte.DataSource = lc;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void RemplisModePaiements()
@@ -107,7 +123,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<String> ls = Classe.Operation.ChargeToutTiers(idC);
+                List<String> ls = Classe.Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
                 txtTiers.DataSource = ls;
             }
             catch (Exception ex)
@@ -118,98 +134,57 @@ namespace OrionBanque.Forms
 
         private void OK_Click(object sender, EventArgs eventA)
         {
-            if (ec != null)
+            try
             {
-                try
+                if (txtIllimete.Checked)
                 {
-                    ec = Classe.Echeancier.Charge(ec.Id);
-                    if (txtIllimete.Checked)
-                    {
-                        ec.DateFin = null;
-                    }
-                    else
-                    {
-                        ec.DateFin = txtDateFin.Value.Date;
-                    }
-
-                    ec.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
-                    ec.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
-                    ec.Libelle = txtLibelle.Text;
-                    ec.Montant = Double.Parse(txtMontant.Value.ToString());
-                    ec.Tiers = txtTiers.Text;
-                    if (txtTypeRepete.Text == "Jour(s)")
-                    {
-                        ec.TypeRepete = Classe.KEY.ECHEANCIER_JOUR;
-                    }
-
-                    if (txtTypeRepete.Text == "Mois")
-                    {
-                        ec.TypeRepete = Classe.KEY.ECHEANCIER_MOIS;
-                    }
-
-                    if (txtTypeRepete.Text == "Année(s)")
-                    {
-                        ec.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
-                    }
-
-                    ec.Repete = Int32.Parse(txtRepete.Value.ToString());
-                    ec.Prochaine = txtProchaine.Value.Date;
-
-                    Classe.Echeancier.Maj(ec);
-                    cont = true;
-                    this.Close();
+                    eA.DateFin = null;
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    eA.DateFin = txtDateFin.Value.Date;
                 }
+
+                eA.Compte = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                eA.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
+                eA.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
+                eA.Libelle = txtLibelle.Text;
+                eA.Montant = Double.Parse(txtMontant.Value.ToString());
+                eA.Tiers = txtTiers.Text;
+
+                if (txtTypeRepete.Text == "Jour(s)")
+                {
+                    eA.TypeRepete = Classe.KEY.ECHEANCIER_JOUR;
+                }
+
+                if (txtTypeRepete.Text == "Mois")
+                {
+                    eA.TypeRepete = Classe.KEY.ECHEANCIER_MOIS;
+                }
+
+                if (txtTypeRepete.Text == "Année(s)")
+                {
+                    eA.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
+                }
+
+                eA.Repete = Int32.Parse(txtRepete.Value.ToString());
+                eA.Prochaine = txtProchaine.Value.Date;
+                cont = true;
+
+                if (eA.Id != 0)
+                {
+                    Classe.Echeancier.Maj(eA);
+                }
+                else
+                {
+                    Classe.Echeancier.Sauve(eA);
+                }
+
+                Close();
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    Classe.Echeancier e = new Classe.Echeancier();
-                    if (txtIllimete.Checked)
-                    {
-                        e.DateFin = null;
-                    }
-                    else
-                    {
-                        e.DateFin = txtDateFin.Value.Date;
-                    }
-
-                    e.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
-                    e.Compte = Classe.Compte.Charge(idC);
-                    e.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
-                    e.Libelle = txtLibelle.Text;
-                    e.Montant = Double.Parse(txtMontant.Value.ToString());
-                    e.Tiers = txtTiers.Text;
-                    if (txtTypeRepete.Text == "Jour(s)")
-                    {
-                        e.TypeRepete = Classe.KEY.ECHEANCIER_JOUR;
-                    }
-
-                    if (txtTypeRepete.Text == "Mois")
-                    {
-                        e.TypeRepete = Classe.KEY.ECHEANCIER_MOIS;
-                    }
-
-                    if (txtTypeRepete.Text == "Année(s)")
-                    {
-                        e.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
-                    }
-
-                    e.Repete = Int32.Parse(txtRepete.Value.ToString());
-                    e.Prochaine = txtProchaine.Value.Date;
-
-                    Classe.Echeancier.Sauve(e);
-                    cont = true;
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

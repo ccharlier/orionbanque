@@ -166,7 +166,7 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                Forms.EcheanciersGest ec = new Forms.EcheanciersGest((Int32)cbCompte.SelectedValue);
+                Forms.EcheanciersGest ec = new Forms.EcheanciersGest(uA);
                 ec.ShowDialog();
 
                 Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);

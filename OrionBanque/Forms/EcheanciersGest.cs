@@ -7,11 +7,11 @@ namespace OrionBanque.Forms
 {
     public partial class EcheanciersGest : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Int32 idC;
-        public EcheanciersGest(Int32 idCompte)
+        private Classe.Utilisateur uA;
+        public EcheanciersGest(Classe.Utilisateur u)
         {
             InitializeComponent();
-            idC = idCompte;
+            uA = u;
 
             ChargeGrille();
         }
@@ -20,7 +20,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                DataSet ds = Classe.Echeancier.ChargeGrilleEcheance(idC);
+                DataSet ds = Classe.Echeancier.ChargeGrilleEcheance(uA);
                 dgvEcheance.DataSource = ds;
                 dgvEcheance.DataMember = "echeancier";
                 dgvEcheance.Columns["Id"].Visible = false;
@@ -39,7 +39,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Forms.Echeancier ea = new Echeancier(idC, "INSERT");
+                Forms.Echeancier ea = new Echeancier(new Classe.Echeancier(), uA, "INSERT");
                 ea.ShowDialog();
 
                 ChargeGrille();
@@ -56,7 +56,7 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Classe.Echeancier.Delete(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()));
+                    Classe.Echeancier.Delete(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()));
                     ChargeGrille();
                 }
                 catch (Exception ex)
@@ -68,24 +68,14 @@ namespace OrionBanque.Forms
 
         private void KryptonButton2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Forms.Echeancier em = new Echeancier(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()), "UPDATE");
-                em.ShowDialog();
-
-                ChargeGrille();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            LanceMajEcheance();
         }
 
         private void KryptonButton4_Click(object sender, EventArgs e)
         {
             try
             {
-                Int32 i = Classe.Echeancier.InsereEcheance(txtDateInsereEch.Value, idC);
+                Int32 i = Classe.Echeancier.InsereEcheance(txtDateInsereEch.Value, uA);
                 MessageBox.Show(i + " Opérations insérées.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ChargeGrille();
             }
@@ -97,9 +87,14 @@ namespace OrionBanque.Forms
 
         private void DgvEcheance_DoubleClick(object sender, EventArgs e)
         {
+            LanceMajEcheance();
+        }
+
+        private void LanceMajEcheance()
+        {
             try
             {
-                Forms.Echeancier em = new Echeancier(Int32.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()), "UPDATE");
+                Forms.Echeancier em = new Echeancier(Classe.Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
                 em.ShowDialog();
 
                 ChargeGrille();
