@@ -21,13 +21,13 @@ REM ****************************************************************************
 REM * répertoire dans lequel les ressources OrionBanque à packager sont présentes *
 REM *******************************************************************************
 
-set orion_directory=D:\\Applications\\Orion1017\\Release
+set orion_directory=C:\\projet\\VS\\Publish\\orionbanque\\v1.0.1.8-BETA
 
 REM *******************************************************************************
 REM * répertoire dans lequel est installé NSIS                                    *
 REM *******************************************************************************
 
-set nsis_directory=D:\\Applications\\NSIS_303
+set nsis_directory=C:\\projet\\VS\\orionbanque\\Make_Setup_OrionBanque\\nsis
 
 REM *******************************************************************************
 REM * répertoire dans lequel l'image utilisée pour l'installeur est installée     *
