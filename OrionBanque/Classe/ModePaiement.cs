@@ -58,7 +58,11 @@ namespace OrionBanque.Classe
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                mp = ob.ModePaiements.Where(mpt => mpt.Libelle == nom).First();
+                mp = ob.ModePaiements.Where(mpt => mpt.Libelle == nom).FirstOrDefault();
+                if(mp is null)
+                {
+                    mp = new ModePaiement();
+                }
             }
             catch (Exception ex)
             {
