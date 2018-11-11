@@ -711,11 +711,10 @@ namespace OrionBanque
             {
                 try
                 {
-                    // TODO: Enregistrer sous MainForm
-                    /*string filori = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\orionbanque.s3db";
-                    string fildest = folderBrowserDialog.SelectedPath + @"orionbanque.s3db";
+                    string filori = Classe.KEY.FILE_PATH;
+                    string fildest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME;
                     File.Copy(filori, fildest, true);
-                    MessageBox.Show(String.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);*/
+                    MessageBox.Show(string.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception ex)
                 {
@@ -834,6 +833,40 @@ namespace OrionBanque
             {
                 Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
                 Outils.GestionFichier.ExportCSV(folderBrowserDialog.SelectedPath + @"\" + c.Libelle + ".csv", ((DataSet)dgvOperations.DataSource).Tables["Operations"]);
+            }
+        }
+
+        private void fichierJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filedest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME + ".json";
+                    Outils.GestionFichier.ExportJson(filedest);
+                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
+                }
+            }
+        }
+
+        private void fichierXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filedest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME + ".xml";
+                    Outils.GestionFichier.ExportXml(filedest);
+                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
+                }
             }
         }
     }
