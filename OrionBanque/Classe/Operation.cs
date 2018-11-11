@@ -523,6 +523,7 @@ namespace OrionBanque.Classe
             Type elementType = typeof(Operation);
             DataSet ds = new DataSet();
             DataTable t = new DataTable("Operations");
+            double solde = list[0].Compte.SoldeInitial;
             ds.Tables.Add(t);
 
             t.Columns.Add("Id", typeof(int));
@@ -535,6 +536,9 @@ namespace OrionBanque.Classe
             t.Columns.Add("Montant Débit", typeof(double));
             t.Columns.Add("Montant Crédit", typeof(double));
             t.Columns.Add("DatePointage", typeof(DateTime));
+            t.Columns.Add("Solde", typeof(double));
+
+            list = (from o in list select o).OrderBy(x => x.Date.Date).ThenByDescending(x => x.Id).ToList();
 
             //go through each property on T and add each value to the table
             foreach (Operation item in list)
@@ -550,11 +554,13 @@ namespace OrionBanque.Classe
 
                 if (item.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT)
                 {
+                    solde += item.Montant;
                     row["Montant Crédit"] = item.Montant;
                     row["Montant Débit"] = DBNull.Value;
                 }
                 else
                 {
+                    solde -= item.Montant;
                     row["Montant Débit"] = item.Montant;
                     row["Montant Crédit"] = DBNull.Value;
                 }
@@ -567,7 +573,7 @@ namespace OrionBanque.Classe
                 {
                     row["DatePointage"] = item.DatePointage;
                 }
-
+                row["Solde"] = Math.Round(solde, 2);
                 t.Rows.Add(row);
             }
 

@@ -419,6 +419,8 @@ namespace OrionBanque
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Format = "d";
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvOperations.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvOperations.Sort(dgvOperations.Columns["Date"], System.ComponentModel.ListSortDirection.Descending);
             }
             catch (Exception ex)
             {
