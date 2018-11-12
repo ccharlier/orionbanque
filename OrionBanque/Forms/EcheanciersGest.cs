@@ -8,6 +8,7 @@ namespace OrionBanque.Forms
     public partial class EcheanciersGest : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Classe.Utilisateur uA;
+
         public EcheanciersGest(Classe.Utilisateur u)
         {
             InitializeComponent();
@@ -75,7 +76,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Int32 i = Classe.Echeancier.InsereEcheance(txtDateInsereEch.Value, uA);
+                int i = Classe.Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
                 MessageBox.Show(i + " Opérations insérées.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ChargeGrille();
             }

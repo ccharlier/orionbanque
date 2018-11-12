@@ -33,14 +33,20 @@ namespace OrionBanque.Classe
         public string TypeRepete { get; set; }
         [DataMember()]
         public DateTime? DateFin { get; set; }
-
-        public static int InsereEcheance(DateTime DateInsereEch, Classe.Utilisateur u)
+        [DataMember()]
+        public bool? InsererOuvertureFichier { get; set; }
+        [DataMember()]
+        public bool? DecaleSamedi { get; set; }
+        [DataMember()]
+        public bool? DecaleDimanche { get; set; }
+        
+        public static int InsereEcheanceFromGest(DateTime DateInsereEch, Utilisateur u)
         {
+            Log.Logger.Debug("Debut Echeancier.InsereEcheance()");
             List<Compte> lc = Compte.ChargeTout(u);
             int retour = 0;
             foreach(Compte c in lc)
             { 
-                Log.Logger.Debug("Debut Echeancier.InsereEcheance(" + c.Id + ")");
                 List<Echeancier> le = ChargeTout(c.Id);
                 try
                 {
@@ -50,43 +56,87 @@ namespace OrionBanque.Classe
                         .Where(w2 => w2.Prochaine <= DateInsereEch)
                         .ToList();
 
-                    foreach (Echeancier ec in le)
-                    {
-                        Operation o = new Operation
-                        {
-                            Date = ec.Prochaine,
-                            Categorie = ec.Categorie,
-                            Compte = ec.Compte,
-                            ModePaiement = ec.ModePaiement,
-                            Libelle = ec.Libelle,
-                            Montant = ec.Montant,
-                            Tiers = ec.Tiers
-                        };
-
-                        Operation.Sauve(o);
-
-                        switch (ec.TypeRepete)
-                        {
-                            case KEY.ECHEANCIER_JOUR:
-                                ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
-                                break;
-                            case KEY.ECHEANCIER_MOIS:
-                                ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
-                                break;
-                            case KEY.ECHEANCIER_ANNEE:
-                                ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
-                                break;
-                        }
-
-                        Maj(ec);
-                        retour++;
-                    }
+                    retour += InsereEcheance(le);
+                   
                 }
                 catch (Exception ex)
                 {
                     Log.Logger.Error(ex.Message);
                     throw;
                 }
+            }
+            return retour;
+        }
+
+        public static int InsereEcheanceOpenFile(Utilisateur u)
+        {
+            Log.Logger.Debug("Debut Echeancier.InsereEcheanceOpenFile()");
+            List<Compte> lc = Compte.ChargeTout(u);
+            int retour = 0;
+            foreach (Compte c in lc)
+            {
+                List<Echeancier> le = ChargeTout(c.Id);
+                try
+                {
+                    le = le
+                        .Where(w => w.Compte.Id == c.Id)
+                        .Where(w2 => w2.Prochaine == DateTime.Today.Date)
+                        .ToList();
+
+                    retour += InsereEcheance(le);
+
+                }
+                catch (Exception ex)
+                {
+                    Log.Logger.Error(ex.Message);
+                    throw;
+                }
+            }
+            return retour;
+        }
+
+        public static int InsereEcheance(List<Echeancier> le)
+        {
+            int retour = 0;
+            foreach (Echeancier ec in le)
+            {
+                Operation o = new Operation
+                {
+                    Date = ec.Prochaine,
+                    Categorie = ec.Categorie,
+                    Compte = ec.Compte,
+                    ModePaiement = ec.ModePaiement,
+                    Libelle = ec.Libelle,
+                    Montant = ec.Montant,
+                    Tiers = ec.Tiers
+                };
+
+                if (o.Date.DayOfWeek == DayOfWeek.Saturday && (ec.DecaleSamedi ?? false))
+                {
+                    o.Date.AddDays(2);
+                }
+                if (o.Date.DayOfWeek == DayOfWeek.Sunday && (ec.DecaleDimanche ?? false))
+                {
+                    o.Date.AddDays(1);
+                }
+
+                Operation.Sauve(o);
+
+                switch (ec.TypeRepete)
+                {
+                    case KEY.ECHEANCIER_JOUR:
+                        ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
+                        break;
+                    case KEY.ECHEANCIER_MOIS:
+                        ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
+                        break;
+                    case KEY.ECHEANCIER_ANNEE:
+                        ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
+                        break;
+                }
+
+                Maj(ec);
+                retour++;
             }
             return retour;
         }

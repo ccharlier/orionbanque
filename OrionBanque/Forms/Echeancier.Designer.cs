@@ -55,6 +55,11 @@
             this.txtMontant = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.txtInsererOuvertureFichier = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.txtDecaleSamedi = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.txtDecaleDimanche = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.txtDecaleJourFerie = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -156,7 +161,7 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox7.Image = global::OrionBanque.Properties.Resources.money_euro;
-            this.pictureBox7.Location = new System.Drawing.Point(94, 58);
+            this.pictureBox7.Location = new System.Drawing.Point(11, 56);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(16, 16);
             this.pictureBox7.TabIndex = 53;
@@ -186,7 +191,7 @@
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(424, 306);
+            this.kryptonPanel1.Size = new System.Drawing.Size(424, 374);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // cbCompte
@@ -195,9 +200,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCompte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCompte.DropDownWidth = 121;
-            this.cbCompte.Location = new System.Drawing.Point(116, 55);
+            this.cbCompte.Location = new System.Drawing.Point(33, 55);
             this.cbCompte.Name = "cbCompte";
-            this.cbCompte.Size = new System.Drawing.Size(219, 21);
+            this.cbCompte.Size = new System.Drawing.Size(379, 21);
             this.cbCompte.TabIndex = 52;
             // 
             // kryptonLabel3
@@ -224,22 +229,26 @@
             // 
             // kryptonGroupBox1.Panel
             // 
+            this.kryptonGroupBox1.Panel.Controls.Add(this.txtDecaleJourFerie);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel4);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.txtDecaleDimanche);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.txtDecaleSamedi);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.txtInsererOuvertureFichier);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtIllimete);
             this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel2);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtRepete);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtTypeRepete);
             this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel1);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtDateFin);
-            this.kryptonGroupBox1.Size = new System.Drawing.Size(401, 87);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(401, 165);
             this.kryptonGroupBox1.TabIndex = 42;
             this.kryptonGroupBox1.Values.Heading = "Echéances";
             // 
             // txtIllimete
             // 
             this.txtIllimete.Checked = true;
-            this.txtIllimete.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
             this.txtIllimete.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.txtIllimete.Location = new System.Drawing.Point(71, 5);
+            this.txtIllimete.Location = new System.Drawing.Point(15, 5);
             this.txtIllimete.Name = "txtIllimete";
             this.txtIllimete.Size = new System.Drawing.Size(60, 20);
             this.txtIllimete.TabIndex = 46;
@@ -248,7 +257,7 @@
             // 
             // kryptonLabel2
             // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(95, 32);
+            this.kryptonLabel2.Location = new System.Drawing.Point(81, 29);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(64, 20);
             this.kryptonLabel2.TabIndex = 45;
@@ -256,7 +265,7 @@
             // 
             // txtRepete
             // 
-            this.txtRepete.Location = new System.Drawing.Point(162, 29);
+            this.txtRepete.Location = new System.Drawing.Point(156, 30);
             this.txtRepete.Minimum = new decimal(new int[] {
             1,
             0,
@@ -287,11 +296,12 @@
             // 
             // kryptonLabel1
             // 
-            this.kryptonLabel1.Location = new System.Drawing.Point(133, 5);
+            this.kryptonLabel1.Location = new System.Drawing.Point(81, 5);
             this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(79, 20);
+            this.kryptonLabel1.Size = new System.Drawing.Size(129, 20);
             this.kryptonLabel1.TabIndex = 35;
-            this.kryptonLabel1.Values.Text = "Date de Fin :";
+            this.kryptonLabel1.Values.ExtraText = "(incluse) :";
+            this.kryptonLabel1.Values.Text = "Date de Fin";
             // 
             // txtDateFin
             // 
@@ -305,7 +315,7 @@
             // Fermer
             // 
             this.Fermer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Fermer.Location = new System.Drawing.Point(227, 262);
+            this.Fermer.Location = new System.Drawing.Point(227, 340);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
             this.Fermer.TabIndex = 40;
@@ -314,7 +324,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(384, 259);
+            this.OK.Location = new System.Drawing.Point(384, 337);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
             this.OK.TabIndex = 41;
@@ -370,13 +380,62 @@
             this.txtModePaiement.Size = new System.Drawing.Size(185, 21);
             this.txtModePaiement.TabIndex = 35;
             // 
+            // txtInsererOuvertureFichier
+            // 
+            this.txtInsererOuvertureFichier.Checked = true;
+            this.txtInsererOuvertureFichier.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtInsererOuvertureFichier.Location = new System.Drawing.Point(15, 57);
+            this.txtInsererOuvertureFichier.Name = "txtInsererOuvertureFichier";
+            this.txtInsererOuvertureFichier.Size = new System.Drawing.Size(187, 20);
+            this.txtInsererOuvertureFichier.TabIndex = 47;
+            this.txtInsererOuvertureFichier.Values.Text = "Insérer à l\'ouverture du fichier";
+            // 
+            // txtDecaleSamedi
+            // 
+            this.txtDecaleSamedi.Checked = true;
+            this.txtDecaleSamedi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtDecaleSamedi.Location = new System.Drawing.Point(81, 109);
+            this.txtDecaleSamedi.Name = "txtDecaleSamedi";
+            this.txtDecaleSamedi.Size = new System.Drawing.Size(64, 20);
+            this.txtDecaleSamedi.TabIndex = 48;
+            this.txtDecaleSamedi.Values.Text = "Samedi";
+            // 
+            // txtDecaleDimanche
+            // 
+            this.txtDecaleDimanche.Checked = true;
+            this.txtDecaleDimanche.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtDecaleDimanche.Location = new System.Drawing.Point(162, 109);
+            this.txtDecaleDimanche.Name = "txtDecaleDimanche";
+            this.txtDecaleDimanche.Size = new System.Drawing.Size(78, 20);
+            this.txtDecaleDimanche.TabIndex = 49;
+            this.txtDecaleDimanche.Values.Text = "Dimanche";
+            // 
+            // kryptonLabel4
+            // 
+            this.kryptonLabel4.Location = new System.Drawing.Point(29, 83);
+            this.kryptonLabel4.Name = "kryptonLabel4";
+            this.kryptonLabel4.Size = new System.Drawing.Size(208, 20);
+            this.kryptonLabel4.TabIndex = 50;
+            this.kryptonLabel4.Values.Text = "Décaler l\'échéance si elle tombe un :";
+            // 
+            // txtDecaleJourFerie
+            // 
+            this.txtDecaleJourFerie.Checked = true;
+            this.txtDecaleJourFerie.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtDecaleJourFerie.Enabled = false;
+            this.txtDecaleJourFerie.Location = new System.Drawing.Point(246, 109);
+            this.txtDecaleJourFerie.Name = "txtDecaleJourFerie";
+            this.txtDecaleJourFerie.Size = new System.Drawing.Size(76, 20);
+            this.txtDecaleJourFerie.TabIndex = 51;
+            this.txtDecaleJourFerie.Values.Text = "Jour Férié";
+            // 
             // Echeancier
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Fermer;
-            this.ClientSize = new System.Drawing.Size(424, 306);
+            this.ClientSize = new System.Drawing.Size(424, 374);
             this.Controls.Add(this.kryptonPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -438,5 +497,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private System.Windows.Forms.PictureBox pictureBox7;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbCompte;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtDecaleDimanche;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtDecaleSamedi;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtInsererOuvertureFichier;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtDecaleJourFerie;
     }
 }

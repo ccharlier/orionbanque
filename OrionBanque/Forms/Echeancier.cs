@@ -39,7 +39,7 @@ namespace OrionBanque.Forms
                 txtCategorie.SelectedValue = eA.Categorie.Id;
                 txtModePaiement.SelectedValue = eA.ModePaiement.Id;
                 txtLibelle.Text = eA.Libelle;
-                txtMontant.Value = new Decimal(eA.Montant);
+                txtMontant.Value = new decimal(eA.Montant);
                 txtTiers.Text = eA.Tiers;
                 if (eA.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
                 {
@@ -56,8 +56,11 @@ namespace OrionBanque.Forms
                     txtTypeRepete.Text = "Année(s)";
                 }
 
-                txtRepete.Value = new Decimal(eA.Repete);
+                txtRepete.Value = new decimal(eA.Repete);
                 txtProchaine.Value = eA.Prochaine;
+                txtInsererOuvertureFichier.Checked = eA.InsererOuvertureFichier ?? false;
+                txtDecaleSamedi.Checked = eA.DecaleSamedi ?? false;
+                txtDecaleDimanche.Checked = eA.DecaleSamedi ?? false;
             }
             catch (Exception ex)
             {
@@ -123,7 +126,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<String> ls = Classe.Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
+                List<string> ls = Classe.Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
                 txtTiers.DataSource = ls;
             }
             catch (Exception ex)
@@ -146,10 +149,10 @@ namespace OrionBanque.Forms
                 }
 
                 eA.Compte = Classe.Compte.Charge((int)cbCompte.SelectedValue);
-                eA.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
-                eA.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
+                eA.Categorie = Classe.Categorie.Charge((int)txtCategorie.SelectedValue);
+                eA.ModePaiement = Classe.ModePaiement.Charge((int)txtModePaiement.SelectedValue);
                 eA.Libelle = txtLibelle.Text;
-                eA.Montant = Double.Parse(txtMontant.Value.ToString());
+                eA.Montant = double.Parse(txtMontant.Value.ToString());
                 eA.Tiers = txtTiers.Text;
 
                 if (txtTypeRepete.Text == "Jour(s)")
@@ -167,8 +170,11 @@ namespace OrionBanque.Forms
                     eA.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
                 }
 
-                eA.Repete = Int32.Parse(txtRepete.Value.ToString());
+                eA.Repete = int.Parse(txtRepete.Value.ToString());
                 eA.Prochaine = txtProchaine.Value.Date;
+                eA.InsererOuvertureFichier = txtInsererOuvertureFichier.Checked;
+                eA.DecaleSamedi = txtDecaleSamedi.Checked;
+                eA.DecaleDimanche = txtDecaleDimanche.Checked;
                 cont = true;
 
                 if (eA.Id != 0)
@@ -191,16 +197,20 @@ namespace OrionBanque.Forms
         private void TxtIlimete_CheckedChanged(object sender, EventArgs e)
         {
             if (txtIllimete.Checked)
+            {
                 txtDateFin.Enabled = false;
+            }
             else
+            {
                 txtDateFin.Enabled = true;
+            }
         }
 
         private void PictureBox6_Click(object sender, EventArgs e)
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Forms.Categories fm = new Forms.Categories();
+                Categories fm = new Categories();
                 fm.ShowDialog();
                 RemplisCategories();
             }
@@ -210,7 +220,7 @@ namespace OrionBanque.Forms
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Forms.ModePaiement fm = new ModePaiement();
+                ModePaiement fm = new ModePaiement();
                 fm.ShowDialog();
                 RemplisModePaiements();
             }

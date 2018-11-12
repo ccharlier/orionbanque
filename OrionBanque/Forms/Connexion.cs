@@ -21,31 +21,38 @@ namespace OrionBanque.Forms
 
         private void OK_Click(object sender, EventArgs e)
         {
-            if (ValideForm())
+            try
             {
-                try
+                // Est-ce que le formulaire de connexion est bien rempli
+                if (ValideForm())
                 {
                     Classe.Utilisateur u = Classe.Utilisateur.Charge(txtLogin.Text.Trim());
+                    // Est-ce que l'utilisateur existe
                     if (!u.Id.Equals(0))
                     {
+                        // Est-ce que le mot de passe saisi est correct
                         if (!u.Mdp.Equals(txtMdp.Text.Trim()))
-                            MessageBox.Show("Mauvais Login/Mot de passe.");
+                        {
+                            throw new Exception("Mauvais Login/Mot de passe.");
+                        }
                         else
                         {
                             uA = u;
                             cont = true;
-                            this.Close();
+                            Classe.Echeancier.InsereEcheanceOpenFile(uA);
+                            Close();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Mauvais Login/Mot de passe.");
+                        throw new Exception("Mauvais Login/Mot de passe.");
                     }
+
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -57,7 +64,9 @@ namespace OrionBanque.Forms
                 retour = true;
             }
             else
+            {
                 MessageBox.Show("Merci de remplir tous les champs.");
+            }
 
             return retour;
         }
