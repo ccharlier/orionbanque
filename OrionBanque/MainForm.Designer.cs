@@ -975,7 +975,7 @@
             this.tsSave});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(66, 25);
             this.toolStrip1.TabIndex = 5;
             // 
             // tsSave
@@ -1005,7 +1005,7 @@
             this.tsAjoutOperation,
             this.toolStripSeparator2,
             this.tsVirementCaC});
-            this.tsGestGeneral.Location = new System.Drawing.Point(38, 0);
+            this.tsGestGeneral.Location = new System.Drawing.Point(69, 0);
             this.tsGestGeneral.Name = "tsGestGeneral";
             this.tsGestGeneral.Size = new System.Drawing.Size(303, 25);
             this.tsGestGeneral.TabIndex = 4;
@@ -1321,13 +1321,13 @@
         private System.Windows.Forms.OpenFileDialog OFDImport;
         private System.Windows.Forms.ToolStripStatusLabel tsNbLigne;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem gérerLécchéancierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exporterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fichierJSONToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fichierXMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fichierCSVToolStripMenuItem;
+        public System.Windows.Forms.ToolStripButton tsSave;
     }
 }
 

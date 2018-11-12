@@ -8,6 +8,7 @@ namespace OrionBanque.Forms
     {
         public Classe.Utilisateur uA;
         public bool cont = false;
+        public bool activSauv = false;
 
         public Connexion()
         {
@@ -44,6 +45,7 @@ namespace OrionBanque.Forms
                             if(nbE.Count != 0)
                             {
                                 MessageBox.Show("Opérations insérées à l'ouverture du fichier : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                activSauv = true;
                             }
                             Close();
                         }
