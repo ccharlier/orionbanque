@@ -40,11 +40,11 @@ namespace OrionBanque.Classe
         [DataMember()]
         public bool? DecaleDimanche { get; set; }
         
-        public static int InsereEcheanceFromGest(DateTime DateInsereEch, Utilisateur u)
+        public static List<string> InsereEcheanceFromGest(DateTime DateInsereEch, Utilisateur u)
         {
             Log.Logger.Debug("Debut Echeancier.InsereEcheance()");
             List<Compte> lc = Compte.ChargeTout(u);
-            int retour = 0;
+            List<string> retour = new List<string>();
             foreach(Compte c in lc)
             { 
                 List<Echeancier> le = ChargeTout(c.Id);
@@ -56,7 +56,7 @@ namespace OrionBanque.Classe
                         .Where(w2 => w2.Prochaine <= DateInsereEch)
                         .ToList();
 
-                    retour += InsereEcheance(le);
+                    retour.AddRange(InsereEcheance(le));
                    
                 }
                 catch (Exception ex)
@@ -68,22 +68,23 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static int InsereEcheanceOpenFile(Utilisateur u)
+        public static List<string> InsereEcheanceOpenFile(Utilisateur u)
         {
             Log.Logger.Debug("Debut Echeancier.InsereEcheanceOpenFile()");
             List<Compte> lc = Compte.ChargeTout(u);
-            int retour = 0;
+            List<string> retour = new List<string>();
             foreach (Compte c in lc)
             {
                 List<Echeancier> le = ChargeTout(c.Id);
                 try
                 {
                     le = le
-                        .Where(w => w.Compte.Id == c.Id)
-                        .Where(w2 => w2.Prochaine == DateTime.Today.Date)
+                        .Where(w => w.Compte.Id == c.Id) // Echeance du compte courant
+                        .Where(w2 => w2.Prochaine <= DateTime.Today.Date) // Prochaine date échéance du jour ou dépassée
+                        .Where(w3 => w3.DateFin is null || w3.DateFin >= DateTime.Today.Date) // Date de fin de l'échéance est dépassée 
                         .ToList();
 
-                    retour += InsereEcheance(le);
+                    retour.AddRange(InsereEcheance(le));
 
                 }
                 catch (Exception ex)
@@ -95,9 +96,9 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static int InsereEcheance(List<Echeancier> le)
+        public static List<string> InsereEcheance(List<Echeancier> le)
         {
-            int retour = 0;
+            List<string> retour = new List<string>();
             foreach (Echeancier ec in le)
             {
                 Operation o = new Operation
@@ -136,7 +137,7 @@ namespace OrionBanque.Classe
                 }
 
                 Maj(ec);
-                retour++;
+                retour.Add("\t -> [" + o.Compte.Libelle + "] - " + o.Date.Day + "/" + o.Date.Month + "/" + o.Date.Year + " - " + o.Libelle);
             }
             return retour;
         }

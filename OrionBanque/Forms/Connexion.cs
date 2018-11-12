@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace OrionBanque.Forms
@@ -39,7 +40,11 @@ namespace OrionBanque.Forms
                         {
                             uA = u;
                             cont = true;
-                            Classe.Echeancier.InsereEcheanceOpenFile(uA);
+                            List<string> nbE = Classe.Echeancier.InsereEcheanceOpenFile(uA);
+                            if(nbE.Count != 0)
+                            {
+                                MessageBox.Show("Opérations insérées à l'ouverture du fichier : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                             Close();
                         }
                     }

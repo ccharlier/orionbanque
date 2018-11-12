@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace OrionBanque.Forms
 {
@@ -40,7 +41,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Forms.Echeancier ea = new Echeancier(new Classe.Echeancier(), uA, "INSERT");
+                Echeancier ea = new Echeancier(new Classe.Echeancier(), uA, "INSERT");
                 ea.ShowDialog();
 
                 ChargeGrille();
@@ -76,8 +77,15 @@ namespace OrionBanque.Forms
         {
             try
             {
-                int i = Classe.Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
-                MessageBox.Show(i + " Opérations insérées.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                List<string> nbE = Classe.Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
+                if (nbE.Count != 0)
+                {
+                    MessageBox.Show("Opérations insérées : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("0 Opération insérée.");
+                }
                 ChargeGrille();
             }
             catch (Exception ex)
@@ -95,7 +103,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Forms.Echeancier em = new Echeancier(Classe.Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
+                Echeancier em = new Echeancier(Classe.Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
                 em.ShowDialog();
 
                 ChargeGrille();
