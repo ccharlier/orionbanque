@@ -536,7 +536,7 @@ namespace OrionBanque.Classe
             t.Columns.Add("Montant Débit", typeof(double));
             t.Columns.Add("Montant Crédit", typeof(double));
             t.Columns.Add("DatePointage", typeof(DateTime));
-            t.Columns.Add("Solde", typeof(double));
+            t.Columns.Add("Solde", typeof(string));
 
             list = (from o in list select o).OrderBy(x => x.Date.Date).ThenByDescending(x => x.Id).ToList();
 
@@ -573,7 +573,7 @@ namespace OrionBanque.Classe
                 {
                     row["DatePointage"] = item.DatePointage;
                 }
-                row["Solde"] = Math.Round(solde, 2);
+                row["Solde"] = string.Format("{0,12:0,0.00}", solde) + " €";
                 t.Rows.Add(row);
             }
 
