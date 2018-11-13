@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
+using ID3iHoliday.Engine.Standard;
+using ID3iHoliday.Models;
 
 namespace OrionBanque.Classe
 {
@@ -39,7 +41,9 @@ namespace OrionBanque.Classe
         public bool? DecaleSamedi { get; set; }
         [DataMember()]
         public bool? DecaleDimanche { get; set; }
-        
+        [DataMember()]
+        public bool? DecaleJourFerie { get; set; }
+
         public static List<string> InsereEcheanceFromGest(DateTime DateInsereEch, Utilisateur u)
         {
             Log.Logger.Debug("Debut Echeancier.InsereEcheance()");
@@ -98,6 +102,8 @@ namespace OrionBanque.Classe
 
         public static List<string> InsereEcheance(List<Echeancier> le)
         {
+            IEnumerable<SpecificDay> specificDays = HolidaySystem.Instance.All(2018, "FR", RuleType.Public);
+            
             List<string> retour = new List<string>();
             foreach (Echeancier ec in le)
             {
@@ -111,14 +117,27 @@ namespace OrionBanque.Classe
                     Montant = ec.Montant,
                     Tiers = ec.Tiers
                 };
-
                 if (o.Date.DayOfWeek == DayOfWeek.Saturday && (ec.DecaleSamedi ?? false))
                 {
+                    // Décalage si Samedi
                     o.Date.AddDays(2);
                 }
                 if (o.Date.DayOfWeek == DayOfWeek.Sunday && (ec.DecaleDimanche ?? false))
                 {
+                    // Décalage si Dimanche
                     o.Date.AddDays(1);
+                }
+                if (ec.DecaleJourFerie ?? false)
+                {
+                    foreach (SpecificDay day in specificDays)
+                    {
+                        if (day.Date.Date == o.Date.Date)
+                        {
+                            // Décalage si Jour Férié
+                            o.Date.AddDays(1);
+                            break;
+                        }
+                    }
                 }
 
                 Operation.Sauve(o);

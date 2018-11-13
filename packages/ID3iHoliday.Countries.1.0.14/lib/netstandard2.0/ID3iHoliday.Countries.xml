@@ -1,0 +1,558 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ID3iHoliday.Countries</name>
+    </assembly>
+    <members>
+        <member name="T:ID3iHoliday.Countries.AD">
+            <summary>
+            Définition pour Andorra.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.AD.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.AD"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.AG">
+            <summary>
+            Définition pour Antigua &amp; Barbuda.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.AG.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.AG"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.AI">
+            <summary>
+            Définition pour Anguilla.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.AI.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.AI"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.AL">
+            <summary>
+            Définition pour Albania.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.AL.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.AL"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.AT">
+            <summary>
+            Définition pour Austria.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.AT.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.AT"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.AX">
+            <summary>
+            Définition pour Åland Islands.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.AX.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.AX"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.BA">
+            <summary>
+            Définition pour Bosnia and Herzegovina.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.BA.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.BA"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.BE">
+            <summary>
+            Définition pour Belgique.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.BE.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.BE"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.BG">
+            <summary>
+            Définition pour Bulgaria.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.BG.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.BG"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.BY">
+            <summary>
+            Définition pour Belarus.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.BY.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.BY"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.CA">
+            <summary>
+            Définition pour Canada.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.CA.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.CA"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.CH">
+            <summary>
+            Définition pour Switzerland.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.CH.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.CH"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.CY">
+            <summary>
+            Définition pour Cyprus.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.CY.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.CY"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.CZ">
+            <summary>
+            Définition pour Czech Republic.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.CZ.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.CZ"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.DE">
+            <summary>
+            Définition pour Germany.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.DE.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.DE"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.DK">
+            <summary>
+            Définition pour Denmark.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.DK.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.DK"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.EE">
+            <summary>
+            Définition pour Estonia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.EE.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.EE"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.ES">
+            <summary>
+            Définition pour Spai.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.ES.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.ES"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.FI">
+            <summary>
+            Définition pour Finland.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.FI.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.FI"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.FR">
+            <summary>
+            Définition pour France.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.FR.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.FR"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.GB">
+            <summary>
+            Définition pour United Kingdom.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.GB.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.GB"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.GL">
+            <summary>
+            Définition pour Greenland.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.GL.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.GL"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.GR">
+            <summary>
+            Définition pour Greece.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.GR.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.GR"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.HR">
+            <summary>
+            Définition pour Croatia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.HR.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.HR"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.HU">
+            <summary>
+            Définition pour Hungary.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.HU.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.HU"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.IE">
+            <summary>
+            Définition pour Ireland.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.IE.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.IE"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.IM">
+            <summary>
+            Définition pour Isle of Man.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.IM.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.IM"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.IS">
+            <summary>
+            Définition pour Iceland.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.IS.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.IS"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.IT">
+            <summary>
+            Définition pour Italia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.IT.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.IT"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.JE">
+            <summary>
+            Définition pour Jersey.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.JE.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.JE"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.LI">
+            <summary>
+            Définition pour Lichtenstein.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.LI.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.LI"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.LT">
+            <summary>
+            Définition pour Lithuania.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.LT.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.LT"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.LU">
+            <summary>
+            Définition pour Luxembourg.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.LU.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.LU"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.LV">
+            <summary>
+            Définition pour Latvia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.LV.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.LV"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.MC">
+            <summary>
+            Définition pour Monaco.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.MC.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.MC"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.MD">
+            <summary>
+            Définition pour Moldova.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.MD.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.MD"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.ME">
+            <summary>
+            Définition pour Montenegro.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.ME.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.ME"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.MK">
+            <summary>
+            Définition pour Macedonia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.MK.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.MK"/>
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.MT">
+            <summary>
+            Définition pour Malta.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.MT.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.MT"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.MX">
+            <summary>
+            Définition pour Mexico.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.MX.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.MX"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.NL">
+            <summary>
+            Définition pour Netherlands.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.NL.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.NL"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.NO">
+            <summary>
+            Définition pour Norway.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.NO.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.NO"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.PL">
+            <summary>
+            Définition pour Poland.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.PL.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.PL"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.PT">
+            <summary>
+            Définition pour Portugal.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.PT.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.PT"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.RO">
+            <summary>
+            Définition pour Romania.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.RO.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.RO"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.RS">
+            <summary>
+            Définition pour Serbia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.RS.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe<see cref="T:ID3iHoliday.Countries.RS"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.RU">
+            <summary>
+            Définition pour Russia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.RU.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe<see cref="T:ID3iHoliday.Countries.RU"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.SE">
+            <summary>
+            Définition pour Sweden.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.SE.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.SE"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.SI">
+            <summary>
+            Définition pour Slovenia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.SI.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.SI"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.SK">
+            <summary>
+            Définition pour Slovakia.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.SK.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.SK"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.SM">
+            <summary>
+            Définition pour San Marino.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.SM.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.SM"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.UA">
+            <summary>
+            Définition pour Ukraine.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.UA.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.UA"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.US">
+            <summary>
+            Définition pour United States of America
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.US.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.US"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.VA">
+            <summary>
+            Définition pour Vatican City.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.VA.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.VA"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iHoliday.Countries.XK">
+            <summary>
+            Définition pour Kosovo.
+            </summary>
+        </member>
+        <member name="M:ID3iHoliday.Countries.XK.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ID3iHoliday.Countries.XK"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

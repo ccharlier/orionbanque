@@ -1,0 +1,1310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ID3iCore</name>
+    </assembly>
+    <members>
+        <member name="T:ID3iCore.ExtensionsDecimal">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Decimal"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsDecimal.ToCurrencyString(System.Nullable{System.Decimal},System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne avec le formattage monaie
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre mais sous forme de monaie avec le symbôle.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsDecimal.ToCurrencyString(System.Decimal,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne avec le formattage monaie
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre mais sous forme de monaie avec le symbôle.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsDecimal.ToString(System.Nullable{System.Decimal},System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne à partir d'un nombre.
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsDecimal.PercentOf(System.Decimal,System.Double)">
+            <summary>
+            Fonction qui permet d'obtenir un pourcentage d'une valeur.
+            </summary>
+            <param name="this">Pourcentage à appliquer.</param>
+            <param name="value">Valeur à laquelle appliquer le pourcentage.</param>
+            <returns>Le pourcentage souhaité de la valeur.</returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsDouble">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Double"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsDouble.ToCurrencyString(System.Double,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne avec le formattage monaie
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre mais sous forme de monaie avec le symbôle.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsEnum">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Enum"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsEnum.Description(System.Enum)">
+            <summary>
+            Fonction qui permet d'obtenir la valeur de l'attribut description d'un membre d'une énumération.
+            </summary>
+            <param name="enumeration">Type de l'énumération.</param>
+            <returns>
+            La valeur de l'attribut description d'un membre d'une énumération.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsEnum.GetAttributeValue``2(System.Enum,System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet de récupérer une valeur d'un attribut sur le membre d'une énumération.
+            </summary>
+            <typeparam name="T">Type de l'attribut.</typeparam>
+            <typeparam name="TResult">Type de la valeur de retour.</typeparam>
+            <param name="enumeration">Membre de l'énumération.</param>
+            <param name="action">Fonction à utiliser pour récupérer la valeur.</param>
+            <returns>
+            Une valeur sur l'attribut.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsEnum.GetAttributeValue``2(System.Enum,System.Func{``0,``1},``1)">
+            <summary>
+            Fonction qui permet de récupérer une valeur d'un attribut sur le membre d'une énumération.
+            </summary>
+            <typeparam name="T">Type de l'attribut.</typeparam>
+            <typeparam name="TResult">Type de la valeur de retour.</typeparam>
+            <param name="enumeration">Membre de l'énumération.</param>
+            <param name="action">Fonction à utiliser pour récupérer la valeur.</param>
+            <param name="defaultValue">Valeur à retourner si l'attribut n'a pas été trouvé.</param>
+            <returns>
+            Une valeur sur l'attribut.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsException">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Exception"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsException.FullStackTrace(System.Exception)">
+            <summary>
+            Fonction qui permet de récupérer toute la stacktrace d'une exception sour la forme d'une string.
+            </summary>
+            <param name="ex">Exception.</param>
+            <returns>
+            Une string qui contient toute la stacktrace.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsICollection">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.AddIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0)">
+            <summary>
+            Ajoute à la collection l'élément <paramref name="value"/> si l'éxécution de la fonction <paramref name="predicate"/> retourne <see langword="true"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="predicate">Fonction de test.</param>
+            <param name="value">Elément à tester et à ajouter.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+            <example> 
+            Voilà un exemple d'utilisation.
+            <code lang="C#">
+            public class Element 
+            {
+                public int Id { get; set; }
+            }
+            public void Test()
+            {
+                Element element = new Element() { Id = 1 };
+                Collection&lt;Element&gt; collection = new Collection&lt;Element&gt;();
+                collection.AddIf(x => x.Id > 0, element);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.AddIfNotContains``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            Ajoute à la collection l'élément <paramref name="value"/> si l'élément n'est pas déjà présent.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="value">Elément à tester et à ajouter.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.AddRange``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Ajoute à la collection les éléments de <paramref name="values"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Eléments à ajouter.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0[])">
+            <summary>
+            Ajoute à la collection les éléments de <paramref name="values"/>, chaque élément est soumis à la fonction <paramref name="predicate"/> et n'est ajouté que si elle retourne <see langword="true"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="predicate">Fonction de test.</param>
+            <param name="values">Eléments à ajouter.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Ajoute à la collection les éléments de <paramref name="values"/> si ils ne sont pas déjà présents.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Elément à tester et à ajouter.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.ContainsAll``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si la collection contient tous les éléments de <paramref name="values"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Eléments à tester.</param>
+            <returns>
+            <see langword="true"/> si tous les éléments sont présent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.ContainsAny``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si la collection contient au moins un des éléments de <paramref name="values"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Eléments à tester.</param>
+            <returns>
+            <see langword="true"/> si au moins un des éléments sont présent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une collection est vide.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <returns>
+            <see langword="true"/> si la collection est vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.IsNotEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une collection n'est pas vide.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <returns>
+            <see langword="true"/> si la collection n'est pas vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.IsNotNullAndNotEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une collection n'est pas vide et n'est pas null.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <returns>
+            <see langword="true"/> si la collection n'est pas vide et n'est pas null, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une collection n'est pas null ou vide.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <returns>
+            <see langword="true"/> si la collection n'est pas null ou vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveAll``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fonction qui permet de supprimer tous les éléments d'une collection.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveIf``1(System.Collections.Generic.ICollection{``0},``0,System.Func{``0,System.Boolean})">
+            <summary>
+            Fonction qui permet de supprimer un élément d'une collection si l'éxécution d'une fonction retourne <see langword="true"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="value">Valeur à supprimer.</param>
+            <param name="predicate">Fonction de test.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveIfContains``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            Fonction qui permet de supprimer une valeur présente dans une collection.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="value">Valeur à supprimer.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveRange``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Fonction qui permet de supprimer des valeurs d'une collection.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Valeurs à supprimer.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0[])">
+            <summary>
+            Fonction qui permet de supprimer des valeurs d'une collection si l'éxécution d'une fonction retourne <see langword="true"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="predicate">Fonction de test.</param>
+            <param name="values">Valeurs à supprimer.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveRangeIfContains``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Fonction qui permet de supprimer des valeurs présentent dans une collection.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Valeurs à supprimer.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsICollection.RemoveWhere``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Fonction qui permet de supprimer des valeurs d'une collection à partir d'une fonction.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="predicate">Fonction de séléction des éléments.</param>
+        </member>
+        <member name="T:ID3iCore.ExtensionsIDictionary">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.AddIfNotContainsKey``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Fonction qui permet d'ajouter à un dictionnaire, un couple clef/valeur.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="value">Valeur.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.AddIfNotContainsKey``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``1})">
+            <summary>
+            Fonction qui permet d'ajouter à un dictionnaire, un couple clef/valeur, la valeur est obtenue par l'invocation de <paramref name="valueFactory"/>.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="valueFactory">Fonction qui permet d'obtenir la valeur.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.AddIfNotContainsKey``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet d'ajouter à un dictionnaire, un couple clef/valeur, la valeur est obtenue par l'invocation de <paramref name="valueFactory"/>.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="valueFactory">Fonction qui permet d'obtenir la valeur.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Fonction qui permet d'ajouter à un dictionnaire un couple clef/valeur ou de modifier la valeur.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="value">Valeur.</param>
+            <returns>
+            la valeur.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
+            <summary>
+            Fonction qui permet d'ajouter à un dictionnaire un couple clef/valeur ou de modifier la valeur via l'invocation d'une fonction.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="addValue">Valeur.</param>
+            <param name="updateValueFactory">Fonction qui permet d'obtenir la valeur (pour la modification).</param>
+            <returns>
+            la valeur.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
+            <summary>
+            Fonction qui permet d'ajouter à un dictionnaire un couple clef/valeur ou de modifier la valeur via l'invocation d'une fonction.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="addValueFactory">Fonction qui permet d'obtenir la valeur (pour la création).</param>
+            <param name="updateValueFactory">Fonction qui permet d'obtenir la valeur (pour la modification).</param>
+            <returns>
+            la valeur.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.ContainsAllKey``2(System.Collections.Generic.IDictionary{``0,``1},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si toutes les clefs existent dans le dictionnaire.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="keys">Clefs</param>
+            <returns>
+            <see langword="true"/> si toutes les clefs existent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.ContainsAnyKey``2(System.Collections.Generic.IDictionary{``0,``1},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si au moins une des clefs éxistent dans le dictionnaire.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="keys">Clefs</param>
+            <returns>
+            <see langword="true"/> si toutes au moins une des clefs existent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Fonction qui permet d'obtenir la value dans un dictionnaire à partir d'une clef.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="value">Valeur.</param>
+            <returns>
+            La valeur.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet d'obtenir la value dans un dictionnaire à partir d'une clef.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="valueFactory">Fonction qui permet d'obtenir la valeur.</param>
+            <returns>
+            La valeur.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.GetOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            Fonction qui permet de récupérer la valeur pour une clef dans un dictionnaire.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <returns>
+            La valeur si la clef à été trouvée, sinon la valeur par défaut de <typeparamref name="TValue"/>./>
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.GetOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``1})">
+            <summary>
+            Fonction qui permet de récupérer la valeur pour une clef dans un dictionnaire.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+            <param name="valueFactory">Fonction qui permet d'obtenir la valeur par défaut pour le type <typeparamref name="TValue"/>.</param>
+            <returns>
+            La valeur si la clef à été trouvée, sinon la valeur récupérée par la fonction <paramref name="valueFactory"/>./>
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIDictionary.RemoveIfContainsKey``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            Fonction qui permet de supprimer un élément d'un dictionnaire par la clef.
+            </summary>
+            <typeparam name="TKey">Type de la clef.</typeparam>
+            <typeparam name="TValue">Type de la valeur.</typeparam>
+            <param name="this">IDictionnary d'éléments.</param>
+            <param name="key">Clef.</param>
+        </member>
+        <member name="T:ID3iCore.ExtensionsIEnumerable">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.Cartesian``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})">
+            <summary>
+            Fonction qui permet de faire le produit cartesien entre les listes passées en paramètres.
+            </summary>
+            <typeparam name="TFirst">Type des éléments de la première liste.</typeparam>
+            <typeparam name="TSecond">Type des éléments de la seconde liste.</typeparam>
+            <typeparam name="TResult">Type des éléménts de retour.</typeparam>
+            <param name="firstList">Première liste.</param>
+            <param name="secondList">Seconde liste.</param>
+            <param name="resultSelector">Fonction de séléction des éléments.</param>
+            <returns>
+            Le produit cartésien entre les deux liste par rapport à la règle de séléction.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ConditionnalWhere``1(System.Collections.Generic.IEnumerable{``0},System.Func{System.Boolean},System.Func{``0,System.Boolean})">
+            <summary>
+            Fonction qui permet d'appliquer un filtre where (<paramref name="predicateIf"/>) si la condition (<paramref name="condition"/>) est valide./>
+            </summary>
+            <typeparam name="TResult">Type des éléménts de la liste.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="condition">Condition à valider pour mettre en place le where.</param>
+            <param name="predicateIf">Where à mettre en place si la condition est valide.</param>
+            <returns>
+            La liste avec ou sans le filtre where selon le cas.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ConditionnalWhere``1(System.Collections.Generic.IEnumerable{``0},System.Func{System.Boolean},System.Func{``0,System.Boolean},System.Func{``0,System.Boolean})">
+            <summary>
+            Fonction qui permet si la condition (<paramref name="condition"/>) est valide alors un filtre where (<paramref name="predicateIf"/>) est appliqué, sinon un autre filtre where sera appliqué (<paramref name="predicateElse"/>)./>
+            </summary>
+            <typeparam name="TResult">Type des éléménts de la liste.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="condition">Condition à valider pour mettre en place le where.</param>
+            <param name="predicateIf">Where à mettre en place si la condition est valide.</param>
+            <param name="predicateElse">Where à mettre en place si la condition n'est pas satisfaire.</param>
+            <returns>
+            La liste avec l'un ou l'autre des filtres where.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si tous les éléments sont présent dans la liste.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="values">Valeurs à tester.</param>
+            <returns>
+            <see langword="true"/> si tous les éléments sont présent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si au moins un des éléments est présent dans la liste.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="values">Valeurs à tester.</param>
+            <returns>
+            <see langword="true"/> si au moins un des éléments est présent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Fonction qui permet d'énumérer sur une liste et qui applique une action sur chaque élément.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="action">Action à appliquer.</param>
+            <returns>
+            La liste.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            Fonction qui permet d'énumérer sur une liste et qui applique une action sur chaque élément.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="action">Action à appliquer, l'index de chaque élément est transmit..</param>
+            <returns>
+            La liste.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ForEach``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet d'énumérer sur une liste et qui applique une action sur chaque élément.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="function">Function à appliquer.</param>
+            <returns>
+            La liste.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.FromListHierarchy``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}},ID3iCore.TraverseType,System.Int32)">
+            <summary>
+            Fonction qui permet à partir d'une liste d'élément de récupérer une hiérarchie avec tous les enfants.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="source">Liste des éléments.</param>
+            <param name="childrenSelector">Fonction pour récupérer les enfants.</param>
+            <param name="type">Indication pour savoir dans quel sens on parcours l'arbre des éléments.</param>
+            <param name="maxLevel">Indication pour savoir si on doit limiter à un certain niveau de récursion.</param>
+            <returns>
+            la liste à plat de la hiérarchie.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une liste est vide.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <returns>
+            <see langword="true"/> si la liste est vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.IsNotEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une liste n'est pas vide.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <returns>
+            <see langword="true"/> si la liste n'est pas vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.IsNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une liste n'est pas null mais vide.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <returns>
+            <see langword="true"/> si la liste n'est pas null mais vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une liste est null ou vide.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <returns>
+            <see langword="true"/> si la liste est null ou vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet de récupérer l'élément max par rapport à la fonction de séléction.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de la propriété par rapport à laquelle on trouve le max.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="selector">Fonction de sélection.</param>
+            <returns>
+            L'élément max.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Fonction qui permet de récupérer l'élément max par rapport à la fonction de séléction.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de la propriété par rapport à laquelle on trouve le max.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="selector">Fonction de sélection.</param>
+            <param name="comparer">comparer à utiliser.</param>
+            <returns>
+            L'élément max.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet de récupérer l'élément min par rapport à la fonction de séléction.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de la propriété par rapport à laquelle on trouve le min.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="selector">Fonction de sélection.</param>
+            <returns>
+            L'élément min.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Fonction qui permet de récupérer l'élément min par rapport à la fonction de séléction.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de la propriété par rapport à laquelle on trouve le min.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="selector">Fonction de sélection.</param>
+            <param name="comparer">comparer à utiliser.</param>
+            <returns>
+            L'élément min.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},ID3iCore.OrderByDirection)">
+            <summary>
+            Fonction qui permet d'ordonner une liste.
+            </summary>
+            <typeparam name="TSource">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de retour de la fonction de tri.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="keySelector">Fonction de séléction des éléments.</param>
+            <param name="direction">Direction dans laquelle on tri.</param>
+            <returns>
+            La liste triée.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1},ID3iCore.OrderByDirection)">
+            <summary>
+            Fonction qui permet d'ordonner une liste.
+            </summary>
+            <typeparam name="TSource">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de retour de la fonction de tri.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="keySelector">Fonction de séléction des éléments.</param>
+            <param name="direction">Direction dans laquelle on tri.</param>
+            <param name="comparer">comparer à utiliser.</param>
+            <returns>
+            La liste triée.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.Repeat``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Fonction qui permet de répéter les éléments d'une liste.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="count">Nombre de répétition</param>
+            <returns>
+            Une liste avec chaque élément de la liste source répété X fois.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.StringJoin``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Fonction qui permet de joindre les éléments d'une liste.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="separator">Séparator.</param>
+            <returns>
+            Une string avec tous les éléments concaténés.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.StringJoin``1(System.Collections.Generic.IEnumerable{``0},System.Char)">
+            <summary>
+            Fonction qui permet de joindre les éléments d'une liste.
+            </summary>
+            <typeparam name="T">Type des éléments de la liste.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="separator">Séparator.</param>
+            <returns>
+            Une string avec tous les éléments concaténés.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1},ID3iCore.OrderByDirection)">
+            <summary>
+            Fonction qui permet d'ordonner une liste déjà ordonnée.
+            </summary>
+            <typeparam name="TSource">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de retour de la fonction de tri.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="keySelector">Fonction de séléction des éléments.</param>
+            <param name="direction">Direction dans laquelle on tri.</param>
+            <returns>
+            La liste triée.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIEnumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1},ID3iCore.OrderByDirection)">
+            <summary>
+            Fonction qui permet d'ordonner une liste déjà ordonnée.
+            </summary>
+            <typeparam name="TSource">Type des éléments de la liste.</typeparam>
+            <typeparam name="TKey">Type de retour de la fonction de tri.</typeparam>
+            <param name="this">Liste des éléments.</param>
+            <param name="keySelector">Fonction de séléction des éléments.</param>
+            <param name="direction">Direction dans laquelle on tri.</param>
+            <param name="comparer">comparer à utiliser.</param>
+            <returns>
+            La liste triée.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsInt">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsInt.PercentOf(System.Int32,System.Double)">
+            <summary>
+            Fonction qui permet d'obtenir un pourcentage d'une valeur.
+            </summary>
+            <param name="this">Pourcentage à appliquer.</param>
+            <param name="value">Valeur à laquelle appliquer le pourcentage.</param>
+            <returns>Le pourcentage souhaité de la valeur.</returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsIQueryable">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsIQueryable.ConditionnalWhere``1(System.Linq.IQueryable{``0},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Fonction qui permet d'appliquer un filtre where (<paramref name="predicateIf"/>) si la condition (<paramref name="condition"/>) est valide./>
+            </summary>
+            <typeparam name="TResult">Type des éléménts de la requête.</typeparam>
+            <param name="this">Requête.</param>
+            <param name="condition">Condition à valider pour mettre en place le where.</param>
+            <param name="predicateIf">Where à mettre en place si la condition est valide.</param>
+            <returns>
+            La requête avec ou sans le filtre where selon le cas.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsObject">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Object"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.DeepCopy``1(``0)">
+            <summary>
+            Fonction qui permet de cloner en profondeur un élément.
+            </summary>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <param name="source">Elément à cloner.</param>
+            <returns>
+            Une nouvelle instance du <typeparamref name="T"/> avec les valeur de l'objet <paramref name="source"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Fonction qui à partir d'un objet récupére une hiérarchie d'objet du même type
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="source">Elément de départ.</param>
+            <param name="nextItem">Fonction de sélection de l'élément suivant.</param>
+            <param name="canContinue">Fonction qui détermine quand le parcours doit s'arrêter.</param>
+            <returns>
+            La hiérarchie à plat sous forme de liste.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.FromHierarchy``1(``0,System.Func{``0,``0})">
+            <summary>
+            Fonction qui à partir d'un objet récupére une hiérarchie d'objet du même type
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="source">Elément de départ.</param>
+            <param name="nextItem">Fonction de sélection de l'élément suivant.</param>
+            <returns>
+            La hiérarchie à plat sous forme de liste.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.FromObjectHierarchy``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{``0}},ID3iCore.TraverseType,System.Int32)">
+            <summary>
+            Fonction qui permet à partir d'un élément de récupérer une hiérarchie avec tous les enfants.
+            </summary>
+            <typeparam name="T">Type des éléments.</typeparam>
+            <param name="source">Liste des éléments.</param>
+            <param name="childrenSelector">Fonction pour récupérer les enfants.</param>
+            <param name="type">Indication pour savoir dans quel sens on parcours l'arbre des éléments.</param>
+            <param name="maxLevel">Indication pour savoir si on doit limiter à un certain niveau de récursion.</param>
+            <returns>
+            la liste à plat de la hiérarchie.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.IfNotNull``1(``0,System.Action{``0})">
+            <summary>
+            Fonction qui permet d'éxécuter une action sur l'élément si il n'est pas null.
+            </summary>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="action">Action à réaliser.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.IfNotNull``2(``0,System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet d'éxécuter une fonction sur l'élément si il n'est pas null.
+            </summary>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="func">Fonction à éxécuter.</param>
+            <returns>
+            La valeur retourner par la fonction, ou le default du <typeparamref name="TResult"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.IfNotNull``2(``0,System.Func{``0,``1},``1)">
+            <summary>
+            Fonction qui permet d'éxécuter une fonction sur l'élément si il n'est pas null.
+            </summary>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="func">Fonction à éxécuter.</param>
+            <param name="defaultValue">Valeur à retourner si l'élément est null.</param>
+            <returns>
+            La valeur retourner par la fonction, ou la valeur par défaut fournie.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.IfNotNull``2(``0,System.Func{``0,``1},System.Func{``1})">
+            <summary>
+            Fonction qui permet d'éxécuter une fonction sur l'élément si il n'est pas null.
+            </summary>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="func">Fonction à éxécuter.</param>
+            <param name="defaultValueFactory">Fonction qui permet d'obtenir la valeur à retourner si l'élément est null.</param>
+            <returns>
+            La valeur retourner par la fonction, ou la valeur par défaut fournie.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Initialize``1(``0,System.Action{``0})">
+            <summary>
+            Fonction qui permet de réaliser une action sur un élément qui n'est pas null.
+            </summary>
+            <seealso cref="M:ID3iCore.ExtensionsObject.DoIfNotNull``1(``0,System.Action{``0})"/>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="initializer">Action à réaliser.</param>
+            <returns>
+            L'élément.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.DoIfNotNull``1(``0,System.Action{``0})">
+            <summary>
+            Fonction qui permet de réaliser une action sur un élément qui n'est pas null.
+            </summary>
+            <typeparam name="T">Type de l'élément.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="action">Action à réaliser.</param>
+            <returns>L'élément.</returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``2(``0,System.Func{``0,``1})">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryFunction">Fonction à invoquer dans le try.</param>
+            <returns>
+            La valeur retourner par la fonction, ou le default du <typeparamref name="TResult"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``2(``0,System.Func{``0,``1},``1)">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryFunction">Fonction à invoquer dans le try.</param>
+            <param name="catchValue">Valeur à retourner en cas de catch.</param>
+            <returns>
+            La valeur retourner par la fonction, ou la valeur fournie..
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``2(``0,System.Func{``0,``1},System.Func{``0,``1})">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryFunction">Fonction à invoquer dans le try.</param>
+            <param name="catchValueFactory">Fonction à invoquer pour obtenir la valeur de retour en cas de catch.</param>
+            <returns>
+            La valeur retourner par la fonction, ou le default du <typeparamref name="TResult"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``2(``0,System.Func{``0,``1},``1@)">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryFunction">Fonction à invoquer dans le try.</param>
+            <param name="result">Valeur de retour de la fonction.</param>
+            <returns>
+            <see langword="true"/> si tout c'est bien passé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``2(``0,System.Func{``0,``1},``1,``1@)">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryFunction">Fonction à invoquer dans le try.</param>
+            <param name="catchValue">Valeur à retourner en cas de catch.</param>
+            <param name="result">Valeur de retour de la fonction.</param>
+            <returns>
+            <see langword="true"/> si tout c'est bien passé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``2(``0,System.Func{``0,``1},System.Func{``0,``1},``1@)">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <typeparam name="TResult">Type de retour de la fonction.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryFunction">Fonction à invoquer dans le try.</param>
+            <param name="catchValueFactory">Fonction à invoquer pour obtenir la valeur à retourner en cas de catch.</param>
+            <param name="result">Valeur de retour de la fonction.</param>
+            <returns>
+            <see langword="true"/> si tout c'est bien passé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``1(``0,System.Action{``0})">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryAction">Action à réaliser dans le try.</param>
+            <returns>
+            <see langword="true"/> si tout c'est bien passé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsObject.Try``1(``0,System.Action{``0},System.Action{``0})">
+            <summary>
+            Fonction qui encapsule le try / catch.
+            </summary>
+            <typeparam name="TType">Type de l'élément.</typeparam>
+            <param name="this">Elément.</param>
+            <param name="tryAction">Action à réaliser dans le try.</param>
+            <param name="catchAction">Action à réaliser dans le catch.</param>
+            <returns>
+            <see langword="true"/> si tout c'est bien passé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsString">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.AsDirectoryInfo(System.String)">
+            <summary>
+            Fonction qui permet d'obtenir un <see cref="T:System.IO.DirectoryInfo"/> à partir d'un path.
+            </summary>
+            <param name="this">Path du directory.</param>
+            <returns>
+            Le <see cref="T:System.IO.DirectoryInfo"/> correspondant.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.AsEnum``1(System.String,``0)">
+            <summary>
+            Fonction qui permet d'obtenir le membre d'une énumération par rapport à sa valeur.
+            </summary>
+            <typeparam name="T">Type de l'énumération.</typeparam>
+            <param name="this">Nom du membre.</param>
+            <param name="defaultValue">Valeur par défaut.</param>
+            <returns>
+            Le membre de l'énumération correspondant.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.AsEnum``1(System.String)">
+            <summary>
+            Fonction qui permet d'obtenir le membre d'une énumération par rapport à sa valeur.
+            </summary>
+            <typeparam name="T">Type de l'énumération.</typeparam>
+            <param name="this">Nom du membre.</param>
+            <returns>
+            Le membre de l'énumération correspondant.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.AsFileInfo(System.String)">
+            <summary>
+            Fonction qui permet d'obtenir un <see cref="T:System.IO.FileInfo"/> à partir d'un path.
+            </summary>
+            <param name="this">Path.</param>
+            <returns>
+            Le <see cref="T:System.IO.FileInfo"/> correspondant.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.Contains(System.String,System.String)">
+            <summary>
+            Fonction qui permet de déterminer si une string existe dans une autre.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="value">String à tester.</param>
+            <returns>
+            <see langword="true"/> si la string existe dans la source, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            Fonction qui permet de déterminer si une string existe dans une autre.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="value">String à tester.</param>
+            <param name="comparisonType">Mode de comparaison.</param>
+            <returns>
+            <see langword="true"/> si la string existe dans la source, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.GetAfter(System.String,System.String)">
+            <summary>
+            Fonction qui permet d'obtenir sur une string source tout ce qu'il y a après la chaîne à trouver.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="value">String à trouver et après laquelle tout sera renvoyé.</param>
+            <returns>
+            Le reste de la string source après le dernier char de la string à trouver.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.GetBefore(System.String,System.String)">
+            <summary>
+            Fonction qui permet d'obtenir sur une string source tout ce qu'il y a avant la chaîne à trouver.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="value">String à trouver et avant laquelle tout sera renvoyé.</param>
+            <returns>
+            La string source jusqu'au premier char de la chaîne à trouver.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.GetBetween(System.String,System.String,System.String)">
+            <summary>
+            Fonction qui permet sur une string source tout ce qu'il y a entre deux string à trouver.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="before">String de fin à trouver.</param>
+            <param name="after">String de départ à trouver.</param>
+            <returns>
+            Tout ce qui se trouve entre le dernier char de <paramref name="after"/> et le premier char de <paramref name="before"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.IfEmpty(System.String,System.String)">
+            <summary>
+            Fonction qui retourne une string.
+            </summary>
+            <param name="value">String source.</param>
+            <param name="defaultValue">Valeur à retourner si la string source est null.</param>
+            <returns>
+            La string source si elle n'est pas null ou vide, la valeur par défaut sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.IsEmpty(System.String)">
+            <summary>
+            Fonction qui permet de déterminer si la string est vide.
+            </summary>
+            <param name="this">String source.</param>
+            <returns>
+            <see langword="true"/> si la string source est vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.IsNotEmpty(System.String)">
+            <summary>
+            Fonction qui permet de déterminer si la string n'est pas vide.
+            </summary>
+            <param name="this">String source.</param>
+            <returns>
+            <see langword="true"/> si la string source n'est pas vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.IsNotNullOrEmpty(System.String)">
+            <summary>
+            Fonction qui permet de déterminer si une string n'est pas null ou vide.
+            </summary>
+            <param name="this">String source.</param>
+            <returns>
+            <see langword="true"/> si la string n'est pas null ou vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.IsNotNullOrWhiteSpace(System.String)">
+            <summary>
+            Fonction qui permet de déterminer si une string n'est pas null ou ne contient pas d'espance blanc.
+            </summary>
+            <param name="this">String source.</param>
+            <returns>
+            <see langword="true"/> si la string n'est pas null ou ne contient pas d'espace blanc, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.IsNullOrEmpty(System.String)">
+            <summary>
+            Fonction qui permet de déterminer si une string est null ou vide.
+            </summary>
+            <param name="this">String source.</param>
+            <returns>
+            <see langword="true"/> si la string est null ou vide, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.Left(System.String,System.Int32)">
+            <summary>
+            Fonction qui permet d'obtenir la partie gauche d'une string.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="length">Nombre de char à prendre.</param>
+            <returns>
+            La string à partir du premier char jusqu'à la <paramref name="length"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.Right(System.String,System.Int32)">
+            <summary>
+            Fonction qui permet d'obtenir les derniers char d'une string.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="length">Nombre de char à prendre.</param>
+            <returns>
+            La string à partir du dernier char jusqu'à la <paramref name="length"/>.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.SafeGetDirectoryPath(System.String)">
+            <summary>
+            Fonction qui permet de s'assurer que le directory est déjà créé, le créé au cas ou.
+            </summary>
+            <param name="this">Path du directory.</param>
+            <returns>
+            Le path vers le directory.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.SaveAs(System.String,System.String,System.IO.FileMode)">
+            <summary>
+            Fonction qui permet d'enregistrer la string dans un fichier.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="fileName">Nom du fichier.</param>
+            <param name="mode">Mode de gestion du fichier.</param>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.Split(System.String,System.String,System.StringSplitOptions)">
+            <summary>
+            Fonction qui permet de découper une string.
+            </summary>
+            <param name="this">String source.</param>
+            <param name="separator">Séparateur.</param>
+            <param name="option">Options pour le split.</param>
+            <returns>
+            Un tableau qui contient toutes les valeurs.
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.ToHash(System.String)">
+            <summary>
+            Crypte la chaîne en paramètre avec MD5 et renvoit sa représentation sous forme de chaîne.
+            </summary>
+            <param name="this">Chaîne à crypter.</param>
+            <returns>Une chaîne représentant le cryptage de <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.EncodeToBase64String(System.String)">
+            <summary>
+            Encode le contenu d'un fichier en base64.
+            </summary>
+            <param name="path">Chemin complet du fichier à encoder.</param>
+            <returns>Le contenu du fichier encoder en base64 sous forme de chaîne.</returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.DecodeFromBase64String(System.String,System.String)">
+            <summary>
+            Décode une chaîne en base 64 en fichier.
+            </summary>
+            <param name="encodedData">Chaîne encodé en base 64.</param>
+            <param name="path">Chemin du fichier.</param>
+            <returns>Un <see cref="T:System.IO.FileInfo"/> correspondant au fichier.</returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.Sha1(System.String)">
+            <summary>
+            Méthode qui permet d'obtenir le SHA1 correspondant d'un fichier.
+            </summary>
+            <param name="path">Chemin du fichier.</param>
+            <returns>La string correspondant au SHA1.</returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsString.SanitizeFileName(System.String)">
+            <summary>
+            Méthode qui permet de s'assurer qu'un nom de fichier ne contient pas de caractère interdit.
+            </summary>
+            <param name="fileName">Nom du fichier (sans le chemin complet).</param>
+            <returns>
+            Le nom du fichier avec les caractères interdit de remplacés si il y en a.
+            </returns>
+        </member>
+        <member name="T:ID3iCore.ExtensionsType">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="M:ID3iCore.ExtensionsType.EnumToDictionary(System.Type)">
+            <summary>
+            Fonction qui permet à partir d'une énumération d'obtenir un dictionnaire.
+            </summary>
+            <param name="this">Type de l'énumération.</param>
+            <returns>
+            Un dictionnaire avec en clef le membre de l'énumération en <see cref="T:System.String"/> et en valeur la description obtenue grâce à <see cref="M:ID3iCore.ExtensionsEnum.Description(System.Enum)"/>
+            </returns>
+        </member>
+        <member name="M:ID3iCore.ExtensionsType.EnumToDictionary``1(System.Type)">
+            <summary>
+            Fonction qui permet à partir d'une énumération d'obtenir un dictionnaire.
+            </summary>
+            <typeparam name="T">Type de l'énumération.</typeparam>
+            <param name="this">Type de l'énumération.</param>
+            <returns>
+            Un dictionnaire avec en clef le membre de l'énumération en <see cref="T:System.Enum"/> et en valeur la description obtenue grâce à <see cref="M:ID3iCore.ExtensionsEnum.Description(System.Enum)"/>
+            </returns>
+        </member>
+        <member name="T:ID3iCore.OrderByDirection">
+            <summary>
+            <see cref="T:ID3iCore.OrderByDirection"/>
+            </summary>
+        </member>
+        <member name="F:ID3iCore.OrderByDirection.Ascending">
+            <summary>
+            <see cref="F:ID3iCore.OrderByDirection.Ascending"/>.
+            </summary>
+        </member>
+        <member name="F:ID3iCore.OrderByDirection.Descending">
+            <summary>
+            <see cref="F:ID3iCore.OrderByDirection.Descending"/>.
+            </summary>
+        </member>
+        <member name="T:ID3iCore.TraverseType">
+            <summary>
+            <see cref="T:ID3iCore.TraverseType"/>
+            </summary>
+        </member>
+        <member name="F:ID3iCore.TraverseType.RootToLeaf">
+            <summary>
+            <see cref="F:ID3iCore.TraverseType.RootToLeaf"/>.
+            </summary>
+        </member>
+        <member name="F:ID3iCore.TraverseType.LeafToRoot">
+            <summary>
+            <see cref="F:ID3iCore.TraverseType.LeafToRoot"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

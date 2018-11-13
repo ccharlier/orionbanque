@@ -61,6 +61,7 @@ namespace OrionBanque.Forms
                 txtInsererOuvertureFichier.Checked = eA.InsererOuvertureFichier ?? false;
                 txtDecaleSamedi.Checked = eA.DecaleSamedi ?? false;
                 txtDecaleDimanche.Checked = eA.DecaleSamedi ?? false;
+                txtDecaleJourFerie.Checked = eA.DecaleJourFerie ?? false;
             }
             catch (Exception ex)
             {
@@ -175,6 +176,7 @@ namespace OrionBanque.Forms
                 eA.InsererOuvertureFichier = txtInsererOuvertureFichier.Checked;
                 eA.DecaleSamedi = txtDecaleSamedi.Checked;
                 eA.DecaleDimanche = txtDecaleDimanche.Checked;
+                eA.DecaleJourFerie = txtDecaleJourFerie.Checked;
                 cont = true;
 
                 if (eA.Id != 0)
