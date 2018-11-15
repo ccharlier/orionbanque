@@ -102,7 +102,7 @@ namespace OrionBanque.Classe
 
         public static List<string> InsereEcheance(List<Echeancier> le)
         {
-            IEnumerable<SpecificDay> specificDays = HolidaySystem.Instance.All(2018, "FR", RuleType.Public);
+            IEnumerable<SpecificDay> specificDays = HolidaySystem.Instance.All(DateTime.Now.Year, "FR", RuleType.Public);
             
             List<string> retour = new List<string>();
             foreach (Echeancier ec in le)

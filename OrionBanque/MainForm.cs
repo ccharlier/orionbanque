@@ -582,9 +582,19 @@ namespace OrionBanque
 
         private void TsVirementCaC_Click(object sender, EventArgs e)
         {
+            LanceVirementCompteACompte();
+        }
+
+        private void virementCompteÀCompteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanceVirementCompteACompte();
+        }
+
+        private void LanceVirementCompteACompte()
+        {
             try
             {
-                if(cbCompte.Items.Count == 0)
+                if (cbCompte.Items.Count == 0)
                     throw new Exception(erreurPasDeCompteCreer);
 
                 Forms.VirementCaC oa = new Forms.VirementCaC(uA);
@@ -596,7 +606,7 @@ namespace OrionBanque
 
                 tsSave.Enabled = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
