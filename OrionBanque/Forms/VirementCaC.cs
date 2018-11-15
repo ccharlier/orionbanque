@@ -97,12 +97,14 @@ namespace OrionBanque.Forms
 
         private void CbCompteOri_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblTotOri.Text = String.Format("{0,12:0,0.00}", Classe.Operation.CalculSoldOpePoint(int.Parse(cbCompteOri.SelectedValue.ToString()))) + " €";
+            Classe.Compte c = Classe.Compte.Charge((int)cbCompteOri.SelectedValue);
+            lblTotOri.Text = string.Format("{0,12:0,0.00}", c.SoldeOperationPointee()) + " €";
         }
 
         private void CbCompteDest_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblTotDest.Text = String.Format("{0,12:0,0.00}", Classe.Operation.CalculSoldOpePoint(int.Parse(cbCompteDest.SelectedValue.ToString()))) + " €";
+            Classe.Compte c = Classe.Compte.Charge((int)cbCompteDest.SelectedValue);
+            lblTotDest.Text = string.Format("{0,12:0,0.00}", c.SoldeOperationPointee()) + " €";
         }
 
         private void PictureBox6_Click(object sender, EventArgs e)

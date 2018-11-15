@@ -288,6 +288,12 @@
     <Compile Include="Forms\Operation.Designer.cs">
       <DependentUpon>Operation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TotalComptes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TotalComptes.Designer.cs">
+      <DependentUpon>TotalComptes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Utilisateur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OperationMajGroupe.resx">
       <DependentUpon>OperationMajGroupe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TotalComptes.resx">
+      <DependentUpon>TotalComptes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Utilisateur.resx">
       <DependentUpon>Utilisateur.cs</DependentUpon>

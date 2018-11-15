@@ -63,35 +63,47 @@ namespace OrionBanque
         {
             try
             {
-                double soldOpePoint = Classe.Operation.CalculSoldOpePoint(c);
-                double aVenir = Classe.Operation.CalculAVenir(c);
+                double soldOpePoint = c.SoldeOperationPointee();
+                double aVenir = c.AVenir();
                 double soldFinal = soldOpePoint + aVenir;
 
-                lblSoldPoint.Text = String.Format("{0,12:0,0.00}", soldOpePoint) + " €";
-                lblAVenir.Text = String.Format("{0,12:0,0.00}", aVenir) + " €";
-                lblSoldFinal.Text = String.Format("{0,12:0,0.00}", soldFinal) + " €";
+                lblSoldPoint.Text = string.Format("{0,12:0,0.00}", soldOpePoint) + " €";
+                lblAVenir.Text = string.Format("{0,12:0,0.00}", aVenir) + " €";
+                lblSoldFinal.Text = string.Format("{0,12:0,0.00}", soldFinal) + " €";
 
-                ChargeGraph(Classe.Compte.Charge((Int32)cbCompte.SelectedValue));
+                ChargeGraph(Classe.Compte.Charge((int)cbCompte.SelectedValue));
 
                 if(soldOpePoint > 0)
+                {
                     lblSoldPoint.ForeColor = Color.DarkGreen;
+                }
                 else
+                {
                     lblSoldPoint.ForeColor = Color.Red;
+                }
 
-                if(aVenir > 0)
+                if (aVenir > 0)
+                {
                     lblAVenir.ForeColor = Color.DarkGreen;
+                }
                 else
+                {
                     lblAVenir.ForeColor = Color.Red;
+                }
 
-                if(soldFinal > 0)
+                if (soldFinal > 0)
+                {
                     lblSoldFinal.ForeColor = Color.DarkGreen;
+                }
                 else
+                {
                     lblSoldFinal.ForeColor = Color.Red;
+                }
 
-                if(soldOpePoint <= c.SeuilAlerte)
+                if (soldOpePoint <= c.SeuilAlerte)
                 {
                     pb.Visible = true;
-                    this.toolTipG.SetToolTip(this.pb, "Attention, seuil d'alerte (" + c.SeuilAlerte + " €)" + " atteint ou dépassé : " + Math.Round(soldOpePoint,2) + " €");
+                    toolTipG.SetToolTip(pb, "Attention, seuil d'alerte (" + c.SeuilAlerte + " €)" + " atteint ou dépassé : " + Math.Round(soldOpePoint,2) + " €");
                 }
                 else
                 {
@@ -101,7 +113,7 @@ namespace OrionBanque
                 if(soldFinal <= c.SeuilAlerteFinal)
                 {
                     pbSoldeFinal.Visible = true;
-                    this.toolTipG.SetToolTip(this.pbSoldeFinal, "Attention, seuil d'alerte (" + c.SeuilAlerteFinal + " €)" + " atteint ou dépassé : " + Math.Round(soldFinal,2) + " €");
+                    toolTipG.SetToolTip(pbSoldeFinal, "Attention, seuil d'alerte (" + c.SeuilAlerteFinal + " €)" + " atteint ou dépassé : " + Math.Round(soldFinal,2) + " €");
                 }
                 else
                 {
@@ -595,7 +607,9 @@ namespace OrionBanque
             try
             {
                 if (cbCompte.Items.Count == 0)
+                {
                     throw new Exception(erreurPasDeCompteCreer);
+                }
 
                 Forms.VirementCaC oa = new Forms.VirementCaC(uA);
                 oa.ShowDialog();
@@ -878,6 +892,12 @@ namespace OrionBanque
                     MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
                 }
             }
+        }
+
+        private void totalDesComptesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.TotalComptes f = new Forms.TotalComptes(uA);
+            f.ShowDialog();
         }
     }
 }

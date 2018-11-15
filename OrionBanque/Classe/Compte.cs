@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
@@ -160,6 +161,114 @@ namespace OrionBanque.Classe
                 throw;
             }
             return c;
+        }
+
+        public List<Operation> Operations()
+        {
+            Log.Logger.Debug("Debut Operations()");
+            List<Operation> lo = new List<Operation>();
+            try
+            {
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                lo = ob.Operations.Where(ot => ot.Compte.Id == Id).OrderByDescending(x => x.Date).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return lo;
+        }
+
+        public double AVenir()
+        {
+            double rPositif = 0.0;
+            double rNegatif = 0.0;
+
+            foreach (Operation o in Operations().Where(o => o.DatePointage is null).ToList())
+            {
+                if (o.ModePaiement.Type.Equals("D"))
+                {
+                    rNegatif += o.Montant;
+                }
+
+                if (o.ModePaiement.Type.Equals("C"))
+                {
+                    rPositif += o.Montant;
+                }
+            }
+
+            return rPositif - rNegatif;
+        }
+
+        public double SoldeOperationPointee()
+        {
+            double rPositif = 0.0;
+            double rNegatif = 0.0;
+
+            foreach (Operation o in Operations().Where(o => o.DatePointage != null).ToList())
+            {
+                if (o.ModePaiement.Type.Equals("D"))
+                {
+                    rNegatif += o.Montant;
+                }
+
+                if (o.ModePaiement.Type.Equals("C"))
+                {
+                    rPositif += o.Montant;
+                }
+            }
+
+            return rPositif - rNegatif + SoldeInitial;
+        }
+
+        public static DataSet DataSetTotalComptes(Utilisateur u)
+        {
+            double totPointe = 0.0;
+            double totaVenir = 0.0;
+            double totSolde = 0.0;
+
+            Type elementType = typeof(Operation);
+            DataSet ds = new DataSet();
+            DataTable t = new DataTable("TotalComptes");
+            ds.Tables.Add(t);
+
+            t.Columns.Add("Compte", typeof(string));
+            t.Columns.Add("Pointé", typeof(double));
+            t.Columns.Add("A venir", typeof(double));
+            t.Columns.Add("Solde", typeof(double));
+            
+            List<Compte> list = ChargeTout(u);
+
+            //go through each property on T and add each value to the table
+            foreach (Compte item in list)
+            {
+                DataRow row = t.NewRow();
+                double soldOpePoint = item.SoldeOperationPointee();
+                double aVenir = item.AVenir();
+                double soldFinal = soldOpePoint + aVenir;
+
+                row["Compte"] = item.Libelle;
+                row["Pointé"] = soldOpePoint;
+                row["A venir"] = aVenir;
+                row["Solde"] = soldFinal;
+
+                totPointe += soldOpePoint;
+                totaVenir += aVenir;
+                totSolde += soldFinal;
+                
+                t.Rows.Add(row);
+            }
+
+            DataRow rowTot = t.NewRow();
+            rowTot["Compte"] = "Total";
+            rowTot["Pointé"] = totPointe;
+            rowTot["A venir"] = totaVenir;
+            rowTot["Solde"] = totSolde;
+
+            t.Rows.Add(rowTot);
+
+            return ds;
         }
     }
 }

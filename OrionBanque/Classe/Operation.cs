@@ -48,23 +48,6 @@ namespace OrionBanque.Classe
             return o;
         }
 
-        public static List<Operation> ChargeTout(int idC)
-        {
-            Log.Logger.Debug("Debut Operation.Charge(" + idC + ")");
-            List<Operation> lo = new List<Operation>();
-            try
-            {
-                OB ob = (OB)CallContext.GetData(KEY.OB);
-                lo = ob.Operations.Where(ot => ot.Compte.Id == idC).OrderByDescending(x => x.Date).ToList();
-            }
-            catch (Exception ex)
-            {
-                Log.Logger.Error(ex.Message);
-                throw;
-            }
-            return lo;
-        }
-
         public static List<Operation> ChargeToutUtilisateur(Utilisateur u)
         {
             Log.Logger.Debug("Debut Operation.ChargeToutUtilisateur(" + u.Login + ")");
@@ -116,70 +99,12 @@ namespace OrionBanque.Classe
         {
             Log.Logger.Debug("Debut Operations.ChargeToutTiers(" + idC + ")");
             List<string> ls = new List<string>();
-            List<Operation> lo = ChargeTout(idC).OrderBy(o => o.Tiers).ToList();
+            List<Operation> lo = Compte.Charge(idC).Operations().OrderBy(o => o.Tiers).ToList();
             foreach (Operation o in lo)
             {
                 ls.Add(o.Tiers);
             }
             return ls.Distinct().ToList();
-        }
-
-        public static double CalculAVenir(int c)
-        {
-            return CalculAVenir(Compte.Charge(c));
-        }
-
-        public static double CalculAVenir(Compte c)
-        {
-            Log.Logger.Debug("Debut Operations.CalculAVenir(" + c.Id + ")");
-            List<Operation> lo = ChargeTout(c.Id).Where(o => o.DatePointage is null).ToList();
-
-            double rPositif = 0.0;
-            double rNegatif = 0.0;
-
-            foreach (Operation o in lo)
-            {
-                if (o.ModePaiement.Type.Equals("D"))
-                {
-                    rNegatif += o.Montant;
-                }
-
-                if (o.ModePaiement.Type.Equals("C"))
-                {
-                    rPositif += o.Montant;
-                }
-            }
-
-            return rPositif - rNegatif;
-        }
-
-        public static double CalculSoldOpePoint(int c)
-        {
-            return CalculSoldOpePoint(Compte.Charge(c));
-        }
-
-        public static double CalculSoldOpePoint(Compte c)
-        {
-            Log.Logger.Debug("Debut Operations.CalculSoldOpePoint(" + c.Id + ")");
-            List<Operation> lo = ChargeTout(c.Id).Where(o => o.DatePointage != null).ToList();
-
-            double rPositif = 0.0;
-            double rNegatif = 0.0;
-
-            foreach (Operation o in lo)
-            {
-                if (o.ModePaiement.Type.Equals("D"))
-                {
-                    rNegatif += o.Montant;
-                }
-
-                if (o.ModePaiement.Type.Equals("C"))
-                {
-                    rPositif += o.Montant;
-                }
-            }
-
-            return rPositif - rNegatif + c.SoldeInitial;
         }
 
         public static Operation Maj(Operation oA)
@@ -215,7 +140,7 @@ namespace OrionBanque.Classe
             IDictionary<string, double> dict = new Dictionary<string, double>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in ChargeTout(idC))
+            foreach (Operation o in Compte.Charge(idC).Operations())
             {
                 string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
                 double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
@@ -243,7 +168,7 @@ namespace OrionBanque.Classe
             List<string> lt = new List<string>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in ChargeTout(idC))
+            foreach (Operation o in Compte.Charge(idC).Operations())
             {
                 string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
                 if (o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT)
@@ -279,7 +204,7 @@ namespace OrionBanque.Classe
             Dictionary<int, double> dict = new Dictionary<int, double>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Classe.Operation o in ChargeTout(idC))
+            foreach (Operation o in Compte.Charge(idC).Operations())
             {
                 double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
                 dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
@@ -306,9 +231,9 @@ namespace OrionBanque.Classe
             List<int> lt = new List<int>();
             List<string[]> retour = new List<string[]>();
 
-            foreach (Operation o in ChargeTout(idC))
+            foreach (Operation o in Compte.Charge(idC).Operations())
             {
-                if (o.ModePaiement.Type == Classe.KEY.MODEPAIEMENT_DEBIT)
+                if (o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT)
                 {
                     dictD[o.Categorie.Id] = dictD.ContainsKey(o.Categorie.Id) ? dictD[o.Categorie.Id] + o.Montant : o.Montant;
                 }
@@ -390,7 +315,7 @@ namespace OrionBanque.Classe
         public static DataSet ChargeGrilleOperation(int idCompte)
         {
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperation(" + idCompte + ")");
-            List<Operation> lo = ChargeTout(idCompte);
+            List<Operation> lo = Compte.Charge(idCompte).Operations();
             return ToDataSet(lo);
         }
 
@@ -404,7 +329,7 @@ namespace OrionBanque.Classe
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
             DataSet retour = new DataSet();
 
-            List<Operation> lo = ChargeTout(idCompte);
+            List<Operation> lo = Classe.Compte.Charge(idCompte).Operations();
             if (bDate)
             {
                 switch (cbFiltreDate)
