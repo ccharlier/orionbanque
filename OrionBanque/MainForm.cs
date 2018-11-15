@@ -181,7 +181,7 @@ namespace OrionBanque
                 Forms.EcheanciersGest ec = new Forms.EcheanciersGest(uA);
                 ec.ShowDialog();
 
-                Classe.Compte c = Classe.Compte.Charge((Int32)cbCompte.SelectedValue);
+                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
 
@@ -427,11 +427,13 @@ namespace OrionBanque
                 dgvOperations.Columns["ModePaiementType"].Visible = false;
                 dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
                 dgvOperations.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
+                dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
+                dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Format = "d";
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvOperations.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvOperations.Columns["Solde"].Visible = false;
                 dgvOperations.Sort(dgvOperations.Columns["Date"], System.ComponentModel.ListSortDirection.Descending);
             }
             catch (Exception ex)
@@ -442,19 +444,11 @@ namespace OrionBanque
 
         private void dgvOperations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /*foreach (DataGridViewRow r in dgvOperations.Rows)
+            if ((e.ColumnIndex == this.dgvOperations.Columns["Montant Débit"].Index || e.ColumnIndex == this.dgvOperations.Columns["Montant Crédit"].Index) && e.Value != null)
             {
-                if (Convert.ToString(r.Cells["ModePaiementType"].Value) == Classe.KEY.MODEPAIEMENT_DEBIT)
-                {
-                    r.Cells["Montant"].Style.ForeColor = Color.Red;
-                    r.Cells["Montant"].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                }
-                else
-                {
-                    r.Cells["Montant"].Style.ForeColor = Color.Black;
-                    r.Cells["Montant"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                }
-            }*/
+                DataGridViewCell cell = this.dgvOperations.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                cell.ToolTipText = "Solde : " + dgvOperations.Rows[e.RowIndex].Cells["Solde"].Value.ToString();
+            }
         }
 
         private void DgvOperations_DoubleClick(object sender, EventArgs e)
