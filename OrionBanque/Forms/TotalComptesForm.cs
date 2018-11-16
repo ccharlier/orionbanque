@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class TotalComptesForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        Classe.Utilisateur uA;
+        Utilisateur uA;
 
-        public TotalComptesForm(Classe.Utilisateur u)
+        public TotalComptesForm(Utilisateur u)
         {
             InitializeComponent();
             uA = u;
@@ -26,7 +22,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                DataSet ds = Classe.Compte.DataSetTotalComptes(uA);
+                DataSet ds = Compte.DataSetTotalComptes(uA);
                 kDgvTotalCompte.DataSource = ds;
                 kDgvTotalCompte.DataMember = "TotalComptes";
                 kDgvTotalCompte.Columns["Pointé"].DefaultCellStyle.Format = "c";

@@ -422,8 +422,8 @@ namespace OrionBanque.Classe
         {
             Log.Logger.Debug("Debut Operation.MajCategorieOperations(" + idCompte + ")");
 
-            Categorie catOri = Classe.Categorie.Charge(idCatOri);
-            Categorie catDest = Classe.Categorie.Charge(idCatOri);
+            Categorie catOri = Categorie.Charge(idCatOri);
+            Categorie catDest = Categorie.Charge(idCatOri);
 
             List<Operation> lo = new List<Operation>();
             try

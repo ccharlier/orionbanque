@@ -274,7 +274,7 @@ namespace OrionBanque.Classe
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
                 ob.Echeanciers.RemoveAll((e) => e.Id == id);
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {

@@ -3,6 +3,8 @@ namespace OrionBanque.Classe
     public class KEY
     {
         public const string CLE_CONNECTION = "CLE_CONNECTION";
+        public const string MODE_UPDATE = "UPDATE";
+        public const string MODE_INSERT = "INSERT";
         public const string REP_BACKUP = "backup";
         public const string REP_FICHIER_OP = "fichier_op";
         public const string BD_SQLITE = "SQLite";
@@ -13,13 +15,15 @@ namespace OrionBanque.Classe
         public const string KEY_USER_CONNECTED = "KEY_USER_CONNECTED";
         public const string KEY_APPLI_VERSION = "KEY_APPLI_VERSION";
         public const string ECHEANCIER_JOUR = "J";
-        public const string ECHEANCIER_JOUR_TEXTE = "J";
+        public const string ECHEANCIER_JOUR_LIB = "Jour(s)";
         public const string ECHEANCIER_MOIS = "M";
-        public const string ECHEANCIER_MOIS_TEXTE = "M";
+        public const string ECHEANCIER_MOIS_LIB = "Mois";
         public const string ECHEANCIER_ANNEE = "A";
-        public const string ECHEANCIER_ANNEE_TEXTE = "A";
+        public const string ECHEANCIER_ANNEE_LIB = "Année(s)";
         public const string MODEPAIEMENT_DEBIT = "D";
         public const string MODEPAIEMENT_CREDIT = "C";
+        public const string MODEPAIEMENT_DEBIT_LIB = "Débit";
+        public const string MODEPAIEMENT_CREDIT_LIB = "Crédit";
         public const string COMPARAISON_INF_EGALE = "<=";
         public const string COMPARAISON_EGALE = "=";
         public const string COMPARAISON_SUP_EGALE = ">=";

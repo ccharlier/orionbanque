@@ -187,12 +187,12 @@ namespace OrionBanque.Classe
 
             foreach (Operation o in Operations().Where(o => o.DatePointage is null).ToList())
             {
-                if (o.ModePaiement.Type.Equals("D"))
+                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_DEBIT))
                 {
                     rNegatif += o.Montant;
                 }
 
-                if (o.ModePaiement.Type.Equals("C"))
+                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_CREDIT))
                 {
                     rPositif += o.Montant;
                 }
@@ -208,12 +208,12 @@ namespace OrionBanque.Classe
 
             foreach (Operation o in Operations().Where(o => o.DatePointage != null).ToList())
             {
-                if (o.ModePaiement.Type.Equals("D"))
+                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_DEBIT))
                 {
                     rNegatif += o.Montant;
                 }
 
-                if (o.ModePaiement.Type.Equals("C"))
+                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_CREDIT))
                 {
                     rPositif += o.Montant;
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrionBanque.Classe;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -53,45 +54,61 @@ namespace OrionBanque.Forms
                 string xBar = string.Empty;
                 switch (typeGraph)
                 {
-                    case "Par Tiers" :
-                    case "tiers":
+                    case KEY.GRAPH_TIERS:
+                    case KEY.GRAPH_TIERS_LIB:
                         title = "Par tiers";
                         xBar = "Tiers";
                         if(kBtnHisto.Checked)
-                            this.CreateChartSingle(xGraph, title, xBar, Classe.Operation.GroupByTiers(idC));
+                        {
+                            CreateChartSingle(xGraph, title, xBar, Operation.GroupByTiers(idC));
+                        }
                         else if (kbtnCam.Checked)
-                            this.CreateChartCam(xGraph, title, Classe.Operation.GroupByTiers(idC));
+                        {
+                            CreateChartCam(xGraph, title, Operation.GroupByTiers(idC));
+                        }
+
                         break;
-                    case "Par Tiers Dissociés":
-                    case "tiersDC":
+                    case KEY.GRAPH_TIERS_DC:
+                    case KEY.GRAPH_TIERS_DC_LIB:
                         title = "Par tiers";
                         xBar = "Tiers";
                         if (kBtnHisto.Checked)
-                            this.CreateChartDouble(xGraph, title, xBar, Classe.Operation.GroupByTiersDC(idC));
+                        {
+                            CreateChartDouble(xGraph, title, xBar, Operation.GroupByTiersDC(idC));
+                        }
                         else if (kbtnCam.Checked)
-                            CreateChartCamDouble(xGraph, title, Classe.Operation.GroupByTiersDC(idC));
+                        {
+                            CreateChartCamDouble(xGraph, title, Operation.GroupByTiersDC(idC));
+                        }
+
                         break;
-                    case "Par Catégories":
-                    case "categories":
+                    case KEY.GRAPH_CATEGORIES:
+                    case KEY.GRAPH_CATEGORIES_LIB:
                         title = "Par catégories";
                         xBar = "Catégories";
                         if (kBtnHisto.Checked)
-                            this.CreateChartSingle(xGraph, title, xBar, Classe.Operation.GroupByCategories(idC));
+                        {
+                            CreateChartSingle(xGraph, title, xBar, Operation.GroupByCategories(idC));
+                        }
                         else if (kbtnCam.Checked)
-                            this.CreateChartCam(xGraph, title, Classe.Operation.GroupByCategories(idC));
+                        {
+                            CreateChartCam(xGraph, title, Operation.GroupByCategories(idC));
+                        }
+
                         break;
-                    case "Par Catégories Dissociées":
-                    case "categoriesDC":
+                    case KEY.GRAPH_CATEGORIES_DC:
+                    case KEY.GRAPH_CATEGORIES_DC_LIB:
                         title = "Par Catégories";
                         xBar = "Catégories";
                         if (kBtnHisto.Checked)
-                            this.CreateChartDouble(xGraph, title, xBar, Classe.Operation.GroupByCategoriesDC(idC));
+                        {
+                            CreateChartDouble(xGraph, title, xBar, Operation.GroupByCategoriesDC(idC));
+                        }
                         else if (kbtnCam.Checked)
-                            CreateChartCamDouble(xGraph, title, Classe.Operation.GroupByCategoriesDC(idC));                        
-                        break;
-                    case "histCompte":
-                        title = "Evolution du solde du compte dans le temps";
-                        xBar = "";
+                        {
+                            CreateChartCamDouble(xGraph, title, Operation.GroupByCategoriesDC(idC));
+                        }
+
                         break;
                 }
             }

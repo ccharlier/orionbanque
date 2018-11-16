@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class CompteForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Classe.Compte cA;
-        private Classe.Utilisateur uA;
+        private Compte cA;
+        private Utilisateur uA;
         public bool cont = false;
 
-        public CompteForm(Int32 id)
+        public CompteForm(int id)
         {
             InitializeComponent();
             try
             {
-                cA = Classe.Compte.Charge(id);
+                cA = Compte.Charge(id);
                 txtLibelle.Text = cA.Libelle;
                 txtSoldeInitial.Value = new decimal(cA.SoldeInitial);
                 kBanque.Text = cA.Banque;
@@ -36,13 +37,13 @@ namespace OrionBanque.Forms
                     kryptonRadioButton2.Checked = true;
                 }
                 DataGridViewComboBoxColumn dgvPaiement = (DataGridViewComboBoxColumn)dgvOperations.Columns["Paiement"];
-                List<Classe.ModePaiement> lmp = Classe.ModePaiement.ChargeTout();
+                List<ModePaiement> lmp = ModePaiement.ChargeTout();
                 dgvPaiement.DisplayMember = "Libelle";
                 dgvPaiement.ValueMember = "Id";
                 dgvPaiement.DataSource = lmp;
 
                 DataGridViewComboBoxColumn dgvCategorie = (DataGridViewComboBoxColumn)dgvOperations.Columns["Categorie"];
-                List<Classe.Categorie> lmc = Classe.Categorie.ChargeTout();
+                List<Categorie> lmc = Classe.Categorie.ChargeTout();
                 dgvCategorie.DisplayMember = "Libelle";
                 dgvCategorie.ValueMember = "Id";
                 dgvCategorie.DataSource = lmc;
@@ -53,7 +54,7 @@ namespace OrionBanque.Forms
             }
         }
 
-        public CompteForm(Classe.Utilisateur u)
+        public CompteForm(Utilisateur u)
         {
             uA = u;
             InitializeComponent();
@@ -71,15 +72,15 @@ namespace OrionBanque.Forms
                     try
                     {
                         cA.Libelle = txtLibelle.Text.Trim();
-                        cA.SoldeInitial = Double.Parse(txtSoldeInitial.Value.ToString());
+                        cA.SoldeInitial = double.Parse(txtSoldeInitial.Value.ToString());
                         cA.Banque = kBanque.Text;
                         cA.Guichet = kGuichet.Text;
                         cA.NoCompte = kCompte.Text;
                         cA.Clef = kClef.Text;
                         cA.MinGraphSold = txtEvolSoldeMin.Value;
                         cA.MaxGraphSold = txtEvolSoldMax.Value;
-                        cA.SeuilAlerte = Double.Parse(txtSeuilAlerte.Value.ToString());
-                        cA.SeuilAlerteFinal = Double.Parse(txtSeuilAlerteFinal.Value.ToString());
+                        cA.SeuilAlerte = double.Parse(txtSeuilAlerte.Value.ToString());
+                        cA.SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString());
                         if(kryptonRadioButton2.Checked)
                         {
                             cA.TypEvol = cbEvolType.Text;
@@ -89,9 +90,9 @@ namespace OrionBanque.Forms
                             cA.TypEvol = string.Empty;
                         }
 
-                        Classe.Compte.Maj(cA);
+                        Compte.Maj(cA);
                         cont = true;
-                        this.Close();
+                        Close();
                     }
                     catch(Exception ex)
                     {
@@ -102,19 +103,19 @@ namespace OrionBanque.Forms
                 {
                     try
                     {
-                        Classe.Compte c = new Classe.Compte
+                        Compte c = new Compte
                         {
                             Libelle = txtLibelle.Text.Trim(),
-                            SoldeInitial = Double.Parse(txtSoldeInitial.Value.ToString()),
-                            Utilisateur = Classe.Utilisateur.Charge(uA.Id),
+                            SoldeInitial = double.Parse(txtSoldeInitial.Value.ToString()),
+                            Utilisateur = Utilisateur.Charge(uA.Id),
                             Banque = kBanque.Text,
                             Guichet = kGuichet.Text,
                             NoCompte = kCompte.Text,
                             Clef = kClef.Text,
                             MinGraphSold = txtEvolSoldeMin.Value,
                             MaxGraphSold = txtEvolSoldMax.Value,
-                            SeuilAlerte = Double.Parse(txtSeuilAlerte.Value.ToString()),
-                            SeuilAlerteFinal = Double.Parse(txtSeuilAlerteFinal.Value.ToString())
+                            SeuilAlerte = double.Parse(txtSeuilAlerte.Value.ToString()),
+                            SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString())
                         };
                         if (kryptonRadioButton2.Checked)
                         {
@@ -125,9 +126,9 @@ namespace OrionBanque.Forms
                             c.TypEvol = string.Empty;
                         }
 
-                        Classe.Compte.Sauve(c);
+                        Compte.Sauve(c);
                         cont = true;
-                        this.Close();
+                        Close();
                     }
                     catch(Exception ex)
                     {
@@ -208,7 +209,7 @@ namespace OrionBanque.Forms
 
         private void KryptonButton1_Click(object sender, EventArgs e)
         {
-            AideForm ai = new AideForm(Classe.OrionAide.TitreImport, Classe.OrionAide.TextImport);
+            AideForm ai = new AideForm(OrionAide.TitreImport, OrionAide.TextImport);
             ai.ShowDialog();
         }
 

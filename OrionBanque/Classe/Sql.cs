@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque.Classe

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class UtilisateurForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Classe.Utilisateur uA;
+        private Utilisateur uA;
 
-        public UtilisateurForm(Classe.Utilisateur u)
+        public UtilisateurForm(Utilisateur u)
         {
             uA = u;
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace OrionBanque.Forms
                     try
                     {
                         uA.Mdp = txtMdp.Text.Trim();
-                        Classe.Utilisateur.Maj(uA);
+                        Utilisateur.Maj(uA);
                     }
                     catch (Exception ex)
                     {
@@ -43,12 +44,12 @@ namespace OrionBanque.Forms
                 {
                     try
                     {
-                        Classe.Utilisateur u = new Classe.Utilisateur
+                        Utilisateur u = new Utilisateur
                         {
                             Login = txtLogin.Text.Trim(),
                             Mdp = txtMdp.Text.Trim()
                         };
-                        Classe.Utilisateur.Sauve(u);
+                        Utilisateur.Sauve(u);
                     }
                     catch (Exception ex)
                     {
@@ -56,8 +57,8 @@ namespace OrionBanque.Forms
                     }
                 }
 
-                Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-                Outils.GestionFichier.Sauvegarde(Classe.KEY.FILE_PATH, ob);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                Outils.GestionFichier.Sauvegarde(KEY.FILE_PATH, ob);
 
                 Close();
             }
@@ -71,7 +72,9 @@ namespace OrionBanque.Forms
                 retour = true;
             }
             else
+            {
                 MessageBox.Show("Merci de remplir tous les champs.");
+            }
 
             return retour;
         }
@@ -79,9 +82,13 @@ namespace OrionBanque.Forms
         private void ChkPwd_CheckedChanged(object sender, EventArgs e)
         {
             if(chkPwd.Checked)
+            {
                 showPwd.Text = txtMdp.Text;
+            }
             else
+            {
                 showPwd.Text = string.Empty;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
@@ -19,7 +20,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.ModePaiement> lmp = Classe.ModePaiement.ChargeTout();
+                List<ModePaiement> lmp = ModePaiement.ChargeTout();
                 cbModePaiement.DisplayMember = "libelle";
                 cbModePaiement.ValueMember = "id";
                 cbModePaiement.DataSource = lmp;
@@ -34,14 +35,19 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Classe.ModePaiement mp = Classe.ModePaiement.Charge((Int32)cbModePaiement.SelectedValue);
+                ModePaiement mp = ModePaiement.Charge((int)cbModePaiement.SelectedValue);
                 mp.Libelle = txtLibelleMod.Text.Trim();
-                if (cbDebCredMod.SelectedItem.ToString() == "Débit")
-                    mp.Type = "D";
-                if (cbDebCredMod.SelectedItem.ToString() == "Crédit")
-                    mp.Type = "C";
+                if (cbDebCredMod.SelectedItem.ToString() == KEY.MODEPAIEMENT_DEBIT_LIB)
+                {
+                    mp.Type = KEY.MODEPAIEMENT_DEBIT;
+                }
 
-                Classe.ModePaiement.Maj(mp);
+                if (cbDebCredMod.SelectedItem.ToString() == KEY.MODEPAIEMENT_CREDIT_LIB)
+                {
+                    mp.Type = KEY.MODEPAIEMENT_CREDIT;
+                }
+
+                ModePaiement.Maj(mp);
 
                 ChargeCombo();
             }
@@ -55,16 +61,26 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Classe.ModePaiement mp = Classe.ModePaiement.Charge((Int32)cbModePaiement.SelectedValue);
+                ModePaiement mp = ModePaiement.Charge((int)cbModePaiement.SelectedValue);
                 txtLibelleMod.Text = mp.Libelle;
-                if (mp.Type == "C")
-                    cbDebCredMod.SelectedItem = "Crédit";
-                if (mp.Type == "D")
-                    cbDebCredMod.SelectedItem = "Débit";
-                if(mp.Id > 8)
+                if (mp.Type == KEY.MODEPAIEMENT_CREDIT)
+                {
+                    cbDebCredMod.SelectedItem = KEY.MODEPAIEMENT_CREDIT_LIB;
+                }
+
+                if (mp.Type == KEY.MODEPAIEMENT_DEBIT)
+                {
+                    cbDebCredMod.SelectedItem = KEY.MODEPAIEMENT_DEBIT_LIB;
+                }
+
+                if (mp.Id > 8)
+                {
                     btnSupCat.Enabled = true;
+                }
                 else
+                {
                     btnSupCat.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -80,7 +96,7 @@ namespace OrionBanque.Forms
                 {
                     try
                     {
-                        Classe.ModePaiement.Delete((Int32)cbModePaiement.SelectedValue);
+                        ModePaiement.Delete((int)cbModePaiement.SelectedValue);
                         ChargeCombo();
                     }
                     catch(Exception ex)
@@ -99,16 +115,21 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Classe.ModePaiement mp = new OrionBanque.Classe.ModePaiement
+                ModePaiement mp = new ModePaiement
                 {
                     Libelle = txtLibelleAdd.Text.Trim()
                 };
-                if (cbDebCredAdd.SelectedItem.ToString() == "Débit")
-                    mp.Type = "D";
-                if (cbDebCredAdd.SelectedItem.ToString() == "Crédit")
-                    mp.Type = "C";
+                if (cbDebCredAdd.SelectedItem.ToString() == KEY.MODEPAIEMENT_DEBIT_LIB)
+                {
+                    mp.Type = KEY.MODEPAIEMENT_DEBIT;
+                }
 
-                Classe.ModePaiement.Sauve(mp);
+                if (cbDebCredAdd.SelectedItem.ToString() == KEY.MODEPAIEMENT_CREDIT_LIB)
+                {
+                    mp.Type = KEY.MODEPAIEMENT_CREDIT;
+                }
+
+                ModePaiement.Sauve(mp);
 
                 ChargeCombo();
 

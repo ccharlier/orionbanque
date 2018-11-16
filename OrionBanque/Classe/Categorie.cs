@@ -113,7 +113,7 @@ namespace OrionBanque.Classe
             Categorie c;
             try
             {
-                OB ob = (OB)CallContext.GetData(Classe.KEY.OB);
+                OB ob = (OB)CallContext.GetData(KEY.OB);
                 c = ob.Categories.Where(ct => ct.Libelle == nom).DefaultIfEmpty().First();
             }
             catch (Exception ex)
@@ -169,7 +169,7 @@ namespace OrionBanque.Classe
                 Categorie c = ob.Categories.Find((ctemp) => ctemp.Id == cA.Id);
                 c.Libelle = cA.Libelle;
                 c.CategorieParent = cA.CategorieParent;
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
             {

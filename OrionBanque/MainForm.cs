@@ -7,12 +7,13 @@ using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using ZedGraph;
+using OrionBanque.Classe;
 
 namespace OrionBanque
 {
     public partial class MainForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        Classe.Utilisateur uA;
+        Utilisateur uA;
 
         #region Variable de Texte
         string alerteEnregistrement = "Fichier Sauvegardé sous {0}";
@@ -22,7 +23,7 @@ namespace OrionBanque
         string erreurPasDeCompteCreer = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
         #endregion
 
-        public MainForm(Classe.Utilisateur u)
+        public MainForm(Utilisateur u)
         {
             uA = u;
             InitializeComponent();
@@ -59,7 +60,7 @@ namespace OrionBanque
             }
         }
 
-        private void ChargesIndicateurs(Classe.Compte c)
+        private void ChargesIndicateurs(Compte c)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace OrionBanque
                 lblAVenir.Text = string.Format("{0,12:0,0.00}", aVenir) + " €";
                 lblSoldFinal.Text = string.Format("{0,12:0,0.00}", soldFinal) + " €";
 
-                ChargeGraph(Classe.Compte.Charge((int)cbCompte.SelectedValue));
+                ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
 
                 if(soldOpePoint > 0)
                 {
@@ -181,7 +182,7 @@ namespace OrionBanque
                 EcheanciersGestForm ec = new EcheanciersGestForm(uA);
                 ec.ShowDialog();
 
-                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
 
@@ -214,7 +215,7 @@ namespace OrionBanque
             {
                 try
                 {
-                    Classe.Utilisateur.Delete(uA);
+                    Utilisateur.Delete(uA);
                     tsSupUser.Enabled = false;
                     tsModUser.Enabled = false;
                     tsmConfiguration.Enabled = false;
@@ -234,7 +235,7 @@ namespace OrionBanque
         {
             try
             {
-                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA);
+                List<Compte> lc = Compte.ChargeTout(uA);
                 cbCompte.DisplayMember = "Libelle";
                 cbCompte.ValueMember = "Id";
 
@@ -251,7 +252,7 @@ namespace OrionBanque
         {
             try
             {
-                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 if(c.TypEvol.Equals(string.Empty))
                 {
                     txtEvolSoldeMin.Value = c.MinGraphSold;
@@ -263,18 +264,18 @@ namespace OrionBanque
                     DateTime max = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     switch(c.TypEvol)
                     {
-                        case Classe.KEY.COMPTE_VISU_1MOIS:
+                        case KEY.COMPTE_VISU_1MOIS:
                             max = max.AddMonths(1);
                             break;
-                        case Classe.KEY.COMPTE_VISU_3MOIS:
+                        case KEY.COMPTE_VISU_3MOIS:
                             max = max.AddMonths(1);
                             min = min.AddMonths(-2);
                             break;
-                        case Classe.KEY.COMPTE_VISU_6MOIS:
+                        case KEY.COMPTE_VISU_6MOIS:
                             max = max.AddMonths(1);
                             min = min.AddMonths(-5);
                             break;
-                        case Classe.KEY.COMPTE_VISU_1AN:
+                        case KEY.COMPTE_VISU_1AN:
                             max = max.AddMonths(1);
                             min = min.AddMonths(-11);
                             break;
@@ -295,7 +296,7 @@ namespace OrionBanque
             }
         }
 
-        private void ChargeGraph(Classe.Compte c)
+        private void ChargeGraph(Compte c)
         {
             double dYMini = 9999999999.99;
             xGraph.MasterPane = new MasterPane();
@@ -311,7 +312,7 @@ namespace OrionBanque
 
             do
             {
-                double dTemp = Classe.Operation.SoldeCompteAt(dMin, c.Id) + c.SoldeInitial;
+                double dTemp = Operation.SoldeCompteAt(dMin, c.Id) + c.SoldeInitial;
                 ldt.Add(dMin);
                 ld.Add(dTemp);
                 if (dTemp < dYMini)
@@ -334,7 +335,7 @@ namespace OrionBanque
             int i = 0;
             foreach (DateTime xdt in ldt)
             {
-                double x = (double)new XDate(xdt.Year, xdt.Month, xdt.Day);
+                double x = new XDate(xdt.Year, xdt.Month, xdt.Day);
                 double y = ld[i];
                 i++;
                 list.Add(x, y);
@@ -406,7 +407,7 @@ namespace OrionBanque
 
                 if (MessageBox.Show(alerteSuppressionCompte, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Classe.Compte.Delete((int)cbCompte.SelectedValue);
+                    Compte.Delete((int)cbCompte.SelectedValue);
                     ChargeComboCompte();
                     lblSoldPoint.Text = new double().ToString("#0.00");
                     lblAVenir.Text = new double().ToString("#0.00");
@@ -422,7 +423,7 @@ namespace OrionBanque
         #endregion
 
         #region Operations
-        private void ChargeOperations(Classe.Compte c)
+        private void ChargeOperations(Compte c)
         {
             kFiltreDate.Checked = false;
             kFiltreModePaiement.Checked = false;
@@ -432,7 +433,7 @@ namespace OrionBanque
 
             try
             {
-                dgvOperations.DataSource = Classe.Operation.ChargeGrilleOperation((int)cbCompte.SelectedValue);
+                dgvOperations.DataSource = Operation.ChargeGrilleOperation((int)cbCompte.SelectedValue);
                 dgvOperations.DataMember = "Operations";
                 dgvOperations.Columns["Id"].Visible = false;
                 dgvOperations.Columns["ModePaiementType"].Visible = false;
@@ -481,10 +482,10 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                Forms.OperationForm om = new Forms.OperationForm(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()), "UPDATE");
+                OperationForm om = new OperationForm(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()), KEY.MODE_UPDATE);
                 om.ShowDialog();
 
-                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 ChargeOperations(c);
                 ChargesIndicateurs(c);
 
@@ -509,8 +510,8 @@ namespace OrionBanque
                 {
                     try
                     {
-                        Classe.Operation.Delete(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
-                        Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                        Operation.Delete(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+                        Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                         ChargeOperations(c);
                         ChargesIndicateurs(c);
 
@@ -561,8 +562,7 @@ namespace OrionBanque
             {
                 try
                 {
-                    DataSet ds = Classe
-                        .Operation
+                    DataSet ds = Operation
                         .ChargeGrilleOperationFiltre((int)cbCompte.SelectedValue,
                                     bDate, cbFiltreDate.SelectedItem.ToString(), txtFiltreDate.Value,
                                     bModePaiement, txtFiltreModePaiement.SelectedValue.ToString(),
@@ -592,7 +592,7 @@ namespace OrionBanque
                 OperationForm oa = new OperationForm((int)cbCompte.SelectedValue, "INSERT");
                 oa.ShowDialog();
 
-                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
 
@@ -641,7 +641,7 @@ namespace OrionBanque
                 VirementCaCForm oa = new VirementCaCForm(uA);
                 oa.ShowDialog();
 
-                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
 
@@ -666,7 +666,7 @@ namespace OrionBanque
         {
             try
             {
-                List<Classe.ModePaiement> lmp = Classe.ModePaiement.ChargeTout();
+                List<ModePaiement> lmp = ModePaiement.ChargeTout();
                 txtFiltreModePaiement.DisplayMember = "Libelle";
                 txtFiltreModePaiement.ValueMember = "Id";
                 txtFiltreModePaiement.DataSource = lmp;
@@ -681,7 +681,7 @@ namespace OrionBanque
         {
             try
             {
-                List<Classe.Categorie> lc = Classe.Categorie.ChargeToutIdent();
+                List<Categorie> lc = Categorie.ChargeToutIdent();
                 txtFiltreCategorie.DisplayMember = "LibelleIdent";
                 txtFiltreCategorie.ValueMember = "Id";
                 txtFiltreCategorie.DataSource = lc;
@@ -698,7 +698,7 @@ namespace OrionBanque
             {
                 if (cbCompte.SelectedValue != null)
                 {
-                    List<string> ls = Classe.Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
+                    List<string> ls = Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
                     txtFiltreTiers.DataSource = ls;
                 }
             }
@@ -720,20 +720,20 @@ namespace OrionBanque
                 }
 
                 GraphiqueForm g;
-                string choix = Classe.KEY.GRAPH_TIERS;
+                string choix = KEY.GRAPH_TIERS;
                 switch (tsGraphChoix.SelectedItem.ToString())
                 {
-                    case Classe.KEY.GRAPH_TIERS_LIB:
-                        choix = Classe.KEY.GRAPH_TIERS;
+                    case KEY.GRAPH_TIERS_LIB:
+                        choix = KEY.GRAPH_TIERS;
                         break;
-                    case Classe.KEY.GRAPH_CATEGORIES_LIB:
-                        choix = Classe.KEY.GRAPH_CATEGORIES;
+                    case KEY.GRAPH_CATEGORIES_LIB:
+                        choix = KEY.GRAPH_CATEGORIES;
                         break;
-                    case Classe.KEY.GRAPH_TIERS_DC_LIB:
-                        choix = Classe.KEY.GRAPH_TIERS_DC;
+                    case KEY.GRAPH_TIERS_DC_LIB:
+                        choix = KEY.GRAPH_TIERS_DC;
                         break;
-                    case Classe.KEY.GRAPH_CATEGORIES_DC_LIB:
-                        choix = Classe.KEY.GRAPH_CATEGORIES_DC;
+                    case KEY.GRAPH_CATEGORIES_DC_LIB:
+                        choix = KEY.GRAPH_CATEGORIES_DC;
                         break;
                 }
                 g = new GraphiqueForm(choix, (int)cbCompte.SelectedValue);
@@ -747,7 +747,7 @@ namespace OrionBanque
 
         private void BtnValidDateEvol_Click(object sender, EventArgs e)
         {
-            ChargeGraph(Classe.Compte.Charge((int)cbCompte.SelectedValue));
+            ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
         }
 
         private void KFiltreDate_Click(object sender, EventArgs e)
@@ -762,8 +762,8 @@ namespace OrionBanque
             {
                 try
                 {
-                    string filori = Classe.KEY.FILE_PATH;
-                    string fildest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME;
+                    string filori = KEY.FILE_PATH;
+                    string fildest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME;
                     File.Copy(filori, fildest, true);
                     MessageBox.Show(string.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
@@ -817,11 +817,11 @@ namespace OrionBanque
                 // Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
                 if (File.Exists(OFDImport.FileName))
                 {
-                    Classe.Compte cT = new Classe.Compte
+                    Compte cT = new Compte
                     {
                         Libelle = Path.GetFileNameWithoutExtension(OFDImport.FileName),
                         SoldeInitial = 0.0,
-                        Utilisateur = Classe.Utilisateur.Charge(uA.Id),
+                        Utilisateur = Utilisateur.Charge(uA.Id),
                         Banque = string.Empty,
                         Guichet = string.Empty,
                         NoCompte = string.Empty,
@@ -830,9 +830,9 @@ namespace OrionBanque
                         MaxGraphSold = DateTime.Now,
                         SeuilAlerte = 0.0,
                         SeuilAlerteFinal = 0.0,
-                        TypEvol = Classe.KEY.COMPTE_VISU_6MOIS
+                        TypEvol = KEY.COMPTE_VISU_6MOIS
                     };
-                    cT = Classe.Compte.Sauve(cT);
+                    cT = Compte.Sauve(cT);
 
                     Outils.ImportBP.Lance(Path.GetDirectoryName(OFDImport.FileName), Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
                     ChargeComboCompte();
@@ -849,9 +849,9 @@ namespace OrionBanque
             {
                 if (MessageBox.Show("Souhaitez-vous sauvegarder avant de quitter ?", "Sauvegarde", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
+                    OB ob = (OB)CallContext.GetData(KEY.OB);
                     Outils.GestionFichier.Sauvegarde(
-                        Classe.KEY.FILE_PATH,
+                        KEY.FILE_PATH,
                         ob
                     );
                 }
@@ -873,8 +873,8 @@ namespace OrionBanque
 
         private void LanceSauvegarde()
         {
-            Classe.OB ob = (Classe.OB)CallContext.GetData(Classe.KEY.OB);
-            Outils.GestionFichier.Sauvegarde(Classe.KEY.FILE_PATH, ob);
+            OB ob = (OB)CallContext.GetData(KEY.OB);
+            Outils.GestionFichier.Sauvegarde(KEY.FILE_PATH, ob);
             tsSave.Enabled = false;
         }
 
@@ -882,7 +882,7 @@ namespace OrionBanque
         {
             if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                Classe.Compte c = Classe.Compte.Charge((int)cbCompte.SelectedValue);
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 Outils.GestionFichier.ExportCSV(folderBrowserDialog.SelectedPath + @"\" + c.Libelle + ".csv", ((DataSet)dgvOperations.DataSource).Tables["Operations"]);
             }
         }
@@ -910,7 +910,7 @@ namespace OrionBanque
             {
                 try
                 {
-                    string filedest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME + ".xml";
+                    string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".xml";
                     Outils.GestionFichier.ExportXml(filedest);
                     MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }

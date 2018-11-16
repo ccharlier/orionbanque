@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
 
 namespace OrionBanque.Forms
@@ -9,12 +8,12 @@ namespace OrionBanque.Forms
         public AboutBoxForm()
         {
             InitializeComponent();
-            this.Text = String.Format("À propos de {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            Text = string.Format("À propos de {0}", AssemblyTitle);
+            labelProductName.Text = AssemblyProduct;
+            labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
+            labelCopyright.Text = AssemblyCopyright;
+            labelCompanyName.Text = AssemblyCompany;
+            textBoxDescription.Text = AssemblyDescription;
             Classe.Log.Logger.Debug("Test");
         }
 

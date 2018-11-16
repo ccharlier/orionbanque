@@ -1,4 +1,5 @@
 ﻿using System;
+using OrionBanque.Classe;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -21,9 +22,9 @@ namespace OrionBanque.Forms
             tvCategorie.Nodes.Clear();
             try
             {
-                List<Classe.Categorie> lc = Classe.Categorie.ChargeTout();
-                List<Classe.Categorie> lct = new List<OrionBanque.Classe.Categorie>();
-                foreach (Classe.Categorie c in lc)
+                List<Categorie> lc = Categorie.ChargeTout();
+                List<Categorie> lct = new List<Categorie>();
+                foreach (Categorie c in lc)
                 {
                     if (c.CategorieParent.Id.Equals(0))
                     {
@@ -32,7 +33,7 @@ namespace OrionBanque.Forms
                         {
                             Name = c.Id.ToString()
                         };
-                        foreach (Classe.Categorie ctemp in lc)
+                        foreach (Categorie ctemp in lc)
                         {
                             if (ctemp.CategorieParent.Id == c.Id)
                             {
@@ -68,7 +69,7 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Classe.Categorie.Delete(Int32.Parse(tvCategorie.SelectedNode.Name));
+                    Categorie.Delete(int.Parse(tvCategorie.SelectedNode.Name));
                     ChargeCombo();
                 }
                 catch (Exception ex)
@@ -82,23 +83,21 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Classe.Categorie c = new Classe.Categorie
+                Categorie c = new Categorie
                 {
                     Libelle = txtLibelleAdd.Text.Trim()
                 };
                 if (kryptonCheckBox1.Checked)
                 {
-                    c.CategorieParent = Classe.Categorie.Charge((Int32)cbCategorieParent.SelectedValue);
+                    c.CategorieParent = Categorie.Charge((int)cbCategorieParent.SelectedValue);
                 }
                 else
                 {
-                    c.CategorieParent = new Classe.Categorie();
+                    c.CategorieParent = new Categorie();
                 }
 
-                Classe.Categorie.Sauve(c);
-
+                Categorie.Sauve(c);
                 ChargeCombo();
-
                 txtLibelleAdd.Text = string.Empty;
             }
             catch (Exception ex)
@@ -111,18 +110,18 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Classe.Categorie c = Classe.Categorie.Charge(Int32.Parse(tvCategorie.SelectedNode.Name));
+                Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name));
                 c.Libelle = txtLibelleMod.Text.Trim();
                 if (kryptonCheckBox2.Checked)
                 {
-                    c.CategorieParent = Classe.Categorie.Charge((Int32)cbModCatPa.SelectedValue);
+                    c.CategorieParent = Categorie.Charge((int)cbModCatPa.SelectedValue);
                 }
                 else
                 {
-                    c.CategorieParent = new Classe.Categorie();
+                    c.CategorieParent = new Categorie();
                 }
 
-                Classe.Categorie.Maj(c);
+                Categorie.Maj(c);
 
                 ChargeCombo();
             }
@@ -146,7 +145,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Classe.Categorie c = Classe.Categorie.Charge(Int32.Parse(tvCategorie.SelectedNode.Name));
+                Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name));
                 txtLibelleMod.Text = c.Libelle;
                 if (c.CategorieParent.Id.Equals(0))
                 {

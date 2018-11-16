@@ -63,7 +63,7 @@ namespace OrionBanque.Classe
         public static List<Param> ChargeTout()
         {
             Log.Logger.Debug("Debut Param.ChargeTout()");
-            List<Param> lp = new List<Classe.Param>();
+            List<Param> lp = new List<Param>();
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);

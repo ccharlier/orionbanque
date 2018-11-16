@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class ConnexionForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        public Classe.Utilisateur uA;
+        public Utilisateur uA;
         public bool cont = false;
         public bool activSauv = false;
 
@@ -15,7 +16,7 @@ namespace OrionBanque.Forms
             InitializeComponent();
 
             // S'il existe un utilisateur, la création ne sera possible que si on est connecté
-            if (Classe.Utilisateur.ChargeTout().Count != 0)
+            if (Utilisateur.ChargeTout().Count != 0)
             {
                 btnAddCompte.Visible = false;
             }
@@ -28,7 +29,7 @@ namespace OrionBanque.Forms
                 // Est-ce que le formulaire de connexion est bien rempli
                 if (ValideForm())
                 {
-                    Classe.Utilisateur u = Classe.Utilisateur.Charge(txtLogin.Text.Trim());
+                    Utilisateur u = Utilisateur.Charge(txtLogin.Text.Trim());
                     // Est-ce que l'utilisateur existe
                     if (!u.Id.Equals(0))
                     {
@@ -41,7 +42,7 @@ namespace OrionBanque.Forms
                         {
                             uA = u;
                             cont = true;
-                            List<string> nbE = Classe.Echeancier.InsereEcheanceOpenFile(uA);
+                            List<string> nbE = Echeancier.InsereEcheanceOpenFile(uA);
                             if(nbE.Count != 0)
                             {
                                 MessageBox.Show("Opérations insérées à l'ouverture du fichier : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,11 +81,11 @@ namespace OrionBanque.Forms
 
         private void BtnAddCompte_Click(object sender, EventArgs e)
         {
-            Forms.UtilisateurForm ua = new Forms.UtilisateurForm();
+            UtilisateurForm ua = new UtilisateurForm();
             ua.ShowDialog();
 
             // S'il existe un utilisateur, la création ne sera possible que si on est connecté
-            if (Classe.Utilisateur.ChargeTout().Count != 0)
+            if (Utilisateur.ChargeTout().Count != 0)
             {
                 btnAddCompte.Visible = false;
             }
@@ -92,8 +93,8 @@ namespace OrionBanque.Forms
 
         private void kBtnSupprimeFichier_Click(object sender, EventArgs e)
         {
-            Outils.GestionFichier.Delete(Classe.KEY.FILE_PATH);
-            Classe.Sql.InitialiseBD(System.IO.Path.GetDirectoryName(Classe.KEY.FILE_PATH));
+            Outils.GestionFichier.Delete(KEY.FILE_PATH);
+            Sql.InitialiseBD(System.IO.Path.GetDirectoryName(KEY.FILE_PATH));
             btnAddCompte.Visible = true;
             kBtnSupprimeFichier.Visible = false;
         }

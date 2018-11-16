@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class EcheancierForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Classe.Utilisateur uA;
-        private Classe.Echeancier eA;
+        private Utilisateur uA;
+        private Echeancier eA;
         public bool cont = false;
 
-        public EcheancierForm(Classe.Echeancier e, Classe.Utilisateur u, string mode)
+        public EcheancierForm(Echeancier e, Utilisateur u, string mode)
         {
             InitializeComponent();
             uA = u;
@@ -41,19 +42,19 @@ namespace OrionBanque.Forms
                 txtLibelle.Text = eA.Libelle;
                 txtMontant.Value = new decimal(eA.Montant);
                 txtTiers.Text = eA.Tiers;
-                if (eA.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
+                if (eA.TypeRepete == KEY.ECHEANCIER_JOUR)
                 {
-                    txtTypeRepete.Text = "Jour(s)";
+                    txtTypeRepete.Text = KEY.ECHEANCIER_JOUR_LIB;
                 }
 
-                if (eA.TypeRepete == Classe.KEY.ECHEANCIER_MOIS)
+                if (eA.TypeRepete == KEY.ECHEANCIER_MOIS)
                 {
-                    txtTypeRepete.Text = "Mois";
+                    txtTypeRepete.Text = KEY.ECHEANCIER_MOIS_LIB;
                 }
 
-                if (eA.TypeRepete == Classe.KEY.ECHEANCIER_ANNEE)
+                if (eA.TypeRepete == KEY.ECHEANCIER_ANNEE)
                 {
-                    txtTypeRepete.Text = "Année(s)";
+                    txtTypeRepete.Text = KEY.ECHEANCIER_ANNEE_LIB;
                 }
 
                 txtRepete.Value = new decimal(eA.Repete);
@@ -81,7 +82,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.Compte> lc = Classe.Compte.ChargeTout(uA);
+                List<Compte> lc = Compte.ChargeTout(uA);
                 cbCompte.DisplayMember = "Libelle";
                 cbCompte.ValueMember = "Id";
 
@@ -97,7 +98,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.ModePaiement> lmp = Classe.ModePaiement.ChargeTout();
+                List<ModePaiement> lmp = ModePaiement.ChargeTout();
                 txtModePaiement.DisplayMember = "Libelle";
                 txtModePaiement.ValueMember = "Id";
                 txtModePaiement.DataSource = lmp;
@@ -112,7 +113,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.Categorie> lc = Classe.Categorie.ChargeToutIdent();
+                List<Categorie> lc = Categorie.ChargeToutIdent();
                 txtCategorie.DisplayMember = "LibelleIdent";
                 txtCategorie.ValueMember = "Id";
                 txtCategorie.DataSource = lc;
@@ -127,7 +128,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<string> ls = Classe.Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
+                List<string> ls = Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
                 txtTiers.DataSource = ls;
             }
             catch (Exception ex)
@@ -149,26 +150,26 @@ namespace OrionBanque.Forms
                     eA.DateFin = txtDateFin.Value.Date;
                 }
 
-                eA.Compte = Classe.Compte.Charge((int)cbCompte.SelectedValue);
-                eA.Categorie = Classe.Categorie.Charge((int)txtCategorie.SelectedValue);
-                eA.ModePaiement = Classe.ModePaiement.Charge((int)txtModePaiement.SelectedValue);
+                eA.Compte = Compte.Charge((int)cbCompte.SelectedValue);
+                eA.Categorie = Categorie.Charge((int)txtCategorie.SelectedValue);
+                eA.ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue);
                 eA.Libelle = txtLibelle.Text;
                 eA.Montant = double.Parse(txtMontant.Value.ToString());
                 eA.Tiers = txtTiers.Text;
 
-                if (txtTypeRepete.Text == "Jour(s)")
+                if (txtTypeRepete.Text == KEY.ECHEANCIER_JOUR_LIB)
                 {
-                    eA.TypeRepete = Classe.KEY.ECHEANCIER_JOUR;
+                    eA.TypeRepete = KEY.ECHEANCIER_JOUR;
                 }
 
-                if (txtTypeRepete.Text == "Mois")
+                if (txtTypeRepete.Text == KEY.ECHEANCIER_MOIS_LIB)
                 {
-                    eA.TypeRepete = Classe.KEY.ECHEANCIER_MOIS;
+                    eA.TypeRepete = KEY.ECHEANCIER_MOIS;
                 }
 
-                if (txtTypeRepete.Text == "Année(s)")
+                if (txtTypeRepete.Text == KEY.ECHEANCIER_ANNEE_LIB)
                 {
-                    eA.TypeRepete = Classe.KEY.ECHEANCIER_ANNEE;
+                    eA.TypeRepete = KEY.ECHEANCIER_ANNEE;
                 }
 
                 eA.Repete = int.Parse(txtRepete.Value.ToString());
@@ -181,11 +182,11 @@ namespace OrionBanque.Forms
 
                 if (eA.Id != 0)
                 {
-                    Classe.Echeancier.Maj(eA);
+                    Echeancier.Maj(eA);
                 }
                 else
                 {
-                    Classe.Echeancier.Sauve(eA);
+                    Echeancier.Sauve(eA);
                 }
 
                 Close();

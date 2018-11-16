@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class OperationForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        Classe.Operation O;
-        private Int32 idC = 0;
+        Operation O;
+        private int idC = 0;
         public bool cont = false;
         private bool PointageModif = false;
 
-        public OperationForm(Int32 id, string mode)
+        public OperationForm(int id, string mode)
         {
             InitializeComponent();
             
-            if (mode.Equals("INSERT"))
+            if (mode.Equals(KEY.MODE_INSERT))
             {
                 idC = id;
             }
-            else if(mode.Equals("UPDATE"))
+            else if(mode.Equals(KEY.MODE_UPDATE))
             {
-                O = Classe.Operation.Charge(id);
+                O = Operation.Charge(id);
                 idC = O.Compte.Id;
             }
             RemplisCb();
@@ -45,7 +46,7 @@ namespace OrionBanque.Forms
                     txtCategorie.SelectedValue = O.Categorie.Id;
                     txtLibelle.Text = O.Libelle;
                     txtModePaiement.SelectedValue = O.ModePaiement.Id;
-                    txtMontant.Value = new Decimal(O.Montant);
+                    txtMontant.Value = new decimal(O.Montant);
                     if (O.DatePointage != null)
                     {
                         txtPointage.Checked = true;
@@ -64,7 +65,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.ModePaiement> lmp = Classe.ModePaiement.ChargeTout();
+                List<ModePaiement> lmp = ModePaiement.ChargeTout();
                 txtModePaiement.DisplayMember = "Libelle";
                 txtModePaiement.ValueMember = "Id";
                 txtModePaiement.DataSource = lmp;
@@ -79,7 +80,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<Classe.Categorie> lc = Classe.Categorie.ChargeToutIdent();
+                List<Categorie> lc = Categorie.ChargeToutIdent();
                 txtCategorie.DisplayMember = "Libelle";
                 txtCategorie.ValueMember = "Id";
                 txtCategorie.DataSource = lc;
@@ -94,7 +95,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<string> ls = Classe.Operation.ChargeToutTiers(idC);
+                List<string> ls = Operation.ChargeToutTiers(idC);
                 txtTiers.DataSource = ls;
             }
             catch (Exception ex)
@@ -110,8 +111,8 @@ namespace OrionBanque.Forms
                 try
                 {
                     O.Date = txtDateMvt.Value;
-                    O.Categorie = Classe.Categorie.Charge((Int32)txtCategorie.SelectedValue);
-                    O.ModePaiement = Classe.ModePaiement.Charge((Int32)txtModePaiement.SelectedValue);
+                    O.Categorie = Categorie.Charge((int)txtCategorie.SelectedValue);
+                    O.ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue);
                     O.Libelle = txtLibelle.Text;
                     O.Montant = double.Parse(txtMontant.Value.ToString());
                     O.Tiers = txtTiers.Text;
@@ -125,7 +126,7 @@ namespace OrionBanque.Forms
                         O.DatePointage = null;
                     }
 
-                    Classe.Operation.Maj(O);
+                    Operation.Maj(O);
                     cont = true;
                     Close();
                 }
@@ -138,12 +139,12 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Classe.Operation o = new OrionBanque.Classe.Operation
+                    Operation o = new Operation
                     {
                         Date = txtDateMvt.Value,
-                        Categorie = Classe.Categorie.Charge((int)txtCategorie.SelectedValue),
-                        Compte = Classe.Compte.Charge(idC),
-                        ModePaiement = Classe.ModePaiement.Charge((int)txtModePaiement.SelectedValue),
+                        Categorie = Categorie.Charge((int)txtCategorie.SelectedValue),
+                        Compte = Compte.Charge(idC),
+                        ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue),
                         Libelle = txtLibelle.Text,
                         Montant = double.Parse(txtMontant.Value.ToString()),
                         Tiers = txtTiers.Text
@@ -158,7 +159,7 @@ namespace OrionBanque.Forms
                         o.DatePointage = null;
                     }
 
-                    Classe.Operation.Sauve(o);
+                    Operation.Sauve(o);
                     cont = true;
                     Close();
                 }
@@ -198,7 +199,7 @@ namespace OrionBanque.Forms
         {
             if(txtModePaiement.SelectedValue.ToString() == "8")
             {
-                txtLibelle.Text = "n°" + Classe.Operation.ChercheChequeSuivant(idC);
+                txtLibelle.Text = "n°" + Operation.ChercheChequeSuivant(idC);
             }
         }
     }

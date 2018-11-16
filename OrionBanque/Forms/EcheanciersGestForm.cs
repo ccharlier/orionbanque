@@ -3,14 +3,15 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
+using OrionBanque.Classe;
 
 namespace OrionBanque.Forms
 {
     public partial class EcheanciersGestForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Classe.Utilisateur uA;
+        private Utilisateur uA;
 
-        public EcheanciersGestForm(Classe.Utilisateur u)
+        public EcheanciersGestForm(Utilisateur u)
         {
             InitializeComponent();
             uA = u;
@@ -22,7 +23,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                DataSet ds = Classe.Echeancier.ChargeGrilleEcheance(uA);
+                DataSet ds = Echeancier.ChargeGrilleEcheance(uA);
                 dgvEcheance.DataSource = ds;
                 dgvEcheance.DataMember = "echeancier";
                 dgvEcheance.Columns["Id"].Visible = false;
@@ -41,7 +42,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                EcheancierForm ea = new EcheancierForm(new Classe.Echeancier(), uA, "INSERT");
+                EcheancierForm ea = new EcheancierForm(new Echeancier(), uA, "INSERT");
                 ea.ShowDialog();
 
                 ChargeGrille();
@@ -58,7 +59,7 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Classe.Echeancier.Delete(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()));
+                    Echeancier.Delete(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()));
                     ChargeGrille();
                 }
                 catch (Exception ex)
@@ -77,7 +78,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<string> nbE = Classe.Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
+                List<string> nbE = Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
                 if (nbE.Count != 0)
                 {
                     MessageBox.Show("Opérations insérées : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -103,7 +104,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                EcheancierForm em = new EcheancierForm(Classe.Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
+                EcheancierForm em = new EcheancierForm(Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
                 em.ShowDialog();
 
                 ChargeGrille();
