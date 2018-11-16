@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class Categories : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class CategoriesForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         #region Variable de Texte
         string alerteSuppressionCategorie = "Etes-vous sur de supprimer cette Catégorie ?";
         #endregion
 
-        public Categories()
+        public CategoriesForm()
         {
             InitializeComponent();
             ChargeCombo();

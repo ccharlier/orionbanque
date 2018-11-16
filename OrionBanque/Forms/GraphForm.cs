@@ -7,13 +7,13 @@ using ZedGraph;
 
 namespace OrionBanque.Forms
 {
-    public partial class Graphique : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class GraphiqueForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        Int32 idC;
-        Int32 idColor = 0;
+        int idC;
+        int idColor = 0;
         List<Color> lC = new List<Color>();
 
-        public Graphique(string typeGraph, Int32 id)
+        public GraphiqueForm(string typeGraph, int id)
         {
             lC.Add(Color.Navy);
             lC.Add(Color.Purple);
@@ -26,14 +26,21 @@ namespace OrionBanque.Forms
             lC.Add(Color.White);
             idC = id;
             InitializeComponent();
-            if(typeGraph.Equals("tiers"))
-                cbTypeGraph.SelectedItem = "Par Tiers";
-            if (typeGraph.Equals("tiersDC"))
-                cbTypeGraph.SelectedItem = "Par Tiers Dissociés";
-            if (typeGraph.Equals("categories"))
-                cbTypeGraph.SelectedItem = "Par Catégories";
-            if (typeGraph.Equals("categoriesDC"))
-                cbTypeGraph.SelectedItem = "Par Catégories Dissociées";
+            switch(typeGraph)
+            {
+                case Classe.KEY.GRAPH_TIERS:
+                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_TIERS_LIB;
+                    break;
+                case Classe.KEY.GRAPH_TIERS_DC:
+                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_TIERS_DC_LIB;
+                    break;
+                case Classe.KEY.GRAPH_CATEGORIES:
+                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_CATEGORIES_LIB;
+                    break;
+                case Classe.KEY.GRAPH_CATEGORIES_DC:
+                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_CATEGORIES_DC_LIB;
+                    break;
+            }
         }
 
         private void ChoixGraphique(string typeGraph)

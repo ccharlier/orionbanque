@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class Aide : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class AideForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        public Aide(string titre, string aide)
+        public AideForm(string titre, string aide)
         {
             InitializeComponent();
             kryptonRichTextBox1.Text = aide;

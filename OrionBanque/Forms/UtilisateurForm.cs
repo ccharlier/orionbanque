@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class Utilisateur : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class UtilisateurForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Classe.Utilisateur uA;
 
-        public Utilisateur(Classe.Utilisateur u)
+        public UtilisateurForm(Classe.Utilisateur u)
         {
             uA = u;
             InitializeComponent();
@@ -18,7 +18,7 @@ namespace OrionBanque.Forms
             txtLogin.Enabled = false;
         }
 
-        public Utilisateur()
+        public UtilisateurForm()
         {
             InitializeComponent();
         }

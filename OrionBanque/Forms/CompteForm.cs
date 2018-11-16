@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace OrionBanque.Forms
 {
-    public partial class Compte : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class CompteForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Classe.Compte cA;
         private Classe.Utilisateur uA;
         public bool cont = false;
 
-        public Compte(Int32 id)
+        public CompteForm(Int32 id)
         {
             InitializeComponent();
             try
@@ -53,7 +53,7 @@ namespace OrionBanque.Forms
             }
         }
 
-        public Compte(Classe.Utilisateur u)
+        public CompteForm(Classe.Utilisateur u)
         {
             uA = u;
             InitializeComponent();
@@ -208,7 +208,7 @@ namespace OrionBanque.Forms
 
         private void KryptonButton1_Click(object sender, EventArgs e)
         {
-            Aide ai = new Aide(Classe.OrionAide.TitreImport, Classe.OrionAide.TextImport);
+            AideForm ai = new AideForm(Classe.OrionAide.TitreImport, Classe.OrionAide.TextImport);
             ai.ShowDialog();
         }
 

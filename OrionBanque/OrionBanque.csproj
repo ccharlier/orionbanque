@@ -222,89 +222,89 @@
     <Compile Include="Classe\Param.cs" />
     <Compile Include="Classe\Sql.cs" />
     <Compile Include="Classe\Utilisateur.cs" />
-    <Compile Include="Forms\AboutBox.cs">
+    <Compile Include="Forms\AboutBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
+    <Compile Include="Forms\AboutBoxForm.Designer.cs">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Connexion.cs">
+    <Compile Include="Forms\ConnexionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Connexion.Designer.cs">
-      <DependentUpon>Connexion.cs</DependentUpon>
+    <Compile Include="Forms\ConnexionForm.Designer.cs">
+      <DependentUpon>ConnexionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Compte.cs">
+    <Compile Include="Forms\CompteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Compte.Designer.cs">
-      <DependentUpon>Compte.cs</DependentUpon>
+    <Compile Include="Forms\CompteForm.Designer.cs">
+      <DependentUpon>CompteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Categories.cs">
+    <Compile Include="Forms\CategoriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Categories.Designer.cs">
-      <DependentUpon>Categories.cs</DependentUpon>
+    <Compile Include="Forms\CategoriesForm.Designer.cs">
+      <DependentUpon>CategoriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Echeancier.cs">
+    <Compile Include="Forms\EcheancierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Echeancier.Designer.cs">
-      <DependentUpon>Echeancier.cs</DependentUpon>
+    <Compile Include="Forms\EcheancierForm.Designer.cs">
+      <DependentUpon>EcheancierForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EcheanciersGest.cs">
+    <Compile Include="Forms\EcheanciersGestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EcheanciersGest.Designer.cs">
-      <DependentUpon>EcheanciersGest.cs</DependentUpon>
+    <Compile Include="Forms\EcheanciersGestForm.Designer.cs">
+      <DependentUpon>EcheanciersGestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Aide.cs">
+    <Compile Include="Forms\AideForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Aide.Designer.cs">
-      <DependentUpon>Aide.cs</DependentUpon>
+    <Compile Include="Forms\AideForm.Designer.cs">
+      <DependentUpon>AideForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Graph.cs">
+    <Compile Include="Forms\GraphForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Graph.Designer.cs">
-      <DependentUpon>Graph.cs</DependentUpon>
+    <Compile Include="Forms\GraphForm.Designer.cs">
+      <DependentUpon>GraphForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OperationMajGroupe.cs">
+    <Compile Include="Forms\OperationMajGroupeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OperationMajGroupe.Designer.cs">
-      <DependentUpon>OperationMajGroupe.cs</DependentUpon>
+    <Compile Include="Forms\OperationMajGroupeForm.Designer.cs">
+      <DependentUpon>OperationMajGroupeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ModePaiement.cs">
+    <Compile Include="Forms\ModePaiementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ModePaiement.Designer.cs">
-      <DependentUpon>ModePaiement.cs</DependentUpon>
+    <Compile Include="Forms\ModePaiementForm.Designer.cs">
+      <DependentUpon>ModePaiementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Operation.cs">
+    <Compile Include="Forms\OperationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Operation.Designer.cs">
-      <DependentUpon>Operation.cs</DependentUpon>
+    <Compile Include="Forms\OperationForm.Designer.cs">
+      <DependentUpon>OperationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TotalComptes.cs">
+    <Compile Include="Forms\TotalComptesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TotalComptes.Designer.cs">
-      <DependentUpon>TotalComptes.cs</DependentUpon>
+    <Compile Include="Forms\TotalComptesForm.Designer.cs">
+      <DependentUpon>TotalComptesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Utilisateur.cs">
+    <Compile Include="Forms\UtilisateurForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Utilisateur.Designer.cs">
-      <DependentUpon>Utilisateur.cs</DependentUpon>
+    <Compile Include="Forms\UtilisateurForm.Designer.cs">
+      <DependentUpon>UtilisateurForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\VirementCaC.cs">
+    <Compile Include="Forms\VirementCaCForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\VirementCaC.Designer.cs">
-      <DependentUpon>VirementCaC.cs</DependentUpon>
+    <Compile Include="Forms\VirementCaCForm.Designer.cs">
+      <DependentUpon>VirementCaCForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -317,47 +317,47 @@
     <Compile Include="Outils\RIB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AboutBoxForm.resx">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Aide.resx">
-      <DependentUpon>Aide.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AideForm.resx">
+      <DependentUpon>AideForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Connexion.resx">
-      <DependentUpon>Connexion.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ConnexionForm.resx">
+      <DependentUpon>ConnexionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Compte.resx">
-      <DependentUpon>Compte.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CompteForm.resx">
+      <DependentUpon>CompteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Categories.resx">
-      <DependentUpon>Categories.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CategoriesForm.resx">
+      <DependentUpon>CategoriesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Echeancier.resx">
-      <DependentUpon>Echeancier.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EcheancierForm.resx">
+      <DependentUpon>EcheancierForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EcheanciersGest.resx">
-      <DependentUpon>EcheanciersGest.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EcheanciersGestForm.resx">
+      <DependentUpon>EcheanciersGestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Graph.resx">
-      <DependentUpon>Graph.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ModePaiement.resx">
-      <DependentUpon>ModePaiement.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ModePaiementForm.resx">
+      <DependentUpon>ModePaiementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Operation.resx">
-      <DependentUpon>Operation.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OperationForm.resx">
+      <DependentUpon>OperationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OperationMajGroupe.resx">
-      <DependentUpon>OperationMajGroupe.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OperationMajGroupeForm.resx">
+      <DependentUpon>OperationMajGroupeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TotalComptes.resx">
-      <DependentUpon>TotalComptes.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\TotalComptesForm.resx">
+      <DependentUpon>TotalComptesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Utilisateur.resx">
-      <DependentUpon>Utilisateur.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UtilisateurForm.resx">
+      <DependentUpon>UtilisateurForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VirementCaC.resx">
-      <DependentUpon>VirementCaC.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\VirementCaCForm.resx">
+      <DependentUpon>VirementCaCForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class VirementCaC : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class VirementCaCForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Classe.Utilisateur uA;
 
-        public VirementCaC(Classe.Utilisateur uP)
+        public VirementCaCForm(Classe.Utilisateur uP)
         {
             uA = uP;
             InitializeComponent();
@@ -111,7 +111,7 @@ namespace OrionBanque.Forms
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Forms.Categories fm = new Forms.Categories();
+                Forms.CategoriesForm fm = new Forms.CategoriesForm();
                 fm.ShowDialog();
                 RemplisCategories();
             }

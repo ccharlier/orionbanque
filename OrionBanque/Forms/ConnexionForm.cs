@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class Connexion : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class ConnexionForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         public Classe.Utilisateur uA;
         public bool cont = false;
         public bool activSauv = false;
 
-        public Connexion()
+        public ConnexionForm()
         {
             InitializeComponent();
 
@@ -80,7 +80,7 @@ namespace OrionBanque.Forms
 
         private void BtnAddCompte_Click(object sender, EventArgs e)
         {
-            Forms.Utilisateur ua = new Forms.Utilisateur();
+            Forms.UtilisateurForm ua = new Forms.UtilisateurForm();
             ua.ShowDialog();
 
             // S'il existe un utilisateur, la création ne sera possible que si on est connecté

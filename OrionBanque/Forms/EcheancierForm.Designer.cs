@@ -1,6 +1,6 @@
 ﻿namespace OrionBanque.Forms
 {
-    partial class Echeancier
+    partial class EcheancierForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

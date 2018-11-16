@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class ModePaiement : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class ModePaiementForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        public ModePaiement()
+        public ModePaiementForm()
         {
             InitializeComponent();
             cbDebCredAdd.SelectedItem = cbDebCredAdd.Items[0];

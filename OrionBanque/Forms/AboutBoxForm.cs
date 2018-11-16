@@ -4,9 +4,9 @@ using System.Reflection;
 
 namespace OrionBanque.Forms
 {
-    partial class AboutBox : ComponentFactory.Krypton.Toolkit.KryptonForm
+    partial class AboutBoxForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        public AboutBox()
+        public AboutBoxForm()
         {
             InitializeComponent();
             this.Text = String.Format("À propos de {0}", AssemblyTitle);

@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class Echeancier : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class EcheancierForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Classe.Utilisateur uA;
         private Classe.Echeancier eA;
         public bool cont = false;
 
-        public Echeancier(Classe.Echeancier e, Classe.Utilisateur u, string mode)
+        public EcheancierForm(Classe.Echeancier e, Classe.Utilisateur u, string mode)
         {
             InitializeComponent();
             uA = u;
@@ -212,7 +212,7 @@ namespace OrionBanque.Forms
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Categories fm = new Categories();
+                CategoriesForm fm = new CategoriesForm();
                 fm.ShowDialog();
                 RemplisCategories();
             }
@@ -222,7 +222,7 @@ namespace OrionBanque.Forms
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                ModePaiement fm = new ModePaiement();
+                ModePaiementForm fm = new ModePaiementForm();
                 fm.ShowDialog();
                 RemplisModePaiements();
             }

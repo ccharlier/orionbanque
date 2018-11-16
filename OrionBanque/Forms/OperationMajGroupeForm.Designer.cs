@@ -1,6 +1,6 @@
 ﻿namespace OrionBanque.Forms
 {
-    partial class OperationMajGroupe
+    partial class OperationMajGroupeForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

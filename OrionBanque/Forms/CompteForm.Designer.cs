@@ -1,6 +1,6 @@
 ﻿namespace OrionBanque.Forms
 {
-    partial class Compte
+    partial class CompteForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

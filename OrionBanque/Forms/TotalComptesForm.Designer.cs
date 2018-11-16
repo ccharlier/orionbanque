@@ -1,6 +1,6 @@
 ﻿namespace OrionBanque.Forms
 {
-    partial class TotalComptes
+    partial class TotalComptesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TotalComptes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TotalComptesForm));
             this.kPanelMain = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.kDgvTotalCompte = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();

@@ -4,14 +4,14 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class Operation : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class OperationForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         Classe.Operation O;
         private Int32 idC = 0;
         public bool cont = false;
         private bool PointageModif = false;
 
-        public Operation(Int32 id, string mode)
+        public OperationForm(Int32 id, string mode)
         {
             InitializeComponent();
             
@@ -178,7 +178,7 @@ namespace OrionBanque.Forms
         {
             if(((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                ModePaiement fm = new ModePaiement();
+                ModePaiementForm fm = new ModePaiementForm();
                 fm.ShowDialog();
                 RemplisModePaiements();
             }
@@ -188,7 +188,7 @@ namespace OrionBanque.Forms
         {
             if (((MouseEventArgs)e).Button == MouseButtons.Right)
             {
-                Categories fm = new Categories();
+                CategoriesForm fm = new CategoriesForm();
                 fm.ShowDialog();
                 RemplisCategories();
             }

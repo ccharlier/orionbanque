@@ -1,6 +1,6 @@
 ﻿namespace OrionBanque.Forms
 {
-    partial class VirementCaC
+    partial class VirementCaCForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class OperationMajGroupe : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class OperationMajGroupeForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Int32 idC = 0;
 
-        public OperationMajGroupe(Int32 idP)
+        public OperationMajGroupeForm(Int32 idP)
         {
             idC = idP;
             InitializeComponent();

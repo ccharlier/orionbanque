@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
-    public partial class TotalComptes : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class TotalComptesForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         Classe.Utilisateur uA;
 
-        public TotalComptes(Classe.Utilisateur u)
+        public TotalComptesForm(Classe.Utilisateur u)
         {
             InitializeComponent();
             uA = u;

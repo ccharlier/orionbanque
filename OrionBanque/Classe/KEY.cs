@@ -30,5 +30,14 @@ namespace OrionBanque.Classe
         public const string FILE_NAME = "orionbanque.obq";
         public static string FILE_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\" + FILE_NAME;
         public static string DIRECTORY_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\";
+        public const string GRAPH_TIERS = "tiers";
+        public const string GRAPH_TIERS_DC = "tiersDC";
+        public const string GRAPH_CATEGORIES = "categories";
+        public const string GRAPH_CATEGORIES_DC = "categoriesDC";
+        public const string GRAPH_TIERS_LIB = "Par Tiers";
+        public const string GRAPH_TIERS_DC_LIB = "Par Tiers Dissociés";
+        public const string GRAPH_CATEGORIES_LIB = "Par Catégories";
+        public const string GRAPH_CATEGORIES_DC_LIB = "Par Catégories Dissociées";
+
     }
 }

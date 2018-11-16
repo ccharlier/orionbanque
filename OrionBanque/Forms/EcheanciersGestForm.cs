@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace OrionBanque.Forms
 {
-    public partial class EcheanciersGest : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class EcheanciersGestForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Classe.Utilisateur uA;
 
-        public EcheanciersGest(Classe.Utilisateur u)
+        public EcheanciersGestForm(Classe.Utilisateur u)
         {
             InitializeComponent();
             uA = u;
@@ -41,7 +41,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Echeancier ea = new Echeancier(new Classe.Echeancier(), uA, "INSERT");
+                EcheancierForm ea = new EcheancierForm(new Classe.Echeancier(), uA, "INSERT");
                 ea.ShowDialog();
 
                 ChargeGrille();
@@ -103,7 +103,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                Echeancier em = new Echeancier(Classe.Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
+                EcheancierForm em = new EcheancierForm(Classe.Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
                 em.ShowDialog();
 
                 ChargeGrille();
