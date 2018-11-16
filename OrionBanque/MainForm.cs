@@ -798,7 +798,7 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                Forms.OperationMajGroupeForm OMG = new Forms.OperationMajGroupeForm((int)cbCompte.SelectedValue);
+                OperationMajGroupeForm OMG = new OperationMajGroupeForm((int)cbCompte.SelectedValue);
                 OMG.ShowDialog();
 
                 tsSave.Enabled = true;
@@ -923,7 +923,7 @@ namespace OrionBanque
 
         private void totalDesComptesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.TotalComptesForm f = new Forms.TotalComptesForm(uA);
+            TotalComptesForm f = new TotalComptesForm(uA);
             f.ShowDialog();
         }
     }
