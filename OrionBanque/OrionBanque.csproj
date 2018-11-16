@@ -212,6 +212,7 @@
     <Compile Include="Classe\Categorie.cs" />
     <Compile Include="Classe\Compte.cs" />
     <Compile Include="Classe\Echeancier.cs" />
+    <Compile Include="Classe\Fichier.cs" />
     <Compile Include="Classe\IniFile.cs" />
     <Compile Include="Classe\KEY.cs" />
     <Compile Include="Classe\Log.cs" />
@@ -516,6 +517,7 @@
     <None Include="Resources\disk.png" />
     <None Include="Resources\lightbulb.png" />
     <None Include="Resources\wand.png" />
+    <None Include="Resources\page_add.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

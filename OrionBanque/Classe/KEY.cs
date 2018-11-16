@@ -5,7 +5,6 @@ namespace OrionBanque.Classe
         public const string CLE_CONNECTION = "CLE_CONNECTION";
         public const string MODE_UPDATE = "UPDATE";
         public const string MODE_INSERT = "INSERT";
-        public const string REP_BACKUP = "backup";
         public const string REP_FICHIER_OP = "fichier_op";
         public const string BD_SQLITE = "SQLite";
         public const string BD_BINARY = "Binary";
@@ -32,8 +31,11 @@ namespace OrionBanque.Classe
         public const string COMPTE_VISU_6MOIS = "6 mois";
         public const string COMPTE_VISU_1AN = "1 an";
         public const string FILE_NAME = "orionbanque.obq";
-        public static string FILE_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\" + FILE_NAME;
-        public static string DIRECTORY_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile) + @"\OrionBanque\";
+        public static string ROOT_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
+        public static string FILE_PATH = ROOT_PATH + @"\OrionBanque\" + FILE_NAME;
+        public static string DIRECTORY_PATH = ROOT_PATH + @"\OrionBanque\";
+        public static string FILE_OPERATION_PATH = DIRECTORY_PATH + @"FILE_OPERATION\";
+        public static string FILE_BACKUP_PATH = DIRECTORY_PATH + @"BACKUP\";
         public const string GRAPH_TIERS = "tiers";
         public const string GRAPH_TIERS_DC = "tiersDC";
         public const string GRAPH_CATEGORIES = "categories";
@@ -42,6 +44,7 @@ namespace OrionBanque.Classe
         public const string GRAPH_TIERS_DC_LIB = "Par Tiers Dissociés";
         public const string GRAPH_CATEGORIES_LIB = "Par Catégories";
         public const string GRAPH_CATEGORIES_DC_LIB = "Par Catégories Dissociées";
+        public const string TYPE_FICHIER_FILE = "FILE";
 
     }
 }

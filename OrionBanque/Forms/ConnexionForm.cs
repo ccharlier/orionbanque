@@ -94,7 +94,7 @@ namespace OrionBanque.Forms
         private void kBtnSupprimeFichier_Click(object sender, EventArgs e)
         {
             Outils.GestionFichier.Delete(KEY.FILE_PATH);
-            Sql.InitialiseBD(System.IO.Path.GetDirectoryName(KEY.FILE_PATH));
+            Sql.InitialiseBD();
             btnAddCompte.Visible = true;
             kBtnSupprimeFichier.Visible = false;
         }

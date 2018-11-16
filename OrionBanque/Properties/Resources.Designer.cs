@@ -373,6 +373,16 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap page_add {
+            get {
+                object obj = ResourceManager.GetObject("page_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap page_white_text {
             get {
                 object obj = ResourceManager.GetObject("page_white_text", resourceCulture);

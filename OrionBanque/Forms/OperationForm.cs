@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using OrionBanque.Classe;
 
@@ -19,13 +20,24 @@ namespace OrionBanque.Forms
             if (mode.Equals(KEY.MODE_INSERT))
             {
                 idC = id;
+                kPanelFichier.Enabled = false;
             }
             else if(mode.Equals(KEY.MODE_UPDATE))
             {
                 O = Operation.Charge(id);
                 idC = O.Compte.Id;
+                ChargeDgv();
             }
             RemplisCb();
+        }
+
+        private void ChargeDgv()
+        {
+            dgvFichiers.DataSource = Fichier.ToDataSet(Fichier.ChargeTout(O));
+            dgvFichiers.DataMember = "Fichiers";
+            dgvFichiers.Columns["Id"].Visible = false;
+            dgvFichiers.Columns["Type"].Visible = false;
+            dgvFichiers.Columns["Chemin"].Visible = false;
         }
 
         private void RemplisCb()
@@ -200,6 +212,67 @@ namespace OrionBanque.Forms
             if(txtModePaiement.SelectedValue.ToString() == "8")
             {
                 txtLibelle.Text = "n°" + Operation.ChercheChequeSuivant(idC);
+            }
+        }
+
+        private void btnAddFichier_Click(object sender, EventArgs e)
+        {
+            if (OFDImport.ShowDialog() == DialogResult.OK)
+            {
+                // Vérification de l'existence du même fichier en cible
+                Guid g = Guid.NewGuid();
+                Fichier f = new Fichier();
+                
+                if (File.Exists(OFDImport.FileName))
+                {
+                    f.InitialName = Path.GetFileName(OFDImport.FileName);
+                    f.Date = DateTime.Now;
+                    f.Chemin = KEY.FILE_OPERATION_PATH + g.ToString() + Path.GetExtension(OFDImport.FileName);
+                    f.Type = KEY.TYPE_FICHIER_FILE;
+                    f.Operation = O;
+
+                    Fichier.Sauve(f);
+
+                    File.Copy(OFDImport.FileName, f.Chemin);
+
+                    ChargeDgv();
+                }
+            }
+        }
+
+        private void dgvFichiers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (dgvFichiers.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                string chemin = dgvFichiers.SelectedRows[0].Cells["Chemin"].Value.ToString();
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvFichiers.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show("Etes-vous certain de vouloir supprimer ce fichier (Fichier importé) ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string chemin = (string)dgvFichiers.SelectedRows[0].Cells["Chemin"].Value;
+                    int id = (int)dgvFichiers.SelectedRows[0].Cells["Id"].Value;
+
+                    Fichier.Delete(Fichier.Charge(id));
+                    File.Delete(chemin);
+
+                    ChargeDgv();
+                }
             }
         }
     }

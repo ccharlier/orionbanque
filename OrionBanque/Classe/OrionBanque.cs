@@ -22,6 +22,8 @@ namespace OrionBanque.Classe
         public List<Param> Params { get; set; }
         [DataMember()]
         public List<Utilisateur> Utilisateurs { get; set; }
+        [DataMember()]
+        public List<Fichier> Fichiers { get; set; }
 
         public OB()
         {
@@ -32,6 +34,7 @@ namespace OrionBanque.Classe
             Operations = new List<Operation>();
             Params = new List<Param>();
             Utilisateurs = new List<Utilisateur>();
+            Fichiers = new List<Fichier>();
         }
     }
 }

@@ -5,11 +5,15 @@ namespace OrionBanque.Classe
 {
     class Sql
     {
-        public static void InitialiseBD(string path)
+        public static void InitialiseBD()
         {
-            if (!System.IO.Directory.Exists(path))
+            if (!System.IO.Directory.Exists(KEY.DIRECTORY_PATH))
             {
-                System.IO.Directory.CreateDirectory(path);
+                System.IO.Directory.CreateDirectory(KEY.DIRECTORY_PATH);
+            }
+            if( !System.IO.Directory.Exists(KEY.FILE_OPERATION_PATH))
+            {
+                System.IO.Directory.CreateDirectory(KEY.FILE_OPERATION_PATH);
             }
 
             if (!System.IO.File.Exists(KEY.FILE_PATH))

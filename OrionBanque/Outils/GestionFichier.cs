@@ -124,7 +124,7 @@ namespace OrionBanque.Outils
         public static void RoulementSauvegarde(string fileName)
         {
             string fn = Path.GetFileNameWithoutExtension(fileName);
-            string dir = Path.GetDirectoryName(fileName) + @"\" + Classe.KEY.REP_BACKUP;
+            string dir = Classe.KEY.FILE_BACKUP_PATH;
 
             if(!Directory.Exists(dir))
             {
@@ -150,6 +150,12 @@ namespace OrionBanque.Outils
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 Classe.OB ob = (Classe.OB)formatter.Deserialize(reader);
+
+                if(ob.Fichiers is null)
+                {
+                    ob.Fichiers = new System.Collections.Generic.List<Classe.Fichier>();
+                }
+
                 CallContext.SetData(Classe.KEY.OB, ob);
             }
             catch (SerializationException e)
