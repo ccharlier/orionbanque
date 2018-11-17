@@ -61,7 +61,6 @@ namespace OrionBanque.Classe
                         .ToList();
 
                     retour.AddRange(InsereEcheance(le));
-                   
                 }
                 catch (Exception ex)
                 {
@@ -89,7 +88,6 @@ namespace OrionBanque.Classe
                         .ToList();
 
                     retour.AddRange(InsereEcheance(le));
-
                 }
                 catch (Exception ex)
                 {

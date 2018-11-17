@@ -45,6 +45,5 @@ namespace OrionBanque.Classe
         public const string GRAPH_CATEGORIES_LIB = "Par Catégories";
         public const string GRAPH_CATEGORIES_DC_LIB = "Par Catégories Dissociées";
         public const string TYPE_FICHIER_FILE = "FILE";
-
     }
 }

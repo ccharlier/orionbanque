@@ -55,7 +55,6 @@ namespace OrionBanque.Forms
                     {
                         throw new Exception("Mauvais Login/Mot de passe.");
                     }
-
                 }
             }
             catch (Exception ex)
