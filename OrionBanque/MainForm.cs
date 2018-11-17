@@ -927,5 +927,13 @@ namespace OrionBanque
         {
             tsNbLigne.Text = ": " + dgvOperations.Rows.Count;
         }
+
+        private void txtFiltreMontant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
     }
 }

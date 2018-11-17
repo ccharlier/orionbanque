@@ -411,6 +411,7 @@
             this.txtMontant.Name = "txtMontant";
             this.txtMontant.Size = new System.Drawing.Size(185, 22);
             this.txtMontant.TabIndex = 37;
+            this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
             // txtLibelle
             // 
@@ -428,7 +429,7 @@
             this.txtModePaiement.Size = new System.Drawing.Size(185, 21);
             this.txtModePaiement.TabIndex = 35;
             // 
-            // Echeancier
+            // EcheancierForm
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,7 +440,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Echeancier";
+            this.Name = "EcheancierForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

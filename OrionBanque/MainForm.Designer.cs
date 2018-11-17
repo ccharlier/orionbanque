@@ -823,6 +823,7 @@
             this.txtFiltreMontant.Name = "txtFiltreMontant";
             this.txtFiltreMontant.Size = new System.Drawing.Size(88, 22);
             this.txtFiltreMontant.TabIndex = 45;
+            this.txtFiltreMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltreMontant_KeyPress);
             // 
             // txtFiltreModePaiement
             // 
