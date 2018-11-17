@@ -28,7 +28,9 @@ namespace OrionBanque.Forms
                 txtSeuilAlerte.Value = new decimal(cA.SeuilAlerte);
                 txtSeuilAlerteFinal.Value = new decimal(cA.SeuilAlerteFinal);
                 cbEvolType.Text = cA.TypEvol;
-                if(cA.TypEvol.Equals(string.Empty))
+                txtEstDansTotalCompte.Checked = cA.EstDansTotalCompte ?? true;
+
+                if (cA.TypEvol.Equals(string.Empty))
                 {
                     kryptonRadioButton1.Checked = true;
                 }
@@ -81,6 +83,7 @@ namespace OrionBanque.Forms
                         cA.MaxGraphSold = txtEvolSoldMax.Value;
                         cA.SeuilAlerte = double.Parse(txtSeuilAlerte.Value.ToString());
                         cA.SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString());
+                        cA.EstDansTotalCompte = txtEstDansTotalCompte.Checked;
                         if(kryptonRadioButton2.Checked)
                         {
                             cA.TypEvol = cbEvolType.Text;
@@ -115,7 +118,8 @@ namespace OrionBanque.Forms
                             MinGraphSold = txtEvolSoldeMin.Value,
                             MaxGraphSold = txtEvolSoldMax.Value,
                             SeuilAlerte = double.Parse(txtSeuilAlerte.Value.ToString()),
-                            SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString())
+                            SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString()),
+                            EstDansTotalCompte = txtEstDansTotalCompte.Checked
                         };
                         if (kryptonRadioButton2.Checked)
                         {

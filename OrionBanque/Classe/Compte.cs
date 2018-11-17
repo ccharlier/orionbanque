@@ -37,6 +37,8 @@ namespace OrionBanque.Classe
         public double SeuilAlerteFinal { get; set; }
         [DataMember()]
         public string TypEvol { get; set; }
+        [DataMember()]
+        public bool? EstDansTotalCompte { get; set; }
 
         public static void Delete(int id)
         {
@@ -134,6 +136,7 @@ namespace OrionBanque.Classe
                 c.SeuilAlerteFinal = cA.SeuilAlerteFinal;
                 c.TypEvol = cA.TypEvol;
                 c.Utilisateur = cA.Utilisateur;
+                c.EstDansTotalCompte = cA.EstDansTotalCompte;
 
                 CallContext.SetData(KEY.OB, ob);
             }
@@ -238,7 +241,7 @@ namespace OrionBanque.Classe
             t.Columns.Add("A venir", typeof(double));
             t.Columns.Add("Solde", typeof(double));
             
-            List<Compte> list = ChargeTout(u);
+            List<Compte> list = ChargeTout(u).Where(c => c.EstDansTotalCompte ?? true).ToList();
 
             //go through each property on T and add each value to the table
             foreach (Compte item in list)
