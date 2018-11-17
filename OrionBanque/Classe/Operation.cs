@@ -459,7 +459,7 @@ namespace OrionBanque.Classe
             t.Columns.Add("DatePointage", typeof(DateTime));
             t.Columns.Add("Solde", typeof(string));
 
-            list = (from o in list select o).OrderBy(x => x.Date.Date).ThenByDescending(x => x.Id).ToList();
+            list = (from o in list select o).OrderByDescending(x => x.Date).ToList();
 
             //go through each property on T and add each value to the table
             foreach (Operation item in list)
