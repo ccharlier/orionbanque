@@ -14,7 +14,6 @@ namespace OrionBanque.Forms
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             textBoxDescription.Text = AssemblyDescription;
-            Classe.Log.Logger.Debug("Test");
         }
 
         #region Accesseurs d'attribut de l'assembly
@@ -40,7 +39,7 @@ namespace OrionBanque.Forms
         {
             get
             {
-                return "1.0.1.8 BETA";
+                return "1.0.1.9 BETA";
             }
         }
 

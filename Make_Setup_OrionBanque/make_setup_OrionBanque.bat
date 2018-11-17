@@ -21,7 +21,7 @@ REM ****************************************************************************
 REM * répertoire dans lequel les ressources OrionBanque à packager sont présentes *
 REM *******************************************************************************
 
-set orion_directory=C:\\projet\\VS\\Publish\\orionbanque\\v1.0.1.8-BETA
+set orion_directory=C:\\projet\\VS\\Publish\\orionbanque\\publish
 
 REM *******************************************************************************
 REM * répertoire dans lequel est installé NSIS                                    *
