@@ -296,6 +296,8 @@ namespace OrionBanque.Classe
             t.Columns.Add("Répétition", typeof(string));
             t.Columns.Add("DateFin", typeof(DateTime));
 
+            list = list.OrderBy(e => e.Prochaine).ToList();
+
             //go through each property on T and add each value to the table
             foreach (Echeancier item in list)
             {
