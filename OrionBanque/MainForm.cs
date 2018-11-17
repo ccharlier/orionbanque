@@ -290,10 +290,6 @@ namespace OrionBanque
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                tsNbLigne.Text = ": " + dgvOperations.Rows.Count;
-            }
         }
 
         private void ChargeGraph(Compte c)
@@ -925,6 +921,11 @@ namespace OrionBanque
         {
             TotalComptesForm f = new TotalComptesForm(uA);
             f.ShowDialog();
+        }
+
+        private void dgvOperations_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            tsNbLigne.Text = ": " + dgvOperations.Rows.Count;
         }
     }
 }

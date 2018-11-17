@@ -885,6 +885,7 @@
             this.dgvOperations.Size = new System.Drawing.Size(926, 548);
             this.dgvOperations.TabIndex = 0;
             this.dgvOperations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOperations_CellFormatting);
+            this.dgvOperations.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOperations_DataBindingComplete);
             this.dgvOperations.DoubleClick += new System.EventHandler(this.DgvOperations_DoubleClick);
             // 
             // contextMenuStrip1
