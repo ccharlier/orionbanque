@@ -42,7 +42,7 @@ namespace OrionBanque.Classe
             foreach (Categorie c in lcParent)
             {
                 retour.Add(c);
-                List<Categorie> lcEnfant = ChargeCategorieDeParent(c.Id);
+                List<Categorie> lcEnfant = ChargeCategorieDeParent(c);
                 foreach (Categorie c2 in lcEnfant)
                 {
                     retour.Add(c2);
@@ -68,14 +68,14 @@ namespace OrionBanque.Classe
             return lc;
         }
 
-        public static List<Categorie> ChargeCategorieDeParent(int idCat)
+        public static List<Categorie> ChargeCategorieDeParent(Categorie c)
         {
             Log.Logger.Debug("Debut Categorie.ChargeCategorieDeParent()");
             List<Categorie> lc = new List<Categorie>();
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                lc = ob.Categories.Where(c => c.CategorieParent.Id == idCat).OrderBy(c => c.Libelle).ToList();
+                lc = ob.Categories.Where(ct => ct.CategorieParent.Id == c.Id).OrderBy(ct => ct.Libelle).ToList();
             }
             catch (Exception ex)
             {
@@ -125,13 +125,13 @@ namespace OrionBanque.Classe
             return c;
         }
 
-        public static void DeletePossible(int id)
+        public static void DeletePossible(Categorie c)
         {
-            Log.Logger.Debug("Debut Categorie.DeletePossible(" + id + ")");
+            Log.Logger.Debug("Debut Categorie.DeletePossible(" + c.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                List<Operation> lo = ob.Operations.Where(o => o.Categorie.Id == id).ToList();
+                List<Operation> lo = ob.Operations.Where(ct => ct.Categorie.Id == c.Id).ToList();
                 if (lo.Count != 0)
                 {
                     throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur cette Catégorie.");
@@ -144,13 +144,13 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static void Delete(int id)
+        public static void Delete(Categorie c)
         {
-            Log.Logger.Debug("Debut Categorie.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Categorie.Delete(" + c.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                ob.Categories.RemoveAll((c) => c.Id == id);
+                ob.Categories.RemoveAll(ct => ct.Id == c.Id);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)

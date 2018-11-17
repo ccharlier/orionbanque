@@ -10,11 +10,11 @@ namespace OrionBanque.Forms
 {
     public partial class GraphiqueForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        int idC;
+        Compte cA;
         int idColor = 0;
         List<Color> lC = new List<Color>();
 
-        public GraphiqueForm(string typeGraph, int id)
+        public GraphiqueForm(string typeGraph, Compte cP)
         {
             lC.Add(Color.Navy);
             lC.Add(Color.Purple);
@@ -25,21 +25,21 @@ namespace OrionBanque.Forms
             lC.Add(Color.Green);
             lC.Add(Color.Yellow);
             lC.Add(Color.White);
-            idC = id;
+            cA = cP;
             InitializeComponent();
             switch(typeGraph)
             {
-                case Classe.KEY.GRAPH_TIERS:
-                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_TIERS_LIB;
+                case KEY.GRAPH_TIERS:
+                    cbTypeGraph.SelectedItem = KEY.GRAPH_TIERS_LIB;
                     break;
-                case Classe.KEY.GRAPH_TIERS_DC:
-                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_TIERS_DC_LIB;
+                case KEY.GRAPH_TIERS_DC:
+                    cbTypeGraph.SelectedItem = KEY.GRAPH_TIERS_DC_LIB;
                     break;
-                case Classe.KEY.GRAPH_CATEGORIES:
-                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_CATEGORIES_LIB;
+                case KEY.GRAPH_CATEGORIES:
+                    cbTypeGraph.SelectedItem = KEY.GRAPH_CATEGORIES_LIB;
                     break;
-                case Classe.KEY.GRAPH_CATEGORIES_DC:
-                    cbTypeGraph.SelectedItem = Classe.KEY.GRAPH_CATEGORIES_DC_LIB;
+                case KEY.GRAPH_CATEGORIES_DC:
+                    cbTypeGraph.SelectedItem = KEY.GRAPH_CATEGORIES_DC_LIB;
                     break;
             }
         }
@@ -60,11 +60,11 @@ namespace OrionBanque.Forms
                         xBar = "Tiers";
                         if(kBtnHisto.Checked)
                         {
-                            CreateChartSingle(xGraph, title, xBar, Operation.GroupByTiers(idC));
+                            CreateChartSingle(xGraph, title, xBar, Operation.GroupByTiers(cA));
                         }
                         else if (kbtnCam.Checked)
                         {
-                            CreateChartCam(xGraph, title, Operation.GroupByTiers(idC));
+                            CreateChartCam(xGraph, title, Operation.GroupByTiers(cA));
                         }
 
                         break;
@@ -74,11 +74,11 @@ namespace OrionBanque.Forms
                         xBar = "Tiers";
                         if (kBtnHisto.Checked)
                         {
-                            CreateChartDouble(xGraph, title, xBar, Operation.GroupByTiersDC(idC));
+                            CreateChartDouble(xGraph, title, xBar, Operation.GroupByTiersDC(cA));
                         }
                         else if (kbtnCam.Checked)
                         {
-                            CreateChartCamDouble(xGraph, title, Operation.GroupByTiersDC(idC));
+                            CreateChartCamDouble(xGraph, title, Operation.GroupByTiersDC(cA));
                         }
 
                         break;
@@ -88,11 +88,11 @@ namespace OrionBanque.Forms
                         xBar = "Catégories";
                         if (kBtnHisto.Checked)
                         {
-                            CreateChartSingle(xGraph, title, xBar, Operation.GroupByCategories(idC));
+                            CreateChartSingle(xGraph, title, xBar, Operation.GroupByCategories(cA));
                         }
                         else if (kbtnCam.Checked)
                         {
-                            CreateChartCam(xGraph, title, Operation.GroupByCategories(idC));
+                            CreateChartCam(xGraph, title, Operation.GroupByCategories(cA));
                         }
 
                         break;
@@ -102,11 +102,11 @@ namespace OrionBanque.Forms
                         xBar = "Catégories";
                         if (kBtnHisto.Checked)
                         {
-                            CreateChartDouble(xGraph, title, xBar, Operation.GroupByCategoriesDC(idC));
+                            CreateChartDouble(xGraph, title, xBar, Operation.GroupByCategoriesDC(cA));
                         }
                         else if (kbtnCam.Checked)
                         {
-                            CreateChartCamDouble(xGraph, title, Operation.GroupByCategoriesDC(idC));
+                            CreateChartCamDouble(xGraph, title, Operation.GroupByCategoriesDC(cA));
                         }
 
                         break;

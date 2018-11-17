@@ -51,7 +51,7 @@ namespace OrionBanque.Classe
             List<string> retour = new List<string>();
             foreach(Compte c in lc)
             { 
-                List<Echeancier> le = ChargeTout(c.Id);
+                List<Echeancier> le = ChargeTout(c);
                 try
                 {
                     le = le
@@ -78,7 +78,7 @@ namespace OrionBanque.Classe
             List<string> retour = new List<string>();
             foreach (Compte c in lc)
             {
-                List<Echeancier> le = ChargeTout(c.Id);
+                List<Echeancier> le = ChargeTout(c);
                 try
                 {
                     le = le
@@ -226,14 +226,14 @@ namespace OrionBanque.Classe
             return e;
         }
 
-        public static List<Echeancier> ChargeTout(int idC)
+        public static List<Echeancier> ChargeTout(Compte cA)
         {
-            Log.Logger.Debug("Debut Echeancier.Charge(" + idC + ")");
+            Log.Logger.Debug("Debut Echeancier.Charge(" + cA.Id + ")");
             List<Echeancier> le = new List<Echeancier>();
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                le = ob.Echeanciers.Where(et => et.Compte.Id == idC).ToList();
+                le = ob.Echeanciers.Where(et => et.Compte.Id == cA.Id).ToList();
             }
             catch (Exception ex)
             {
@@ -260,18 +260,13 @@ namespace OrionBanque.Classe
             return le;
         }
 
-        public static void Delete(Echeancier ec)
+        public static void Delete(Echeancier eA)
         {
-            Delete(ec.Id);
-        }
-
-        public static void Delete(int id)
-        {
-            Log.Logger.Debug("Debut Echeancier.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Echeancier.Delete(" + eA.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                ob.Echeanciers.RemoveAll((e) => e.Id == id);
+                ob.Echeanciers.RemoveAll((e) => e.Id == eA.Id);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)

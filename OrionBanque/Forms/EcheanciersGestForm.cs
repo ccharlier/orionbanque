@@ -59,7 +59,7 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Echeancier.Delete(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString()));
+                    Echeancier.Delete(Echeancier.Charge((int)dgvEcheance.SelectedRows[0].Cells["Id"].Value));
                     ChargeGrille();
                 }
                 catch (Exception ex)

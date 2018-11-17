@@ -72,13 +72,13 @@ namespace OrionBanque.Classe
             return mp;
         }
 
-        public static void DeletePossible(int id)
+        public static void DeletePossible(ModePaiement mpA)
         {
-            Log.Logger.Debug("Debut ModePaiement.DeletePossible(" + id + ")");
+            Log.Logger.Debug("Debut ModePaiement.DeletePossible(" + mpA.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                List<Operation> lo = ob.Operations.Where(o => o.ModePaiement.Id == id).ToList();
+                List<Operation> lo = ob.Operations.Where(o => o.ModePaiement.Id == mpA.Id).ToList();
                 if (lo.Count != 0)
                 {
                     throw new Exception("Vous devez d'abord modifier vos Opérations pour qu'elles ne pointent plus sur ce Mode de Paiement.");
@@ -89,16 +89,15 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin ModePaiement.DeletePossible()");
         }
 
-        public static void Delete(int id)
+        public static void Delete(ModePaiement mpA)
         {
-            Log.Logger.Debug("Debut ModePaiement.Delete(" + id + ")");
+            Log.Logger.Debug("Debut ModePaiement.Delete(" + mpA.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                ob.ModePaiements.RemoveAll((mp) => mp.Id == id);
+                ob.ModePaiements.RemoveAll((mp) => mp.Id == mpA.Id);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)

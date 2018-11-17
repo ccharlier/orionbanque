@@ -125,13 +125,13 @@ namespace OrionBanque.Classe
         /// Pouvoir supprimer un parametre celon son id
         /// </summary>
         /// <param name="id">Id du parametre a supprimer</param>
-        public static void Delete(int id)
+        public static void Delete(Param pA)
         {
-            Log.Logger.Debug("Debut Param.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Param.Delete(" + pA.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                ob.Params.RemoveAll((p) => p.Id == id);
+                ob.Params.RemoveAll((p) => p.Id == pA.Id);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)

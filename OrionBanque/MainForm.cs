@@ -312,7 +312,7 @@ namespace OrionBanque
 
             do
             {
-                double dTemp = Operation.SoldeCompteAt(dMin, c.Id) + c.SoldeInitial;
+                double dTemp = Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial;
                 ldt.Add(dMin);
                 ld.Add(dTemp);
                 if (dTemp < dYMini)
@@ -381,7 +381,7 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                CompteForm cm = new CompteForm((int)cbCompte.SelectedValue);
+                CompteForm cm = new CompteForm(Compte.Charge((int)cbCompte.SelectedValue));
                 cm.ShowDialog();
                 if (cm.cont)
                 {
@@ -433,7 +433,7 @@ namespace OrionBanque
 
             try
             {
-                dgvOperations.DataSource = Operation.ChargeGrilleOperation((int)cbCompte.SelectedValue);
+                dgvOperations.DataSource = Operation.ChargeGrilleOperation(Compte.Charge((int)cbCompte.SelectedValue));
                 dgvOperations.DataMember = "Operations";
                 dgvOperations.Columns["Id"].Visible = false;
                 dgvOperations.Columns["ModePaiementType"].Visible = false;
@@ -482,7 +482,7 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                OperationForm om = new OperationForm(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()), KEY.MODE_UPDATE);
+                OperationForm om = new OperationForm(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), Compte.Charge((int)cbCompte.SelectedValue), KEY.MODE_UPDATE);
                 om.ShowDialog();
 
                 Compte c = Compte.Charge((int)cbCompte.SelectedValue);
@@ -510,7 +510,7 @@ namespace OrionBanque
                 {
                     try
                     {
-                        Operation.Delete(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+                        Operation.Delete(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())));
                         Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                         ChargeOperations(c);
                         ChargesIndicateurs(c);
@@ -563,11 +563,11 @@ namespace OrionBanque
                 try
                 {
                     DataSet ds = Operation
-                        .ChargeGrilleOperationFiltre((int)cbCompte.SelectedValue,
+                        .ChargeGrilleOperationFiltre(Compte.Charge((int)cbCompte.SelectedValue),
                                     bDate, cbFiltreDate.SelectedItem.ToString(), txtFiltreDate.Value,
-                                    bModePaiement, txtFiltreModePaiement.SelectedValue.ToString(),
+                                    bModePaiement, ModePaiement.Charge((int)txtFiltreModePaiement.SelectedValue),
                                     bTiers, txtFiltreTiers.Text,
-                                    bCategorie, txtFiltreCategorie.SelectedValue.ToString(),
+                                    bCategorie, Categorie.Charge((int)txtFiltreCategorie.SelectedValue),
                                     bMontant, cbFiltreMontant.SelectedItem.ToString(), double.Parse(txtFiltreMontant.Value.ToString()),
                                     bPointe);
                     dgvOperations.DataSource = ds;
@@ -589,8 +589,8 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                OperationForm oa = new OperationForm((int)cbCompte.SelectedValue, "INSERT");
-                oa.ShowDialog();
+                OperationForm of = new OperationForm(new Operation(), Compte.Charge((int)cbCompte.SelectedValue), "INSERT");
+                of.ShowDialog();
 
                 Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                 ChargesIndicateurs(c);
@@ -698,7 +698,7 @@ namespace OrionBanque
             {
                 if (cbCompte.SelectedValue != null)
                 {
-                    List<string> ls = Operation.ChargeToutTiers((int)cbCompte.SelectedValue);
+                    List<string> ls = Operation.ChargeToutTiers(Compte.Charge((int)cbCompte.SelectedValue));
                     txtFiltreTiers.DataSource = ls;
                 }
             }
@@ -736,7 +736,7 @@ namespace OrionBanque
                         choix = KEY.GRAPH_CATEGORIES_DC;
                         break;
                 }
-                g = new GraphiqueForm(choix, (int)cbCompte.SelectedValue);
+                g = new GraphiqueForm(choix, Compte.Charge((int)cbCompte.SelectedValue));
                 g.ShowDialog();
             }
             catch (Exception ex)

@@ -9,23 +9,23 @@ namespace OrionBanque.Forms
     public partial class OperationForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         Operation O;
-        private int idC = 0;
+        private Compte compte;
         public bool cont = false;
         private bool PointageModif = false;
 
-        public OperationForm(int id, string mode)
+        public OperationForm(Operation oP, Compte cP, string mode)
         {
             InitializeComponent();
             
             if (mode.Equals(KEY.MODE_INSERT))
             {
-                idC = id;
+                compte = cP;
                 kPanelFichier.Enabled = false;
             }
             else if(mode.Equals(KEY.MODE_UPDATE))
             {
-                O = Operation.Charge(id);
-                idC = O.Compte.Id;
+                O = oP;
+                compte = cP;
                 ChargeDgv();
             }
             RemplisCb();
@@ -107,7 +107,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<string> ls = Operation.ChargeToutTiers(idC);
+                List<string> ls = Operation.ChargeToutTiers(compte);
                 txtTiers.DataSource = ls;
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace OrionBanque.Forms
                     {
                         Date = txtDateMvt.Value,
                         Categorie = Categorie.Charge((int)txtCategorie.SelectedValue),
-                        Compte = Compte.Charge(idC),
+                        Compte = compte,
                         ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue),
                         Libelle = txtLibelle.Text,
                         Montant = double.Parse(txtMontant.Value.ToString()),
@@ -211,7 +211,7 @@ namespace OrionBanque.Forms
         {
             if(txtModePaiement.SelectedValue.ToString() == "8")
             {
-                txtLibelle.Text = "n°" + Operation.ChercheChequeSuivant(idC);
+                txtLibelle.Text = "n°" + Operation.ChercheChequeSuivant(compte);
             }
         }
 

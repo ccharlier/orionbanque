@@ -17,18 +17,13 @@ namespace OrionBanque.Classe
         [DataMember()]
         public string Mdp { get; set; }
 
-        public static void Delete(Utilisateur u)
+        public static void Delete(Utilisateur uA)
         {
-            Delete(u.Id);
-        }
-
-        public static void Delete(int id)
-        {
-            Log.Logger.Debug("Debut Utilisateur.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Utilisateur.Delete(" + uA.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                ob.Utilisateurs.RemoveAll((u) => u.Id == id);
+                ob.Utilisateurs.RemoveAll((u) => u.Id == uA.Id);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
@@ -36,7 +31,6 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            Log.Logger.Debug("Fin Utilisateur.Delete");
         }
 
         public static Utilisateur Charge(int id)

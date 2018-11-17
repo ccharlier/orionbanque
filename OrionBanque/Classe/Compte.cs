@@ -145,14 +145,14 @@ namespace OrionBanque.Classe
             return cA;
         }
 
-        public static Compte Sauve(Compte c)
+        public static Compte Sauve(Compte cA)
         {
-            Log.Logger.Debug("Debut Copmpte.Sauve(" + c.Libelle + ")");
+            Log.Logger.Debug("Debut Copmpte.Sauve(" + cA.Libelle + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                c.Id = ob.Comptes.Count != 0 ? ob.Comptes.Max(u => u.Id) + 1 : 1;
-                ob.Comptes.Add(c);
+                cA.Id = ob.Comptes.Count != 0 ? ob.Comptes.Max(u => u.Id) + 1 : 1;
+                ob.Comptes.Add(cA);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            return c;
+            return cA;
         }
 
         public List<Operation> Operations()

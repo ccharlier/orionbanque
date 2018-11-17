@@ -96,7 +96,7 @@ namespace OrionBanque.Outils
             if (scatL != string.Empty)
             {
                 bool found = false;
-                List<Categorie> lscat = Categorie.ChargeCategorieDeParent(retour.Id);
+                List<Categorie> lscat = Categorie.ChargeCategorieDeParent(retour);
                 foreach (Categorie tempscat in lscat)
                 {
                     // Est-ce qu'une sous catgorie OB est égale à une sous catégorie BP
@@ -119,7 +119,7 @@ namespace OrionBanque.Outils
                     };
                     Categorie.Sauve(scat);
 
-                    lscat = Categorie.ChargeCategorieDeParent(retour.Id);
+                    lscat = Categorie.ChargeCategorieDeParent(retour);
                     foreach (Categorie tempscat in lscat)
                     {
                         // Est-ce qu'une sous catgorie OB est égale à une sous catégorie BP

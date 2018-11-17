@@ -96,7 +96,7 @@ namespace OrionBanque.Forms
                 {
                     try
                     {
-                        ModePaiement.Delete((int)cbModePaiement.SelectedValue);
+                        ModePaiement.Delete(ModePaiement.Charge((int)cbModePaiement.SelectedValue));
                         ChargeCombo();
                     }
                     catch(Exception ex)

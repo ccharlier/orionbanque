@@ -11,12 +11,12 @@ namespace OrionBanque.Forms
         private Utilisateur uA;
         public bool cont = false;
 
-        public CompteForm(int id)
+        public CompteForm(Compte cP)
         {
             InitializeComponent();
             try
             {
-                cA = Compte.Charge(id);
+                cA = cP;
                 txtLibelle.Text = cA.Libelle;
                 txtSoldeInitial.Value = new decimal(cA.SoldeInitial);
                 kBanque.Text = cA.Banque;

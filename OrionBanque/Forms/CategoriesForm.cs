@@ -69,7 +69,7 @@ namespace OrionBanque.Forms
             {
                 try
                 {
-                    Categorie.Delete(int.Parse(tvCategorie.SelectedNode.Name));
+                    Categorie.Delete(Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name)));
                     ChargeCombo();
                 }
                 catch (Exception ex)

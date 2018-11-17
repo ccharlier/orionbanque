@@ -65,14 +65,14 @@ namespace OrionBanque.Classe
             return lo;
         }
 
-        public static int ChercheChequeSuivant(int idC)
+        public static int ChercheChequeSuivant(Compte cA)
         {
-            Log.Logger.Debug("Debut Echeancier.ChercheChequeSuivant(" + idC + ")");
+            Log.Logger.Debug("Debut Echeancier.ChercheChequeSuivant(" + cA.Id + ")");
             int retour = 0;
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                List<Operation> lo = ob.Operations.Where(ot => ot.Compte.Id == idC && ot.ModePaiement.Id == 8).OrderByDescending(ot => ot.Date).ToList();
+                List<Operation> lo = ob.Operations.Where(ot => ot.Compte.Id == cA.Id && ot.ModePaiement.Id == 8).OrderByDescending(ot => ot.Date).ToList();
                 if (lo.Count > 0)
                 {
                     string[] tab = lo[0].Libelle.Split('°');
@@ -95,11 +95,11 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static List<string> ChargeToutTiers(int idC)
+        public static List<string> ChargeToutTiers(Compte cA)
         {
-            Log.Logger.Debug("Debut Operations.ChargeToutTiers(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.ChargeToutTiers(" + cA.Id + ")");
             List<string> ls = new List<string>();
-            List<Operation> lo = Compte.Charge(idC).Operations().OrderBy(o => o.Tiers).ToList();
+            List<Operation> lo = Compte.Charge(cA.Id).Operations().OrderBy(o => o.Tiers).ToList();
             foreach (Operation o in lo)
             {
                 ls.Add(o.Tiers);
@@ -132,15 +132,15 @@ namespace OrionBanque.Classe
             return oA;
         }
 
-        public static List<string[]> GroupByTiers(int idC)
+        public static List<string[]> GroupByTiers(Compte cP)
         {
             // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByTiers(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GroupByTiers(" + cP.Id + ")");
 
             IDictionary<string, double> dict = new Dictionary<string, double>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in Compte.Charge(idC).Operations())
+            foreach (Operation o in Compte.Charge(cP.Id).Operations())
             {
                 string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
                 double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
@@ -158,17 +158,17 @@ namespace OrionBanque.Classe
             return ls;
         }
 
-        public static List<string[]> GroupByTiersDC(int idC)
+        public static List<string[]> GroupByTiersDC(Compte cP)
         {
             // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GroupByTiersDC(" + cP.Id + ")");
 
             Dictionary<string, double> dictC = new Dictionary<string, double>();
             Dictionary<string, double> dictD = new Dictionary<string, double>();
             List<string> lt = new List<string>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in Compte.Charge(idC).Operations())
+            foreach (Operation o in Compte.Charge(cP.Id).Operations())
             {
                 string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
                 if (o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT)
@@ -196,15 +196,15 @@ namespace OrionBanque.Classe
             return ls.ToList();
         }
 
-        public static List<string[]> GroupByCategories(int idC)
+        public static List<string[]> GroupByCategories(Compte cP)
         {
             // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByCategories(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
 
             Dictionary<int, double> dict = new Dictionary<int, double>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in Compte.Charge(idC).Operations())
+            foreach (Operation o in Compte.Charge(cP.Id).Operations())
             {
                 double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
                 dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
@@ -221,17 +221,17 @@ namespace OrionBanque.Classe
             return ls;
         }
 
-        public static List<string[]> GroupByCategoriesDC(int idC)
+        public static List<string[]> GroupByCategoriesDC(Compte cP)
         {
             // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByCategoriesDC(" + idC + ")");
+            Log.Logger.Debug("Debut Operations.GroupByCategoriesDC(" + cP.Id + ")");
 
             Dictionary<int, double> dictC = new Dictionary<int, double>();
             Dictionary<int, double> dictD = new Dictionary<int, double>();
             List<int> lt = new List<int>();
             List<string[]> retour = new List<string[]>();
 
-            foreach (Operation o in Compte.Charge(idC).Operations())
+            foreach (Operation o in Compte.Charge(cP.Id).Operations())
             {
                 if (o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT)
                 {
@@ -259,16 +259,16 @@ namespace OrionBanque.Classe
             return retour.ToList();
         }
 
-        public static double SoldeCompteAt(DateTime dt, int idC)
+        public static double SoldeCompteAt(DateTime dt, Compte cP)
         {
-            Log.Logger.Debug("Debut Operation.SoldeCompteAt(" + idC + ", " + dt + ")");
+            Log.Logger.Debug("Debut Operation.SoldeCompteAt(" + cP.Id + ", " + dt + ")");
             List<Operation> lo = new List<Operation>();
             double retour = 0.0;
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                retour = ob.Operations.Where(ot => ot.Compte.Id == idC && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT).Sum(s => s.Montant);
-                retour = retour - ob.Operations.Where(ot => ot.Compte.Id == idC && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT).Sum(s => s.Montant);
+                retour = ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT).Sum(s => s.Montant);
+                retour = retour - ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT).Sum(s => s.Montant);
             }
             catch (Exception ex)
             {
@@ -278,14 +278,14 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static DateTime GetMaxDate(int idC)
+        public static DateTime GetMaxDate(Compte cP)
         {
-            Log.Logger.Debug("Debut Operation.SoldeCompteAt(" + idC + ")");
+            Log.Logger.Debug("Debut Operation.SoldeCompteAt(" + cP.Id + ")");
             DateTime retour = DateTime.Now;
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                retour = ob.Operations.Where(ot => ot.Compte.Id == idC).Max(ot => ot.Date);
+                retour = ob.Operations.Where(ot => ot.Compte.Id == cP.Id).Max(ot => ot.Date);
             }
             catch (Exception ex)
             {
@@ -295,14 +295,14 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static DateTime GetMinDate(int idC)
+        public static DateTime GetMinDate(Compte cP)
         {
-            Log.Logger.Debug("Debut Operation.SoldeCompteAt(" + idC + ")");
+            Log.Logger.Debug("Debut Operation.SoldeCompteAt(" + cP.Id + ")");
             DateTime retour = DateTime.Now;
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                retour = ob.Operations.Where(ot => ot.Compte.Id == idC).Min(ot => ot.Date);
+                retour = ob.Operations.Where(ot => ot.Compte.Id == cP.Id).Min(ot => ot.Date);
             }
             catch (Exception ex)
             {
@@ -312,24 +312,23 @@ namespace OrionBanque.Classe
             return retour;
         }
 
-        public static DataSet ChargeGrilleOperation(int idCompte)
+        public static DataSet ChargeGrilleOperation(Compte cP)
         {
-            Log.Logger.Debug("Debut Operations.ChargeGrilleOperation(" + idCompte + ")");
-            List<Operation> lo = Compte.Charge(idCompte).Operations();
-            return ToDataSet(lo);
+            Log.Logger.Debug("Debut Operations.ChargeGrilleOperation(" + cP.Id + ")");
+            return ToDataSet(cP.Operations());
         }
 
-        public static DataSet ChargeGrilleOperationFiltre(int idCompte,
+        public static DataSet ChargeGrilleOperationFiltre(Compte cP,
                                 bool bDate, string cbFiltreDate, DateTime txtFiltreDate,
-                                bool bModePaiement, string txtFiltreModePaiement,
+                                bool bModePaiement, ModePaiement mpP,
                                 bool bTiers, string txtFiltreTiers,
-                                bool bCategorie, string txtFiltreCategorie,
+                                bool bCategorie, Categorie catP,
                                 bool bMontant, string cbFiltreMontant, double txtFiltreMontant, bool bNonPointe)
         {
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperationFiltre()");
             DataSet retour = new DataSet();
 
-            List<Operation> lo = Classe.Compte.Charge(idCompte).Operations();
+            List<Operation> lo = cP.Operations();
             if (bDate)
             {
                 switch (cbFiltreDate)
@@ -348,7 +347,7 @@ namespace OrionBanque.Classe
 
             if (bModePaiement)
             {
-                lo = lo.Where(x => x.ModePaiement.Id == Convert.ToInt32(txtFiltreModePaiement)).ToList();
+                lo = lo.Where(x => x.ModePaiement.Id == mpP.Id).ToList();
             }
 
             if (bTiers)
@@ -358,7 +357,7 @@ namespace OrionBanque.Classe
 
             if (bCategorie)
             {
-                lo = lo.Where(x => x.Categorie.Id == Convert.ToInt32(txtFiltreCategorie)).ToList();
+                lo = lo.Where(x => x.Categorie.Id == catP.Id).ToList();
             }
 
             if (bMontant)
@@ -402,13 +401,13 @@ namespace OrionBanque.Classe
             return o;
         }
 
-        public static void Delete(int id)
+        public static void Delete(Operation oP)
         {
-            Log.Logger.Debug("Debut Operation.Delete(" + id + ")");
+            Log.Logger.Debug("Debut Operation.Delete(" + oP.Id + ")");
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                ob.Operations.RemoveAll((o) => o.Id == id);
+                ob.Operations.RemoveAll((o) => o.Id == oP.Id);
                 CallContext.SetData(KEY.OB, ob);
             }
             catch (Exception ex)
@@ -418,21 +417,18 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static void MajCategorieOperations(int idCompte, int idCatOri, int idCatDest)
+        public static void MajCategorieOperations(Compte cP, Categorie catOriP, Categorie catDestP)
         {
-            Log.Logger.Debug("Debut Operation.MajCategorieOperations(" + idCompte + ")");
-
-            Categorie catOri = Categorie.Charge(idCatOri);
-            Categorie catDest = Categorie.Charge(idCatOri);
+            Log.Logger.Debug("Debut Operation.MajCategorieOperations(" + cP.Id + ")");
 
             List<Operation> lo = new List<Operation>();
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                lo = ob.Operations.Where(ot => ot.Compte.Id == idCompte && ot.Categorie == catOri).ToList();
+                lo = ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Categorie == catOriP).ToList();
                 foreach (Operation o in lo)
                 {
-                    o.Categorie = catDest;
+                    o.Categorie = catDestP;
                     Maj(o);
                 }
             }

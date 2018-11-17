@@ -47,7 +47,7 @@ namespace OrionBanque.Forms
             string text = string.Format("Etes-vous sure de vouloir transférer toutes les opérations du compte \"{0}\" de \"{1}\" vers \"{2}\"", c.Libelle, txtCategorieOri.Text, txtCategorieDest.Text );
             if(MessageBox.Show(text, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Operation.MajCategorieOperations(idC, (int)txtCategorieOri.SelectedValue, (int)txtCategorieDest.SelectedValue);
+                Operation.MajCategorieOperations(c, Categorie.Charge((int)txtCategorieOri.SelectedValue), Categorie.Charge((int)txtCategorieDest.SelectedValue));
             }
         }
     }
