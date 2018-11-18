@@ -39,7 +39,7 @@ namespace OrionBanque.Forms
         {
             get
             {
-                return "1.0.1.9 BETA";
+                return "1.0.2.0-Beta";
             }
         }
 
