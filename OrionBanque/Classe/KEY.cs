@@ -2,7 +2,7 @@ namespace OrionBanque.Classe
 {
     public class KEY
     {
-        public const string CLE_CONNECTION = "CLE_CONNECTION";
+        public const string CLE_FICHIER = "CLE_FICHIER";
         public const string MODE_UPDATE = "UPDATE";
         public const string MODE_INSERT = "INSERT";
         public const string REP_FICHIER_OP = "fichier_op";
@@ -33,9 +33,10 @@ namespace OrionBanque.Classe
         public const string FILE_NAME = "orionbanque.obq";
         public static string ROOT_PATH = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
         public static string FILE_PATH = ROOT_PATH + @"\OrionBanque\" + FILE_NAME;
+        public static string FILE_LIST_PATH = ROOT_PATH + @"\OrionBanque\ListFichier.obq";
         public static string DIRECTORY_PATH = ROOT_PATH + @"\OrionBanque\";
-        public static string FILE_OPERATION_PATH = DIRECTORY_PATH + @"FILE_OPERATION\";
-        public static string FILE_BACKUP_PATH = DIRECTORY_PATH + @"BACKUP\";
+        public static string FILE_OPERATION_PATH = @"FILE_OPERATION\";
+        public static string FILE_BACKUP_PATH = @"BACKUP\";
         public const string GRAPH_TIERS = "tiers";
         public const string GRAPH_TIERS_DC = "tiersDC";
         public const string GRAPH_CATEGORIES = "categories";

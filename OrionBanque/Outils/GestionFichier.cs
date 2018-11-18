@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System;
+using OrionBanque.Classe;
+using System.Collections.Generic;
 
 namespace OrionBanque.Outils
 {
@@ -55,14 +57,6 @@ namespace OrionBanque.Outils
             writer.Close();
         }
 
-        public static void Delete(string fileName)
-        {
-            if(File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-        }
-
         public static void ExportJson(string fileName)
         {
             FileStream writer = new FileStream(fileName, FileMode.Create);
@@ -101,30 +95,30 @@ namespace OrionBanque.Outils
             }
         }
 
-        public static void Sauvegarde(string fileName, Classe.OB ob)
+        public static void Sauvegarde()
         {
-            FileStream writer = new FileStream(fileName, FileMode.Create);
+            FileStream writer = new FileStream((string)CallContext.GetData(KEY.CLE_FICHIER), FileMode.Create);
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(writer, ob);
+                formatter.Serialize(writer, (OB)CallContext.GetData(KEY.OB));
             }
             catch (SerializationException e)
             {
-                Classe.Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
+                Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
                 throw;
             }
             finally
             {
                 writer.Close();
             }
-            RoulementSauvegarde(fileName);
+            RoulementSauvegarde((string)CallContext.GetData(KEY.CLE_FICHIER));
         }
 
         public static void RoulementSauvegarde(string fileName)
         {
             string fn = Path.GetFileNameWithoutExtension(fileName);
-            string dir = Classe.KEY.FILE_BACKUP_PATH;
+            string dir = Path.GetDirectoryName(fileName) + @"\" + KEY.FILE_BACKUP_PATH;
 
             if(!Directory.Exists(dir))
             {
@@ -140,32 +134,109 @@ namespace OrionBanque.Outils
                 File.Delete(fileInfo.FullName);
             }
 
-            File.Copy(fileName, dir + fn + ".obq" + System.DateTime.Now.Year + System.DateTime.Now.Month + System.DateTime.Now.Day + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second + System.DateTime.Now.Millisecond);
+            File.Copy(fileName, dir + fn + ".obq_" + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
         }
 
         public static void Charge(string fileName)
         {
+            if(!File.Exists(fileName))
+            {
+                throw new Exception("Le fichier spécifié n'existe plus.");
+            }
             FileStream reader = new FileStream(fileName, FileMode.Open);
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                Classe.OB ob = (Classe.OB)formatter.Deserialize(reader);
+                OB ob = (OB)formatter.Deserialize(reader);
 
                 if(ob.Fichiers is null)
                 {
-                    ob.Fichiers = new System.Collections.Generic.List<Classe.Fichier>();
+                    ob.Fichiers = new List<Classe.Fichier>();
                 }
 
-                CallContext.SetData(Classe.KEY.OB, ob);
+                CallContext.SetData(KEY.OB, ob);
+                CallContext.SetData(KEY.CLE_FICHIER, fileName);
             }
             catch (SerializationException e)
             {
-                Classe.Log.Logger.Error("Failed to deserialize. Reason: " + e.Message);
+                Log.Logger.Error("Failed to deserialize. Reason: " + e.Message);
                 throw;
             }
             finally
             {
                 reader.Close();
+            }
+        }
+
+        public static List<string> ChargeListeFichier()
+        {
+            List<string> retour = new List<string>();
+            if (File.Exists(KEY.FILE_LIST_PATH))
+            {
+                FileStream reader = new FileStream(KEY.FILE_LIST_PATH, FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    retour = (List<string>)formatter.Deserialize(reader);
+
+                    /*foreach (string l in retour)
+                    {
+                        if (!File.Exists(l))
+                        {
+                            retour.Remove(l);
+                        }
+                    }*/
+                }
+                catch (SerializationException e)
+                {
+                    Log.Logger.Error("Failed to deserialize. Reason: " + e.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return retour;
+        }
+
+        public static List<string> SauveListeFichier(string fileName)
+        {
+            List<string> retour = ChargeListeFichier();
+            FileStream writer = new FileStream(KEY.FILE_LIST_PATH, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                retour.Add(fileName);
+                formatter.Serialize(writer, retour);
+            }
+            catch (SerializationException e)
+            {
+                Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                writer.Close();
+            }
+            return retour;
+        }
+
+        public static void SauveListeFichier(List<string> fileNames)
+        {
+            FileStream writer = new FileStream(KEY.FILE_LIST_PATH, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(writer, fileNames);
+            }
+            catch (SerializationException e)
+            {
+                Log.Logger.Error("Failed to serialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                writer.Close();
             }
         }
     }

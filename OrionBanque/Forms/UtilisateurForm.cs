@@ -58,7 +58,7 @@ namespace OrionBanque.Forms
                 }
 
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                Outils.GestionFichier.Sauvegarde(KEY.FILE_PATH, ob);
+                Outils.GestionFichier.Sauvegarde();
 
                 Close();
             }

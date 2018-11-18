@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using OrionBanque.Classe;
 
@@ -225,13 +226,19 @@ namespace OrionBanque.Forms
                 
                 if (File.Exists(OFDImport.FileName))
                 {
+                    string dirFileOpe = Path.GetDirectoryName((string)CallContext.GetData(KEY.CLE_FICHIER)) + @"\" + KEY.FILE_OPERATION_PATH;
                     f.InitialName = Path.GetFileName(OFDImport.FileName);
                     f.Date = DateTime.Now;
-                    f.Chemin = KEY.FILE_OPERATION_PATH + g.ToString() + Path.GetExtension(OFDImport.FileName);
+                    f.Chemin = dirFileOpe + g.ToString() + Path.GetExtension(OFDImport.FileName);
                     f.Type = KEY.TYPE_FICHIER_FILE;
                     f.Operation = O;
 
                     Fichier.Sauve(f);
+
+                    if(!Directory.Exists(Path.GetDirectoryName(f.Chemin)))
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(f.Chemin));
+                    }
 
                     File.Copy(OFDImport.FileName, f.Chemin);
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using OrionBanque.Classe;
 
@@ -14,12 +16,22 @@ namespace OrionBanque.Forms
         public ConnexionForm()
         {
             InitializeComponent();
+            ChargeListe();
+        }
 
-            // S'il existe un utilisateur, la création ne sera possible que si on est connecté
-            if (Utilisateur.ChargeTout().Count != 0)
-            {
-                btnAddCompte.Visible = false;
-            }
+        private void ChargeListe()
+        {
+            List<string> lf = Outils.GestionFichier.ChargeListeFichier();
+            kLbFile.Items.Clear();
+            kLbFile.Items.AddRange(lf.ToArray());
+
+            bool en = lf.Count != 0;
+
+            btnAddCompte.Enabled = en;
+            OK.Enabled = en;
+            txtLogin.Enabled = en;
+            txtMdp.Enabled = en;
+            kBtnTrashRefFileOB.Enabled = en;
         }
 
         private void OK_Click(object sender, EventArgs e)
@@ -90,12 +102,88 @@ namespace OrionBanque.Forms
             }
         }
 
-        private void kBtnSupprimeFichier_Click(object sender, EventArgs e)
+        private void kBtnOuvrirFichierCompteOB_Click(object sender, EventArgs e)
         {
-            Outils.GestionFichier.Delete(KEY.FILE_PATH);
-            Sql.InitialiseBD();
-            btnAddCompte.Visible = true;
-            kBtnSupprimeFichier.Visible = false;
+            if(OFDOrionBanque.ShowDialog() == DialogResult.OK)
+            {
+                if(File.Exists(OFDOrionBanque.FileName))
+                {
+                    if(kLbFile.Items.Contains(OFDOrionBanque.FileName))
+                    {
+                        kLbFile.SelectedItem = OFDOrionBanque.FileName;
+                    }
+                    else
+                    {
+                        Outils.GestionFichier.SauveListeFichier(OFDOrionBanque.FileName);
+                        ChargeListe();
+                        kLbFile.SelectedItem = OFDOrionBanque.FileName;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Le fichier sélectionné n'existe pas.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void kLbFile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Outils.GestionFichier.Charge(kLbFile.SelectedItem.ToString());
+
+                bool en = kLbFile.SelectedItems.Count != 0;
+
+                btnAddCompte.Enabled = en;
+                OK.Enabled = en;
+                txtLogin.Enabled = en;
+                txtMdp.Enabled = en;
+                
+                
+                if (Utilisateur.ChargeTout().Count != 0)
+                {
+                    btnAddCompte.Visible = false;
+                }
+                else
+                {
+                    btnAddCompte.Visible = true;
+                }
+                kBtnTrashRefFileOB.Enabled = true;
+            }
+            catch(Exception ex)
+            {
+                btnAddCompte.Enabled = false;
+                OK.Enabled = false;
+                txtLogin.Enabled = false;
+                txtMdp.Enabled = false;
+                kBtnTrashRefFileOB.Enabled = true;
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK);
+            }
+        }
+
+        private void kBtnCreerFichierCompteOB_Click(object sender, EventArgs e)
+        {
+            if(FBDOrionBanque.ShowDialog() == DialogResult.OK)
+            {
+                if(Directory.Exists(FBDOrionBanque.SelectedPath))
+                {
+                    string fileName = FBDOrionBanque.SelectedPath + @"\orionbanque.obq";
+                    CallContext.SetData(KEY.CLE_FICHIER, fileName);
+                    Sql.InitialiseBD();
+
+                    Outils.GestionFichier.SauveListeFichier(fileName);
+                    ChargeListe();
+                    kLbFile.SelectedItem = fileName;
+                }
+            }
+        }
+
+        private void kBtnTrashRefFileOB_Click(object sender, EventArgs e)
+        {
+            List<string> lf = Outils.GestionFichier.ChargeListeFichier();
+            lf.Remove(kLbFile.SelectedItem.ToString());
+            Outils.GestionFichier.SauveListeFichier(lf);
+            ChargeListe();
         }
     }
 }

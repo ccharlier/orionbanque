@@ -844,11 +844,7 @@ namespace OrionBanque
             {
                 if (MessageBox.Show("Souhaitez-vous sauvegarder avant de quitter ?", "Sauvegarde", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    OB ob = (OB)CallContext.GetData(KEY.OB);
-                    Outils.GestionFichier.Sauvegarde(
-                        KEY.FILE_PATH,
-                        ob
-                    );
+                    Outils.GestionFichier.Sauvegarde();
                 }
             }
         }
@@ -868,8 +864,7 @@ namespace OrionBanque
 
         private void LanceSauvegarde()
         {
-            OB ob = (OB)CallContext.GetData(KEY.OB);
-            Outils.GestionFichier.Sauvegarde(KEY.FILE_PATH, ob);
+            Outils.GestionFichier.Sauvegarde();
             tsSave.Enabled = false;
         }
 
