@@ -429,7 +429,7 @@ namespace OrionBanque
 
             try
             {
-                dgvOperations.DataSource = Operation.ChargeGrilleOperation(Compte.Charge((int)cbCompte.SelectedValue));
+                dgvOperations.DataSource = Operation.ChargeGrilleOperation(c);
                 dgvOperations.DataMember = "Operations";
                 dgvOperations.Columns["Id"].Visible = false;
                 dgvOperations.Columns["ModePaiementType"].Visible = false;
@@ -442,7 +442,6 @@ namespace OrionBanque
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Solde"].Visible = false;
-                dgvOperations.Sort(dgvOperations.Columns["Date"], System.ComponentModel.ListSortDirection.Descending);
             }
             catch (Exception ex)
             {

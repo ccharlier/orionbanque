@@ -315,7 +315,7 @@ namespace OrionBanque.Classe
         public static DataSet ChargeGrilleOperation(Compte cP)
         {
             Log.Logger.Debug("Debut Operations.ChargeGrilleOperation(" + cP.Id + ")");
-            return ToDataSet(cP.Operations());
+            return ToDataSet(cP.Operations(), cP.SoldeInitial);
         }
 
         public static DataSet ChargeGrilleOperationFiltre(Compte cP,
@@ -381,7 +381,7 @@ namespace OrionBanque.Classe
                 lo = lo.Where(x => x.DatePointage is null).ToList();
             }
 
-            return ToDataSet(lo.OrderByDescending(x => x.Date).ToList());
+            return ToDataSet(lo.OrderByDescending(x => x.Date).ToList(), cP.SoldeInitial);
         }
 
         public static Operation Charge(int id)
@@ -439,12 +439,11 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static DataSet ToDataSet(List<Operation> list)
+        public static DataSet ToDataSet(List<Operation> list, double solde)
         {
             Type elementType = typeof(Operation);
             DataSet ds = new DataSet();
             DataTable t = new DataTable("Operations");
-            double solde = list[0].Compte.SoldeInitial;
             ds.Tables.Add(t);
 
             t.Columns.Add("Id", typeof(int));
