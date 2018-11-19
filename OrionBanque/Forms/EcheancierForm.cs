@@ -128,8 +128,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                List<string> ls = Operation.ChargeToutTiers(Compte.Charge((int)cbCompte.SelectedValue));
-                txtTiers.DataSource = ls;
+                txtTiers.DataSource = Operation.ChargeToutTiers(uA);
             }
             catch (Exception ex)
             {

@@ -103,6 +103,7 @@
             this.kBtnValidTiers.TabIndex = 42;
             this.kBtnValidTiers.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.kBtnValidTiers.Values.Text = "";
+            this.kBtnValidTiers.Click += new System.EventHandler(this.kBtnValidTiers_Click);
             // 
             // kCbTiersVers
             // 

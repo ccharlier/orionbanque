@@ -107,6 +107,19 @@ namespace OrionBanque.Classe
             return ls.Distinct().ToList();
         }
 
+        public static List<string> ChargeToutTiers(Utilisateur uA)
+        {
+            Log.Logger.Debug("Debut Operations.ChargeToutTiers()");
+            List<string> ls = new List<string>();
+            List<Operation> lo = new List<Operation>();
+            foreach (Compte c in Compte.ChargeTout(uA))
+            {
+                ls.AddRange(ChargeToutTiers(c));
+            }
+            ls.Sort();
+            return ls.Distinct().ToList();
+        }
+
         public static Operation Maj(Operation oA)
         {
             Log.Logger.Debug("Debut Operation.Maj(" + oA.Id + ")");
@@ -417,7 +430,7 @@ namespace OrionBanque.Classe
             }
         }
 
-        public static void MajCategorieOperations(Compte cP, Categorie catOriP, Categorie catDestP)
+        public static int MajCategorieOperations(Compte cP, Categorie catOriP, Categorie catDestP)
         {
             Log.Logger.Debug("Debut Operation.MajCategorieOperations(" + cP.Id + ")");
 
@@ -437,6 +450,29 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
+            return lo.Count;
+        }
+
+        public static int MajTiersOperations(Compte cP, string tiersOriP, string tiersDestP)
+        {
+            Log.Logger.Debug("Debut Operation.MajTiersOperations(" + cP.Id + ")");
+            List<Operation> lo = new List<Operation>();
+            try
+            {
+                OB ob = (OB)CallContext.GetData(KEY.OB);
+                lo = ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Tiers == tiersOriP).ToList();
+                foreach (Operation o in lo)
+                {
+                    o.Tiers = tiersDestP;
+                    Maj(o);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
+            return lo.Count;
         }
 
         public static DataSet ToDataSet(List<Operation> list, double solde)

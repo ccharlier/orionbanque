@@ -696,8 +696,7 @@ namespace OrionBanque
             {
                 if (cbCompte.SelectedValue != null)
                 {
-                    List<string> ls = Operation.ChargeToutTiers(Compte.Charge((int)cbCompte.SelectedValue));
-                    txtFiltreTiers.DataSource = ls;
+                    txtFiltreTiers.DataSource = Operation.ChargeToutTiers(uA);
                 }
             }
             catch (Exception ex)
@@ -796,7 +795,7 @@ namespace OrionBanque
                     throw new Exception(erreurPasDeCompteCreer);
                 }
 
-                OperationMajGroupeForm OMG = new OperationMajGroupeForm((int)cbCompte.SelectedValue);
+                OperationMajGroupeForm OMG = new OperationMajGroupeForm(Compte.Charge((int)cbCompte.SelectedValue));
                 OMG.ShowDialog();
 
                 tsSave.Enabled = true;
