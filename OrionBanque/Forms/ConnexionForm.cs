@@ -25,7 +25,7 @@ namespace OrionBanque.Forms
             kLbFile.Items.Clear();
             kLbFile.Items.AddRange(lf.ToArray());
 
-            bool en = lf.Count != 0;
+            bool en = kLbFile.SelectedItems.Count != 0;
 
             btnAddCompte.Enabled = en;
             OK.Enabled = en;

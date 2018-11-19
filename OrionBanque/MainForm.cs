@@ -426,6 +426,7 @@ namespace OrionBanque
             kFiltreTiers.Checked = false;
             kFiltreCategorie.Checked = false;
             kFiltreMontant.Checked = false;
+            txtFiltrePointe.Checked = false;
 
             try
             {
