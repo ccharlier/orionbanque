@@ -27,7 +27,7 @@ namespace OrionBanque
         {
             uA = u;
             InitializeComponent();
-            tsDate.Text = ": " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
+            tsDateJour.Text = " : " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
 
             ApresConnexion();
         }

@@ -33,7 +33,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsDateJour = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -173,7 +172,6 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsUser,
             this.tsDateJour,
-            this.tsDate,
             this.tsNbLigne});
             this.statusStrip1.Location = new System.Drawing.Point(0, 632);
             this.statusStrip1.Name = "statusStrip1";
@@ -195,11 +193,6 @@
             this.tsDateJour.Name = "tsDateJour";
             this.tsDateJour.Size = new System.Drawing.Size(42, 17);
             this.tsDateJour.Text = " : --";
-            // 
-            // tsDate
-            // 
-            this.tsDate.Name = "tsDate";
-            this.tsDate.Size = new System.Drawing.Size(0, 17);
             // 
             // tsNbLigne
             // 
@@ -1292,7 +1285,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvOperations;
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
         private System.Windows.Forms.ToolStripStatusLabel tsDateJour;
-        private System.Windows.Forms.ToolStripStatusLabel tsDate;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private ZedGraph.ZedGraphControl xGraph;
         private System.Windows.Forms.Label label3;
