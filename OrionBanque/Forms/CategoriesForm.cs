@@ -87,7 +87,7 @@ namespace OrionBanque.Forms
                 {
                     Libelle = txtLibelleAdd.Text.Trim()
                 };
-                if (kryptonCheckBox1.Checked)
+                if (kCkbCategorieParentAjout.Checked)
                 {
                     c.CategorieParent = Categorie.Charge((int)cbCategorieParent.SelectedValue);
                 }
@@ -112,7 +112,7 @@ namespace OrionBanque.Forms
             {
                 Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name));
                 c.Libelle = txtLibelleMod.Text.Trim();
-                if (kryptonCheckBox2.Checked)
+                if (kCkbCategorieParentMajSup.Checked)
                 {
                     c.CategorieParent = Categorie.Charge((int)cbModCatPa.SelectedValue);
                 }
@@ -133,12 +133,12 @@ namespace OrionBanque.Forms
 
         private void KryptonCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            cbCategorieParent.Enabled = kryptonCheckBox1.Checked;
+            cbCategorieParent.Enabled = kCkbCategorieParentAjout.Checked;
         }
 
         private void KryptonCheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            cbModCatPa.Enabled = kryptonCheckBox2.Checked;
+            cbModCatPa.Enabled = kCkbCategorieParentMajSup.Checked;
         }
 
         private void TvCategorie_AfterSelect(object sender, TreeViewEventArgs e)
@@ -149,11 +149,11 @@ namespace OrionBanque.Forms
                 txtLibelleMod.Text = c.Libelle;
                 if (c.CategorieParent.Id.Equals(0))
                 {
-                    kryptonCheckBox2.Checked = false;
+                    kCkbCategorieParentMajSup.Checked = false;
                 }
                 else
                 {
-                    kryptonCheckBox2.Checked = true;
+                    kCkbCategorieParentMajSup.Checked = true;
                     cbModCatPa.SelectedValue = c.CategorieParent.Id;
                 }
             }

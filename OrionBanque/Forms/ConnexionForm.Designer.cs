@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnexionForm));
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.kBtnTrashRefFileOB = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kBtnCreerFichierCompteOB = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kBtnOuvrirFichierCompteOB = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kLbFile = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
-            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnAddCompte = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Fermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.OK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -46,7 +47,6 @@
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.OFDOrionBanque = new System.Windows.Forms.OpenFileDialog();
             this.FBDOrionBanque = new System.Windows.Forms.FolderBrowserDialog();
-            this.kBtnTrashRefFileOB = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,7 @@
             this.kryptonPanel1.Controls.Add(this.kBtnCreerFichierCompteOB);
             this.kryptonPanel1.Controls.Add(this.kBtnOuvrirFichierCompteOB);
             this.kryptonPanel1.Controls.Add(this.kLbFile);
-            this.kryptonPanel1.Controls.Add(this.kryptonLabel2);
+            this.kryptonPanel1.Controls.Add(this.kLblHeader);
             this.kryptonPanel1.Controls.Add(this.btnAddCompte);
             this.kryptonPanel1.Controls.Add(this.Fermer);
             this.kryptonPanel1.Controls.Add(this.OK);
@@ -70,6 +70,18 @@
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(405, 320);
             this.kryptonPanel1.TabIndex = 0;
+            // 
+            // kBtnTrashRefFileOB
+            // 
+            this.kBtnTrashRefFileOB.Enabled = false;
+            this.kBtnTrashRefFileOB.Location = new System.Drawing.Point(190, 196);
+            this.kBtnTrashRefFileOB.Name = "kBtnTrashRefFileOB";
+            this.kBtnTrashRefFileOB.Size = new System.Drawing.Size(23, 23);
+            this.kBtnTrashRefFileOB.TabIndex = 34;
+            this.toolTip1.SetToolTip(this.kBtnTrashRefFileOB, "Supprime la référence à ce fichier OrionBanque");
+            this.kBtnTrashRefFileOB.Values.Image = global::OrionBanque.Properties.Resources.bin_closed;
+            this.kBtnTrashRefFileOB.Values.Text = "";
+            this.kBtnTrashRefFileOB.Click += new System.EventHandler(this.kBtnTrashRefFileOB_Click);
             // 
             // kBtnCreerFichierCompteOB
             // 
@@ -101,14 +113,14 @@
             this.kLbFile.TabIndex = 31;
             this.kLbFile.SelectedIndexChanged += new System.EventHandler(this.kLbFile_SelectedIndexChanged);
             // 
-            // kryptonLabel2
+            // kLblHeader
             // 
-            this.kryptonLabel2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
-            this.kryptonLabel2.Location = new System.Drawing.Point(137, 12);
-            this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(106, 29);
-            this.kryptonLabel2.TabIndex = 29;
-            this.kryptonLabel2.Values.Text = "Connexion";
+            this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kLblHeader.Location = new System.Drawing.Point(137, 12);
+            this.kLblHeader.Name = "kLblHeader";
+            this.kLblHeader.Size = new System.Drawing.Size(106, 29);
+            this.kLblHeader.TabIndex = 29;
+            this.kLblHeader.Values.Text = "Connexion";
             // 
             // btnAddCompte
             // 
@@ -191,18 +203,6 @@
             // 
             this.FBDOrionBanque.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // kBtnTrashRefFileOB
-            // 
-            this.kBtnTrashRefFileOB.Enabled = false;
-            this.kBtnTrashRefFileOB.Location = new System.Drawing.Point(190, 196);
-            this.kBtnTrashRefFileOB.Name = "kBtnTrashRefFileOB";
-            this.kBtnTrashRefFileOB.Size = new System.Drawing.Size(23, 23);
-            this.kBtnTrashRefFileOB.TabIndex = 34;
-            this.toolTip1.SetToolTip(this.kBtnTrashRefFileOB, "Supprime la référence à ce fichier OrionBanque");
-            this.kBtnTrashRefFileOB.Values.Image = global::OrionBanque.Properties.Resources.bin_closed;
-            this.kBtnTrashRefFileOB.Values.Text = "";
-            this.kBtnTrashRefFileOB.Click += new System.EventHandler(this.kBtnTrashRefFileOB_Click);
-            // 
             // ConnexionForm
             // 
             this.AcceptButton = this.OK;
@@ -236,7 +236,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddCompte;
         private System.Windows.Forms.ToolTip toolTip1;
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLblHeader;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLogin;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonListBox kLbFile;

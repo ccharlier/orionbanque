@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
             this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cbDebCredAdd = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -38,7 +38,7 @@
             this.txtLibelleAdd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.btnSupCat = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSupModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnValidMod = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cbDebCredMod = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.cbModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -64,7 +64,7 @@
             // 
             // kryptonPanel1
             // 
-            this.kryptonPanel1.Controls.Add(this.kryptonLabel6);
+            this.kryptonPanel1.Controls.Add(this.kLblHeader);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox2);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox1);
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -73,14 +73,14 @@
             this.kryptonPanel1.Size = new System.Drawing.Size(478, 263);
             this.kryptonPanel1.TabIndex = 0;
             // 
-            // kryptonLabel6
+            // kLblHeader
             // 
-            this.kryptonLabel6.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
-            this.kryptonLabel6.Location = new System.Drawing.Point(168, 12);
-            this.kryptonLabel6.Name = "kryptonLabel6";
-            this.kryptonLabel6.Size = new System.Drawing.Size(177, 29);
-            this.kryptonLabel6.TabIndex = 30;
-            this.kryptonLabel6.Values.Text = "Mode de Paiement";
+            this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kLblHeader.Location = new System.Drawing.Point(168, 12);
+            this.kLblHeader.Name = "kLblHeader";
+            this.kLblHeader.Size = new System.Drawing.Size(177, 29);
+            this.kLblHeader.TabIndex = 30;
+            this.kLblHeader.Values.Text = "Mode de Paiement";
             // 
             // kryptonGroupBox2
             // 
@@ -156,7 +156,7 @@
             // 
             // kryptonGroupBox1.Panel
             // 
-            this.kryptonGroupBox1.Panel.Controls.Add(this.btnSupCat);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.btnSupModePaiement);
             this.kryptonGroupBox1.Panel.Controls.Add(this.btnValidMod);
             this.kryptonGroupBox1.Panel.Controls.Add(this.cbDebCredMod);
             this.kryptonGroupBox1.Panel.Controls.Add(this.cbModePaiement);
@@ -168,16 +168,16 @@
             this.kryptonGroupBox1.TabIndex = 23;
             this.kryptonGroupBox1.Values.Heading = "Modification / Suppression";
             // 
-            // btnSupCat
+            // btnSupModePaiement
             // 
-            this.btnSupCat.Location = new System.Drawing.Point(415, 55);
-            this.btnSupCat.Name = "btnSupCat";
-            this.btnSupCat.Size = new System.Drawing.Size(23, 23);
-            this.btnSupCat.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.btnSupCat, "Supprimer le mode de paiement");
-            this.btnSupCat.Values.Image = global::OrionBanque.Properties.Resources.cancel1;
-            this.btnSupCat.Values.Text = "";
-            this.btnSupCat.Click += new System.EventHandler(this.BtnSupCat_Click);
+            this.btnSupModePaiement.Location = new System.Drawing.Point(415, 55);
+            this.btnSupModePaiement.Name = "btnSupModePaiement";
+            this.btnSupModePaiement.Size = new System.Drawing.Size(23, 23);
+            this.btnSupModePaiement.TabIndex = 22;
+            this.toolTip1.SetToolTip(this.btnSupModePaiement, "Supprimer le mode de paiement");
+            this.btnSupModePaiement.Values.Image = global::OrionBanque.Properties.Resources.cancel1;
+            this.btnSupModePaiement.Values.Text = "";
+            this.btnSupModePaiement.Click += new System.EventHandler(this.BtnSupCat_Click);
             // 
             // btnValidMod
             // 
@@ -250,7 +250,7 @@
             this.kryptonLabel1.TabIndex = 16;
             this.kryptonLabel1.Values.Text = "Mode de Paiement :";
             // 
-            // ModePaiement
+            // ModePaiementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -259,11 +259,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ModePaiement";
+            this.Name = "ModePaiementForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque -  Mode de Paiement";
+            this.Text = "Mode de Paiement";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
@@ -294,7 +295,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLibelleMod;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbDebCredMod;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbModePaiement;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSupCat;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSupModePaiement;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnValidMod;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdd;
@@ -303,6 +304,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLibelleAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
         private System.Windows.Forms.ToolTip toolTip1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLblHeader;
     }
 }

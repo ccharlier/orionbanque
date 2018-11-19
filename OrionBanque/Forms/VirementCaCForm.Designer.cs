@@ -41,8 +41,8 @@
             this.txtMontant = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pBDestination = new System.Windows.Forms.PictureBox();
+            this.pBOrigine = new System.Windows.Forms.PictureBox();
             this.lblTotDest = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblTotOri = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.cbCompteOri = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -61,8 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
             this.kryptonGroupBox1.Panel.SuspendLayout();
             this.kryptonGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBOrigine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCompteOri)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCompteDest)).BeginInit();
             this.SuspendLayout();
@@ -197,8 +197,8 @@
             // 
             // kryptonGroupBox1.Panel
             // 
-            this.kryptonGroupBox1.Panel.Controls.Add(this.pictureBox5);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.pictureBox2);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.pBDestination);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.pBOrigine);
             this.kryptonGroupBox1.Panel.Controls.Add(this.lblTotDest);
             this.kryptonGroupBox1.Panel.Controls.Add(this.lblTotOri);
             this.kryptonGroupBox1.Panel.Controls.Add(this.cbCompteOri);
@@ -209,27 +209,27 @@
             this.kryptonGroupBox1.TabIndex = 12;
             this.kryptonGroupBox1.Values.Heading = "Comptes";
             // 
-            // pictureBox5
+            // pBDestination
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Image = global::OrionBanque.Properties.Resources.lightbulb;
-            this.pictureBox5.Location = new System.Drawing.Point(315, 33);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox5.TabIndex = 57;
-            this.pictureBox5.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox5, "Solde Pointé du Compte Destination");
+            this.pBDestination.BackColor = System.Drawing.Color.Transparent;
+            this.pBDestination.Image = global::OrionBanque.Properties.Resources.lightbulb;
+            this.pBDestination.Location = new System.Drawing.Point(315, 33);
+            this.pBDestination.Name = "pBDestination";
+            this.pBDestination.Size = new System.Drawing.Size(16, 16);
+            this.pBDestination.TabIndex = 57;
+            this.pBDestination.TabStop = false;
+            this.toolTip1.SetToolTip(this.pBDestination, "Solde Pointé du Compte Destination");
             // 
-            // pictureBox2
+            // pBOrigine
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = global::OrionBanque.Properties.Resources.lightbulb;
-            this.pictureBox2.Location = new System.Drawing.Point(315, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 56;
-            this.pictureBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox2, "Solde Pointé du Compte Origine");
+            this.pBOrigine.BackColor = System.Drawing.Color.Transparent;
+            this.pBOrigine.Image = global::OrionBanque.Properties.Resources.lightbulb;
+            this.pBOrigine.Location = new System.Drawing.Point(315, 5);
+            this.pBOrigine.Name = "pBOrigine";
+            this.pBOrigine.Size = new System.Drawing.Size(16, 16);
+            this.pBOrigine.TabIndex = 56;
+            this.pBOrigine.TabStop = false;
+            this.toolTip1.SetToolTip(this.pBOrigine, "Solde Pointé du Compte Origine");
             // 
             // lblTotDest
             // 
@@ -292,7 +292,7 @@
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Aide";
             // 
-            // VirementCaC
+            // VirementCaCForm
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,11 +303,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "VirementCaC";
+            this.Name = "VirementCaCForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Virement de Compte à Compte";
-            this.TextExtra = "";
+            this.Text = "Virement de Compte à Compte";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
@@ -321,8 +321,8 @@
             this.kryptonGroupBox1.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).EndInit();
             this.kryptonGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBOrigine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCompteOri)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCompteDest)).EndInit();
             this.ResumeLayout(false);
@@ -350,7 +350,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pBDestination;
+        private System.Windows.Forms.PictureBox pBOrigine;
     }
 }

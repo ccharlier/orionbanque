@@ -47,7 +47,7 @@
             this.txtDecaleDimanche = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.txtDecaleSamedi = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.txtInsererOuvertureFichier = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.txtIllimete = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.txtIllimite = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtRepete = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtTypeRepete = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -234,7 +234,7 @@
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtDecaleDimanche);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtDecaleSamedi);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtInsererOuvertureFichier);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.txtIllimete);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.txtIllimite);
             this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel2);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtRepete);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtTypeRepete);
@@ -292,16 +292,16 @@
             this.txtInsererOuvertureFichier.TabIndex = 47;
             this.txtInsererOuvertureFichier.Values.Text = "Insérer à l\'ouverture du fichier";
             // 
-            // txtIllimete
+            // txtIllimite
             // 
-            this.txtIllimete.Checked = true;
-            this.txtIllimete.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.txtIllimete.Location = new System.Drawing.Point(15, 5);
-            this.txtIllimete.Name = "txtIllimete";
-            this.txtIllimete.Size = new System.Drawing.Size(60, 20);
-            this.txtIllimete.TabIndex = 46;
-            this.txtIllimete.Values.Text = "Illimité";
-            this.txtIllimete.CheckedChanged += new System.EventHandler(this.TxtIlimete_CheckedChanged);
+            this.txtIllimite.Checked = true;
+            this.txtIllimite.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtIllimite.Location = new System.Drawing.Point(15, 5);
+            this.txtIllimite.Name = "txtIllimite";
+            this.txtIllimite.Size = new System.Drawing.Size(60, 20);
+            this.txtIllimite.TabIndex = 46;
+            this.txtIllimite.Values.Text = "Illimité";
+            this.txtIllimite.CheckedChanged += new System.EventHandler(this.TxtIlimete_CheckedChanged);
             // 
             // kryptonLabel2
             // 
@@ -444,7 +444,8 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Echéance";
+            this.Text = " Echéance";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -491,7 +492,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown txtRepete;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox txtTypeRepete;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtIllimete;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtIllimite;
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker txtProchaine;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;

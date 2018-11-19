@@ -37,10 +37,10 @@
             this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtDateInsereEch = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kBtnInsere = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kBtnSupprime = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kBtnModifie = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kBtnAjout = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).BeginInit();
             this.kryptonSplitContainer1.Panel1.SuspendLayout();
@@ -67,10 +67,10 @@
             // 
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonLabel1);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtDateInsereEch);
-            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton4);
-            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton3);
-            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton2);
-            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kryptonButton1);
+            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kBtnInsere);
+            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kBtnSupprime);
+            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kBtnModifie);
+            this.kryptonSplitContainer1.Panel2.Controls.Add(this.kBtnAjout);
             this.kryptonSplitContainer1.Size = new System.Drawing.Size(1292, 552);
             this.kryptonSplitContainer1.SplitterDistance = 482;
             this.kryptonSplitContainer1.TabIndex = 0;
@@ -141,47 +141,47 @@
             this.txtDateInsereEch.Size = new System.Drawing.Size(176, 21);
             this.txtDateInsereEch.TabIndex = 4;
             // 
-            // kryptonButton4
+            // kBtnInsere
             // 
-            this.kryptonButton4.Location = new System.Drawing.Point(877, 16);
-            this.kryptonButton4.Name = "kryptonButton4";
-            this.kryptonButton4.Size = new System.Drawing.Size(102, 27);
-            this.kryptonButton4.TabIndex = 3;
-            this.kryptonButton4.Values.Image = global::OrionBanque.Properties.Resources.accept1;
-            this.kryptonButton4.Values.Text = "Insérer";
-            this.kryptonButton4.Click += new System.EventHandler(this.KryptonButton4_Click);
+            this.kBtnInsere.Location = new System.Drawing.Point(877, 16);
+            this.kBtnInsere.Name = "kBtnInsere";
+            this.kBtnInsere.Size = new System.Drawing.Size(102, 27);
+            this.kBtnInsere.TabIndex = 3;
+            this.kBtnInsere.Values.Image = global::OrionBanque.Properties.Resources.accept1;
+            this.kBtnInsere.Values.Text = "Insérer";
+            this.kBtnInsere.Click += new System.EventHandler(this.KryptonButton4_Click);
             // 
-            // kryptonButton3
+            // kBtnSupprime
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(374, 16);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(102, 27);
-            this.kryptonButton3.TabIndex = 2;
-            this.kryptonButton3.Values.Image = global::OrionBanque.Properties.Resources.calendar_delete;
-            this.kryptonButton3.Values.Text = "Supprimer";
-            this.kryptonButton3.Click += new System.EventHandler(this.KryptonButton3_Click);
+            this.kBtnSupprime.Location = new System.Drawing.Point(374, 16);
+            this.kBtnSupprime.Name = "kBtnSupprime";
+            this.kBtnSupprime.Size = new System.Drawing.Size(102, 27);
+            this.kBtnSupprime.TabIndex = 2;
+            this.kBtnSupprime.Values.Image = global::OrionBanque.Properties.Resources.calendar_delete;
+            this.kBtnSupprime.Values.Text = "Supprimer";
+            this.kBtnSupprime.Click += new System.EventHandler(this.KryptonButton3_Click);
             // 
-            // kryptonButton2
+            // kBtnModifie
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(224, 16);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(102, 27);
-            this.kryptonButton2.TabIndex = 1;
-            this.kryptonButton2.Values.Image = global::OrionBanque.Properties.Resources.calendar_edit;
-            this.kryptonButton2.Values.Text = "Modifier";
-            this.kryptonButton2.Click += new System.EventHandler(this.KryptonButton2_Click);
+            this.kBtnModifie.Location = new System.Drawing.Point(224, 16);
+            this.kBtnModifie.Name = "kBtnModifie";
+            this.kBtnModifie.Size = new System.Drawing.Size(102, 27);
+            this.kBtnModifie.TabIndex = 1;
+            this.kBtnModifie.Values.Image = global::OrionBanque.Properties.Resources.calendar_edit;
+            this.kBtnModifie.Values.Text = "Modifier";
+            this.kBtnModifie.Click += new System.EventHandler(this.KryptonButton2_Click);
             // 
-            // kryptonButton1
+            // kBtnAjout
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(74, 16);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(102, 27);
-            this.kryptonButton1.TabIndex = 0;
-            this.kryptonButton1.Values.Image = global::OrionBanque.Properties.Resources.calendar_add;
-            this.kryptonButton1.Values.Text = "Ajouter";
-            this.kryptonButton1.Click += new System.EventHandler(this.KryptonButton1_Click);
+            this.kBtnAjout.Location = new System.Drawing.Point(74, 16);
+            this.kBtnAjout.Name = "kBtnAjout";
+            this.kBtnAjout.Size = new System.Drawing.Size(102, 27);
+            this.kBtnAjout.TabIndex = 0;
+            this.kBtnAjout.Values.Image = global::OrionBanque.Properties.Resources.calendar_add;
+            this.kBtnAjout.Values.Text = "Ajouter";
+            this.kBtnAjout.Click += new System.EventHandler(this.KryptonButton1_Click);
             // 
-            // EcheanciersGest
+            // EcheanciersGestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -190,11 +190,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "EcheanciersGest";
+            this.Name = "EcheanciersGestForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Gestion Echéances";
+            this.Text = "Gestion Echéances";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).EndInit();
             this.kryptonSplitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel2)).EndInit();
@@ -212,10 +213,10 @@
 
         private ComponentFactory.Krypton.Toolkit.KryptonSplitContainer kryptonSplitContainer1;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvEcheance;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnAjout;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnSupprime;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnModifie;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnInsere;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker txtDateInsereEch;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

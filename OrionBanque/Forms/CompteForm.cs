@@ -32,11 +32,11 @@ namespace OrionBanque.Forms
 
                 if (cA.TypEvol.Equals(string.Empty))
                 {
-                    kryptonRadioButton1.Checked = true;
+                    kRBtnParDate.Checked = true;
                 }
                 else
                 {
-                    kryptonRadioButton2.Checked = true;
+                    kRBtnAutre.Checked = true;
                 }
                 DataGridViewComboBoxColumn dgvPaiement = (DataGridViewComboBoxColumn)dgvOperations.Columns["Paiement"];
                 List<ModePaiement> lmp = ModePaiement.ChargeTout();
@@ -60,7 +60,7 @@ namespace OrionBanque.Forms
         {
             uA = u;
             InitializeComponent();
-            kryptonRadioButton1.Checked = true;
+            kRBtnParDate.Checked = true;
 
             tabControl1.TabPages.RemoveByKey("tabPage3");
         }
@@ -84,7 +84,7 @@ namespace OrionBanque.Forms
                         cA.SeuilAlerte = double.Parse(txtSeuilAlerte.Value.ToString());
                         cA.SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString());
                         cA.EstDansTotalCompte = txtEstDansTotalCompte.Checked;
-                        if(kryptonRadioButton2.Checked)
+                        if(kRBtnAutre.Checked)
                         {
                             cA.TypEvol = cbEvolType.Text;
                         }
@@ -121,7 +121,7 @@ namespace OrionBanque.Forms
                             SeuilAlerteFinal = double.Parse(txtSeuilAlerteFinal.Value.ToString()),
                             EstDansTotalCompte = txtEstDansTotalCompte.Checked
                         };
-                        if (kryptonRadioButton2.Checked)
+                        if (kRBtnAutre.Checked)
                         {
                             c.TypEvol = cbEvolType.Text;
                         }
@@ -178,9 +178,9 @@ namespace OrionBanque.Forms
 
         private void CheckEvol()
         {
-            txtEvolSoldeMin.Enabled = kryptonRadioButton1.Checked;
-            txtEvolSoldMax.Enabled = kryptonRadioButton1.Checked;
-            cbEvolType.Enabled = kryptonRadioButton2.Checked;
+            txtEvolSoldeMin.Enabled = kRBtnParDate.Checked;
+            txtEvolSoldMax.Enabled = kRBtnParDate.Checked;
+            cbEvolType.Enabled = kRBtnAutre.Checked;
         }
 
         private void KryptonRadioButton1_CheckedChanged(object sender, EventArgs e)

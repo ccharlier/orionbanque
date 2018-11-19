@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox3 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
             this.tvCategorie = new System.Windows.Forms.TreeView();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.kryptonCheckBox2 = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.kCkbCategorieParentMajSup = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.cbModCatPa = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.btnSupCat = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnValidMod = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtLibelleMod = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.kryptonCheckBox1 = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.kCkbCategorieParentAjout = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.cbCategorieParent = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.btnSauvCat = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtLibelleAdd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -67,7 +67,7 @@
             // 
             // kryptonPanel1
             // 
-            this.kryptonPanel1.Controls.Add(this.kryptonLabel3);
+            this.kryptonPanel1.Controls.Add(this.kLblHeader);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox3);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox2);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox1);
@@ -77,14 +77,14 @@
             this.kryptonPanel1.Size = new System.Drawing.Size(691, 463);
             this.kryptonPanel1.TabIndex = 0;
             // 
-            // kryptonLabel3
+            // kLblHeader
             // 
-            this.kryptonLabel3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
-            this.kryptonLabel3.Location = new System.Drawing.Point(279, 12);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(105, 29);
-            this.kryptonLabel3.TabIndex = 30;
-            this.kryptonLabel3.Values.Text = "Catégories";
+            this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kLblHeader.Location = new System.Drawing.Point(279, 12);
+            this.kLblHeader.Name = "kLblHeader";
+            this.kLblHeader.Size = new System.Drawing.Size(105, 29);
+            this.kLblHeader.TabIndex = 30;
+            this.kLblHeader.Values.Text = "Catégories";
             // 
             // kryptonGroupBox3
             // 
@@ -114,7 +114,7 @@
             // 
             // kryptonGroupBox2.Panel
             // 
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonCheckBox2);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kCkbCategorieParentMajSup);
             this.kryptonGroupBox2.Panel.Controls.Add(this.cbModCatPa);
             this.kryptonGroupBox2.Panel.Controls.Add(this.btnSupCat);
             this.kryptonGroupBox2.Panel.Controls.Add(this.btnValidMod);
@@ -124,15 +124,15 @@
             this.kryptonGroupBox2.TabIndex = 17;
             this.kryptonGroupBox2.Values.Heading = "Modification / Suppression";
             // 
-            // kryptonCheckBox2
+            // kCkbCategorieParentMajSup
             // 
-            this.kryptonCheckBox2.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
-            this.kryptonCheckBox2.Location = new System.Drawing.Point(20, 34);
-            this.kryptonCheckBox2.Name = "kryptonCheckBox2";
-            this.kryptonCheckBox2.Size = new System.Drawing.Size(121, 20);
-            this.kryptonCheckBox2.TabIndex = 21;
-            this.kryptonCheckBox2.Values.Text = "Catégorie Parent :";
-            this.kryptonCheckBox2.CheckedChanged += new System.EventHandler(this.KryptonCheckBox2_CheckedChanged);
+            this.kCkbCategorieParentMajSup.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
+            this.kCkbCategorieParentMajSup.Location = new System.Drawing.Point(20, 34);
+            this.kCkbCategorieParentMajSup.Name = "kCkbCategorieParentMajSup";
+            this.kCkbCategorieParentMajSup.Size = new System.Drawing.Size(121, 20);
+            this.kCkbCategorieParentMajSup.TabIndex = 21;
+            this.kCkbCategorieParentMajSup.Values.Text = "Catégorie Parent :";
+            this.kCkbCategorieParentMajSup.CheckedChanged += new System.EventHandler(this.KryptonCheckBox2_CheckedChanged);
             // 
             // cbModCatPa
             // 
@@ -188,7 +188,7 @@
             // 
             // kryptonGroupBox1.Panel
             // 
-            this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonCheckBox1);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.kCkbCategorieParentAjout);
             this.kryptonGroupBox1.Panel.Controls.Add(this.cbCategorieParent);
             this.kryptonGroupBox1.Panel.Controls.Add(this.btnSauvCat);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtLibelleAdd);
@@ -197,15 +197,15 @@
             this.kryptonGroupBox1.TabIndex = 16;
             this.kryptonGroupBox1.Values.Heading = "Ajout";
             // 
-            // kryptonCheckBox1
+            // kCkbCategorieParentAjout
             // 
-            this.kryptonCheckBox1.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
-            this.kryptonCheckBox1.Location = new System.Drawing.Point(20, 30);
-            this.kryptonCheckBox1.Name = "kryptonCheckBox1";
-            this.kryptonCheckBox1.Size = new System.Drawing.Size(121, 20);
-            this.kryptonCheckBox1.TabIndex = 18;
-            this.kryptonCheckBox1.Values.Text = "Catégorie Parent :";
-            this.kryptonCheckBox1.CheckedChanged += new System.EventHandler(this.KryptonCheckBox1_CheckedChanged);
+            this.kCkbCategorieParentAjout.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
+            this.kCkbCategorieParentAjout.Location = new System.Drawing.Point(20, 30);
+            this.kCkbCategorieParentAjout.Name = "kCkbCategorieParentAjout";
+            this.kCkbCategorieParentAjout.Size = new System.Drawing.Size(121, 20);
+            this.kCkbCategorieParentAjout.TabIndex = 18;
+            this.kCkbCategorieParentAjout.Values.Text = "Catégorie Parent :";
+            this.kCkbCategorieParentAjout.CheckedChanged += new System.EventHandler(this.KryptonCheckBox1_CheckedChanged);
             // 
             // cbCategorieParent
             // 
@@ -243,7 +243,7 @@
             this.kryptonLabel1.TabIndex = 10;
             this.kryptonLabel1.Values.Text = "Libelle :";
             // 
-            // Categories
+            // CategoriesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -252,11 +252,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Categories";
+            this.Name = "CategoriesForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Catégories";
+            this.Text = "Catégories";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
@@ -292,13 +293,13 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSauvCat;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLibelleAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox kryptonCheckBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox kCkbCategorieParentAjout;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbCategorieParent;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private System.Windows.Forms.TreeView tvCategorie;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox kryptonCheckBox2;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox kCkbCategorieParentMajSup;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbModCatPa;
         private System.Windows.Forms.ToolTip toolTip1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLblHeader;
     }
 }

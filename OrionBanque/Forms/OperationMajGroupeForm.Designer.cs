@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.kryptonComboBox2 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.kBtnValidTiers = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kCbTiersVers = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.kCbTiersDe = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
@@ -48,8 +48,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
             this.kryptonGroupBox2.Panel.SuspendLayout();
             this.kryptonGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kCbTiersVers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kCbTiersDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
             this.kryptonGroupBox1.Panel.SuspendLayout();
@@ -60,7 +60,7 @@
             // 
             // kryptonPanel1
             // 
-            this.kryptonPanel1.Controls.Add(this.kryptonLabel5);
+            this.kryptonPanel1.Controls.Add(this.kLblHeader);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox2);
             this.kryptonPanel1.Controls.Add(this.kryptonGroupBox1);
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -69,14 +69,14 @@
             this.kryptonPanel1.Size = new System.Drawing.Size(418, 302);
             this.kryptonPanel1.TabIndex = 0;
             // 
-            // kryptonLabel5
+            // kLblHeader
             // 
-            this.kryptonLabel5.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
-            this.kryptonLabel5.Location = new System.Drawing.Point(145, 12);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(109, 29);
-            this.kryptonLabel5.TabIndex = 36;
-            this.kryptonLabel5.Values.Text = "Mise à jour";
+            this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kLblHeader.Location = new System.Drawing.Point(145, 12);
+            this.kLblHeader.Name = "kLblHeader";
+            this.kLblHeader.Size = new System.Drawing.Size(109, 29);
+            this.kLblHeader.TabIndex = 36;
+            this.kLblHeader.Values.Text = "Mise à jour";
             // 
             // kryptonGroupBox2
             // 
@@ -85,9 +85,9 @@
             // 
             // kryptonGroupBox2.Panel
             // 
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonButton1);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonComboBox1);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonComboBox2);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kBtnValidTiers);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kCbTiersVers);
+            this.kryptonGroupBox2.Panel.Controls.Add(this.kCbTiersDe);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel3);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel4);
             this.kryptonGroupBox2.Size = new System.Drawing.Size(394, 112);
@@ -95,32 +95,32 @@
             this.kryptonGroupBox2.Values.Heading = "Transfert Tiers";
             this.kryptonGroupBox2.Values.Image = global::OrionBanque.Properties.Resources.user_business;
             // 
-            // kryptonButton1
+            // kBtnValidTiers
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(296, 46);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(23, 23);
-            this.kryptonButton1.TabIndex = 42;
-            this.kryptonButton1.Values.Image = global::OrionBanque.Properties.Resources.accept1;
-            this.kryptonButton1.Values.Text = "";
+            this.kBtnValidTiers.Location = new System.Drawing.Point(296, 46);
+            this.kBtnValidTiers.Name = "kBtnValidTiers";
+            this.kBtnValidTiers.Size = new System.Drawing.Size(23, 23);
+            this.kBtnValidTiers.TabIndex = 42;
+            this.kBtnValidTiers.Values.Image = global::OrionBanque.Properties.Resources.accept1;
+            this.kBtnValidTiers.Values.Text = "";
             // 
-            // kryptonComboBox1
+            // kCbTiersVers
             // 
-            this.kryptonComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.kryptonComboBox1.DropDownWidth = 166;
-            this.kryptonComboBox1.Location = new System.Drawing.Point(115, 46);
-            this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.Size = new System.Drawing.Size(166, 21);
-            this.kryptonComboBox1.TabIndex = 41;
+            this.kCbTiersVers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kCbTiersVers.DropDownWidth = 166;
+            this.kCbTiersVers.Location = new System.Drawing.Point(115, 46);
+            this.kCbTiersVers.Name = "kCbTiersVers";
+            this.kCbTiersVers.Size = new System.Drawing.Size(166, 21);
+            this.kCbTiersVers.TabIndex = 41;
             // 
-            // kryptonComboBox2
+            // kCbTiersDe
             // 
-            this.kryptonComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.kryptonComboBox2.DropDownWidth = 166;
-            this.kryptonComboBox2.Location = new System.Drawing.Point(115, 19);
-            this.kryptonComboBox2.Name = "kryptonComboBox2";
-            this.kryptonComboBox2.Size = new System.Drawing.Size(166, 21);
-            this.kryptonComboBox2.TabIndex = 40;
+            this.kCbTiersDe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kCbTiersDe.DropDownWidth = 166;
+            this.kCbTiersDe.Location = new System.Drawing.Point(115, 19);
+            this.kCbTiersDe.Name = "kCbTiersDe";
+            this.kCbTiersDe.Size = new System.Drawing.Size(166, 21);
+            this.kCbTiersDe.TabIndex = 40;
             // 
             // kryptonLabel3
             // 
@@ -199,7 +199,7 @@
             this.kryptonLabel1.TabIndex = 0;
             this.kryptonLabel1.Values.Text = "De :";
             // 
-            // OperationMajGroupe
+            // OperationMajGroupeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -208,10 +208,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "OperationMajGroupe";
+            this.Name = "OperationMajGroupeForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Mise à jour en Masse des Opérations";
+            this.Text = "Mise à jour en Masse des Opérations";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
@@ -220,8 +221,8 @@
             this.kryptonGroupBox2.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
             this.kryptonGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kCbTiersVers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kCbTiersDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
             this.kryptonGroupBox1.Panel.ResumeLayout(false);
             this.kryptonGroupBox1.Panel.PerformLayout();
@@ -243,11 +244,11 @@
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox txtCategorieOri;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnValidCat;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnValidTiers;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kCbTiersVers;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kCbTiersDe;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLblHeader;
     }
 }

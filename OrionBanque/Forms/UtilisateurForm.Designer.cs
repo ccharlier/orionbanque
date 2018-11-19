@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.showPwd = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.chkPwd = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.Fermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -46,7 +46,7 @@
             // 
             // kryptonPanel1
             // 
-            this.kryptonPanel1.Controls.Add(this.kryptonLabel3);
+            this.kryptonPanel1.Controls.Add(this.kLblHeader);
             this.kryptonPanel1.Controls.Add(this.showPwd);
             this.kryptonPanel1.Controls.Add(this.chkPwd);
             this.kryptonPanel1.Controls.Add(this.Fermer);
@@ -61,14 +61,14 @@
             this.kryptonPanel1.Size = new System.Drawing.Size(334, 166);
             this.kryptonPanel1.TabIndex = 1;
             // 
-            // kryptonLabel3
+            // kLblHeader
             // 
-            this.kryptonLabel3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
-            this.kryptonLabel3.Location = new System.Drawing.Point(115, 12);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(103, 29);
-            this.kryptonLabel3.TabIndex = 30;
-            this.kryptonLabel3.Values.Text = "Utilisateur";
+            this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kLblHeader.Location = new System.Drawing.Point(115, 12);
+            this.kLblHeader.Name = "kLblHeader";
+            this.kLblHeader.Size = new System.Drawing.Size(103, 29);
+            this.kLblHeader.TabIndex = 30;
+            this.kLblHeader.Values.Text = "Utilisateur";
             // 
             // showPwd
             // 
@@ -141,7 +141,7 @@
             this.kryptonLabel1.TabIndex = 16;
             this.kryptonLabel1.Values.Text = "Login :";
             // 
-            // Utilisateur
+            // UtilisateurForm
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,11 +152,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Utilisateur";
+            this.Name = "UtilisateurForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Utilisateur";
+            this.Text = "Utilisateur";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
@@ -176,6 +177,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkPwd;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel showPwd;
         private System.Windows.Forms.ToolTip toolTip1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLblHeader;
     }
 }

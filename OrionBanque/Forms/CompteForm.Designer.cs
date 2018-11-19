@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel13 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.Fermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -42,14 +42,15 @@
             this.txtSeuilAlerte = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox3 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
+            this.txtEstDansTotalCompte = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.txtSoldeInitial = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
             this.cbEvolType = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.kryptonRadioButton2 = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.kryptonRadioButton1 = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.kRBtnAutre = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.kRBtnParDate = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtEvolSoldMax = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
@@ -80,7 +81,6 @@
             this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.OK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
-            this.txtEstDansTotalCompte = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -272,6 +272,14 @@
             this.kryptonGroupBox3.TabIndex = 30;
             this.kryptonGroupBox3.Values.Heading = "";
             // 
+            // txtEstDansTotalCompte
+            // 
+            this.txtEstDansTotalCompte.Location = new System.Drawing.Point(109, 75);
+            this.txtEstDansTotalCompte.Name = "txtEstDansTotalCompte";
+            this.txtEstDansTotalCompte.Size = new System.Drawing.Size(213, 20);
+            this.txtEstDansTotalCompte.TabIndex = 25;
+            this.txtEstDansTotalCompte.Values.Text = "Afficher dans le Total des Comptes";
+            // 
             // txtSoldeInitial
             // 
             this.txtSoldeInitial.DecimalPlaces = 2;
@@ -322,8 +330,8 @@
             // kryptonGroupBox1.Panel
             // 
             this.kryptonGroupBox1.Panel.Controls.Add(this.cbEvolType);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonRadioButton2);
-            this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonRadioButton1);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.kRBtnAutre);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.kRBtnParDate);
             this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel8);
             this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel7);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtEvolSoldMax);
@@ -347,23 +355,23 @@
             this.cbEvolType.Size = new System.Drawing.Size(213, 21);
             this.cbEvolType.TabIndex = 23;
             // 
-            // kryptonRadioButton2
+            // kRBtnAutre
             // 
-            this.kryptonRadioButton2.Location = new System.Drawing.Point(29, 65);
-            this.kryptonRadioButton2.Name = "kryptonRadioButton2";
-            this.kryptonRadioButton2.Size = new System.Drawing.Size(52, 20);
-            this.kryptonRadioButton2.TabIndex = 22;
-            this.kryptonRadioButton2.Values.Text = "Autre";
-            this.kryptonRadioButton2.CheckedChanged += new System.EventHandler(this.KryptonRadioButton2_CheckedChanged);
+            this.kRBtnAutre.Location = new System.Drawing.Point(29, 65);
+            this.kRBtnAutre.Name = "kRBtnAutre";
+            this.kRBtnAutre.Size = new System.Drawing.Size(52, 20);
+            this.kRBtnAutre.TabIndex = 22;
+            this.kRBtnAutre.Values.Text = "Autre";
+            this.kRBtnAutre.CheckedChanged += new System.EventHandler(this.KryptonRadioButton2_CheckedChanged);
             // 
-            // kryptonRadioButton1
+            // kRBtnParDate
             // 
-            this.kryptonRadioButton1.Location = new System.Drawing.Point(29, 28);
-            this.kryptonRadioButton1.Name = "kryptonRadioButton1";
-            this.kryptonRadioButton1.Size = new System.Drawing.Size(68, 20);
-            this.kryptonRadioButton1.TabIndex = 21;
-            this.kryptonRadioButton1.Values.Text = "Par date";
-            this.kryptonRadioButton1.CheckedChanged += new System.EventHandler(this.KryptonRadioButton1_CheckedChanged);
+            this.kRBtnParDate.Location = new System.Drawing.Point(29, 28);
+            this.kRBtnParDate.Name = "kRBtnParDate";
+            this.kRBtnParDate.Size = new System.Drawing.Size(68, 20);
+            this.kRBtnParDate.TabIndex = 21;
+            this.kRBtnParDate.Values.Text = "Par date";
+            this.kRBtnParDate.CheckedChanged += new System.EventHandler(this.KryptonRadioButton1_CheckedChanged);
             // 
             // kryptonLabel8
             // 
@@ -517,8 +525,8 @@
             // 
             // dgvOperations
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -633,14 +641,6 @@
             // 
             this.OFDImport.Title = "Fichier d\'Opérations à importer";
             // 
-            // txtEstDansTotalCompte
-            // 
-            this.txtEstDansTotalCompte.Location = new System.Drawing.Point(109, 75);
-            this.txtEstDansTotalCompte.Name = "txtEstDansTotalCompte";
-            this.txtEstDansTotalCompte.Size = new System.Drawing.Size(213, 20);
-            this.txtEstDansTotalCompte.TabIndex = 25;
-            this.txtEstDansTotalCompte.Values.Text = "Afficher dans le Total des Comptes";
-            // 
             // CompteForm
             // 
             this.AcceptButton = this.OK;
@@ -653,7 +653,8 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Compte";
+            this.Text = "Compte";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
@@ -721,8 +722,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown txtSeuilAlerte;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel10;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kryptonRadioButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kryptonRadioButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kRBtnAutre;
+        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kRBtnParDate;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbEvolType;
         private System.Windows.Forms.TabPage tabPage3;

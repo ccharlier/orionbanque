@@ -55,7 +55,7 @@
             this.dgvFichiers = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -203,7 +203,7 @@
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.tabControl1);
-            this.kryptonPanel1.Controls.Add(this.kryptonLabel2);
+            this.kryptonPanel1.Controls.Add(this.kLblHeader);
             this.kryptonPanel1.Controls.Add(this.OK);
             this.kryptonPanel1.Controls.Add(this.Fermer);
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -369,14 +369,14 @@
             this.supprimerToolStripMenuItem.Text = "&Supprimer";
             this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
-            // kryptonLabel2
+            // kLblHeader
             // 
-            this.kryptonLabel2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
-            this.kryptonLabel2.Location = new System.Drawing.Point(227, 12);
-            this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(100, 29);
-            this.kryptonLabel2.TabIndex = 46;
-            this.kryptonLabel2.Values.Text = "Opération";
+            this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
+            this.kLblHeader.Location = new System.Drawing.Point(227, 12);
+            this.kLblHeader.Name = "kLblHeader";
+            this.kLblHeader.Size = new System.Drawing.Size(100, 29);
+            this.kLblHeader.TabIndex = 46;
+            this.kLblHeader.Values.Text = "Opération";
             // 
             // OFDImport
             // 
@@ -443,7 +443,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton OK;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtPointage;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLblHeader;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabGeneral;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel2;

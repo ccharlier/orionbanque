@@ -75,11 +75,11 @@ namespace OrionBanque.Forms
 
                 if (mp.Id > 8)
                 {
-                    btnSupCat.Enabled = true;
+                    btnSupModePaiement.Enabled = true;
                 }
                 else
                 {
-                    btnSupCat.Enabled = false;
+                    btnSupModePaiement.Enabled = false;
                 }
             }
             catch (Exception ex)

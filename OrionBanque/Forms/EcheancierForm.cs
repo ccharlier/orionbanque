@@ -30,11 +30,11 @@ namespace OrionBanque.Forms
                 cbCompte.SelectedValue = eA.Compte.Id;
                 if (eA.DateFin == null)
                 {
-                    txtIllimete.Checked = true;
+                    txtIllimite.Checked = true;
                 }
                 else
                 {
-                    txtIllimete.Checked = false;
+                    txtIllimite.Checked = false;
                     txtDateFin.Value = eA.DateFin.Value;
                 }
                 txtCategorie.SelectedValue = eA.Categorie.Id;
@@ -141,7 +141,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                if (txtIllimete.Checked)
+                if (txtIllimite.Checked)
                 {
                     eA.DateFin = null;
                 }
@@ -199,7 +199,7 @@ namespace OrionBanque.Forms
 
         private void TxtIlimete_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtIllimete.Checked)
+            if (txtIllimite.Checked)
             {
                 txtDateFin.Enabled = false;
             }

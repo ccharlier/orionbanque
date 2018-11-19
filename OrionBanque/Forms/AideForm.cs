@@ -5,7 +5,7 @@
         public AideForm(string titre, string aide)
         {
             InitializeComponent();
-            kryptonRichTextBox1.Text = aide;
+            kRTBText.Text = aide;
             Text = titre;
         }
     }

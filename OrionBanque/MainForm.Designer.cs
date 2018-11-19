@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsUser = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsDateJour = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -172,7 +172,7 @@
             this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsUser,
-            this.toolStripStatusLabel1,
+            this.tsDateJour,
             this.tsDate,
             this.tsNbLigne});
             this.statusStrip1.Location = new System.Drawing.Point(0, 632);
@@ -189,12 +189,12 @@
             this.tsUser.Size = new System.Drawing.Size(42, 17);
             this.tsUser.Text = " : --";
             // 
-            // toolStripStatusLabel1
+            // tsDateJour
             // 
-            this.toolStripStatusLabel1.Image = global::OrionBanque.Properties.Resources.calendar_view_day;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabel1.Text = " : --";
+            this.tsDateJour.Image = global::OrionBanque.Properties.Resources.calendar_view_day;
+            this.tsDateJour.Name = "tsDateJour";
+            this.tsDateJour.Size = new System.Drawing.Size(42, 17);
+            this.tsDateJour.Text = " : --";
             // 
             // tsDate
             // 
@@ -1291,7 +1291,7 @@
         private System.Windows.Forms.Label lblSoldPoint;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvOperations;
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel tsDateJour;
         private System.Windows.Forms.ToolStripStatusLabel tsDate;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private ZedGraph.ZedGraphControl xGraph;

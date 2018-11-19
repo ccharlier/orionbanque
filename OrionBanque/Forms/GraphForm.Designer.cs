@@ -82,6 +82,7 @@
             this.xGraph.ScrollMinY2 = 0D;
             this.xGraph.Size = new System.Drawing.Size(807, 468);
             this.xGraph.TabIndex = 1;
+            this.xGraph.UseExtendedPrintDialog = true;
             this.xGraph.MouseMove += new System.Windows.Forms.MouseEventHandler(this.XGraph_MouseMove);
             // 
             // kPosition
@@ -137,17 +138,18 @@
             this.kBtnHisto.Values.Text = "";
             this.kBtnHisto.Click += new System.EventHandler(this.KBtnHisto_Click);
             // 
-            // Graphique
+            // GraphiqueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 505);
             this.Controls.Add(this.kryptonSplitContainer1);
-            this.Name = "Graphique";
+            this.Name = "GraphiqueForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "OrionBanque - Graphique";
+            this.Text = "Graphique";
+            this.TextExtra = "OrionBanque";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).EndInit();
             this.kryptonSplitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel2)).EndInit();
