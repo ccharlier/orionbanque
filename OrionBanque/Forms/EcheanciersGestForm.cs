@@ -30,7 +30,9 @@ namespace OrionBanque.Forms
                 dgvEcheance.Columns["ModePaiementType"].Visible = false;
                 dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
                 dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
+                dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
+                dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
             catch (Exception ex)
             {
