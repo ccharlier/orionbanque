@@ -65,7 +65,6 @@ namespace OrionBanque.Forms
                 MessageBox.Show(nb + " Opération(s) mise(s) à jour.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cont = true;
             }
-
         }
 
         private void kBtnValidTiers_Click(object sender, EventArgs e)
