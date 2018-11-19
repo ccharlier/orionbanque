@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using ZedGraph;
 using OrionBanque.Classe;
@@ -798,7 +797,10 @@ namespace OrionBanque
                 OperationMajGroupeForm OMG = new OperationMajGroupeForm(Compte.Charge((int)cbCompte.SelectedValue));
                 OMG.ShowDialog();
 
-                tsSave.Enabled = true;
+                if(OMG.cont)
+                {
+                    tsSave.Enabled = true;
+                }
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ namespace OrionBanque.Forms
     public partial class OperationMajGroupeForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Compte cA;
+        public bool cont = false;
 
         public OperationMajGroupeForm(Compte c)
         {
@@ -62,6 +63,7 @@ namespace OrionBanque.Forms
             {
                 int nb = Operation.MajCategorieOperations(cA, Categorie.Charge((int)txtCategorieOri.SelectedValue), Categorie.Charge((int)txtCategorieDest.SelectedValue));
                 MessageBox.Show(nb + " Opération(s) mise(s) à jour.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cont = true;
             }
 
         }
@@ -73,6 +75,7 @@ namespace OrionBanque.Forms
             {
                 int nb = Operation.MajTiersOperations(cA, kCbTiersDe.Text, kCbTiersVers.Text);
                 MessageBox.Show(nb + " Opération(s) mise(s) à jour.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cont = true;
             }
         }
     }
