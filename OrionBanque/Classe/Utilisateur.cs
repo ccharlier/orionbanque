@@ -64,7 +64,7 @@ namespace OrionBanque.Classe
                 Log.Logger.Error(ex.Message);
                 throw;
             }
-            return retour;
+            return retour ?? new Utilisateur();
         }
 
         public static Utilisateur Maj(Utilisateur uA)
