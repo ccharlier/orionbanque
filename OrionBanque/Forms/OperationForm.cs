@@ -94,7 +94,7 @@ namespace OrionBanque.Forms
             try
             {
                 List<Categorie> lc = Categorie.ChargeToutIdent();
-                txtCategorie.DisplayMember = "Libelle";
+                txtCategorie.DisplayMember = "LibelleIdent";
                 txtCategorie.ValueMember = "Id";
                 txtCategorie.DataSource = lc;
             }
