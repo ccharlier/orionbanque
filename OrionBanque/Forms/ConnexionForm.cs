@@ -139,7 +139,6 @@ namespace OrionBanque.Forms
                 txtLogin.Enabled = en;
                 txtMdp.Enabled = en;
                 
-                
                 if (Utilisateur.ChargeTout().Count != 0)
                 {
                     btnAddCompte.Visible = false;
