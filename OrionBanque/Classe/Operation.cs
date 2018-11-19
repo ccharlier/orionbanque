@@ -455,10 +455,10 @@ namespace OrionBanque.Classe
             t.Columns.Add("Categorie", typeof(string));
             t.Columns.Add("Montant Débit", typeof(double));
             t.Columns.Add("Montant Crédit", typeof(double));
-            t.Columns.Add("DatePointage", typeof(DateTime));
             t.Columns.Add("Solde", typeof(string));
+            t.Columns.Add("DatePointage", typeof(DateTime));
 
-            list = (from o in list select o).OrderByDescending(x => x.Date).ToList();
+            list = (from o in list select o).OrderBy(x => x.Date).ToList();
 
             //go through each property on T and add each value to the table
             foreach (Operation item in list)
