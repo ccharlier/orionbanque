@@ -31,134 +31,7 @@ namespace OrionBanque
             ApresConnexion();
         }
 
-        private void ApresConnexion()
-        {
-            tsUser.Text = " : " + uA.Login;
-
-            ChargeComboCompte();
-
-            tsGraphChoix.SelectedItem = tsGraphChoix.Items[0];
-            cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];
-            cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutBoxForm f = new AboutBoxForm();
-            f.ShowDialog();
-        }
- 
-        private void TsBtnConnection_Click(object sender, EventArgs e)
-        {
-            ConnexionForm c = new ConnexionForm();
-            c.ShowDialog();
-            if (c.cont)
-            {
-                uA = c.uA;
-                ApresConnexion();
-            }
-        }
-
-        private void ChargesIndicateurs(Compte c)
-        {
-            try
-            {
-                double soldOpePoint = c.SoldeOperationPointee();
-                double aVenir = c.AVenir();
-                double soldFinal = soldOpePoint + aVenir;
-
-                lblSoldPoint.Text = string.Format("{0,12:0,0.00}", soldOpePoint) + " €";
-                lblAVenir.Text = string.Format("{0,12:0,0.00}", aVenir) + " €";
-                lblSoldFinal.Text = string.Format("{0,12:0,0.00}", soldFinal) + " €";
-
-                ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
-
-                if(soldOpePoint > 0)
-                {
-                    lblSoldPoint.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    lblSoldPoint.ForeColor = Color.Red;
-                }
-
-                if (aVenir > 0)
-                {
-                    lblAVenir.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    lblAVenir.ForeColor = Color.Red;
-                }
-
-                if (soldFinal > 0)
-                {
-                    lblSoldFinal.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    lblSoldFinal.ForeColor = Color.Red;
-                }
-
-                if (soldOpePoint <= c.SeuilAlerte)
-                {
-                    pb.Visible = true;
-                    toolTipG.SetToolTip(pb, "Attention, seuil d'alerte (" + c.SeuilAlerte + " €)" + " atteint ou dépassé : " + Math.Round(soldOpePoint,2) + " €");
-                }
-                else
-                {
-                    pb.Visible = false;
-                }
-
-                if(soldFinal <= c.SeuilAlerteFinal)
-                {
-                    pbSoldeFinal.Visible = true;
-                    toolTipG.SetToolTip(pbSoldeFinal, "Attention, seuil d'alerte (" + c.SeuilAlerteFinal + " €)" + " atteint ou dépassé : " + Math.Round(soldFinal,2) + " €");
-                }
-                else
-                {
-                    pbSoldeFinal.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void ModeDePaiementToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ModePaiementForm mp = new ModePaiementForm();
-            mp.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
-        private void TsGestionModePaiement_Click(object sender, EventArgs e)
-        {
-            ModePaiementForm mp = new ModePaiementForm();
-            mp.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
-        private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CategoriesForm c = new CategoriesForm();
-            c.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
-        private void TsGestionCategories_Click(object sender, EventArgs e)
-        {
-            CategoriesForm c = new CategoriesForm();
-            c.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
+        #region Echéancier
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
             LanceGestionEcheancier();
@@ -192,6 +65,7 @@ namespace OrionBanque
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
         #region Utilisateurs
         private void ToolStripButton7_Click(object sender, EventArgs e)
@@ -230,6 +104,73 @@ namespace OrionBanque
         #endregion
 
         #region Comptes
+        private void ChargesIndicateurs(Compte c)
+        {
+            try
+            {
+                double soldOpePoint = c.SoldeOperationPointee();
+                double aVenir = c.AVenir();
+                double soldFinal = soldOpePoint + aVenir;
+
+                lblSoldPoint.Text = string.Format("{0,12:0,0.00}", soldOpePoint) + " €";
+                lblAVenir.Text = string.Format("{0,12:0,0.00}", aVenir) + " €";
+                lblSoldFinal.Text = string.Format("{0,12:0,0.00}", soldFinal) + " €";
+
+                ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
+
+                if (soldOpePoint > 0)
+                {
+                    lblSoldPoint.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    lblSoldPoint.ForeColor = Color.Red;
+                }
+
+                if (aVenir > 0)
+                {
+                    lblAVenir.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    lblAVenir.ForeColor = Color.Red;
+                }
+
+                if (soldFinal > 0)
+                {
+                    lblSoldFinal.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    lblSoldFinal.ForeColor = Color.Red;
+                }
+
+                if (soldOpePoint <= c.SeuilAlerte)
+                {
+                    pb.Visible = true;
+                    toolTipG.SetToolTip(pb, "Attention, seuil d'alerte (" + c.SeuilAlerte + " €)" + " atteint ou dépassé : " + Math.Round(soldOpePoint, 2) + " €");
+                }
+                else
+                {
+                    pb.Visible = false;
+                }
+
+                if (soldFinal <= c.SeuilAlerteFinal)
+                {
+                    pbSoldeFinal.Visible = true;
+                    toolTipG.SetToolTip(pbSoldeFinal, "Attention, seuil d'alerte (" + c.SeuilAlerteFinal + " €)" + " atteint ou dépassé : " + Math.Round(soldFinal, 2) + " €");
+                }
+                else
+                {
+                    pbSoldeFinal.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void ChargeComboCompte()
         {
             try
@@ -414,6 +355,12 @@ namespace OrionBanque
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void totalDesComptesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TotalComptesForm f = new TotalComptesForm(uA);
+            f.ShowDialog();
         }
         #endregion
 
@@ -601,6 +548,16 @@ namespace OrionBanque
             }
         }
 
+        private void AjouterToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            AjouterOperation();
+        }
+
+        private void TsAjoutOperation_Click(object sender, EventArgs e)
+        {
+            AjouterOperation();
+        }
+
         private void AjouterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AjouterOperation();
@@ -649,9 +606,180 @@ namespace OrionBanque
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void dgvOperations_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.P)
+            {
+                LancePointage();
+            }
+        }
+
+        private void pointerLesOpérationsSélectionnéesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LancePointage();
+        }
+
+        private void LancePointage()
+        {
+            DataGridViewSelectedRowCollection liste = dgvOperations.SelectedRows;
+            foreach(DataGridViewRow row in liste)
+            {
+                Operation otemp = Operation.Charge((int)row.Cells["Id"].Value);
+                if(otemp.DatePointage is null)
+                { 
+                    otemp.DatePointage = DateTime.Now;
+                    Operation.Maj(otemp);
+                }
+                
+            }
+            if(liste.Count != 0)
+            {
+                ChargeOperations(Compte.Charge((int)cbCompte.SelectedValue));
+                tsSave.Enabled = true;
+            }
+        }
+
+        private void GestionOpérationsEnGroupeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbCompte.Items.Count == 0)
+                {
+                    throw new Exception(erreurPasDeCompteCreer);
+                }
+
+                OperationMajGroupeForm OMG = new OperationMajGroupeForm(Compte.Charge((int)cbCompte.SelectedValue));
+                OMG.ShowDialog();
+
+                if (OMG.cont)
+                {
+                    tsSave.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvOperations_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            tsNbLigne.Text = ": " + dgvOperations.Rows.Count;
+        }
+
+        private void TxtFiltrePointe_CheckedChanged(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
+
+        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
+                Outils.GestionFichier.ExportCSV(folderBrowserDialog.SelectedPath + @"\" + c.Libelle + ".csv", ((DataSet)dgvOperations.DataSource).Tables["Operations"]);
+            }
+        }
+
+        private void fichierJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filedest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME + ".json";
+                    Outils.GestionFichier.ExportJson(filedest);
+                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
+                }
+            }
+        }
+
+        private void fichierXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".xml";
+                    Outils.GestionFichier.ExportXml(filedest);
+                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
+                }
+            }
+        }
+
+        private void unFichierCSVBPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (OFDImport.ShowDialog() == DialogResult.OK)
+            {
+                Cursor = Cursors.WaitCursor;
+                // Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
+                if (File.Exists(OFDImport.FileName))
+                {
+                    Compte cT = new Compte
+                    {
+                        Libelle = Path.GetFileNameWithoutExtension(OFDImport.FileName),
+                        SoldeInitial = 0.0,
+                        Utilisateur = Utilisateur.Charge(uA.Id),
+                        Banque = string.Empty,
+                        Guichet = string.Empty,
+                        NoCompte = string.Empty,
+                        Clef = string.Empty,
+                        MinGraphSold = DateTime.Now,
+                        MaxGraphSold = DateTime.Now,
+                        SeuilAlerte = 0.0,
+                        SeuilAlerteFinal = 0.0,
+                        TypEvol = KEY.COMPTE_VISU_6MOIS
+                    };
+                    cT = Compte.Sauve(cT);
+
+                    Outils.ImportBP.Lance(Path.GetDirectoryName(OFDImport.FileName), Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
+                    ChargeComboCompte();
+
+                    tsSave.Enabled = true;
+                }
+                Cursor = Cursors.Default;
+            }
+        }
         #endregion
 
         #region CB
+        private void ModeDePaiementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModePaiementForm mp = new ModePaiementForm();
+            mp.ShowDialog();
+            tsSave.Enabled = true;
+        }
+
+        private void TsGestionModePaiement_Click(object sender, EventArgs e)
+        {
+            ModePaiementForm mp = new ModePaiementForm();
+            mp.ShowDialog();
+            tsSave.Enabled = true;
+        }
+
+        private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoriesForm c = new CategoriesForm();
+            c.ShowDialog();
+            tsSave.Enabled = true;
+        }
+
+        private void TsGestionCategories_Click(object sender, EventArgs e)
+        {
+            CategoriesForm c = new CategoriesForm();
+            c.ShowDialog();
+            tsSave.Enabled = true;
+        }
+
         private void RemplisCb()
         {
             RemplisCategories();
@@ -752,6 +880,39 @@ namespace OrionBanque
         }
         #endregion
 
+        private void ApresConnexion()
+        {
+            tsUser.Text = " : " + uA.Login;
+
+            ChargeComboCompte();
+
+            tsGraphChoix.SelectedItem = tsGraphChoix.Items[0];
+            cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];
+            cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBoxForm f = new AboutBoxForm();
+            f.ShowDialog();
+        }
+
+        private void TsBtnConnection_Click(object sender, EventArgs e)
+        {
+            ConnexionForm c = new ConnexionForm();
+            c.ShowDialog();
+            if (c.cont)
+            {
+                uA = c.uA;
+                ApresConnexion();
+            }
+        }
+
+        private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void EnregistrerSousToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -767,78 +928,6 @@ namespace OrionBanque
                 {
                     MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
                 }
-            }
-        }
-
-        private void TsAjoutOperation_Click(object sender, EventArgs e)
-        {
-            AjouterOperation();
-        }
-
-        private void AjouterToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            AjouterOperation();
-        }
-
-        private void TxtFiltrePointe_CheckedChanged(object sender, EventArgs e)
-        {
-            LanceFiltreOperation();
-        }
-
-        private void GestionOpérationsEnGroupeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCreer);
-                }
-
-                OperationMajGroupeForm OMG = new OperationMajGroupeForm(Compte.Charge((int)cbCompte.SelectedValue));
-                OMG.ShowDialog();
-
-                if(OMG.cont)
-                {
-                    tsSave.Enabled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void unFichierCSVBPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (OFDImport.ShowDialog() == DialogResult.OK)
-            {
-                Cursor = Cursors.WaitCursor;
-                // Date;ModeDePaiement;PaiementDebitOuCredit;Tiers;Libelle;Categories;Montant;DatePointage
-                if (File.Exists(OFDImport.FileName))
-                {
-                    Compte cT = new Compte
-                    {
-                        Libelle = Path.GetFileNameWithoutExtension(OFDImport.FileName),
-                        SoldeInitial = 0.0,
-                        Utilisateur = Utilisateur.Charge(uA.Id),
-                        Banque = string.Empty,
-                        Guichet = string.Empty,
-                        NoCompte = string.Empty,
-                        Clef = string.Empty,
-                        MinGraphSold = DateTime.Now,
-                        MaxGraphSold = DateTime.Now,
-                        SeuilAlerte = 0.0,
-                        SeuilAlerteFinal = 0.0,
-                        TypEvol = KEY.COMPTE_VISU_6MOIS
-                    };
-                    cT = Compte.Sauve(cT);
-
-                    Outils.ImportBP.Lance(Path.GetDirectoryName(OFDImport.FileName), Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
-                    ChargeComboCompte();
-
-                    tsSave.Enabled = true;
-                }
-                Cursor = Cursors.Default;
             }
         }
 
@@ -870,60 +959,6 @@ namespace OrionBanque
         {
             Outils.GestionFichier.Sauvegarde();
             tsSave.Enabled = false;
-        }
-
-        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
-                Outils.GestionFichier.ExportCSV(folderBrowserDialog.SelectedPath + @"\" + c.Libelle + ".csv", ((DataSet)dgvOperations.DataSource).Tables["Operations"]);
-            }
-        }
-
-        private void fichierJSONToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    string filedest = folderBrowserDialog.SelectedPath + @"\" + Classe.KEY.FILE_NAME + ".json";
-                    Outils.GestionFichier.ExportJson(filedest);
-                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
-                }
-            }
-        }
-
-        private void fichierXMLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".xml";
-                    Outils.GestionFichier.ExportXml(filedest);
-                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
-                }
-            }
-        }
-
-        private void totalDesComptesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TotalComptesForm f = new TotalComptesForm(uA);
-            f.ShowDialog();
-        }
-
-        private void dgvOperations_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            tsNbLigne.Text = ": " + dgvOperations.Rows.Count;
         }
 
         private void txtFiltreMontant_KeyPress(object sender, KeyPressEventArgs e)
