@@ -540,6 +540,7 @@
     <None Include="Resources\page_add.png" />
     <None Include="Resources\folder_page.png" />
     <None Include="Resources\bin_closed.png" />
+    <None Include="Resources\cog.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

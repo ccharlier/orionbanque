@@ -128,9 +128,10 @@
             this.tsVirementCaC = new System.Windows.Forms.ToolStripButton();
             this.toolTipG = new System.Windows.Forms.ToolTip(this.components);
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
-            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.kManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -1165,13 +1166,28 @@
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
-            // kryptonManager1
+            // kManager
             // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
+            this.kManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
+            this.kManager.GlobalStrings.Abort = "Abandonner";
+            this.kManager.GlobalStrings.Cancel = "Annuler";
+            this.kManager.GlobalStrings.Close = "Fermer";
+            this.kManager.GlobalStrings.Ignore = "Ignorer";
+            this.kManager.GlobalStrings.No = "Non";
+            this.kManager.GlobalStrings.Retry = "Réessayer";
+            this.kManager.GlobalStrings.Today = "Aujourd\'hui";
+            this.kManager.GlobalStrings.Yes = "Oui";
             // 
             // OFDImport
             // 
             this.OFDImport.Title = "Fichier d\'Opérations à importer";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::OrionBanque.Properties.Resources.application_osx;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 885;
             // 
             // MainForm
             // 
@@ -1283,7 +1299,7 @@
         private System.Windows.Forms.Label lblAVenir;
         private System.Windows.Forms.Label lblSoldPoint;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvOperations;
-        private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
+        private ComponentFactory.Krypton.Toolkit.KryptonManager kManager;
         private System.Windows.Forms.ToolStripStatusLabel tsDateJour;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private ZedGraph.ZedGraphControl xGraph;
@@ -1344,6 +1360,7 @@
         public System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripMenuItem virementCompteÀCompteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem totalDesComptesToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }
 
