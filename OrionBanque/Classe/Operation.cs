@@ -502,7 +502,7 @@ namespace OrionBanque.Classe
                 DataRow row = t.NewRow();
 
                 row["Id"] = item.Id;
-                row["Date"] = item.Date;
+                row["Date"] = item.Date.Date;
                 row["Tiers"] = item.Tiers;
                 row["Libelle"] = item.Libelle;
                 row["ModePaiement"] = item.ModePaiement.Libelle;
