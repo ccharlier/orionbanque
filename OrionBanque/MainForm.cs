@@ -428,11 +428,14 @@ namespace OrionBanque
                 OperationForm om = new OperationForm(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), Compte.Charge((int)cbCompte.SelectedValue), KEY.MODE_UPDATE);
                 om.ShowDialog();
 
-                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
-                ChargeOperations(c);
-                ChargesIndicateurs(c);
+                if(om.cont)
+                {
+                    Compte c = Compte.Charge((int)cbCompte.SelectedValue);
+                    ChargeOperations(c);
+                    ChargesIndicateurs(c);
 
-                tsSave.Enabled = true;
+                    tsSave.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -536,11 +539,14 @@ namespace OrionBanque
                 OperationForm of = new OperationForm(new Operation(), Compte.Charge((int)cbCompte.SelectedValue), "INSERT");
                 of.ShowDialog();
 
-                Compte c = Compte.Charge((int)cbCompte.SelectedValue);
-                ChargesIndicateurs(c);
-                ChargeOperations(c);
+                if(of.cont)
+                {
+                    Compte c = Compte.Charge((int)cbCompte.SelectedValue);
+                    ChargesIndicateurs(c);
+                    ChargeOperations(c);
 
-                tsSave.Enabled = true;
+                    tsSave.Enabled = true;
+                }
             }
             catch(Exception ex)
             {
