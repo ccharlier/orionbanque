@@ -13,23 +13,27 @@ namespace OrionBanque.Forms
         private Compte compte;
         public bool cont = false;
         private bool PointageModif = false;
+        private string mode = string.Empty;
 
-        public OperationForm(Operation oP, Compte cP, string mode)
+        public OperationForm(Operation oP, Compte cP, string modeP)
         {
             InitializeComponent();
-            
+
+            compte = cP;
+            mode = modeP;
+            RemplisCb();
+
             if (mode.Equals(KEY.MODE_INSERT))
             {
-                compte = cP;
+                O = new Operation();
                 kPanelFichier.Enabled = false;
             }
             else if(mode.Equals(KEY.MODE_UPDATE))
             {
                 O = oP;
-                compte = cP;
                 ChargeDgv();
+                ChargeForm();
             }
-            RemplisCb();
         }
 
         private void ChargeDgv()
@@ -46,31 +50,27 @@ namespace OrionBanque.Forms
             RemplisCategories();
             RemplisModePaiements();
             RemplisTiers();
-            ChargeForm();
         }
 
         private void ChargeForm()
         {
-            if (O != null)
+            try
             {
-                try
+                txtDateMvt.Value = O.Date;
+                txtCategorie.SelectedValue = O.Categorie.Id;
+                txtLibelle.Text = O.Libelle;
+                txtModePaiement.SelectedValue = O.ModePaiement.Id;
+                txtMontant.Value = new decimal(O.Montant);
+                if (O.DatePointage != null)
                 {
-                    txtDateMvt.Value = O.Date;
-                    txtCategorie.SelectedValue = O.Categorie.Id;
-                    txtLibelle.Text = O.Libelle;
-                    txtModePaiement.SelectedValue = O.ModePaiement.Id;
-                    txtMontant.Value = new decimal(O.Montant);
-                    if (O.DatePointage != null)
-                    {
-                        txtPointage.Checked = true;
-                    }
+                    txtPointage.Checked = true;
+                }
 
-                    txtTiers.Text = O.Tiers;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                txtTiers.Text = O.Tiers;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -209,7 +209,7 @@ namespace OrionBanque.Forms
 
         private void TxtModePaiement_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(txtModePaiement.SelectedValue.ToString() == "8")
+            if(txtModePaiement.SelectedValue.ToString() == "8" && mode != KEY.MODE_UPDATE)
             {
                 txtLibelle.Text = "n°" + Operation.ChercheChequeSuivant(compte);
             }
