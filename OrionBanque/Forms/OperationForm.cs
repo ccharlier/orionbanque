@@ -26,7 +26,8 @@ namespace OrionBanque.Forms
             if (mode.Equals(KEY.MODE_INSERT))
             {
                 O = new Operation();
-                kPanelFichier.Enabled = false;
+                dgvFichiers.Enabled = false;
+                btnAddFichier.Enabled = false;
             }
             else if(mode.Equals(KEY.MODE_UPDATE))
             {

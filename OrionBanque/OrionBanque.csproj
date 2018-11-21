@@ -542,6 +542,7 @@
     <None Include="Resources\bin_closed.png" />
     <None Include="Resources\cog.png" />
     <None Include="Resources\tick.png" />
+    <None Include="Resources\page_delete.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
