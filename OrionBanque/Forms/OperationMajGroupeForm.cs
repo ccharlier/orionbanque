@@ -28,12 +28,12 @@ namespace OrionBanque.Forms
             try
             {
                 List<Categorie> lc = Categorie.ChargeToutIdent();
-                txtCategorieOri.DisplayMember = "Libelle";
+                txtCategorieOri.DisplayMember = "LibelleIdent";
                 txtCategorieOri.ValueMember = "Id";
                 txtCategorieOri.DataSource = lc;
 
                 List<Categorie> lc2 = Categorie.ChargeToutIdent();
-                txtCategorieDest.DisplayMember = "Libelle";
+                txtCategorieDest.DisplayMember = "LibelleIdent";
                 txtCategorieDest.ValueMember = "Id";
                 txtCategorieDest.DataSource = lc2;
             }
