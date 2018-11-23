@@ -119,7 +119,7 @@ namespace OrionBanque.Forms
 
         private void OK_Click(object sender, EventArgs e)
         {
-            if (O != null)
+            if (O.Id != 0)
             {
                 try
                 {
