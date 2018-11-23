@@ -362,7 +362,9 @@ namespace OrionBanque
                 dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvOperations.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvOperations.Sort(dgvOperations.Columns["Date"], System.ComponentModel.ListSortDirection.Descending);
+                dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
+                dgvOperations.Columns["ordre"].Visible = false;
+
             }
             catch (Exception ex)
             {
@@ -491,7 +493,7 @@ namespace OrionBanque
                                     bPointe);
                     dgvOperations.DataSource = ds;
                     dgvOperations.DataMember = "Operations";
-                    dgvOperations.Sort(dgvOperations.Columns["Date"], System.ComponentModel.ListSortDirection.Descending);
+                    dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
                 }
                 catch (Exception ex)
                 {

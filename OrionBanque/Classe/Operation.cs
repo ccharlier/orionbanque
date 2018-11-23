@@ -480,8 +480,9 @@ namespace OrionBanque.Classe
             Type elementType = typeof(Operation);
             DataSet ds = new DataSet();
             DataTable t = new DataTable("Operations");
-            ds.Tables.Add(t);
+            int count = 1;
 
+            ds.Tables.Add(t);
             t.Columns.Add("Id", typeof(int));
             t.Columns.Add("Date", typeof(DateTime));
             t.Columns.Add("Tiers", typeof(string));
@@ -493,6 +494,7 @@ namespace OrionBanque.Classe
             t.Columns.Add("Montant Crédit", typeof(double));
             t.Columns.Add("Solde", typeof(string));
             t.Columns.Add("DatePointage", typeof(DateTime));
+            t.Columns.Add("ordre", typeof(int));
 
             list = (from o in list select o).OrderBy(x => x.Date).ToList();
 
@@ -530,6 +532,8 @@ namespace OrionBanque.Classe
                     row["DatePointage"] = item.DatePointage;
                 }
                 row["Solde"] = string.Format("{0,12:0,0.00}", solde) + " €";
+                row["ordre"] = count;
+                count++;
                 t.Rows.Add(row);
             }
 
