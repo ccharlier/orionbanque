@@ -68,38 +68,11 @@ namespace OrionBanque
         #endregion
 
         #region Utilisateurs
-        private void ToolStripButton7_Click(object sender, EventArgs e)
-        {
-            UtilisateurForm ua = new UtilisateurForm();
-            ua.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
         private void TsModUser_Click(object sender, EventArgs e)
         {
             UtilisateurForm um = new UtilisateurForm(uA);
             um.ShowDialog();
             tsSave.Enabled = true;
-        }
-
-        private void TsSupUser_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(alerteSuppressionUtilisateur, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    Utilisateur.Delete(uA);
-                    tsSupUser.Enabled = false;
-                    tsModUser.Enabled = false;
-                    tsmConfiguration.Enabled = false;
-                    tsUser.Text = " : ";
-                    tsSave.Enabled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
         #endregion
 
