@@ -31,44 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsUser = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsDateJour = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enregistrerSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unFichierCSVBPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fichierJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fichierXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fichierCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmConfiguration = new System.Windows.Forms.ToolStripMenuItem();
-            this.modeDePaiementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.catégoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.supprimerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.gérerLécchéancierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.totalDesComptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opérationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.supprimerToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.gestionOpérationsEnGroupeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.virementCompteÀCompteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pbSoldeFinal = new System.Windows.Forms.PictureBox();
-            this.pb = new System.Windows.Forms.PictureBox();
             this.btnValidDateEvol = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,39 +69,71 @@
             this.txtFiltreDate = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.dgvOperations = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ajouterToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsConnection = new System.Windows.Forms.ToolStrip();
-            this.tsBtnConnection = new System.Windows.Forms.ToolStripButton();
             this.tsGestGeneral = new System.Windows.Forms.ToolStrip();
-            this.tsGestionModePaiement = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsGestionCategories = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tsGraphChoix = new System.Windows.Forms.ToolStripComboBox();
-            this.tsMontreGraph = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsAjoutOperation = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsVirementCaC = new System.Windows.Forms.ToolStripButton();
+            this.tsConnection = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTipG = new System.Windows.Forms.ToolTip(this.components);
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
             this.kManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tsModUser = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.pbSoldeFinal = new System.Windows.Forms.PictureBox();
+            this.pb = new System.Windows.Forms.PictureBox();
+            this.ajouterToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.modifierLUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsBtnConnection = new System.Windows.Forms.ToolStripButton();
+            this.tsModUser = new System.Windows.Forms.ToolStripButton();
+            this.tsGestionModePaiement = new System.Windows.Forms.ToolStripButton();
+            this.tsGestionCategories = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsMontreGraph = new System.Windows.Forms.ToolStripButton();
+            this.tsAjoutOperation = new System.Windows.Forms.ToolStripButton();
+            this.tsVirementCaC = new System.Windows.Forms.ToolStripButton();
+            this.tsUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsDateJour = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsNbLigne = new System.Windows.Forms.ToolStripStatusLabel();
+            this.enregistrerSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unFichierCSVBPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fichierJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fichierXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fichierCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeDePaiementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.catégoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierLUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.gérerLécchéancierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.totalDesComptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opérationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.gestionOpérationsEnGroupeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.virementCompteÀCompteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.sauvegarderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -141,8 +143,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSoldeFinal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).BeginInit();
@@ -159,9 +159,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbFiltreDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperations)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.tsConnection.SuspendLayout();
             this.tsGestGeneral.SuspendLayout();
+            this.tsConnection.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSoldeFinal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -177,27 +179,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(1256, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tsUser
-            // 
-            this.tsUser.Image = global::OrionBanque.Properties.Resources.user;
-            this.tsUser.Name = "tsUser";
-            this.tsUser.Size = new System.Drawing.Size(42, 17);
-            this.tsUser.Text = " : --";
-            // 
-            // tsDateJour
-            // 
-            this.tsDateJour.Image = global::OrionBanque.Properties.Resources.calendar_view_day;
-            this.tsDateJour.Name = "tsDateJour";
-            this.tsDateJour.Size = new System.Drawing.Size(42, 17);
-            this.tsDateJour.Text = " : --";
-            // 
-            // tsNbLigne
-            // 
-            this.tsNbLigne.Image = global::OrionBanque.Properties.Resources.table1;
-            this.tsNbLigne.Name = "tsNbLigne";
-            this.tsNbLigne.Size = new System.Drawing.Size(42, 17);
-            this.tsNbLigne.Text = " : --";
             // 
             // menuStrip1
             // 
@@ -217,79 +198,22 @@
             // fichierToolStripMenuItem
             // 
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sauvegarderToolStripMenuItem,
             this.enregistrerSousToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.quitterToolStripMenuItem,
             this.toolStripSeparator10,
             this.importerToolStripMenuItem,
-            this.exporterToolStripMenuItem});
+            this.exporterToolStripMenuItem,
+            this.toolStripSeparator11,
+            this.toolStripMenuItem3,
+            this.quitterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "&Fichier";
             // 
-            // enregistrerSousToolStripMenuItem
+            // toolStripSeparator10
             // 
-            this.enregistrerSousToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.disk;
-            this.enregistrerSousToolStripMenuItem.Name = "enregistrerSousToolStripMenuItem";
-            this.enregistrerSousToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.enregistrerSousToolStripMenuItem.Text = "&Faire une sauvegarde";
-            this.enregistrerSousToolStripMenuItem.Click += new System.EventHandler(this.EnregistrerSousToolStripMenuItem_Click);
-            // 
-            // quitterToolStripMenuItem
-            // 
-            this.quitterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.door_in;
-            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.quitterToolStripMenuItem.Text = "&Quitter";
-            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItem_Click);
-            // 
-            // importerToolStripMenuItem
-            // 
-            this.importerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unFichierCSVBPToolStripMenuItem});
-            this.importerToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
-            this.importerToolStripMenuItem.Name = "importerToolStripMenuItem";
-            this.importerToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.importerToolStripMenuItem.Text = "&Importer";
-            // 
-            // unFichierCSVBPToolStripMenuItem
-            // 
-            this.unFichierCSVBPToolStripMenuItem.Name = "unFichierCSVBPToolStripMenuItem";
-            this.unFichierCSVBPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.unFichierCSVBPToolStripMenuItem.Text = "Un fichier CSV BP";
-            this.unFichierCSVBPToolStripMenuItem.Click += new System.EventHandler(this.unFichierCSVBPToolStripMenuItem_Click);
-            // 
-            // exporterToolStripMenuItem
-            // 
-            this.exporterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fichierJSONToolStripMenuItem,
-            this.fichierXMLToolStripMenuItem,
-            this.fichierCSVToolStripMenuItem});
-            this.exporterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
-            this.exporterToolStripMenuItem.Name = "exporterToolStripMenuItem";
-            this.exporterToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.exporterToolStripMenuItem.Text = "&Exporter";
-            // 
-            // fichierJSONToolStripMenuItem
-            // 
-            this.fichierJSONToolStripMenuItem.Name = "fichierJSONToolStripMenuItem";
-            this.fichierJSONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fichierJSONToolStripMenuItem.Text = "Fichier JSON";
-            this.fichierJSONToolStripMenuItem.Click += new System.EventHandler(this.fichierJSONToolStripMenuItem_Click);
-            // 
-            // fichierXMLToolStripMenuItem
-            // 
-            this.fichierXMLToolStripMenuItem.Name = "fichierXMLToolStripMenuItem";
-            this.fichierXMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fichierXMLToolStripMenuItem.Text = "Fichier XML";
-            this.fichierXMLToolStripMenuItem.Click += new System.EventHandler(this.fichierXMLToolStripMenuItem_Click);
-            // 
-            // fichierCSVToolStripMenuItem
-            // 
-            this.fichierCSVToolStripMenuItem.Name = "fichierCSVToolStripMenuItem";
-            this.fichierCSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fichierCSVToolStripMenuItem.Text = "Fichier CSV";
-            this.fichierCSVToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(275, 6);
             // 
             // tsmConfiguration
             // 
@@ -302,148 +226,10 @@
             this.tsmConfiguration.Size = new System.Drawing.Size(93, 20);
             this.tsmConfiguration.Text = "&Configuration";
             // 
-            // modeDePaiementToolStripMenuItem
+            // toolStripSeparator6
             // 
-            this.modeDePaiementToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.creditcards;
-            this.modeDePaiementToolStripMenuItem.Name = "modeDePaiementToolStripMenuItem";
-            this.modeDePaiementToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.modeDePaiementToolStripMenuItem.Text = "&Modes de paiement";
-            this.modeDePaiementToolStripMenuItem.Click += new System.EventHandler(this.ModeDePaiementToolStripMenuItem_Click);
-            // 
-            // catégoriesToolStripMenuItem
-            // 
-            this.catégoriesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
-            this.catégoriesToolStripMenuItem.Name = "catégoriesToolStripMenuItem";
-            this.catégoriesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.catégoriesToolStripMenuItem.Text = "&Catégories";
-            this.catégoriesToolStripMenuItem.Click += new System.EventHandler(this.CatégoriesToolStripMenuItem_Click);
-            // 
-            // comptesToolStripMenuItem
-            // 
-            this.comptesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ajouterToolStripMenuItem,
-            this.modifierToolStripMenuItem1,
-            this.supprimerToolStripMenuItem1,
-            this.toolStripSeparator4,
-            this.gérerLécchéancierToolStripMenuItem,
-            this.totalDesComptesToolStripMenuItem});
-            this.comptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins1;
-            this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
-            this.comptesToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.comptesToolStripMenuItem.Text = "Com&ptes";
-            // 
-            // ajouterToolStripMenuItem
-            // 
-            this.ajouterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins_add;
-            this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.ajouterToolStripMenuItem.Text = "&Ajouter";
-            this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItem_Click);
-            // 
-            // modifierToolStripMenuItem1
-            // 
-            this.modifierToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.coins1;
-            this.modifierToolStripMenuItem1.Name = "modifierToolStripMenuItem1";
-            this.modifierToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
-            this.modifierToolStripMenuItem1.Text = "&Modifier";
-            this.modifierToolStripMenuItem1.Click += new System.EventHandler(this.ModifierToolStripMenuItem1_Click);
-            // 
-            // supprimerToolStripMenuItem1
-            // 
-            this.supprimerToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.coins_delete;
-            this.supprimerToolStripMenuItem1.Name = "supprimerToolStripMenuItem1";
-            this.supprimerToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
-            this.supprimerToolStripMenuItem1.Text = "&Supprimer";
-            this.supprimerToolStripMenuItem1.Click += new System.EventHandler(this.SupprimerToolStripMenuItem1_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
-            // 
-            // gérerLécchéancierToolStripMenuItem
-            // 
-            this.gérerLécchéancierToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.calendar_2;
-            this.gérerLécchéancierToolStripMenuItem.Name = "gérerLécchéancierToolStripMenuItem";
-            this.gérerLécchéancierToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.gérerLécchéancierToolStripMenuItem.Text = "Gérer l\'&Echéancier";
-            this.gérerLécchéancierToolStripMenuItem.Click += new System.EventHandler(this.gérerLécchéancierToolStripMenuItem_Click);
-            // 
-            // totalDesComptesToolStripMenuItem
-            // 
-            this.totalDesComptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.application_osx;
-            this.totalDesComptesToolStripMenuItem.Name = "totalDesComptesToolStripMenuItem";
-            this.totalDesComptesToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.totalDesComptesToolStripMenuItem.Text = "&Total des Comptes";
-            this.totalDesComptesToolStripMenuItem.Click += new System.EventHandler(this.totalDesComptesToolStripMenuItem_Click);
-            // 
-            // opérationsToolStripMenuItem
-            // 
-            this.opérationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ajouterToolStripMenuItem1,
-            this.modifierToolStripMenuItem2,
-            this.supprimerToolStripMenuItem2,
-            this.toolStripSeparator3,
-            this.gestionOpérationsEnGroupeToolStripMenuItem,
-            this.virementCompteÀCompteToolStripMenuItem,
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem});
-            this.opérationsToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.table1;
-            this.opérationsToolStripMenuItem.Name = "opérationsToolStripMenuItem";
-            this.opérationsToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.opérationsToolStripMenuItem.Text = "&Opérations";
-            // 
-            // ajouterToolStripMenuItem1
-            // 
-            this.ajouterToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.table_row_insert;
-            this.ajouterToolStripMenuItem1.Name = "ajouterToolStripMenuItem1";
-            this.ajouterToolStripMenuItem1.Size = new System.Drawing.Size(309, 22);
-            this.ajouterToolStripMenuItem1.Text = "&Ajouter";
-            this.ajouterToolStripMenuItem1.Click += new System.EventHandler(this.AjouterToolStripMenuItem1_Click);
-            // 
-            // modifierToolStripMenuItem2
-            // 
-            this.modifierToolStripMenuItem2.Image = global::OrionBanque.Properties.Resources.table_edit;
-            this.modifierToolStripMenuItem2.Name = "modifierToolStripMenuItem2";
-            this.modifierToolStripMenuItem2.Size = new System.Drawing.Size(309, 22);
-            this.modifierToolStripMenuItem2.Text = "&Modifier";
-            this.modifierToolStripMenuItem2.Click += new System.EventHandler(this.ModifierToolStripMenuItem2_Click);
-            // 
-            // supprimerToolStripMenuItem2
-            // 
-            this.supprimerToolStripMenuItem2.Image = global::OrionBanque.Properties.Resources.table_row_delete;
-            this.supprimerToolStripMenuItem2.Name = "supprimerToolStripMenuItem2";
-            this.supprimerToolStripMenuItem2.Size = new System.Drawing.Size(309, 22);
-            this.supprimerToolStripMenuItem2.Text = "&Supprimer";
-            this.supprimerToolStripMenuItem2.Click += new System.EventHandler(this.SupprimerToolStripMenuItem2_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(306, 6);
-            // 
-            // gestionOpérationsEnGroupeToolStripMenuItem
-            // 
-            this.gestionOpérationsEnGroupeToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.wand;
-            this.gestionOpérationsEnGroupeToolStripMenuItem.Name = "gestionOpérationsEnGroupeToolStripMenuItem";
-            this.gestionOpérationsEnGroupeToolStripMenuItem.Size = new System.Drawing.Size(309, 22);
-            this.gestionOpérationsEnGroupeToolStripMenuItem.Text = "Mise à jour &Groupée";
-            this.gestionOpérationsEnGroupeToolStripMenuItem.Click += new System.EventHandler(this.GestionOpérationsEnGroupeToolStripMenuItem_Click);
-            // 
-            // virementCompteÀCompteToolStripMenuItem
-            // 
-            this.virementCompteÀCompteToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.tag;
-            this.virementCompteÀCompteToolStripMenuItem.Name = "virementCompteÀCompteToolStripMenuItem";
-            this.virementCompteÀCompteToolStripMenuItem.Size = new System.Drawing.Size(309, 22);
-            this.virementCompteÀCompteToolStripMenuItem.Text = "&Virement Compte à Compte";
-            this.virementCompteÀCompteToolStripMenuItem.Click += new System.EventHandler(this.virementCompteÀCompteToolStripMenuItem_Click);
-            // 
-            // pointerLesOpérationsSélectionnéesToolStripMenuItem
-            // 
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.tick;
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Name = "pointerLesOpérationsSélectionnéesToolStripMenuItem";
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Size = new System.Drawing.Size(309, 22);
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Text = "&Pointer les Opérations sélectionnées (Ctrl+P)";
-            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Click += new System.EventHandler(this.pointerLesOpérationsSélectionnéesToolStripMenuItem_Click);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(178, 6);
             // 
             // toolStripMenuItem1
             // 
@@ -453,21 +239,6 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(24, 20);
             this.toolStripMenuItem1.Text = "&?";
-            // 
-            // aideToolStripMenuItem
-            // 
-            this.aideToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.help;
-            this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-            this.aideToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.aideToolStripMenuItem.Text = "&Aide (Wiki)";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.application_osx;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.aboutToolStripMenuItem.Text = "A &propos de...";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // toolStripContainer1
             // 
@@ -485,8 +256,8 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsGestGeneral);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsConnection);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsGestGeneral);
             // 
             // splitContainer1
             // 
@@ -522,28 +293,6 @@
             this.splitContainer1.SplitterDistance = 309;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 4;
-            // 
-            // pbSoldeFinal
-            // 
-            this.pbSoldeFinal.BackColor = System.Drawing.Color.Transparent;
-            this.pbSoldeFinal.Image = global::OrionBanque.Properties.Resources.error1;
-            this.pbSoldeFinal.Location = new System.Drawing.Point(21, 129);
-            this.pbSoldeFinal.Name = "pbSoldeFinal";
-            this.pbSoldeFinal.Size = new System.Drawing.Size(16, 16);
-            this.pbSoldeFinal.TabIndex = 29;
-            this.pbSoldeFinal.TabStop = false;
-            this.pbSoldeFinal.Visible = false;
-            // 
-            // pb
-            // 
-            this.pb.BackColor = System.Drawing.Color.Transparent;
-            this.pb.Image = global::OrionBanque.Properties.Resources.error1;
-            this.pb.Location = new System.Drawing.Point(16, 56);
-            this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(16, 16);
-            this.pb.TabIndex = 28;
-            this.pb.TabStop = false;
-            this.pb.Visible = false;
             // 
             // btnValidDateEvol
             // 
@@ -716,7 +465,7 @@
             // 
             this.spltOpeRecher.Panel2.Controls.Add(this.dgvOperations);
             this.spltOpeRecher.Size = new System.Drawing.Size(945, 583);
-            this.spltOpeRecher.SplitterDistance = 30;
+            this.spltOpeRecher.SplitterDistance = 29;
             this.spltOpeRecher.TabIndex = 0;
             // 
             // txtFiltrePointe
@@ -882,12 +631,11 @@
             this.dgvOperations.Name = "dgvOperations";
             this.dgvOperations.ReadOnly = true;
             this.dgvOperations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOperations.Size = new System.Drawing.Size(945, 548);
+            this.dgvOperations.Size = new System.Drawing.Size(945, 549);
             this.dgvOperations.TabIndex = 0;
             this.dgvOperations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOperations_CellFormatting);
             this.dgvOperations.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOperations_DataBindingComplete);
             this.dgvOperations.DoubleClick += new System.EventHandler(this.DgvOperations_DoubleClick);
-            this.dgvOperations.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvOperations_KeyDown);
             // 
             // contextMenuStrip1
             // 
@@ -899,6 +647,147 @@
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(130, 92);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelToolStripMenuItem});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
+            this.toolStripMenuItem2.Text = "&Export";
+            // 
+            // tsGestGeneral
+            // 
+            this.tsGestGeneral.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsGestGeneral.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tsGestGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsGestionModePaiement,
+            this.toolStripSeparator7,
+            this.tsGestionCategories,
+            this.toolStripSeparator8,
+            this.toolStripButton1,
+            this.toolStripSeparator9,
+            this.tsGraphChoix,
+            this.tsMontreGraph,
+            this.toolStripSeparator1,
+            this.tsAjoutOperation,
+            this.toolStripSeparator2,
+            this.tsVirementCaC});
+            this.tsGestGeneral.Location = new System.Drawing.Point(136, 0);
+            this.tsGestGeneral.Name = "tsGestGeneral";
+            this.tsGestGeneral.Size = new System.Drawing.Size(303, 25);
+            this.tsGestGeneral.TabIndex = 4;
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsGraphChoix
+            // 
+            this.tsGraphChoix.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tsGraphChoix.Items.AddRange(new object[] {
+            "Par Tiers",
+            "Par Tiers Dissociés",
+            "Par Catégories",
+            "Par Catégories Dissociées"});
+            this.tsGraphChoix.Name = "tsGraphChoix";
+            this.tsGraphChoix.Size = new System.Drawing.Size(121, 25);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsConnection
+            // 
+            this.tsConnection.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsConnection.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tsConnection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSave,
+            this.toolStripSeparator5,
+            this.tsBtnConnection,
+            this.tsModUser});
+            this.tsConnection.Location = new System.Drawing.Point(26, 0);
+            this.tsConnection.Name = "tsConnection";
+            this.tsConnection.Size = new System.Drawing.Size(87, 25);
+            this.tsConnection.TabIndex = 3;
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripContainer2
+            // 
+            // 
+            // toolStripContainer2.ContentPanel
+            // 
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1256, 629);
+            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer2.Name = "toolStripContainer2";
+            this.toolStripContainer2.Size = new System.Drawing.Size(1256, 654);
+            this.toolStripContainer2.TabIndex = 0;
+            this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // kManager
+            // 
+            this.kManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
+            this.kManager.GlobalStrings.Abort = "Abandonner";
+            this.kManager.GlobalStrings.Cancel = "Annuler";
+            this.kManager.GlobalStrings.Close = "Fermer";
+            this.kManager.GlobalStrings.Ignore = "Ignorer";
+            this.kManager.GlobalStrings.No = "Non";
+            this.kManager.GlobalStrings.Retry = "Réessayer";
+            this.kManager.GlobalStrings.Today = "Aujourd\'hui";
+            this.kManager.GlobalStrings.Yes = "Oui";
+            // 
+            // OFDImport
+            // 
+            this.OFDImport.Title = "Fichier d\'Opérations à importer";
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(275, 6);
+            // 
+            // pbSoldeFinal
+            // 
+            this.pbSoldeFinal.BackColor = System.Drawing.Color.Transparent;
+            this.pbSoldeFinal.Image = global::OrionBanque.Properties.Resources.error1;
+            this.pbSoldeFinal.Location = new System.Drawing.Point(21, 129);
+            this.pbSoldeFinal.Name = "pbSoldeFinal";
+            this.pbSoldeFinal.Size = new System.Drawing.Size(16, 16);
+            this.pbSoldeFinal.TabIndex = 29;
+            this.pbSoldeFinal.TabStop = false;
+            this.pbSoldeFinal.Visible = false;
+            // 
+            // pb
+            // 
+            this.pb.BackColor = System.Drawing.Color.Transparent;
+            this.pb.Image = global::OrionBanque.Properties.Resources.error1;
+            this.pb.Location = new System.Drawing.Point(16, 56);
+            this.pb.Name = "pb";
+            this.pb.Size = new System.Drawing.Size(16, 16);
+            this.pb.TabIndex = 28;
+            this.pb.TabStop = false;
+            this.pb.Visible = false;
             // 
             // ajouterToolStripMenuItem2
             // 
@@ -924,14 +813,6 @@
             this.supprimerToolStripMenuItem.Text = "&Supprimer";
             this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.SupprimerToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excelToolStripMenuItem});
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
-            this.toolStripMenuItem2.Text = "&Export";
-            // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
@@ -939,199 +820,6 @@
             this.excelToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.excelToolStripMenuItem.Text = "CSV";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
-            // 
-            // tsConnection
-            // 
-            this.tsConnection.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsConnection.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tsConnection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsSave,
-            this.toolStripSeparator5,
-            this.tsBtnConnection,
-            this.tsModUser});
-            this.tsConnection.Location = new System.Drawing.Point(16, 0);
-            this.tsConnection.Name = "tsConnection";
-            this.tsConnection.Size = new System.Drawing.Size(87, 25);
-            this.tsConnection.TabIndex = 3;
-            // 
-            // tsBtnConnection
-            // 
-            this.tsBtnConnection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnConnection.Image = global::OrionBanque.Properties.Resources.lock_go;
-            this.tsBtnConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnConnection.Name = "tsBtnConnection";
-            this.tsBtnConnection.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnConnection.ToolTipText = "Changer de fichier de Compte";
-            this.tsBtnConnection.Click += new System.EventHandler(this.TsBtnConnection_Click);
-            // 
-            // tsGestGeneral
-            // 
-            this.tsGestGeneral.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsGestGeneral.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tsGestGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsGestionModePaiement,
-            this.toolStripSeparator7,
-            this.tsGestionCategories,
-            this.toolStripSeparator8,
-            this.toolStripButton1,
-            this.toolStripSeparator9,
-            this.tsGraphChoix,
-            this.tsMontreGraph,
-            this.toolStripSeparator1,
-            this.tsAjoutOperation,
-            this.toolStripSeparator2,
-            this.tsVirementCaC});
-            this.tsGestGeneral.Location = new System.Drawing.Point(165, 0);
-            this.tsGestGeneral.Name = "tsGestGeneral";
-            this.tsGestGeneral.Size = new System.Drawing.Size(303, 25);
-            this.tsGestGeneral.TabIndex = 4;
-            // 
-            // tsGestionModePaiement
-            // 
-            this.tsGestionModePaiement.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsGestionModePaiement.Image = global::OrionBanque.Properties.Resources.creditcards;
-            this.tsGestionModePaiement.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsGestionModePaiement.Name = "tsGestionModePaiement";
-            this.tsGestionModePaiement.Size = new System.Drawing.Size(23, 22);
-            this.tsGestionModePaiement.ToolTipText = "Gérer les Modes de Paiement";
-            this.tsGestionModePaiement.Click += new System.EventHandler(this.TsGestionModePaiement_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsGestionCategories
-            // 
-            this.tsGestionCategories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsGestionCategories.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
-            this.tsGestionCategories.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsGestionCategories.Name = "tsGestionCategories";
-            this.tsGestionCategories.Size = new System.Drawing.Size(23, 22);
-            this.tsGestionCategories.ToolTipText = "Gérer les Catégories";
-            this.tsGestionCategories.Click += new System.EventHandler(this.TsGestionCategories_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::OrionBanque.Properties.Resources.calendar_2;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.ToolTipText = "Gérer l\'Echéancier";
-            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsGraphChoix
-            // 
-            this.tsGraphChoix.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tsGraphChoix.Items.AddRange(new object[] {
-            "Par Tiers",
-            "Par Tiers Dissociés",
-            "Par Catégories",
-            "Par Catégories Dissociées"});
-            this.tsGraphChoix.Name = "tsGraphChoix";
-            this.tsGraphChoix.Size = new System.Drawing.Size(121, 25);
-            // 
-            // tsMontreGraph
-            // 
-            this.tsMontreGraph.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsMontreGraph.Image = global::OrionBanque.Properties.Resources.chart_pie_edit;
-            this.tsMontreGraph.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsMontreGraph.Name = "tsMontreGraph";
-            this.tsMontreGraph.Size = new System.Drawing.Size(23, 22);
-            this.tsMontreGraph.ToolTipText = "Visualiser le graphique choisi";
-            this.tsMontreGraph.Click += new System.EventHandler(this.TsMontreGraph_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsAjoutOperation
-            // 
-            this.tsAjoutOperation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsAjoutOperation.Image = global::OrionBanque.Properties.Resources.table_row_insert;
-            this.tsAjoutOperation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsAjoutOperation.Name = "tsAjoutOperation";
-            this.tsAjoutOperation.Size = new System.Drawing.Size(23, 22);
-            this.tsAjoutOperation.ToolTipText = "Insérer une opération";
-            this.tsAjoutOperation.Click += new System.EventHandler(this.TsAjoutOperation_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsVirementCaC
-            // 
-            this.tsVirementCaC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsVirementCaC.Image = global::OrionBanque.Properties.Resources.tag;
-            this.tsVirementCaC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsVirementCaC.Name = "tsVirementCaC";
-            this.tsVirementCaC.Size = new System.Drawing.Size(23, 22);
-            this.tsVirementCaC.ToolTipText = "Effectuer un virement de compte à compte";
-            this.tsVirementCaC.Click += new System.EventHandler(this.TsVirementCaC_Click);
-            // 
-            // toolStripContainer2
-            // 
-            // 
-            // toolStripContainer2.ContentPanel
-            // 
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1256, 654);
-            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(1256, 654);
-            this.toolStripContainer2.TabIndex = 0;
-            this.toolStripContainer2.Text = "toolStripContainer2";
-            // 
-            // kManager
-            // 
-            this.kManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
-            this.kManager.GlobalStrings.Abort = "Abandonner";
-            this.kManager.GlobalStrings.Cancel = "Annuler";
-            this.kManager.GlobalStrings.Close = "Fermer";
-            this.kManager.GlobalStrings.Ignore = "Ignorer";
-            this.kManager.GlobalStrings.No = "Non";
-            this.kManager.GlobalStrings.Retry = "Réessayer";
-            this.kManager.GlobalStrings.Today = "Aujourd\'hui";
-            this.kManager.GlobalStrings.Yes = "Oui";
-            // 
-            // OFDImport
-            // 
-            this.OFDImport.Title = "Fichier d\'Opérations à importer";
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::OrionBanque.Properties.Resources.application_osx;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 885;
-            // 
-            // tsModUser
-            // 
-            this.tsModUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsModUser.Image = global::OrionBanque.Properties.Resources.user_edit;
-            this.tsModUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsModUser.Name = "tsModUser";
-            this.tsModUser.Size = new System.Drawing.Size(23, 22);
-            this.tsModUser.ToolTipText = "Modifier l\'Utilisateur";
-            this.tsModUser.Click += new System.EventHandler(this.TsModUser_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // tsSave
             // 
@@ -1143,10 +831,198 @@
             this.tsSave.Size = new System.Drawing.Size(23, 22);
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
-            // toolStripSeparator6
+            // tsBtnConnection
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(178, 6);
+            this.tsBtnConnection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnConnection.Image = global::OrionBanque.Properties.Resources.lock_go;
+            this.tsBtnConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnConnection.Name = "tsBtnConnection";
+            this.tsBtnConnection.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnConnection.ToolTipText = "Changer de fichier de Compte";
+            this.tsBtnConnection.Click += new System.EventHandler(this.TsBtnConnection_Click);
+            // 
+            // tsModUser
+            // 
+            this.tsModUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsModUser.Image = global::OrionBanque.Properties.Resources.user_edit;
+            this.tsModUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsModUser.Name = "tsModUser";
+            this.tsModUser.Size = new System.Drawing.Size(23, 22);
+            this.tsModUser.ToolTipText = "Modifier l\'Utilisateur";
+            this.tsModUser.Click += new System.EventHandler(this.TsModUser_Click);
+            // 
+            // tsGestionModePaiement
+            // 
+            this.tsGestionModePaiement.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsGestionModePaiement.Image = global::OrionBanque.Properties.Resources.creditcards;
+            this.tsGestionModePaiement.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsGestionModePaiement.Name = "tsGestionModePaiement";
+            this.tsGestionModePaiement.Size = new System.Drawing.Size(23, 22);
+            this.tsGestionModePaiement.ToolTipText = "Gérer les Modes de Paiement";
+            this.tsGestionModePaiement.Click += new System.EventHandler(this.TsGestionModePaiement_Click);
+            // 
+            // tsGestionCategories
+            // 
+            this.tsGestionCategories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsGestionCategories.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
+            this.tsGestionCategories.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsGestionCategories.Name = "tsGestionCategories";
+            this.tsGestionCategories.Size = new System.Drawing.Size(23, 22);
+            this.tsGestionCategories.ToolTipText = "Gérer les Catégories";
+            this.tsGestionCategories.Click += new System.EventHandler(this.TsGestionCategories_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::OrionBanque.Properties.Resources.calendar_2;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.ToolTipText = "Gérer l\'Echéancier";
+            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            // 
+            // tsMontreGraph
+            // 
+            this.tsMontreGraph.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsMontreGraph.Image = global::OrionBanque.Properties.Resources.chart_pie_edit;
+            this.tsMontreGraph.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsMontreGraph.Name = "tsMontreGraph";
+            this.tsMontreGraph.Size = new System.Drawing.Size(23, 22);
+            this.tsMontreGraph.ToolTipText = "Visualiser le graphique choisi";
+            this.tsMontreGraph.Click += new System.EventHandler(this.TsMontreGraph_Click);
+            // 
+            // tsAjoutOperation
+            // 
+            this.tsAjoutOperation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsAjoutOperation.Image = global::OrionBanque.Properties.Resources.table_row_insert;
+            this.tsAjoutOperation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsAjoutOperation.Name = "tsAjoutOperation";
+            this.tsAjoutOperation.Size = new System.Drawing.Size(23, 22);
+            this.tsAjoutOperation.ToolTipText = "Insérer une opération";
+            this.tsAjoutOperation.Click += new System.EventHandler(this.TsAjoutOperation_Click);
+            // 
+            // tsVirementCaC
+            // 
+            this.tsVirementCaC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsVirementCaC.Image = global::OrionBanque.Properties.Resources.tag;
+            this.tsVirementCaC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsVirementCaC.Name = "tsVirementCaC";
+            this.tsVirementCaC.Size = new System.Drawing.Size(23, 22);
+            this.tsVirementCaC.ToolTipText = "Effectuer un virement de compte à compte";
+            this.tsVirementCaC.Click += new System.EventHandler(this.TsVirementCaC_Click);
+            // 
+            // tsUser
+            // 
+            this.tsUser.Image = global::OrionBanque.Properties.Resources.user;
+            this.tsUser.Name = "tsUser";
+            this.tsUser.Size = new System.Drawing.Size(42, 16);
+            this.tsUser.Text = " : --";
+            // 
+            // tsDateJour
+            // 
+            this.tsDateJour.Image = global::OrionBanque.Properties.Resources.calendar_view_day;
+            this.tsDateJour.Name = "tsDateJour";
+            this.tsDateJour.Size = new System.Drawing.Size(42, 16);
+            this.tsDateJour.Text = " : --";
+            // 
+            // tsNbLigne
+            // 
+            this.tsNbLigne.Image = global::OrionBanque.Properties.Resources.table1;
+            this.tsNbLigne.Name = "tsNbLigne";
+            this.tsNbLigne.Size = new System.Drawing.Size(42, 16);
+            this.tsNbLigne.Text = " : --";
+            // 
+            // enregistrerSousToolStripMenuItem
+            // 
+            this.enregistrerSousToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.disk_multiple;
+            this.enregistrerSousToolStripMenuItem.Name = "enregistrerSousToolStripMenuItem";
+            this.enregistrerSousToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.enregistrerSousToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.enregistrerSousToolStripMenuItem.Text = "&Faire une sauvegarde";
+            this.enregistrerSousToolStripMenuItem.Click += new System.EventHandler(this.EnregistrerSousToolStripMenuItem_Click);
+            // 
+            // importerToolStripMenuItem
+            // 
+            this.importerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unFichierCSVBPToolStripMenuItem});
+            this.importerToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
+            this.importerToolStripMenuItem.Name = "importerToolStripMenuItem";
+            this.importerToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.importerToolStripMenuItem.Text = "&Importer";
+            // 
+            // unFichierCSVBPToolStripMenuItem
+            // 
+            this.unFichierCSVBPToolStripMenuItem.Name = "unFichierCSVBPToolStripMenuItem";
+            this.unFichierCSVBPToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.unFichierCSVBPToolStripMenuItem.Text = "Un fichier CSV BP";
+            this.unFichierCSVBPToolStripMenuItem.Click += new System.EventHandler(this.unFichierCSVBPToolStripMenuItem_Click);
+            // 
+            // exporterToolStripMenuItem
+            // 
+            this.exporterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fichierJSONToolStripMenuItem,
+            this.fichierXMLToolStripMenuItem,
+            this.fichierCSVToolStripMenuItem});
+            this.exporterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
+            this.exporterToolStripMenuItem.Name = "exporterToolStripMenuItem";
+            this.exporterToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.exporterToolStripMenuItem.Text = "&Exporter";
+            // 
+            // fichierJSONToolStripMenuItem
+            // 
+            this.fichierJSONToolStripMenuItem.Name = "fichierJSONToolStripMenuItem";
+            this.fichierJSONToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.fichierJSONToolStripMenuItem.Text = "Fichier JSON";
+            this.fichierJSONToolStripMenuItem.Click += new System.EventHandler(this.fichierJSONToolStripMenuItem_Click);
+            // 
+            // fichierXMLToolStripMenuItem
+            // 
+            this.fichierXMLToolStripMenuItem.Name = "fichierXMLToolStripMenuItem";
+            this.fichierXMLToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.fichierXMLToolStripMenuItem.Text = "Fichier XML";
+            this.fichierXMLToolStripMenuItem.Click += new System.EventHandler(this.fichierXMLToolStripMenuItem_Click);
+            // 
+            // fichierCSVToolStripMenuItem
+            // 
+            this.fichierCSVToolStripMenuItem.Name = "fichierCSVToolStripMenuItem";
+            this.fichierCSVToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.fichierCSVToolStripMenuItem.Text = "Fichier CSV";
+            this.fichierCSVToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::OrionBanque.Properties.Resources.lock_go;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(278, 22);
+            this.toolStripMenuItem3.Text = "&Changer de Fichier de Compte";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.TsBtnConnection_Click);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.door_in;
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.quitterToolStripMenuItem.Text = "&Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitterToolStripMenuItem_Click);
+            // 
+            // modeDePaiementToolStripMenuItem
+            // 
+            this.modeDePaiementToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.creditcards;
+            this.modeDePaiementToolStripMenuItem.Name = "modeDePaiementToolStripMenuItem";
+            this.modeDePaiementToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.modeDePaiementToolStripMenuItem.Text = "&Modes de paiement";
+            this.modeDePaiementToolStripMenuItem.Click += new System.EventHandler(this.ModeDePaiementToolStripMenuItem_Click);
+            // 
+            // catégoriesToolStripMenuItem
+            // 
+            this.catégoriesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
+            this.catégoriesToolStripMenuItem.Name = "catégoriesToolStripMenuItem";
+            this.catégoriesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.catégoriesToolStripMenuItem.Text = "&Catégories";
+            this.catégoriesToolStripMenuItem.Click += new System.EventHandler(this.CatégoriesToolStripMenuItem_Click);
             // 
             // modifierLUtilisateurToolStripMenuItem
             // 
@@ -1156,18 +1032,165 @@
             this.modifierLUtilisateurToolStripMenuItem.Text = "Modifier l\'&Utilisateur";
             this.modifierLUtilisateurToolStripMenuItem.Click += new System.EventHandler(this.TsModUser_Click);
             // 
-            // toolStripSeparator10
+            // comptesToolStripMenuItem
             // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(232, 6);
+            this.comptesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ajouterToolStripMenuItem,
+            this.modifierToolStripMenuItem1,
+            this.supprimerToolStripMenuItem1,
+            this.toolStripSeparator4,
+            this.gérerLécchéancierToolStripMenuItem,
+            this.totalDesComptesToolStripMenuItem});
+            this.comptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins1;
+            this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
+            this.comptesToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.comptesToolStripMenuItem.Text = "Com&ptes";
             // 
-            // toolStripMenuItem3
+            // ajouterToolStripMenuItem
             // 
-            this.toolStripMenuItem3.Image = global::OrionBanque.Properties.Resources.lock_go;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(235, 22);
-            this.toolStripMenuItem3.Text = "&Changer de Fichier de Compte";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.TsBtnConnection_Click);
+            this.ajouterToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins_add;
+            this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
+            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ajouterToolStripMenuItem.Text = "&Ajouter";
+            this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItem_Click);
+            // 
+            // modifierToolStripMenuItem1
+            // 
+            this.modifierToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.coins1;
+            this.modifierToolStripMenuItem1.Name = "modifierToolStripMenuItem1";
+            this.modifierToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.modifierToolStripMenuItem1.Text = "&Modifier";
+            this.modifierToolStripMenuItem1.Click += new System.EventHandler(this.ModifierToolStripMenuItem1_Click);
+            // 
+            // supprimerToolStripMenuItem1
+            // 
+            this.supprimerToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.coins_delete;
+            this.supprimerToolStripMenuItem1.Name = "supprimerToolStripMenuItem1";
+            this.supprimerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.supprimerToolStripMenuItem1.Text = "&Supprimer";
+            this.supprimerToolStripMenuItem1.Click += new System.EventHandler(this.SupprimerToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // gérerLécchéancierToolStripMenuItem
+            // 
+            this.gérerLécchéancierToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.calendar_2;
+            this.gérerLécchéancierToolStripMenuItem.Name = "gérerLécchéancierToolStripMenuItem";
+            this.gérerLécchéancierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gérerLécchéancierToolStripMenuItem.Text = "Gérer l\'&Echéancier";
+            this.gérerLécchéancierToolStripMenuItem.Click += new System.EventHandler(this.gérerLécchéancierToolStripMenuItem_Click);
+            // 
+            // totalDesComptesToolStripMenuItem
+            // 
+            this.totalDesComptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.application_osx;
+            this.totalDesComptesToolStripMenuItem.Name = "totalDesComptesToolStripMenuItem";
+            this.totalDesComptesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.totalDesComptesToolStripMenuItem.Text = "&Total des Comptes";
+            this.totalDesComptesToolStripMenuItem.Click += new System.EventHandler(this.totalDesComptesToolStripMenuItem_Click);
+            // 
+            // opérationsToolStripMenuItem
+            // 
+            this.opérationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ajouterToolStripMenuItem1,
+            this.modifierToolStripMenuItem2,
+            this.supprimerToolStripMenuItem2,
+            this.toolStripSeparator3,
+            this.gestionOpérationsEnGroupeToolStripMenuItem,
+            this.virementCompteÀCompteToolStripMenuItem,
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem});
+            this.opérationsToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.table1;
+            this.opérationsToolStripMenuItem.Name = "opérationsToolStripMenuItem";
+            this.opérationsToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.opérationsToolStripMenuItem.Text = "&Opérations";
+            // 
+            // ajouterToolStripMenuItem1
+            // 
+            this.ajouterToolStripMenuItem1.Image = global::OrionBanque.Properties.Resources.table_row_insert;
+            this.ajouterToolStripMenuItem1.Name = "ajouterToolStripMenuItem1";
+            this.ajouterToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.ajouterToolStripMenuItem1.Size = new System.Drawing.Size(305, 22);
+            this.ajouterToolStripMenuItem1.Text = "&Ajouter";
+            this.ajouterToolStripMenuItem1.Click += new System.EventHandler(this.AjouterToolStripMenuItem1_Click);
+            // 
+            // modifierToolStripMenuItem2
+            // 
+            this.modifierToolStripMenuItem2.Image = global::OrionBanque.Properties.Resources.table_edit;
+            this.modifierToolStripMenuItem2.Name = "modifierToolStripMenuItem2";
+            this.modifierToolStripMenuItem2.Size = new System.Drawing.Size(305, 22);
+            this.modifierToolStripMenuItem2.Text = "&Modifier";
+            this.modifierToolStripMenuItem2.Click += new System.EventHandler(this.ModifierToolStripMenuItem2_Click);
+            // 
+            // supprimerToolStripMenuItem2
+            // 
+            this.supprimerToolStripMenuItem2.Image = global::OrionBanque.Properties.Resources.table_row_delete;
+            this.supprimerToolStripMenuItem2.Name = "supprimerToolStripMenuItem2";
+            this.supprimerToolStripMenuItem2.Size = new System.Drawing.Size(305, 22);
+            this.supprimerToolStripMenuItem2.Text = "&Supprimer";
+            this.supprimerToolStripMenuItem2.Click += new System.EventHandler(this.SupprimerToolStripMenuItem2_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(302, 6);
+            // 
+            // gestionOpérationsEnGroupeToolStripMenuItem
+            // 
+            this.gestionOpérationsEnGroupeToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.wand;
+            this.gestionOpérationsEnGroupeToolStripMenuItem.Name = "gestionOpérationsEnGroupeToolStripMenuItem";
+            this.gestionOpérationsEnGroupeToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.gestionOpérationsEnGroupeToolStripMenuItem.Text = "Mise à jour &Groupée";
+            this.gestionOpérationsEnGroupeToolStripMenuItem.Click += new System.EventHandler(this.GestionOpérationsEnGroupeToolStripMenuItem_Click);
+            // 
+            // virementCompteÀCompteToolStripMenuItem
+            // 
+            this.virementCompteÀCompteToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.tag;
+            this.virementCompteÀCompteToolStripMenuItem.Name = "virementCompteÀCompteToolStripMenuItem";
+            this.virementCompteÀCompteToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.virementCompteÀCompteToolStripMenuItem.Text = "&Virement Compte à Compte";
+            this.virementCompteÀCompteToolStripMenuItem.Click += new System.EventHandler(this.virementCompteÀCompteToolStripMenuItem_Click);
+            // 
+            // pointerLesOpérationsSélectionnéesToolStripMenuItem
+            // 
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.tick;
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Name = "pointerLesOpérationsSélectionnéesToolStripMenuItem";
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Text = "&Pointer les Opérations sélectionnées";
+            this.pointerLesOpérationsSélectionnéesToolStripMenuItem.Click += new System.EventHandler(this.pointerLesOpérationsSélectionnéesToolStripMenuItem_Click);
+            // 
+            // aideToolStripMenuItem
+            // 
+            this.aideToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.help;
+            this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
+            this.aideToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.aideToolStripMenuItem.Text = "&Aide (Wiki)";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.application_osx;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.aboutToolStripMenuItem.Text = "A &propos de...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::OrionBanque.Properties.Resources.application_osx;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 885;
+            // 
+            // sauvegarderToolStripMenuItem
+            // 
+            this.sauvegarderToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.disk;
+            this.sauvegarderToolStripMenuItem.Name = "sauvegarderToolStripMenuItem";
+            this.sauvegarderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.sauvegarderToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.sauvegarderToolStripMenuItem.Text = "&Sauvegarder";
+            this.sauvegarderToolStripMenuItem.Click += new System.EventHandler(this.sauvegarderToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1186,7 +1209,6 @@
             this.TextExtra = "OrionBanque";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -1201,8 +1223,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbSoldeFinal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cbCompte)).EndInit();
@@ -1220,12 +1240,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbFiltreDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperations)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.tsConnection.ResumeLayout(false);
-            this.tsConnection.PerformLayout();
             this.tsGestGeneral.ResumeLayout(false);
             this.tsGestGeneral.PerformLayout();
+            this.tsConnection.ResumeLayout(false);
+            this.tsConnection.PerformLayout();
             this.toolStripContainer2.ResumeLayout(false);
             this.toolStripContainer2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSoldeFinal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1335,6 +1357,8 @@
         private System.Windows.Forms.ToolStripMenuItem modifierLUtilisateurToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         public System.Windows.Forms.ToolStripButton tsSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem sauvegarderToolStripMenuItem;
     }
 }
 

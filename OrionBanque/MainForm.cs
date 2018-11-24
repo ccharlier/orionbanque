@@ -588,14 +588,6 @@ namespace OrionBanque
             }
         }
 
-        private void dgvOperations_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.P)
-            {
-                LancePointage();
-            }
-        }
-
         private void pointerLesOpérationsSélectionnéesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LancePointage();
@@ -928,12 +920,9 @@ namespace OrionBanque
             LanceSauvegarde();
         }
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        private void sauvegarderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
-            {
-                LanceSauvegarde();
-            }
+            LanceSauvegarde();
         }
 
         private void LanceSauvegarde()
