@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using ZedGraph;
 using OrionBanque.Classe;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace OrionBanque
 {
@@ -207,67 +208,29 @@ namespace OrionBanque
 
         private void ChargeGraph(Compte c)
         {
-            double dYMini = 9999999999.99;
-            xGraph.MasterPane = new MasterPane();
-            xGraph.Invalidate();
-
-            GraphPane myPane = new GraphPane();
-
+            int i = 0;
             DateTime dMin = txtEvolSoldeMin.Value;
             DateTime dMax = txtEvolSoldMax.Value;
-
             List<double> ld = new List<double>();
             List<DateTime> ldt = new List<DateTime>();
+
+            graph.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            graph.Series[0].Points.Clear();
 
             do
             {
                 double dTemp = Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial;
                 ldt.Add(dMin);
                 ld.Add(dTemp);
-                if (dTemp < dYMini)
-                {
-                    dYMini = dTemp;
-                }
-
                 dMin = dMin.AddDays(1.0);
             }
             while (dMin <= dMax);
 
-            myPane.Title.IsVisible = true;
-            myPane.Title.Text = "Evolution du solde";
-
-            myPane.Fill = new Fill(Color.White, Color.Goldenrod, 45.0f);
-
-            // Make up some data points based on the Sine function
-            PointPairList list = new PointPairList();
-
-            int i = 0;
             foreach (DateTime xdt in ldt)
             {
-                double x = new XDate(xdt.Year, xdt.Month, xdt.Day);
-                double y = ld[i];
+                graph.Series[0].Points.AddXY(xdt.ToOADate(), ld[i]);
                 i++;
-                list.Add(x, y);
             }
-
-            LineItem myCurve = myPane.AddCurve(string.Empty, list, Color.Red, SymbolType.None);
-
-            // Set the XAxis to date type
-            myPane.XAxis.Type = AxisType.Date;
-            if (dYMini > 0)
-            {
-                myPane.YAxis.Scale.Min = 0.0;
-            }
-
-            myCurve.Line.Fill = new Fill(Color.White, Color.SteelBlue, 45.0f);
-
-            xGraph.GraphPane = myPane;
-
-            // Leave a small margin around the outside of the control
-            xGraph.Size = new Size(xGraph.Size.Width - 5, xGraph.Size.Height - 5);
-
-            // Calculate the Axis Scale Ranges
-            xGraph.AxisChange();
         }
 
         private void AjouterToolStripMenuItem_Click(object sender, EventArgs e)

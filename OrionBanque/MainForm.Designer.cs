@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsUser = new System.Windows.Forms.ToolStripStatusLabel();
@@ -81,7 +84,6 @@
             this.txtEvolSoldMax = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.txtEvolSoldeMin = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.xGraph = new ZedGraph.ZedGraphControl();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -113,6 +115,7 @@
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.btnOperationValide = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtOperationPointage = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.txtOperationCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -150,7 +153,7 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnOperationValide = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -198,6 +201,7 @@
             this.tsConnection.SuspendLayout();
             this.tsGestGeneral.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -639,7 +643,7 @@
             // 
             // btnValidDateEvol
             // 
-            this.btnValidDateEvol.Location = new System.Drawing.Point(124, 514);
+            this.btnValidDateEvol.Location = new System.Drawing.Point(124, 551);
             this.btnValidDateEvol.Name = "btnValidDateEvol";
             this.btnValidDateEvol.Size = new System.Drawing.Size(23, 23);
             this.btnValidDateEvol.TabIndex = 24;
@@ -651,7 +655,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 523);
+            this.label3.Location = new System.Drawing.Point(4, 560);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 13);
             this.label3.TabIndex = 17;
@@ -660,7 +664,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 496);
+            this.label2.Location = new System.Drawing.Point(3, 533);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 13);
             this.label2.TabIndex = 16;
@@ -670,7 +674,7 @@
             // 
             this.txtEvolSoldMax.CalendarTodayDate = new System.DateTime(2010, 1, 2, 0, 0, 0, 0);
             this.txtEvolSoldMax.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtEvolSoldMax.Location = new System.Drawing.Point(31, 515);
+            this.txtEvolSoldMax.Location = new System.Drawing.Point(31, 552);
             this.txtEvolSoldMax.Name = "txtEvolSoldMax";
             this.txtEvolSoldMax.Size = new System.Drawing.Size(89, 21);
             this.txtEvolSoldMax.TabIndex = 15;
@@ -679,7 +683,7 @@
             // 
             this.txtEvolSoldeMin.CalendarTodayDate = new System.DateTime(2010, 1, 2, 0, 0, 0, 0);
             this.txtEvolSoldeMin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtEvolSoldeMin.Location = new System.Drawing.Point(30, 488);
+            this.txtEvolSoldeMin.Location = new System.Drawing.Point(30, 525);
             this.txtEvolSoldeMin.Name = "txtEvolSoldeMin";
             this.txtEvolSoldeMin.Size = new System.Drawing.Size(89, 21);
             this.txtEvolSoldeMin.TabIndex = 14;
@@ -688,27 +692,11 @@
             // 
             this.kryptonPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonPanel1.Controls.Add(this.xGraph);
+            this.kryptonPanel1.Controls.Add(this.graph);
             this.kryptonPanel1.Location = new System.Drawing.Point(4, 181);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(311, 299);
+            this.kryptonPanel1.Size = new System.Drawing.Size(311, 338);
             this.kryptonPanel1.TabIndex = 13;
-            // 
-            // xGraph
-            // 
-            this.xGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xGraph.Location = new System.Drawing.Point(0, 0);
-            this.xGraph.Name = "xGraph";
-            this.xGraph.ScrollGrace = 0D;
-            this.xGraph.ScrollMaxX = 0D;
-            this.xGraph.ScrollMaxY = 0D;
-            this.xGraph.ScrollMaxY2 = 0D;
-            this.xGraph.ScrollMinX = 0D;
-            this.xGraph.ScrollMinY = 0D;
-            this.xGraph.ScrollMinY2 = 0D;
-            this.xGraph.Size = new System.Drawing.Size(311, 299);
-            this.xGraph.TabIndex = 12;
-            this.xGraph.UseExtendedPrintDialog = true;
             // 
             // kryptonLabel3
             // 
@@ -1089,6 +1077,17 @@
             this.pictureBox6.TabIndex = 34;
             this.pictureBox6.TabStop = false;
             // 
+            // btnOperationValide
+            // 
+            this.btnOperationValide.Location = new System.Drawing.Point(957, 15);
+            this.btnOperationValide.Name = "btnOperationValide";
+            this.btnOperationValide.Size = new System.Drawing.Size(25, 25);
+            this.btnOperationValide.TabIndex = 35;
+            this.toolTipG.SetToolTip(this.btnOperationValide, "Click Gauche = Ajouter\r\nClick Droit = Modifier");
+            this.btnOperationValide.Values.Image = global::OrionBanque.Properties.Resources.accept1;
+            this.btnOperationValide.Values.Text = "";
+            this.btnOperationValide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnOperationValide_MouseDown);
+            // 
             // txtOperationPointage
             // 
             this.txtOperationPointage.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
@@ -1424,16 +1423,26 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 885;
             // 
-            // btnOperationValide
+            // graph
             // 
-            this.btnOperationValide.Location = new System.Drawing.Point(957, 15);
-            this.btnOperationValide.Name = "btnOperationValide";
-            this.btnOperationValide.Size = new System.Drawing.Size(25, 25);
-            this.btnOperationValide.TabIndex = 35;
-            this.toolTipG.SetToolTip(this.btnOperationValide, "Click Gauche = Ajouter\r\nClick Droit = Modifier");
-            this.btnOperationValide.Values.Image = global::OrionBanque.Properties.Resources.accept1;
-            this.btnOperationValide.Values.Text = "";
-            this.btnOperationValide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnOperationValide_MouseDown);
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.Name = "ChartArea1";
+            this.graph.ChartAreas.Add(chartArea1);
+            this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graph.Location = new System.Drawing.Point(0, 0);
+            this.graph.Name = "graph";
+            this.graph.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SemiTransparent;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series1.Name = "Series1";
+            series1.ToolTip = "Le: #VALX\\nSolde: #VAL";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.graph.Series.Add(series1);
+            this.graph.Size = new System.Drawing.Size(311, 338);
+            this.graph.TabIndex = 13;
+            title1.Name = "Title1";
+            title1.Text = "Suivi du Solde";
+            this.graph.Titles.Add(title1);
             // 
             // MainForm
             // 
@@ -1509,6 +1518,7 @@
             this.tsGestGeneral.PerformLayout();
             this.toolStripContainer2.ResumeLayout(false);
             this.toolStripContainer2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1553,7 +1563,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonManager kManager;
         private System.Windows.Forms.ToolStripStatusLabel tsDateJour;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
-        private ZedGraph.ZedGraphControl xGraph;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker txtEvolSoldMax;
@@ -1637,6 +1646,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox txtOperationCategorie;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtOperationPointage;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperationValide;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graph;
     }
 }
 
