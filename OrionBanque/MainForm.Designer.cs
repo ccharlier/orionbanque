@@ -154,6 +154,8 @@
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -214,7 +216,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 632);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.statusStrip1.Size = new System.Drawing.Size(1538, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1273, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -250,7 +252,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1538, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1273, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -370,7 +372,9 @@
             this.modeDePaiementToolStripMenuItem,
             this.catégoriesToolStripMenuItem,
             this.toolStripSeparator6,
-            this.modifierLUtilisateurToolStripMenuItem});
+            this.modifierLUtilisateurToolStripMenuItem,
+            this.toolStripSeparator12,
+            this.toolStripMenuItem4});
             this.tsmConfiguration.Name = "tsmConfiguration";
             this.tsmConfiguration.Size = new System.Drawing.Size(93, 20);
             this.tsmConfiguration.Text = "&Configuration";
@@ -571,11 +575,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1538, 583);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1273, 583);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1538, 608);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1273, 608);
             this.toolStripContainer1.TabIndex = 2;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -614,8 +618,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel2.Controls.Add(this.spltOpeRecher);
-            this.splitContainer1.Size = new System.Drawing.Size(1538, 583);
-            this.splitContainer1.SplitterDistance = 318;
+            this.splitContainer1.Size = new System.Drawing.Size(1273, 583);
+            this.splitContainer1.SplitterDistance = 263;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -695,7 +699,7 @@
             this.kryptonPanel1.Controls.Add(this.graph);
             this.kryptonPanel1.Location = new System.Drawing.Point(4, 181);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(311, 338);
+            this.kryptonPanel1.Size = new System.Drawing.Size(256, 338);
             this.kryptonPanel1.TabIndex = 13;
             // 
             // kryptonLabel3
@@ -733,7 +737,7 @@
             this.cbCompte.DropDownWidth = 121;
             this.cbCompte.Location = new System.Drawing.Point(52, 13);
             this.cbCompte.Name = "cbCompte";
-            this.cbCompte.Size = new System.Drawing.Size(216, 21);
+            this.cbCompte.Size = new System.Drawing.Size(161, 21);
             this.cbCompte.TabIndex = 7;
             this.cbCompte.SelectedIndexChanged += new System.EventHandler(this.CbCompte_SelectedIndexChanged);
             // 
@@ -795,7 +799,7 @@
             // spltOpeRecher.Panel2
             // 
             this.spltOpeRecher.Panel2.Controls.Add(this.kryptonSplitContainer1);
-            this.spltOpeRecher.Size = new System.Drawing.Size(1218, 583);
+            this.spltOpeRecher.Size = new System.Drawing.Size(1008, 583);
             this.spltOpeRecher.SplitterDistance = 29;
             this.spltOpeRecher.TabIndex = 0;
             // 
@@ -979,7 +983,7 @@
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.pictureBox1);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtOperationDate);
             this.kryptonSplitContainer1.Panel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
-            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1218, 549);
+            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1008, 549);
             this.kryptonSplitContainer1.SplitterDistance = 488;
             this.kryptonSplitContainer1.TabIndex = 1;
             // 
@@ -1000,7 +1004,7 @@
             this.dgvOperations.Name = "dgvOperations";
             this.dgvOperations.ReadOnly = true;
             this.dgvOperations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOperations.Size = new System.Drawing.Size(1218, 488);
+            this.dgvOperations.Size = new System.Drawing.Size(1008, 488);
             this.dgvOperations.TabIndex = 0;
             this.dgvOperations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOperations_CellFormatting);
             this.dgvOperations.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOperations_DataBindingComplete);
@@ -1054,7 +1058,7 @@
             // 
             this.excelToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.page_white_text;
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.excelToolStripMenuItem.Text = "CSV";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
@@ -1392,11 +1396,11 @@
             // 
             // toolStripContainer2.ContentPanel
             // 
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1538, 629);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1273, 629);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(1538, 654);
+            this.toolStripContainer2.Size = new System.Drawing.Size(1273, 654);
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
@@ -1438,17 +1442,28 @@
             series1.ToolTip = "Le: #VALX\\nSolde: #VAL";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             this.graph.Series.Add(series1);
-            this.graph.Size = new System.Drawing.Size(311, 338);
+            this.graph.Size = new System.Drawing.Size(256, 338);
             this.graph.TabIndex = 13;
             title1.Name = "Title1";
             title1.Text = "Suivi du Solde";
             this.graph.Titles.Add(title1);
             // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(178, 6);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 22);
+            this.toolStripMenuItem4.Text = "Thème";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1538, 654);
+            this.ClientSize = new System.Drawing.Size(1273, 654);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1647,6 +1662,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtOperationPointage;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperationValide;
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
     }
 }
 
