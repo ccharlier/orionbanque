@@ -17,9 +17,9 @@ namespace OrionBanque
         #region Variable de Texte
         string alerteEnregistrement = "Fichier Sauvegardé sous {0}";
         string alerteSuppressionCompte = "Etes-vous sur de supprimer ce Compte ? (plus aucun accès aux comptes ne sera possible)";
-        string alerteSuppressionOperation = "Etes-vous sur de supprimer cette Opération ?";
-        string alerteSuppressionUtilisateur = "Etes-vous sur de supprimer cet Utilisateur ? (plus aucun accès aux comptes ne sera possible)";
-        string erreurPasDeCompteCreer = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
+        string alerteSuppressionOperations = "Etes-vous sur de vouloir supprimer les Opérations sélectionnées ?";
+        string alerteSuppressionOperation = "Etes-vous sur de vouloir supprimer l'Opérations sélectionnée ?";
+        string erreurPasDeCompteCree = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
         #endregion
 
         public MainForm(Utilisateur u)
@@ -48,7 +48,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 EcheanciersGestForm ec = new EcheanciersGestForm(uA);
@@ -287,7 +287,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 CompteForm cm = new CompteForm(Compte.Charge((int)cbCompte.SelectedValue));
@@ -311,7 +311,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 if (MessageBox.Show(alerteSuppressionCompte, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -397,7 +397,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 OperationForm om = new OperationForm(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), Compte.Charge((int)cbCompte.SelectedValue), KEY.MODE_UPDATE);
@@ -427,15 +427,19 @@ namespace OrionBanque
         {
             if (dgvOperations.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show(alerteSuppressionOperation, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                string text = dgvOperations.SelectedRows.Count == 1 ? alerteSuppressionOperation : alerteSuppressionOperations;
+                if (MessageBox.Show(text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
-                        Operation.Delete(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())));
-                        Compte c = Compte.Charge((int)cbCompte.SelectedValue);
-                        ChargeOperations(c);
-                        ChargesIndicateurs(c);
-
+                        DataGridViewSelectedRowCollection liste = dgvOperations.SelectedRows;
+                        foreach (DataGridViewRow row in liste)
+                        {
+                            Operation otemp = Operation.Charge((int)row.Cells["Id"].Value);
+                            Operation.Delete(otemp);
+                            dgvOperations.Rows.RemoveAt(row.Index);
+                        }
+                        ChargesIndicateurs(Compte.Charge((int)cbCompte.SelectedValue));
                         tsSave.Enabled = true;
                     }
                     catch (Exception ex)
@@ -508,7 +512,7 @@ namespace OrionBanque
             {
                 if(cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 OperationForm of = new OperationForm(new Operation(), Compte.Charge((int)cbCompte.SelectedValue), "INSERT");
@@ -519,7 +523,6 @@ namespace OrionBanque
                     Compte c = Compte.Charge((int)cbCompte.SelectedValue);
                     ChargesIndicateurs(c);
                     ChargeOperations(c);
-
                     tsSave.Enabled = true;
                 }
             }
@@ -570,7 +573,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 VirementCaCForm oa = new VirementCaCForm(uA);
@@ -603,12 +606,14 @@ namespace OrionBanque
                 { 
                     otemp.DatePointage = DateTime.Now;
                     Operation.Maj(otemp);
+                    row.Cells["DatePointage"].Value = DateTime.Now;
                 }
                 
             }
             if(liste.Count != 0)
             {
-                ChargeOperations(Compte.Charge((int)cbCompte.SelectedValue));
+                //ChargeOperations(Compte.Charge((int)cbCompte.SelectedValue));
+                ChargesIndicateurs(Compte.Charge((int)cbCompte.SelectedValue));
                 tsSave.Enabled = true;
             }
         }
@@ -619,7 +624,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 OperationMajGroupeForm OMG = new OperationMajGroupeForm(Compte.Charge((int)cbCompte.SelectedValue));
@@ -722,6 +727,93 @@ namespace OrionBanque
                 Cursor = Cursors.Default;
             }
         }
+
+        private void dgvOperations_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvOperations.SelectedRows.Count != 0)
+            {
+                Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+
+                txtOperationDate.Value = o.Date;
+                txtOperationCategorie.SelectedValue = o.Categorie.Id;
+                txtOperationLibelle.Text = o.Libelle;
+                txtOperationTiers.Text = o.Tiers;
+                txtOperationModePaiement.SelectedValue = o.ModePaiement.Id;
+                txtOperationMontant.Value = new decimal(o.Montant);
+                if (o.DatePointage != null)
+                {
+                    txtOperationPointage.Checked = true;
+                }
+                else
+                {
+                    txtOperationPointage.Checked = false;
+                }
+            }
+        }
+
+        private void txtFiltreMontant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void btnOperationValide_MouseDown(object sender, MouseEventArgs e)
+        {
+            Compte c = Compte.Charge((int)cbCompte.SelectedValue);
+            if (e.Button == MouseButtons.Right)
+            {
+                // Mise à jour de l'Opération sélectionnée 
+                Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+                o.Compte = c;
+                o.Date = txtOperationDate.Value;
+                o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
+                o.Libelle = txtOperationLibelle.Text;
+                o.Tiers = txtOperationTiers.Text;
+                o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
+                o.Montant = double.Parse(txtOperationMontant.Value.ToString());
+                if (txtOperationPointage.Checked)
+                {
+                    if(o.DatePointage is null)
+                    {
+                        o.DatePointage = DateTime.Now;
+                    }
+                }
+                else
+                {
+                    o.DatePointage = null;
+                }
+                Operation.Maj(o);
+            }
+            if (e.Button == MouseButtons.Left)
+            {
+                // Création d'une Opération tel que saisie
+                Operation o = new Operation();
+                o.Compte = c;
+                o.Date = txtOperationDate.Value;
+                o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
+                o.Libelle = txtOperationLibelle.Text;
+                o.Tiers = txtOperationTiers.Text;
+                o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
+                o.Montant = double.Parse(txtOperationMontant.Value.ToString());
+                if (txtOperationPointage.Checked)
+                {
+                    o.DatePointage = DateTime.Now;
+                }
+                else
+                {
+                    o.DatePointage = null;
+                }
+                Operation.Sauve(o);
+            }
+            
+            ChargesIndicateurs(c);
+            ChargeOperations(c);
+            tsSave.Enabled = true;
+
+            this.ActiveControl = txtOperationDate;
+        }
         #endregion
 
         #region CB
@@ -768,6 +860,11 @@ namespace OrionBanque
                 txtFiltreModePaiement.DisplayMember = "Libelle";
                 txtFiltreModePaiement.ValueMember = "Id";
                 txtFiltreModePaiement.DataSource = lmp;
+
+                List<ModePaiement> lmp2 = ModePaiement.ChargeTout();
+                txtOperationModePaiement.DisplayMember = "Libelle";
+                txtOperationModePaiement.ValueMember = "Id";
+                txtOperationModePaiement.DataSource = lmp;
             }
             catch (Exception ex)
             {
@@ -783,6 +880,11 @@ namespace OrionBanque
                 txtFiltreCategorie.DisplayMember = "LibelleIdent";
                 txtFiltreCategorie.ValueMember = "Id";
                 txtFiltreCategorie.DataSource = lc;
+
+                List<Categorie> lc2 = Categorie.ChargeToutIdent();
+                txtOperationCategorie.DisplayMember = "LibelleIdent";
+                txtOperationCategorie.ValueMember = "Id";
+                txtOperationCategorie.DataSource = lc2;
             }
             catch (Exception ex)
             {
@@ -797,6 +899,7 @@ namespace OrionBanque
                 if (cbCompte.SelectedValue != null)
                 {
                     txtFiltreTiers.DataSource = Operation.ChargeToutTiers(uA);
+                    txtOperationTiers.DataSource = Operation.ChargeToutTiers(uA);
                 }
             }
             catch (Exception ex)
@@ -813,7 +916,7 @@ namespace OrionBanque
             {
                 if (cbCompte.Items.Count == 0)
                 {
-                    throw new Exception(erreurPasDeCompteCreer);
+                    throw new Exception(erreurPasDeCompteCree);
                 }
 
                 GraphiqueForm g;
@@ -929,14 +1032,6 @@ namespace OrionBanque
         {
             Outils.GestionFichier.Sauvegarde();
             tsSave.Enabled = false;
-        }
-
-        private void txtFiltreMontant_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
-            {
-                e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
-            }
         }
     }
 }
