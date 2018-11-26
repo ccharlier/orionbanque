@@ -5,9 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using ZedGraph;
 using OrionBanque.Classe;
-using System.Web.UI.DataVisualization.Charting;
 
 namespace OrionBanque
 {
@@ -993,6 +991,36 @@ namespace OrionBanque
         {
             Outils.GestionFichier.Sauvegarde();
             tsSave.Enabled = false;
+        }
+
+        private void office2010BlueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kManager.GlobalPalette = kryptonPaletteOffice2010Blue;
+        }
+
+        private void office2010SilverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kManager.GlobalPalette = kryptonPaletteOffice2010Silver;
+        }
+
+        private void office2010BlackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kManager.GlobalPalette = kryptonPaletteOffice2010Black;
+        }
+
+        private void sparkleBlueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kManager.GlobalPalette = kryptonPaletteSparkleBlue;
+        }
+
+        private void sparklePurpleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kManager.GlobalPalette = kryptonPaletteSparklePurple;
+        }
+
+        private void sparkleOrangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kManager.GlobalPalette = kryptonPaletteSparkleOrange;
         }
     }
 }

@@ -156,6 +156,18 @@
             this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.office2010BlueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.office2010SilverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.office2010BlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sparkleBlueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sparklePurpleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sparkleOrangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kryptonPaletteOffice2010Blue = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonPaletteOffice2010Silver = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonPaletteOffice2010Black = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonPaletteSparkleBlue = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonPaletteSparkleOrange = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -1455,9 +1467,78 @@
             // 
             // toolStripMenuItem4
             // 
+            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.office2010BlueToolStripMenuItem,
+            this.office2010SilverToolStripMenuItem,
+            this.office2010BlackToolStripMenuItem,
+            this.sparkleBlueToolStripMenuItem,
+            this.sparklePurpleToolStripMenuItem,
+            this.sparkleOrangeToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 22);
             this.toolStripMenuItem4.Text = "Thème";
+            // 
+            // office2010BlueToolStripMenuItem
+            // 
+            this.office2010BlueToolStripMenuItem.Name = "office2010BlueToolStripMenuItem";
+            this.office2010BlueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.office2010BlueToolStripMenuItem.Text = "Office 2010 - Blue";
+            this.office2010BlueToolStripMenuItem.Click += new System.EventHandler(this.office2010BlueToolStripMenuItem_Click);
+            // 
+            // office2010SilverToolStripMenuItem
+            // 
+            this.office2010SilverToolStripMenuItem.Name = "office2010SilverToolStripMenuItem";
+            this.office2010SilverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.office2010SilverToolStripMenuItem.Text = "Office 2010 - Silver";
+            this.office2010SilverToolStripMenuItem.Click += new System.EventHandler(this.office2010SilverToolStripMenuItem_Click);
+            // 
+            // office2010BlackToolStripMenuItem
+            // 
+            this.office2010BlackToolStripMenuItem.Name = "office2010BlackToolStripMenuItem";
+            this.office2010BlackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.office2010BlackToolStripMenuItem.Text = "Office 2010 - Black";
+            this.office2010BlackToolStripMenuItem.Click += new System.EventHandler(this.office2010BlackToolStripMenuItem_Click);
+            // 
+            // sparkleBlueToolStripMenuItem
+            // 
+            this.sparkleBlueToolStripMenuItem.Name = "sparkleBlueToolStripMenuItem";
+            this.sparkleBlueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sparkleBlueToolStripMenuItem.Text = "Sparkle - Blue";
+            this.sparkleBlueToolStripMenuItem.Click += new System.EventHandler(this.sparkleBlueToolStripMenuItem_Click);
+            // 
+            // sparklePurpleToolStripMenuItem
+            // 
+            this.sparklePurpleToolStripMenuItem.Name = "sparklePurpleToolStripMenuItem";
+            this.sparklePurpleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sparklePurpleToolStripMenuItem.Text = "Sparkle - Purple";
+            this.sparklePurpleToolStripMenuItem.Click += new System.EventHandler(this.sparklePurpleToolStripMenuItem_Click);
+            // 
+            // sparkleOrangeToolStripMenuItem
+            // 
+            this.sparkleOrangeToolStripMenuItem.Name = "sparkleOrangeToolStripMenuItem";
+            this.sparkleOrangeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sparkleOrangeToolStripMenuItem.Text = "Sparkle - Orange";
+            this.sparkleOrangeToolStripMenuItem.Click += new System.EventHandler(this.sparkleOrangeToolStripMenuItem_Click);
+            // 
+            // kryptonPaletteOffice2010Silver
+            // 
+            this.kryptonPaletteOffice2010Silver.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver;
+            // 
+            // kryptonPaletteOffice2010Black
+            // 
+            this.kryptonPaletteOffice2010Black.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            // 
+            // kryptonPaletteSparkleBlue
+            // 
+            this.kryptonPaletteSparkleBlue.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            // 
+            // kryptonPaletteSparkleOrange
+            // 
+            this.kryptonPaletteSparkleOrange.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleOrange;
+            // 
+            // kryptonPaletteSparklePurple
+            // 
+            this.kryptonPaletteSparklePurple.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparklePurple;
             // 
             // MainForm
             // 
@@ -1664,6 +1745,18 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem office2010BlueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem office2010SilverToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem office2010BlackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sparkleBlueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sparklePurpleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sparkleOrangeToolStripMenuItem;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteOffice2010Blue;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteOffice2010Silver;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteOffice2010Black;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparkleBlue;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparkleOrange;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparklePurple;
     }
 }
 
