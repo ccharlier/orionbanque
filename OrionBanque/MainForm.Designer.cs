@@ -113,7 +113,6 @@
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.btnOperationValide = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtOperationPointage = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.txtOperationCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -151,6 +150,7 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnOperationValide = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -498,7 +498,7 @@
             // 
             this.supprimerToolStripMenuItem2.Image = global::OrionBanque.Properties.Resources.table_row_delete;
             this.supprimerToolStripMenuItem2.Name = "supprimerToolStripMenuItem2";
-            this.supprimerToolStripMenuItem2.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.supprimerToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.supprimerToolStripMenuItem2.Size = new System.Drawing.Size(305, 22);
             this.supprimerToolStripMenuItem2.Text = "&Supprimer";
             this.supprimerToolStripMenuItem2.Click += new System.EventHandler(this.SupprimerToolStripMenuItem2_Click);
@@ -1089,17 +1089,6 @@
             this.pictureBox6.TabIndex = 34;
             this.pictureBox6.TabStop = false;
             // 
-            // btnOperationValide
-            // 
-            this.btnOperationValide.Location = new System.Drawing.Point(957, 16);
-            this.btnOperationValide.Name = "btnOperationValide";
-            this.btnOperationValide.Size = new System.Drawing.Size(23, 23);
-            this.btnOperationValide.TabIndex = 35;
-            this.toolTipG.SetToolTip(this.btnOperationValide, "Click Gauche = Ajouter\r\nClick Droit = Modifier");
-            this.btnOperationValide.Values.Image = global::OrionBanque.Properties.Resources.accept1;
-            this.btnOperationValide.Values.Text = "";
-            this.btnOperationValide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnOperationValide_MouseDown);
-            // 
             // txtOperationPointage
             // 
             this.txtOperationPointage.CheckPosition = ComponentFactory.Krypton.Toolkit.VisualOrientation.Right;
@@ -1435,6 +1424,17 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 885;
             // 
+            // btnOperationValide
+            // 
+            this.btnOperationValide.Location = new System.Drawing.Point(957, 15);
+            this.btnOperationValide.Name = "btnOperationValide";
+            this.btnOperationValide.Size = new System.Drawing.Size(25, 25);
+            this.btnOperationValide.TabIndex = 35;
+            this.toolTipG.SetToolTip(this.btnOperationValide, "Click Gauche = Ajouter\r\nClick Droit = Modifier");
+            this.btnOperationValide.Values.Image = global::OrionBanque.Properties.Resources.accept1;
+            this.btnOperationValide.Values.Text = "";
+            this.btnOperationValide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnOperationValide_MouseDown);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1635,8 +1635,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox7;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox txtOperationCategorie;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperationValide;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox txtOperationPointage;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperationValide;
     }
 }
 
