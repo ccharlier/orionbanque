@@ -364,7 +364,6 @@ namespace OrionBanque
                 dgvOperations.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
                 dgvOperations.Columns["ordre"].Visible = false;
-
             }
             catch (Exception ex)
             {
@@ -608,7 +607,6 @@ namespace OrionBanque
                     Operation.Maj(otemp);
                     row.Cells["DatePointage"].Value = DateTime.Now;
                 }
-                
             }
             if(liste.Count != 0)
             {
