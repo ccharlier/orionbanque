@@ -107,7 +107,8 @@
             // 
             // kCbTiersVers
             // 
-            this.kCbTiersVers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kCbTiersVers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.kCbTiersVers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.kCbTiersVers.DropDownWidth = 166;
             this.kCbTiersVers.Location = new System.Drawing.Point(115, 46);
             this.kCbTiersVers.Name = "kCbTiersVers";
