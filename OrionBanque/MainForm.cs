@@ -895,9 +895,6 @@ namespace OrionBanque
 
             graph.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             graph.Series[0].Points.Clear();
-
-            
-
             do
             {
                 double dTemp = Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial;
