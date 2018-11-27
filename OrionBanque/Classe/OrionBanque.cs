@@ -24,6 +24,8 @@ namespace OrionBanque.Classe
         public List<Utilisateur> Utilisateurs { get; set; }
         [DataMember()]
         public List<Fichier> Fichiers { get; set; }
+        [DataMember()]
+        public string Theme { get; set; }
 
         public OB()
         {

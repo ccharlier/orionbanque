@@ -6,20 +6,18 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using OrionBanque.Classe;
+using System.Runtime.Remoting.Messaging;
 
 namespace OrionBanque
 {
     public partial class MainForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         Utilisateur uA;
-
-        #region Variable de Texte
         string alerteEnregistrement = "Fichier Sauvegardé sous {0}";
         string alerteSuppressionCompte = "Etes-vous sur de supprimer ce Compte ? (plus aucun accès aux comptes ne sera possible)";
         string alerteSuppressionOperations = "Etes-vous sur de vouloir supprimer les Opérations sélectionnées ?";
         string alerteSuppressionOperation = "Etes-vous sur de vouloir supprimer l'Opérations sélectionnée ?";
         string erreurPasDeCompteCree = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
-        #endregion
 
         public MainForm(Utilisateur u)
         {
@@ -201,33 +199,6 @@ namespace OrionBanque
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ChargeGraph(Compte c)
-        {
-            int i = 0;
-            DateTime dMin = txtEvolSoldeMin.Value;
-            DateTime dMax = txtEvolSoldMax.Value;
-            List<double> ld = new List<double>();
-            List<DateTime> ldt = new List<DateTime>();
-
-            graph.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            graph.Series[0].Points.Clear();
-
-            do
-            {
-                double dTemp = Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial;
-                ldt.Add(dMin);
-                ld.Add(dTemp);
-                dMin = dMin.AddDays(1.0);
-            }
-            while (dMin <= dMax);
-
-            foreach (DateTime xdt in ldt)
-            {
-                graph.Series[0].Points.AddXY(xdt.ToOADate(), ld[i]);
-                i++;
             }
         }
 
@@ -773,6 +744,11 @@ namespace OrionBanque
 
             this.ActiveControl = txtOperationDate;
         }
+
+        private void KFiltreDate_Click(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
         #endregion
 
         #region CB
@@ -868,7 +844,7 @@ namespace OrionBanque
         }
         #endregion
 
-        #region Grtaphique Evolution Solde
+        #region Graphique
         private void TsMontreGraph_Click(object sender, EventArgs e)
         {
             try
@@ -909,18 +885,113 @@ namespace OrionBanque
             ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
         }
 
-        private void KFiltreDate_Click(object sender, EventArgs e)
+        private void ChargeGraph(Compte c)
         {
-            LanceFiltreOperation();
+            int i = 0;
+            DateTime dMin = txtEvolSoldeMin.Value;
+            DateTime dMax = txtEvolSoldMax.Value;
+            List<double> ld = new List<double>();
+            List<DateTime> ldt = new List<DateTime>();
+
+            graph.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            graph.Series[0].Points.Clear();
+
+            
+
+            do
+            {
+                double dTemp = Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial;
+                ldt.Add(dMin);
+                ld.Add(dTemp);
+                dMin = dMin.AddDays(1.0);
+            }
+            while (dMin <= dMax);
+
+            foreach (DateTime xdt in ldt)
+            {
+                graph.Series[0].Points.AddXY(xdt.ToOADate(), ld[i]);
+                i++;
+            }
+        }
+        #endregion
+
+        #region Gestion du Thème
+        private void AppliqueTheme()
+        {
+            OB ob = (OB)CallContext.GetData(KEY.OB);
+
+            switch (ob.Theme)
+            {
+                case "kryptonPaletteOffice2010Black":
+                    kManager.GlobalPalette = kryptonPaletteOffice2010Black;
+                    break;
+                case "kryptonPaletteOffice2010Blue":
+                    kManager.GlobalPalette = kryptonPaletteOffice2010Blue;
+                    break;
+                case "kryptonPaletteOffice2010Silver":
+                    kManager.GlobalPalette = kryptonPaletteOffice2010Silver;
+                    break;
+                case "kryptonPaletteSparkleBlue":
+                    kManager.GlobalPalette = kryptonPaletteSparkleBlue;
+                    break;
+                case "kryptonPaletteSparkleOrange":
+                    kManager.GlobalPalette = kryptonPaletteSparkleOrange;
+                    break;
+                case "kryptonPaletteSparklePurple":
+                    kManager.GlobalPalette = kryptonPaletteSparklePurple;
+                    break;
+                default:
+                    kManager.GlobalPalette = kryptonPaletteOffice2010Silver;
+                    break;
+            }
+        }
+
+        private void SauveTheme(string theme)
+        {
+            OB ob = (OB)CallContext.GetData(KEY.OB);
+            ob.Theme = theme;
+            CallContext.SetData(KEY.OB, ob);
+            tsSave.Enabled = true;
+            AppliqueTheme();
+        }
+
+        private void office2010BlueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteOffice2010Blue");
+        }
+
+        private void office2010SilverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteOffice2010Silver");
+        }
+
+        private void office2010BlackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteOffice2010Black");
+        }
+
+        private void sparkleBlueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteSparkleBlue");
+        }
+
+        private void sparklePurpleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteSparklePurple");
+        }
+
+        private void sparkleOrangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteSparkleOrange");
         }
         #endregion
 
         private void ApresConnexion()
         {
-            tsUser.Text = " : " + uA.Login;
-
+            AppliqueTheme();
             ChargeComboCompte();
 
+            tsUser.Text = " : " + uA.Login;
             tsGraphChoix.SelectedItem = tsGraphChoix.Items[0];
             cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];
             cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
@@ -991,36 +1062,6 @@ namespace OrionBanque
         {
             Outils.GestionFichier.Sauvegarde();
             tsSave.Enabled = false;
-        }
-
-        private void office2010BlueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            kManager.GlobalPalette = kryptonPaletteOffice2010Blue;
-        }
-
-        private void office2010SilverToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            kManager.GlobalPalette = kryptonPaletteOffice2010Silver;
-        }
-
-        private void office2010BlackToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            kManager.GlobalPalette = kryptonPaletteOffice2010Black;
-        }
-
-        private void sparkleBlueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            kManager.GlobalPalette = kryptonPaletteSparkleBlue;
-        }
-
-        private void sparklePurpleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            kManager.GlobalPalette = kryptonPaletteSparklePurple;
-        }
-
-        private void sparkleOrangeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            kManager.GlobalPalette = kryptonPaletteSparkleOrange;
         }
     }
 }
