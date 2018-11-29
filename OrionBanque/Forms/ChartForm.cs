@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace OrionBanque.Forms
 {
@@ -180,5 +181,21 @@ namespace OrionBanque.Forms
             UpdateGraph();
         }
         #endregion
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if(sFDGraph.ShowDialog() == DialogResult.OK)
+            {
+                chart.SaveImage(sFDGraph.FileName, ChartImageFormat.Png);
+            }
+        }
+
+        private void enregistrerLesDonnéesSousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sFDSeries.ShowDialog() == DialogResult.OK)
+            {
+                Outils.GestionFichier.ExportCSV(sFDSeries.FileName, chart.DataManipulator.ExportSeriesValues(chart.Series[0]).Tables[0]);
+            }
+        }
     }
 }

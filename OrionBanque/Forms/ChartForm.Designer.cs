@@ -34,6 +34,13 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.kryptonSplitContainer1 = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
+            this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kCBAfficheRecettes = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
+            this.kCBAfficheDepenses = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
+            this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kCB3D = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
+            this.kCB2D = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
             this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kDTPDateMax = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
@@ -51,17 +58,15 @@
             this.kListeComptes = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cMGrpah = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kCSTypeGraph = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.kCSPetiteVal = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.kCSChoixGroupe = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.kCS2D3D = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
-            this.kCB3D = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
-            this.kCB2D = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
-            this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kCBAfficheDepenses = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
-            this.kCBAfficheRecettes = new ComponentFactory.Krypton.Toolkit.KryptonCheckButton();
-            this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.sFDGraph = new System.Windows.Forms.SaveFileDialog();
+            this.enregistrerLesDonnéesSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sFDSeries = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).BeginInit();
             this.kryptonSplitContainer1.Panel1.SuspendLayout();
@@ -69,6 +74,7 @@
             this.kryptonSplitContainer1.Panel2.SuspendLayout();
             this.kryptonSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            this.cMGrpah.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kCSTypeGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kCSPetiteVal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kCSChoixGroupe)).BeginInit();
@@ -116,6 +122,69 @@
             this.kryptonSplitContainer1.Size = new System.Drawing.Size(944, 634);
             this.kryptonSplitContainer1.SplitterDistance = 339;
             this.kryptonSplitContainer1.TabIndex = 0;
+            // 
+            // kryptonLabel8
+            // 
+            this.kryptonLabel8.Location = new System.Drawing.Point(43, 347);
+            this.kryptonLabel8.Name = "kryptonLabel8";
+            this.kryptonLabel8.Size = new System.Drawing.Size(133, 20);
+            this.kryptonLabel8.TabIndex = 39;
+            this.kryptonLabel8.Values.Text = "Prendre en compte les";
+            // 
+            // kCBAfficheRecettes
+            // 
+            this.kCBAfficheRecettes.Checked = true;
+            this.kCBAfficheRecettes.Location = new System.Drawing.Point(262, 345);
+            this.kCBAfficheRecettes.Name = "kCBAfficheRecettes";
+            this.kCBAfficheRecettes.Size = new System.Drawing.Size(74, 25);
+            this.kCBAfficheRecettes.TabIndex = 38;
+            this.kCBAfficheRecettes.Values.Text = "Recettes";
+            this.kCBAfficheRecettes.Click += new System.EventHandler(this.kCBAfficheRecettes_Click);
+            // 
+            // kCBAfficheDepenses
+            // 
+            this.kCBAfficheDepenses.Checked = true;
+            this.kCBAfficheDepenses.Location = new System.Drawing.Point(182, 345);
+            this.kCBAfficheDepenses.Name = "kCBAfficheDepenses";
+            this.kCBAfficheDepenses.Size = new System.Drawing.Size(74, 25);
+            this.kCBAfficheDepenses.TabIndex = 37;
+            this.kCBAfficheDepenses.Values.Text = "Dépenses";
+            this.kCBAfficheDepenses.Click += new System.EventHandler(this.kCBAfficheDepenses_Click);
+            // 
+            // kryptonLabel7
+            // 
+            this.kryptonLabel7.Location = new System.Drawing.Point(77, 477);
+            this.kryptonLabel7.Name = "kryptonLabel7";
+            this.kryptonLabel7.Size = new System.Drawing.Size(49, 20);
+            this.kryptonLabel7.TabIndex = 36;
+            this.kryptonLabel7.Values.Text = "Mode :";
+            // 
+            // kryptonLabel6
+            // 
+            this.kryptonLabel6.Location = new System.Drawing.Point(36, 434);
+            this.kryptonLabel6.Name = "kryptonLabel6";
+            this.kryptonLabel6.Size = new System.Drawing.Size(95, 20);
+            this.kryptonLabel6.TabIndex = 35;
+            this.kryptonLabel6.Values.Text = "Type de graph :";
+            // 
+            // kCB3D
+            // 
+            this.kCB3D.Location = new System.Drawing.Point(209, 474);
+            this.kCB3D.Name = "kCB3D";
+            this.kCB3D.Size = new System.Drawing.Size(66, 25);
+            this.kCB3D.TabIndex = 34;
+            this.kCB3D.Values.Text = "3D";
+            this.kCB3D.Click += new System.EventHandler(this.kCB3D_Click);
+            // 
+            // kCB2D
+            // 
+            this.kCB2D.Checked = true;
+            this.kCB2D.Location = new System.Drawing.Point(137, 474);
+            this.kCB2D.Name = "kCB2D";
+            this.kCB2D.Size = new System.Drawing.Size(66, 25);
+            this.kCB2D.TabIndex = 33;
+            this.kCB2D.Values.Text = "2D";
+            this.kCB2D.Click += new System.EventHandler(this.kCB2S_Click);
             // 
             // kryptonLabel5
             // 
@@ -270,6 +339,7 @@
             chartArea1.Area3DStyle.Enable3D = true;
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
+            this.chart.ContextMenuStrip = this.cMGrpah;
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
@@ -285,6 +355,22 @@
             this.chart.Size = new System.Drawing.Size(600, 634);
             this.chart.TabIndex = 0;
             this.chart.Text = "chart1";
+            // 
+            // cMGrpah
+            // 
+            this.cMGrpah.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cMGrpah.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.enregistrerLesDonnéesSousToolStripMenuItem});
+            this.cMGrpah.Name = "cMGrpah";
+            this.cMGrpah.Size = new System.Drawing.Size(235, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(234, 22);
+            this.toolStripMenuItem1.Text = "Enregistrer l\'image sous ...";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // kCSTypeGraph
             // 
@@ -311,68 +397,21 @@
             this.kCS2D3D.CheckButtons.Add(this.kCB2D);
             this.kCS2D3D.CheckedButton = this.kCB2D;
             // 
-            // kCB3D
+            // sFDGraph
             // 
-            this.kCB3D.Location = new System.Drawing.Point(209, 474);
-            this.kCB3D.Name = "kCB3D";
-            this.kCB3D.Size = new System.Drawing.Size(66, 25);
-            this.kCB3D.TabIndex = 34;
-            this.kCB3D.Values.Text = "3D";
-            this.kCB3D.Click += new System.EventHandler(this.kCB3D_Click);
+            this.sFDGraph.Filter = "Fichier PNG|*.png";
+            this.sFDGraph.Title = "Enregistrer sous ...";
             // 
-            // kCB2D
+            // enregistrerLesDonnéesSousToolStripMenuItem
             // 
-            this.kCB2D.Checked = true;
-            this.kCB2D.Location = new System.Drawing.Point(137, 474);
-            this.kCB2D.Name = "kCB2D";
-            this.kCB2D.Size = new System.Drawing.Size(66, 25);
-            this.kCB2D.TabIndex = 33;
-            this.kCB2D.Values.Text = "2D";
-            this.kCB2D.Click += new System.EventHandler(this.kCB2S_Click);
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Name = "enregistrerLesDonnéesSousToolStripMenuItem";
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Text = "Enregistrer les données sous ...";
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Click += new System.EventHandler(this.enregistrerLesDonnéesSousToolStripMenuItem_Click);
             // 
-            // kryptonLabel6
+            // sFDSeries
             // 
-            this.kryptonLabel6.Location = new System.Drawing.Point(36, 434);
-            this.kryptonLabel6.Name = "kryptonLabel6";
-            this.kryptonLabel6.Size = new System.Drawing.Size(95, 20);
-            this.kryptonLabel6.TabIndex = 35;
-            this.kryptonLabel6.Values.Text = "Type de graph :";
-            // 
-            // kryptonLabel7
-            // 
-            this.kryptonLabel7.Location = new System.Drawing.Point(77, 477);
-            this.kryptonLabel7.Name = "kryptonLabel7";
-            this.kryptonLabel7.Size = new System.Drawing.Size(49, 20);
-            this.kryptonLabel7.TabIndex = 36;
-            this.kryptonLabel7.Values.Text = "Mode :";
-            // 
-            // kCBAfficheDepenses
-            // 
-            this.kCBAfficheDepenses.Checked = true;
-            this.kCBAfficheDepenses.Location = new System.Drawing.Point(182, 345);
-            this.kCBAfficheDepenses.Name = "kCBAfficheDepenses";
-            this.kCBAfficheDepenses.Size = new System.Drawing.Size(74, 25);
-            this.kCBAfficheDepenses.TabIndex = 37;
-            this.kCBAfficheDepenses.Values.Text = "Dépenses";
-            this.kCBAfficheDepenses.Click += new System.EventHandler(this.kCBAfficheDepenses_Click);
-            // 
-            // kCBAfficheRecettes
-            // 
-            this.kCBAfficheRecettes.Checked = true;
-            this.kCBAfficheRecettes.Location = new System.Drawing.Point(262, 345);
-            this.kCBAfficheRecettes.Name = "kCBAfficheRecettes";
-            this.kCBAfficheRecettes.Size = new System.Drawing.Size(74, 25);
-            this.kCBAfficheRecettes.TabIndex = 38;
-            this.kCBAfficheRecettes.Values.Text = "Recettes";
-            this.kCBAfficheRecettes.Click += new System.EventHandler(this.kCBAfficheRecettes_Click);
-            // 
-            // kryptonLabel8
-            // 
-            this.kryptonLabel8.Location = new System.Drawing.Point(43, 347);
-            this.kryptonLabel8.Name = "kryptonLabel8";
-            this.kryptonLabel8.Size = new System.Drawing.Size(133, 20);
-            this.kryptonLabel8.TabIndex = 39;
-            this.kryptonLabel8.Values.Text = "Prendre en compte les";
+            this.sFDSeries.Filter = "Fichiers CSV|*.csv";
             // 
             // ChartForm
             // 
@@ -392,6 +431,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).EndInit();
             this.kryptonSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            this.cMGrpah.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kCSTypeGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kCSPetiteVal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kCSChoixGroupe)).EndInit();
@@ -431,5 +471,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel8;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckButton kCBAfficheRecettes;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckButton kCBAfficheDepenses;
+        private System.Windows.Forms.ContextMenuStrip cMGrpah;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.SaveFileDialog sFDGraph;
+        private System.Windows.Forms.ToolStripMenuItem enregistrerLesDonnéesSousToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog sFDSeries;
     }
 }
