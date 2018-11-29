@@ -853,26 +853,8 @@ namespace OrionBanque
                 {
                     throw new Exception(erreurPasDeCompteCree);
                 }
-
-                GraphiqueForm g;
-                string choix = KEY.GRAPH_TIERS;
-                switch (tsGraphChoix.SelectedItem.ToString())
-                {
-                    case KEY.GRAPH_TIERS_LIB:
-                        choix = KEY.GRAPH_TIERS;
-                        break;
-                    case KEY.GRAPH_CATEGORIES_LIB:
-                        choix = KEY.GRAPH_CATEGORIES;
-                        break;
-                    case KEY.GRAPH_TIERS_DC_LIB:
-                        choix = KEY.GRAPH_TIERS_DC;
-                        break;
-                    case KEY.GRAPH_CATEGORIES_DC_LIB:
-                        choix = KEY.GRAPH_CATEGORIES_DC;
-                        break;
-                }
-                g = new GraphiqueForm(choix, Compte.Charge((int)cbCompte.SelectedValue));
-                g.ShowDialog();
+                ChartForm cf = new ChartForm(Compte.Charge((int)cbCompte.SelectedValue));
+                cf.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -249,6 +249,12 @@
     <Compile Include="Forms\AboutBoxForm.Designer.cs">
       <DependentUpon>AboutBoxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChartForm.Designer.cs">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ConnexionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,12 +290,6 @@
     </Compile>
     <Compile Include="Forms\AideForm.Designer.cs">
       <DependentUpon>AideForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\GraphForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GraphForm.Designer.cs">
-      <DependentUpon>GraphForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OperationMajGroupeForm.cs">
       <SubType>Form</SubType>
@@ -344,6 +344,9 @@
     <EmbeddedResource Include="Forms\AideForm.resx">
       <DependentUpon>AideForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChartForm.resx">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConnexionForm.resx">
       <DependentUpon>ConnexionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -358,9 +361,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EcheanciersGestForm.resx">
       <DependentUpon>EcheanciersGestForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GraphForm.resx">
-      <DependentUpon>GraphForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModePaiementForm.resx">
       <DependentUpon>ModePaiementForm.cs</DependentUpon>

@@ -171,6 +171,82 @@ namespace OrionBanque.Classe
             return ls;
         }
 
+        public static List<string[]> GroupByTiers(Compte cP, DateTime dmin, DateTime dmax)
+        {
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
+            Log.Logger.Debug("Debut Operations.GroupByTiers(" + cP.Id + ")");
+
+            IDictionary<string, double> dict = new Dictionary<string, double>();
+            List<string[]> ls = new List<string[]>();
+
+            foreach (Operation o in Compte.Charge(cP.Id).Operations().Where(x => x.Date >= dmin).Where(y => y.Date <= dmax))
+            {
+                string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
+                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                dict[temp] = dict.ContainsKey(temp) ? dict[temp] + montant : montant;
+            }
+
+            foreach (string key in dict.Keys)
+            {
+                string[] t = new string[2];
+                t[0] = key;
+                t[1] = Convert.ToString(dict[key]);
+                ls.Add(t);
+            }
+
+            return ls;
+        }
+
+        public static List<string[]> GroupByCategories(Compte cP)
+        {
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
+            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
+
+            Dictionary<int, double> dict = new Dictionary<int, double>();
+            List<string[]> ls = new List<string[]>();
+
+            foreach (Operation o in Compte.Charge(cP.Id).Operations())
+            {
+                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
+            }
+
+            foreach (int key in dict.Keys)
+            {
+                string[] t = new string[2];
+                t[0] = Categorie.Charge(key).Libelle;
+                t[1] = Convert.ToString(dict[key]);
+                ls.Add(t);
+            }
+
+            return ls;
+        }
+
+        public static List<string[]> GroupByCategories(Compte cP, DateTime dmin, DateTime dmax)
+        {
+            // TODO: Passage par un GroupBy et/ou SUM sur la liste
+            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
+
+            Dictionary<int, double> dict = new Dictionary<int, double>();
+            List<string[]> ls = new List<string[]>();
+
+            foreach (Operation o in Compte.Charge(cP.Id).Operations().Where(x => x.Date >= dmin).Where(y => y.Date <= dmax))
+            {
+                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
+            }
+
+            foreach (int key in dict.Keys)
+            {
+                string[] t = new string[2];
+                t[0] = Categorie.Charge(key).Libelle;
+                t[1] = Convert.ToString(dict[key]);
+                ls.Add(t);
+            }
+
+            return ls;
+        }
+
         public static List<string[]> GroupByTiersDC(Compte cP)
         {
             // TODO: Passage par un GroupBy et/ou SUM sur la liste
@@ -207,31 +283,6 @@ namespace OrionBanque.Classe
                 ls.Add(t);
             }
             return ls.ToList();
-        }
-
-        public static List<string[]> GroupByCategories(Compte cP)
-        {
-            // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
-
-            Dictionary<int, double> dict = new Dictionary<int, double>();
-            List<string[]> ls = new List<string[]>();
-
-            foreach (Operation o in Compte.Charge(cP.Id).Operations())
-            {
-                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
-                dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
-            }
-
-            foreach (int key in dict.Keys)
-            {
-                string[] t = new string[2];
-                t[0] = Categorie.Charge(key).Libelle;
-                t[1] = Convert.ToString(dict[key]);
-                ls.Add(t);
-            }
-
-            return ls;
         }
 
         public static List<string[]> GroupByCategoriesDC(Compte cP)
