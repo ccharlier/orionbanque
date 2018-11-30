@@ -366,49 +366,18 @@ namespace OrionBanque
 
         private void LanceFiltreOperation()
         {
-            bool bDate = false, bModePaiement = false, bTiers = false, bCategorie = false, bMontant = false, bPointe = false;
-            if (kFiltreDate.Checked)
-            {
-                bDate = true;
-            }
-
-            if (kFiltreModePaiement.Checked)
-            {
-                bModePaiement = true;
-            }
-
-            if (kFiltreTiers.Checked)
-            {
-                bTiers = true;
-            }
-
-            if (kFiltreCategorie.Checked)
-            {
-                bCategorie = true;
-            }
-
-            if (kFiltreMontant.Checked)
-            {
-                bMontant = true;
-            }
-
-            if (txtFiltrePointe.Checked)
-            {
-                bPointe = true;
-            }
-
             if (txtFiltreModePaiement.SelectedValue != null)
             {
                 try
                 {
                     DataSet ds = Operation
                         .ChargeGrilleOperationFiltre(Compte.Charge((int)cbCompte.SelectedValue),
-                                    bDate, cbFiltreDate.SelectedItem.ToString(), txtFiltreDate.Value,
-                                    bModePaiement, ModePaiement.Charge((int)txtFiltreModePaiement.SelectedValue),
-                                    bTiers, txtFiltreTiers.Text,
-                                    bCategorie, Categorie.Charge((int)txtFiltreCategorie.SelectedValue),
-                                    bMontant, cbFiltreMontant.SelectedItem.ToString(), double.Parse(txtFiltreMontant.Value.ToString()),
-                                    bPointe);
+                                    kFiltreDate.Checked, cbFiltreDate.SelectedItem.ToString(), txtFiltreDate.Value,
+                                    kFiltreModePaiement.Checked, ModePaiement.Charge((int)txtFiltreModePaiement.SelectedValue),
+                                    kFiltreTiers.Checked, txtFiltreTiers.Text,
+                                    kFiltreCategorie.Checked, Categorie.Charge((int)txtFiltreCategorie.SelectedValue),
+                                    kFiltreMontant.Checked, cbFiltreMontant.SelectedItem.ToString(), double.Parse(txtFiltreMontant.Value.ToString()),
+                                    txtFiltrePointe.Checked);
                     dgvOperations.DataSource = ds;
                     dgvOperations.DataMember = "Operations";
                     dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
