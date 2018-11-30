@@ -797,7 +797,7 @@ namespace OrionBanque
         #endregion
 
         #region Graphique
-        private void TsMontreGraph_Click(object sender, EventArgs e)
+        private void LanceFormChart()
         {
             try
             {
@@ -814,6 +814,16 @@ namespace OrionBanque
             }
         }
 
+        private void TsMontreGraph_Click(object sender, EventArgs e)
+        {
+            LanceFormChart();
+        }
+
+        private void graphiquesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanceFormChart();
+        }
+
         private void BtnValidDateEvol_Click(object sender, EventArgs e)
         {
             ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
@@ -823,7 +833,6 @@ namespace OrionBanque
         {
             int i = 0;
             DateTime dMin = txtEvolSoldeMin.Value;
-            DateTime dMax = txtEvolSoldMax.Value;
             List<double> ld = new List<double>();
             List<DateTime> ldt = new List<DateTime>();
 
@@ -836,7 +845,7 @@ namespace OrionBanque
                 ld.Add(dTemp);
                 dMin = dMin.AddDays(1.0);
             }
-            while (dMin <= dMax);
+            while (dMin <= txtEvolSoldMax.Value);
 
             foreach (DateTime xdt in ldt)
             {
@@ -923,7 +932,6 @@ namespace OrionBanque
             ChargeComboCompte();
 
             tsUser.Text = " : " + uA.Login;
-            tsGraphChoix.SelectedItem = tsGraphChoix.Items[0];
             cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];
             cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
         }
@@ -993,5 +1001,6 @@ namespace OrionBanque
             Outils.GestionFichier.Sauvegarde();
             tsSave.Enabled = false;
         }
+
     }
 }

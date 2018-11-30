@@ -56,7 +56,7 @@ namespace OrionBanque.Forms
                     e.CellStyle.ForeColor = Color.Red;
                 }
             }
-            catch(Exception ex)
+            catch (Exception)
             { }
         }
     }

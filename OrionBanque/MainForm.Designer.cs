@@ -150,7 +150,6 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsGraphChoix = new System.Windows.Forms.ToolStripComboBox();
             this.tsMontreGraph = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsAjoutOperation = new System.Windows.Forms.ToolStripButton();
@@ -168,6 +167,7 @@
             this.kryptonPaletteSparkleBlue = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparkleOrange = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.graphiquesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -488,7 +488,8 @@
             this.supprimerToolStripMenuItem1,
             this.toolStripSeparator4,
             this.gérerLécchéancierToolStripMenuItem,
-            this.totalDesComptesToolStripMenuItem});
+            this.totalDesComptesToolStripMenuItem,
+            this.graphiquesToolStripMenuItem});
             this.comptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins1;
             this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
             this.comptesToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
@@ -1378,7 +1379,6 @@
             this.toolStripSeparator8,
             this.toolStripButton1,
             this.toolStripSeparator9,
-            this.tsGraphChoix,
             this.tsMontreGraph,
             this.toolStripSeparator1,
             this.tsAjoutOperation,
@@ -1386,7 +1386,7 @@
             this.tsVirementCaC});
             this.tsGestGeneral.Location = new System.Drawing.Point(90, 0);
             this.tsGestGeneral.Name = "tsGestGeneral";
-            this.tsGestGeneral.Size = new System.Drawing.Size(303, 25);
+            this.tsGestGeneral.Size = new System.Drawing.Size(180, 25);
             this.tsGestGeneral.TabIndex = 4;
             // 
             // tsGestionModePaiement
@@ -1433,17 +1433,6 @@
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsGraphChoix
-            // 
-            this.tsGraphChoix.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tsGraphChoix.Items.AddRange(new object[] {
-            "Par Tiers",
-            "Par Tiers Dissociés",
-            "Par Catégories",
-            "Par Catégories Dissociées"});
-            this.tsGraphChoix.Name = "tsGraphChoix";
-            this.tsGraphChoix.Size = new System.Drawing.Size(121, 25);
             // 
             // tsMontreGraph
             // 
@@ -1540,6 +1529,14 @@
             // kryptonPaletteSparklePurple
             // 
             this.kryptonPaletteSparklePurple.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparklePurple;
+            // 
+            // graphiquesToolStripMenuItem
+            // 
+            this.graphiquesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.chart_pie1;
+            this.graphiquesToolStripMenuItem.Name = "graphiquesToolStripMenuItem";
+            this.graphiquesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.graphiquesToolStripMenuItem.Text = "Graphiques";
+            this.graphiquesToolStripMenuItem.Click += new System.EventHandler(this.graphiquesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1646,7 +1643,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton tsMontreGraph;
-        private System.Windows.Forms.ToolStripComboBox tsGraphChoix;
         private System.Windows.Forms.ToolStripContainer toolStripContainer2;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
@@ -1758,6 +1754,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparkleBlue;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparkleOrange;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparklePurple;
+        private System.Windows.Forms.ToolStripMenuItem graphiquesToolStripMenuItem;
     }
 }
 
