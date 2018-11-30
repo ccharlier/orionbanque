@@ -74,6 +74,31 @@ namespace OrionBanque
         #endregion
 
         #region Comptes
+        private void ChangeCouleur(Label l, double montant)
+        {
+            if (montant > 0)
+            {
+                l.ForeColor = Color.DarkGreen;
+            }
+            else
+            {
+                l.ForeColor = Color.Red;
+            }
+        }
+
+        private void ChangeAlerte(PictureBox picbox, double montant, double seuil)
+        {
+            if (montant <= seuil)
+            {
+                picbox.Visible = true;
+                toolTipG.SetToolTip(pb, "Attention, seuil d'alerte (" + seuil + " €)" + " atteint ou dépassé : " + Math.Round(montant, 2) + " €");
+            }
+            else
+            {
+                picbox.Visible = false;
+            }
+        }
+
         private void ChargesIndicateurs(Compte c)
         {
             try
@@ -87,53 +112,11 @@ namespace OrionBanque
                 lblSoldFinal.Text = string.Format("{0,12:0,0.00}", soldFinal) + " €";
 
                 ChargeGraph(Compte.Charge((int)cbCompte.SelectedValue));
-
-                if (soldOpePoint > 0)
-                {
-                    lblSoldPoint.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    lblSoldPoint.ForeColor = Color.Red;
-                }
-
-                if (aVenir > 0)
-                {
-                    lblAVenir.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    lblAVenir.ForeColor = Color.Red;
-                }
-
-                if (soldFinal > 0)
-                {
-                    lblSoldFinal.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    lblSoldFinal.ForeColor = Color.Red;
-                }
-
-                if (soldOpePoint <= c.SeuilAlerte)
-                {
-                    pb.Visible = true;
-                    toolTipG.SetToolTip(pb, "Attention, seuil d'alerte (" + c.SeuilAlerte + " €)" + " atteint ou dépassé : " + Math.Round(soldOpePoint, 2) + " €");
-                }
-                else
-                {
-                    pb.Visible = false;
-                }
-
-                if (soldFinal <= c.SeuilAlerteFinal)
-                {
-                    pbSoldeFinal.Visible = true;
-                    toolTipG.SetToolTip(pbSoldeFinal, "Attention, seuil d'alerte (" + c.SeuilAlerteFinal + " €)" + " atteint ou dépassé : " + Math.Round(soldFinal, 2) + " €");
-                }
-                else
-                {
-                    pbSoldeFinal.Visible = false;
-                }
+                ChangeCouleur(lblSoldPoint, soldOpePoint);
+                ChangeCouleur(lblAVenir, aVenir);
+                ChangeCouleur(lblSoldFinal, soldFinal);
+                ChangeAlerte(pb, soldOpePoint, c.SeuilAlerte);
+                ChangeAlerte(pb, soldFinal, c.SeuilAlerteFinal);
             }
             catch (Exception ex)
             {
@@ -1004,9 +987,8 @@ namespace OrionBanque
             {
                 try
                 {
-                    string filori = KEY.FILE_PATH;
                     string fildest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME;
-                    File.Copy(filori, fildest, true);
+                    File.Copy(KEY.FILE_PATH, fildest, true);
                     MessageBox.Show(string.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception ex)
