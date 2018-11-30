@@ -442,11 +442,6 @@ namespace OrionBanque
             AjouterOperation();
         }
 
-        private void TsAjoutOperation_Click(object sender, EventArgs e)
-        {
-            AjouterOperation();
-        }
-
         private void AjouterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AjouterOperation();
@@ -729,21 +724,7 @@ namespace OrionBanque
             tsSave.Enabled = true;
         }
 
-        private void TsGestionModePaiement_Click(object sender, EventArgs e)
-        {
-            ModePaiementForm mp = new ModePaiementForm();
-            mp.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
         private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CategoriesForm c = new CategoriesForm();
-            c.ShowDialog();
-            tsSave.Enabled = true;
-        }
-
-        private void TsGestionCategories_Click(object sender, EventArgs e)
         {
             CategoriesForm c = new CategoriesForm();
             c.ShowDialog();
