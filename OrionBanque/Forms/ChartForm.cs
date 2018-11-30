@@ -34,10 +34,21 @@ namespace OrionBanque.Forms
             kListeComptes.DataSource = Compte.ChargeTout(cA.Utilisateur);
         }
 
-        private void UpdateGraph()
+        private List<string[]> GetGraphData()
         {
-            List<string[]> ls = new List<string[]>();
+            switch (kCSChoixGroupe.CheckedButton.Name)
+            {
+                case "kCBChoixGroupTiers":
+                    return Operation.GroupByTiers((Compte)kListeComptes.SelectedItem, kDTPDateMin.Value, kDTPDateMax.Value);
+                case "kCBChoixGroupCateg":
+                    return Operation.GroupByCategories((Compte)kListeComptes.SelectedItem, kDTPDateMin.Value, kDTPDateMax.Value);
+                default:
+                    return Operation.GroupByTiers((Compte)kListeComptes.SelectedItem, kDTPDateMin.Value, kDTPDateMax.Value);
+            }
+        }
 
+        private void ChoixModeGrpah()
+        {
             switch (kCS2D3D.CheckedButton.Name)
             {
                 case "kCB2D":
@@ -50,7 +61,10 @@ namespace OrionBanque.Forms
                     chart.ChartAreas[0].Area3DStyle.Enable3D = false;
                     break;
             }
+        }
 
+        private void ChoixTypeGrpah()
+        {
             switch (kCSTypeGraph.CheckedButton.Name)
             {
                 case "kCBBarre":
@@ -63,28 +77,22 @@ namespace OrionBanque.Forms
                     chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
                     break;
             }
+        }
 
-            switch (kCSChoixGroupe.CheckedButton.Name)
-            {
-                case "kCBChoixGroupTiers":
-                    ls = Operation.GroupByTiers((Compte)kListeComptes.SelectedItem, kDTPDateMin.Value, kDTPDateMax.Value);
-                    break;
-                case "kCBChoixGroupCateg":
-                    ls = Operation.GroupByCategories((Compte)kListeComptes.SelectedItem, kDTPDateMin.Value, kDTPDateMax.Value);
-                    break;
-                default:
-                    ls = Operation.GroupByTiers((Compte)kListeComptes.SelectedItem, kDTPDateMin.Value, kDTPDateMax.Value);
-                    break;
-            }
+        private void UpdateGraph()
+        {
+            List<string[]> ls = GetGraphData();
+            double groupMontant = 0.0, montant = 0.0;
 
-            double groupMontant = 0.0;
-
-            chart.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            ChoixModeGrpah();
+            ChoixTypeGrpah();
+            
+            chart.Series[0].XValueType = ChartValueType.String;
             chart.Series[0].Points.Clear();
 
             foreach (string[] s in ls)
             {
-                double montant = double.Parse(s[1]);
+                montant = double.Parse(s[1]);
                 if (Math.Abs(montant) < double.Parse(kNUPVal.Value.ToString()))
                 {
                     if(montant > 0 && kCBAfficheRecettes.Checked)
@@ -180,11 +188,10 @@ namespace OrionBanque.Forms
         {
             UpdateGraph();
         }
-        #endregion
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if(sFDGraph.ShowDialog() == DialogResult.OK)
+            if (sFDGraph.ShowDialog() == DialogResult.OK)
             {
                 chart.SaveImage(sFDGraph.FileName, ChartImageFormat.Png);
             }
@@ -197,5 +204,6 @@ namespace OrionBanque.Forms
                 Outils.GestionFichier.ExportCSV(sFDSeries.FileName, chart.DataManipulator.ExportSeriesValues(chart.Series[0]).Tables[0]);
             }
         }
+        #endregion
     }
 }
