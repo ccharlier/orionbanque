@@ -133,9 +133,6 @@
   <data name="user_suit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_suit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="calendar_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendar_edit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="page_white_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\page_white_text.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,8 +148,11 @@
   <data name="add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="folder_page" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folder_page.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user_business" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_business.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chart_organisation1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chart_organisation1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="page_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\page_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,11 +175,17 @@
   <data name="wand" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wand.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="blue-document-export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-document-export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="accept1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\accept1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="disk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disk.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tag" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tag.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,17 +193,20 @@
   <data name="chart_pie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chart_pie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="table_multiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\table_multiple.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="calendar_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="chart_organisation1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\chart_organisation1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="folder_page" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_page.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="table_row_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table_row_delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blue-document-node" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-document-node.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue-document-import" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-document-import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,11 +220,17 @@
   <data name="table_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table_edit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="table_row_insert" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\table_row_insert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blue-document-code" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-document-code.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cross1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cross1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="table_row_insert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table_row_insert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="disk_multiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disk_multiple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cancel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancel1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,8 +256,8 @@
   <data name="bin_closed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bin_closed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user_business" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_business.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="table_multiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table_multiple.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="door_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\door_in.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,8 +265,11 @@
   <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="calendar_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendar_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="calendar_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_edit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue-document-excel-csv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-document-excel-csv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calendar_view_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calendar_view_day.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,7 +289,7 @@
   <data name="coins_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\coins_add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="disk_multiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\disk_multiple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="color" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

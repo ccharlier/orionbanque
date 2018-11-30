@@ -544,6 +544,11 @@
     <None Include="Resources\tick.png" />
     <None Include="Resources\page_delete.png" />
     <None Include="Resources\disk_multiple.png" />
+    <None Include="Resources\blue-document-import.png" />
+    <None Include="Resources\blue-document-export.png" />
+    <None Include="Resources\blue-document-code.png" />
+    <None Include="Resources\blue-document-node.png" />
+    <None Include="Resources\color.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
