@@ -39,7 +39,7 @@
     <SupportUrl>http://code.google.com/p/orionbanque/</SupportUrl>
     <ProductName>OrionBanque</ProductName>
     <PublisherName>Charlier</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
