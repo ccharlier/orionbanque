@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel13 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.Fermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -213,6 +213,7 @@
             this.txtSeuilAlerteFinal.Name = "txtSeuilAlerteFinal";
             this.txtSeuilAlerteFinal.Size = new System.Drawing.Size(89, 22);
             this.txtSeuilAlerteFinal.TabIndex = 10;
+            this.txtSeuilAlerteFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Montant_KeyPress);
             // 
             // kryptonLabel12
             // 
@@ -247,6 +248,7 @@
             this.txtSeuilAlerte.Name = "txtSeuilAlerte";
             this.txtSeuilAlerte.Size = new System.Drawing.Size(89, 22);
             this.txtSeuilAlerte.TabIndex = 7;
+            this.txtSeuilAlerte.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Montant_KeyPress);
             // 
             // kryptonLabel9
             // 
@@ -297,6 +299,7 @@
             this.txtSoldeInitial.Name = "txtSoldeInitial";
             this.txtSoldeInitial.Size = new System.Drawing.Size(99, 22);
             this.txtSoldeInitial.TabIndex = 6;
+            this.txtSoldeInitial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Montant_KeyPress);
             // 
             // txtLibelle
             // 
@@ -525,8 +528,8 @@
             // 
             // dgvOperations
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
