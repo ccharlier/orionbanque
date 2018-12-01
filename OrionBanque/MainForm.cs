@@ -657,10 +657,11 @@ namespace OrionBanque
         private void btnOperationValide_MouseDown(object sender, MouseEventArgs e)
         {
             Compte c = GetCompteCourant();
+            Operation o;
             if (e.Button == MouseButtons.Right)
             {
                 // Mise à jour de l'Opération sélectionnée 
-                Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+                o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
                 o.Compte = c;
                 o.Date = txtOperationDate.Value;
                 o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
@@ -670,7 +671,7 @@ namespace OrionBanque
                 o.Montant = double.Parse(txtOperationMontant.Value.ToString());
                 if (txtOperationPointage.Checked)
                 {
-                    if(o.DatePointage is null)
+                    if (o.DatePointage is null)
                     {
                         o.DatePointage = DateTime.Now;
                     }
@@ -681,10 +682,10 @@ namespace OrionBanque
                 }
                 Operation.Maj(o);
             }
-            if (e.Button == MouseButtons.Left)
+            else
             {
                 // Création d'une Opération tel que saisie
-                Operation o = new Operation();
+                o = new Operation();
                 o.Compte = c;
                 o.Date = txtOperationDate.Value;
                 o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
@@ -700,14 +701,22 @@ namespace OrionBanque
                 {
                     o.DatePointage = null;
                 }
-                Operation.Sauve(o);
+                o = Operation.Sauve(o);
             }
-            
             ChargesIndicateurs(c);
             ChargeOperations(c);
+            dgvOperations.Rows[0].Selected = false;
+            foreach (DataGridViewRow row in dgvOperations.Rows)
+            {
+                if (((int)row.Cells["Id"].Value) == o.Id)
+                {
+                    row.Selected = true;
+                    break;
+                }
+            }
             tsSave.Enabled = true;
 
-            this.ActiveControl = txtOperationDate;
+            ActiveControl = txtOperationDate;
         }
 
         private void KFiltreDate_Click(object sender, EventArgs e)
