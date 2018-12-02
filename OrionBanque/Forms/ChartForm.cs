@@ -204,7 +204,6 @@ namespace OrionBanque.Forms
                 Outils.GestionFichier.ExportCSV(sFDSeries.FileName, chart.DataManipulator.ExportSeriesValues(chart.Series[0]).Tables[0]);
             }
         }
-        #endregion
 
         private void kNUPVal_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -213,5 +212,6 @@ namespace OrionBanque.Forms
                 e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
             }
         }
+        #endregion
     }
 }

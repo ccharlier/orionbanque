@@ -178,14 +178,6 @@ namespace OrionBanque.Outils
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
                     retour = (List<string>)formatter.Deserialize(reader);
-
-                    /*foreach (string l in retour)
-                    {
-                        if (!File.Exists(l))
-                        {
-                            retour.Remove(l);
-                        }
-                    }*/
                 }
                 catch (SerializationException e)
                 {

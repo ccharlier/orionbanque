@@ -368,11 +368,9 @@ namespace OrionBanque
                 {
                     try
                     {
-                        DataGridViewSelectedRowCollection liste = dgvOperations.SelectedRows;
-                        foreach (DataGridViewRow row in liste)
+                        foreach (DataGridViewRow row in dgvOperations.SelectedRows)
                         {
-                            Operation otemp = Operation.Charge((int)row.Cells["Id"].Value);
-                            Operation.Delete(otemp);
+                            Operation.Delete(Operation.Charge((int)row.Cells["Id"].Value));
                             dgvOperations.Rows.RemoveAt(row.Index);
                         }
                         ChargesIndicateurs(GetCompteCourant());
