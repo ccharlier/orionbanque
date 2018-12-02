@@ -60,12 +60,12 @@
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cMGrpah = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.enregistrerLesDonnéesSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kCSTypeGraph = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.kCSPetiteVal = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.kCSChoixGroupe = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.kCS2D3D = new ComponentFactory.Krypton.Toolkit.KryptonCheckSet(this.components);
             this.sFDGraph = new System.Windows.Forms.SaveFileDialog();
-            this.enregistrerLesDonnéesSousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sFDSeries = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).BeginInit();
@@ -232,6 +232,7 @@
             this.kNUPVal.Size = new System.Drawing.Size(61, 22);
             this.kNUPVal.TabIndex = 14;
             this.kNUPVal.ValueChanged += new System.EventHandler(this.kNUPVal_ValueChanged);
+            this.kNUPVal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kNUPVal_KeyPress);
             // 
             // kCBChoixGroupGdeCateg
             // 
@@ -372,6 +373,13 @@
             this.toolStripMenuItem1.Text = "Enregistrer l\'image sous ...";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
+            // enregistrerLesDonnéesSousToolStripMenuItem
+            // 
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Name = "enregistrerLesDonnéesSousToolStripMenuItem";
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Text = "Enregistrer les données sous ...";
+            this.enregistrerLesDonnéesSousToolStripMenuItem.Click += new System.EventHandler(this.enregistrerLesDonnéesSousToolStripMenuItem_Click);
+            // 
             // kCSTypeGraph
             // 
             this.kCSTypeGraph.CheckButtons.Add(this.kCBCam);
@@ -401,13 +409,6 @@
             // 
             this.sFDGraph.Filter = "Fichier PNG|*.png";
             this.sFDGraph.Title = "Enregistrer sous ...";
-            // 
-            // enregistrerLesDonnéesSousToolStripMenuItem
-            // 
-            this.enregistrerLesDonnéesSousToolStripMenuItem.Name = "enregistrerLesDonnéesSousToolStripMenuItem";
-            this.enregistrerLesDonnéesSousToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.enregistrerLesDonnéesSousToolStripMenuItem.Text = "Enregistrer les données sous ...";
-            this.enregistrerLesDonnéesSousToolStripMenuItem.Click += new System.EventHandler(this.enregistrerLesDonnéesSousToolStripMenuItem_Click);
             // 
             // sFDSeries
             // 
