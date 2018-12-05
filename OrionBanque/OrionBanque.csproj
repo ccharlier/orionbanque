@@ -291,6 +291,12 @@
     <Compile Include="Forms\AideForm.Designer.cs">
       <DependentUpon>AideForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GestTiersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GestTiersForm.Designer.cs">
+      <DependentUpon>GestTiersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\OperationMajGroupeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EcheanciersGestForm.resx">
       <DependentUpon>EcheanciersGestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GestTiersForm.resx">
+      <DependentUpon>GestTiersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModePaiementForm.resx">
       <DependentUpon>ModePaiementForm.cs</DependentUpon>
@@ -549,6 +558,12 @@
     <None Include="Resources\blue-document-code.png" />
     <None Include="Resources\blue-document-node.png" />
     <None Include="Resources\color.png" />
+    <None Include="Resources\arrow.png" />
+    <None Include="Resources\arrow-180.png" />
+    <None Include="Resources\arrow-curve-000-double.png" />
+    <None Include="Resources\arrow-curve-180-double.png" />
+    <None Include="Resources\arrow-curve-000-left.png" />
+    <None Include="Resources\arrow-curve-180.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
