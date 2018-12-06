@@ -992,5 +992,11 @@ namespace OrionBanque
                 }
             }
         }
+
+        private void gestionDesTiersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestTiersForm gtf = new GestTiersForm(uA);
+            gtf.ShowDialog();
+        }
     }
 }

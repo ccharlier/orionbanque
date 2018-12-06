@@ -54,6 +54,7 @@
             this.tsmConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.modeDePaiementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.catégoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDesTiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.modifierLUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -159,7 +160,6 @@
             this.kryptonPaletteSparkleOrange = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.gestionDesTiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -404,6 +404,14 @@
             this.catégoriesToolStripMenuItem.Text = "&Catégories";
             this.catégoriesToolStripMenuItem.Click += new System.EventHandler(this.CatégoriesToolStripMenuItem_Click);
             // 
+            // gestionDesTiersToolStripMenuItem
+            // 
+            this.gestionDesTiersToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.user_business;
+            this.gestionDesTiersToolStripMenuItem.Name = "gestionDesTiersToolStripMenuItem";
+            this.gestionDesTiersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.gestionDesTiersToolStripMenuItem.Text = "Gestion des &Tiers";
+            this.gestionDesTiersToolStripMenuItem.Click += new System.EventHandler(this.gestionDesTiersToolStripMenuItem_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
@@ -439,42 +447,42 @@
             // office2010BlueToolStripMenuItem
             // 
             this.office2010BlueToolStripMenuItem.Name = "office2010BlueToolStripMenuItem";
-            this.office2010BlueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.office2010BlueToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.office2010BlueToolStripMenuItem.Text = "Office 2010 - Blue";
             this.office2010BlueToolStripMenuItem.Click += new System.EventHandler(this.office2010BlueToolStripMenuItem_Click);
             // 
             // office2010SilverToolStripMenuItem
             // 
             this.office2010SilverToolStripMenuItem.Name = "office2010SilverToolStripMenuItem";
-            this.office2010SilverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.office2010SilverToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.office2010SilverToolStripMenuItem.Text = "Office 2010 - Silver";
             this.office2010SilverToolStripMenuItem.Click += new System.EventHandler(this.office2010SilverToolStripMenuItem_Click);
             // 
             // office2010BlackToolStripMenuItem
             // 
             this.office2010BlackToolStripMenuItem.Name = "office2010BlackToolStripMenuItem";
-            this.office2010BlackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.office2010BlackToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.office2010BlackToolStripMenuItem.Text = "Office 2010 - Black";
             this.office2010BlackToolStripMenuItem.Click += new System.EventHandler(this.office2010BlackToolStripMenuItem_Click);
             // 
             // sparkleBlueToolStripMenuItem
             // 
             this.sparkleBlueToolStripMenuItem.Name = "sparkleBlueToolStripMenuItem";
-            this.sparkleBlueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sparkleBlueToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.sparkleBlueToolStripMenuItem.Text = "Sparkle - Blue";
             this.sparkleBlueToolStripMenuItem.Click += new System.EventHandler(this.sparkleBlueToolStripMenuItem_Click);
             // 
             // sparklePurpleToolStripMenuItem
             // 
             this.sparklePurpleToolStripMenuItem.Name = "sparklePurpleToolStripMenuItem";
-            this.sparklePurpleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sparklePurpleToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.sparklePurpleToolStripMenuItem.Text = "Sparkle - Purple";
             this.sparklePurpleToolStripMenuItem.Click += new System.EventHandler(this.sparklePurpleToolStripMenuItem_Click);
             // 
             // sparkleOrangeToolStripMenuItem
             // 
             this.sparkleOrangeToolStripMenuItem.Name = "sparkleOrangeToolStripMenuItem";
-            this.sparkleOrangeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sparkleOrangeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.sparkleOrangeToolStripMenuItem.Text = "Sparkle - Orange";
             this.sparkleOrangeToolStripMenuItem.Click += new System.EventHandler(this.sparkleOrangeToolStripMenuItem_Click);
             // 
@@ -1457,13 +1465,6 @@
             this.dataGridViewImageColumn1.Image = global::OrionBanque.Properties.Resources.application_osx;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 885;
-            // 
-            // gestionDesTiersToolStripMenuItem
-            // 
-            this.gestionDesTiersToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.user_business;
-            this.gestionDesTiersToolStripMenuItem.Name = "gestionDesTiersToolStripMenuItem";
-            this.gestionDesTiersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.gestionDesTiersToolStripMenuItem.Text = "Gestion des &Tiers";
             // 
             // MainForm
             // 
