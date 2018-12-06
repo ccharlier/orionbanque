@@ -997,6 +997,10 @@ namespace OrionBanque
         {
             GestTiersForm gtf = new GestTiersForm(uA);
             gtf.ShowDialog();
+            if(gtf.bMustSave)
+            {
+                tsSave.Enabled = true;
+            }
         }
     }
 }

@@ -50,6 +50,7 @@
             this.kLBTiersSaisis.Name = "kLBTiersSaisis";
             this.kLBTiersSaisis.Size = new System.Drawing.Size(195, 306);
             this.kLBTiersSaisis.TabIndex = 0;
+            this.kLBTiersSaisis.DoubleClick += new System.EventHandler(this.kLBTiersSaisis_DoubleClick);
             // 
             // kryptonPanel1
             // 
@@ -112,6 +113,7 @@
             this.toolTip.SetToolTip(this.kBtnDesactiveOne, "Désactiver le Tiers sélectionné");
             this.kBtnDesactiveOne.Values.Image = global::OrionBanque.Properties.Resources.arrow_curve_180;
             this.kBtnDesactiveOne.Values.Text = "";
+            this.kBtnDesactiveOne.Click += new System.EventHandler(this.kBtnDesactiveOne_Click);
             // 
             // kBtnActiveOne
             // 
@@ -122,6 +124,7 @@
             this.toolTip.SetToolTip(this.kBtnActiveOne, "Activer le Tiers sélectionné");
             this.kBtnActiveOne.Values.Image = global::OrionBanque.Properties.Resources.arrow_curve_000_left;
             this.kBtnActiveOne.Values.Text = "";
+            this.kBtnActiveOne.Click += new System.EventHandler(this.kBtnActiveOne_Click);
             // 
             // kLBTiersPredict
             // 
@@ -129,6 +132,7 @@
             this.kLBTiersPredict.Name = "kLBTiersPredict";
             this.kLBTiersPredict.Size = new System.Drawing.Size(195, 306);
             this.kLBTiersPredict.TabIndex = 1;
+            this.kLBTiersPredict.DoubleClick += new System.EventHandler(this.kLBTiersPredict_DoubleClick);
             // 
             // GestTiersForm
             // 

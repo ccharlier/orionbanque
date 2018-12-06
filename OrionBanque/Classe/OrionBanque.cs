@@ -26,6 +26,8 @@ namespace OrionBanque.Classe
         public List<Fichier> Fichiers { get; set; }
         [DataMember()]
         public string Theme { get; set; }
+        [DataMember()]
+        public List<string> Tiers { get; set; }
 
         public OB()
         {
@@ -37,6 +39,7 @@ namespace OrionBanque.Classe
             Params = new List<Param>();
             Utilisateurs = new List<Utilisateur>();
             Fichiers = new List<Fichier>();
+            Tiers = new List<string>();
         }
     }
 }
