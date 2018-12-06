@@ -148,6 +148,7 @@ namespace OrionBanque.Forms
                     btnAddCompte.Visible = true;
                 }
                 kBtnTrashRefFileOB.Enabled = true;
+                ActiveControl = txtLogin;
             }
             catch(Exception ex)
             {
