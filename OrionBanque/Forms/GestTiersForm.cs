@@ -57,7 +57,7 @@ namespace OrionBanque.Forms
             ChargeCb();
         }
 
-        private void PredictToTier()
+        private void PredictToTiers()
         {
             string s = (string)kLBTiersPredict.SelectedValue;
             OB ob = (OB)CallContext.GetData(KEY.OB);
@@ -75,7 +75,7 @@ namespace OrionBanque.Forms
 
         private void kBtnDesactiveOne_Click(object sender, EventArgs e)
         {
-            PredictToTier();
+            PredictToTiers();
         }
 
         private void kLBTiersSaisis_DoubleClick(object sender, EventArgs e)
@@ -85,7 +85,12 @@ namespace OrionBanque.Forms
 
         private void kLBTiersPredict_DoubleClick(object sender, EventArgs e)
         {
-            PredictToTier();
+            PredictToTiers();
+        }
+
+        private void kBtnActiveAll_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

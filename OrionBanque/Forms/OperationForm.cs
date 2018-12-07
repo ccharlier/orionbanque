@@ -109,7 +109,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                txtTiers.DataSource = Operation.ChargeToutTiers(compte.Utilisateur);
+                txtTiers.DataSource = Tiers.ChargeTout();
             }
             catch (Exception ex)
             {

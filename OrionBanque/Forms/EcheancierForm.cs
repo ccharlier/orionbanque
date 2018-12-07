@@ -128,7 +128,7 @@ namespace OrionBanque.Forms
         {
             try
             {
-                txtTiers.DataSource = Operation.ChargeToutTiers(uA);
+                txtTiers.DataSource = Tiers.ChargeTout();
             }
             catch (Exception ex)
             {

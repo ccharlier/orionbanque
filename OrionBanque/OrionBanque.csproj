@@ -236,6 +236,7 @@
     <Compile Include="Classe\IniFile.cs" />
     <Compile Include="Classe\KEY.cs" />
     <Compile Include="Classe\Log.cs" />
+    <Compile Include="Classe\Tiers.cs" />
     <Compile Include="Classe\ModePaiement.cs" />
     <Compile Include="Classe\Operation.cs" />
     <Compile Include="Classe\OrionAide.cs" />

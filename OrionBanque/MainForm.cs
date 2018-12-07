@@ -791,8 +791,8 @@ namespace OrionBanque
             {
                 if (cbCompte.SelectedValue != null)
                 {
-                    txtFiltreTiers.DataSource = Operation.ChargeToutTiers(uA);
-                    txtOperationTiers.DataSource = Operation.ChargeToutTiers(uA);
+                    txtFiltreTiers.DataSource = Tiers.ChargeTout();
+                    txtOperationTiers.DataSource = Tiers.ChargeTout();
                 }
             }
             catch (Exception ex)
