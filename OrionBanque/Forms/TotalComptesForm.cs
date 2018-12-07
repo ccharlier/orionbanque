@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,20 +9,39 @@ namespace OrionBanque.Forms
 {
     public partial class TotalComptesForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        Utilisateur uA;
+        private Utilisateur uA;
+        private bool estConstructeur = true;
+        public bool cont = false;
 
         public TotalComptesForm(Utilisateur u)
         {
             InitializeComponent();
             uA = u;
 
+            ChargeCompte();
             ChargeGrille();
+            estConstructeur = false;
+        }
+
+        private void ChargeCompte()
+        {
+            List<Compte> lc = Compte.ChargeTout(uA);
+            kLBCompte.ListBox.DataSource = lc;
+            kLBCompte.ListBox.ValueMember = "Id";
+            kLBCompte.ListBox.DisplayMember = "Libelle";
+
+            for(var i=0; i<kLBCompte.Items.Count; i++)
+            {
+                kLBCompte.SetItemChecked(i, ((Compte)kLBCompte.Items[i]).EstDansTotalCompte ?? true);
+            }
         }
 
         private void ChargeGrille()
         {
             try
             {
+                kDgvTotalCompte.DataSource = null;
+
                 DataSet ds = Compte.DataSetTotalComptes(uA);
                 kDgvTotalCompte.DataSource = ds;
                 kDgvTotalCompte.DataMember = "TotalComptes";
@@ -58,6 +78,18 @@ namespace OrionBanque.Forms
             }
             catch (Exception)
             { }
+        }
+
+        private void kLBCompte_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (!estConstructeur)
+            {
+                Compte c = (Compte)kLBCompte.Items[e.Index];
+                c.EstDansTotalCompte = e.NewValue == CheckState.Checked ? true : false;
+                Compte.Maj(c);
+                ChargeGrille();
+                cont = true;
+            }
         }
     }
 }

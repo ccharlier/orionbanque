@@ -254,6 +254,10 @@ namespace OrionBanque
         {
             TotalComptesForm f = new TotalComptesForm(uA);
             f.ShowDialog();
+            if(f.cont)
+            {
+                tsSave.Enabled = true;
+            }
         }
 
         private void EnregistrerSousToolStripMenuItem_Click(object sender, EventArgs e)
