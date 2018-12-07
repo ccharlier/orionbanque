@@ -803,6 +803,17 @@ namespace OrionBanque
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void gestionDesTiersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestTiersForm gtf = new GestTiersForm(uA);
+            gtf.ShowDialog();
+            if (gtf.bMustSave)
+            {
+                tsSave.Enabled = true;
+            }
+            RemplisTiers();
+        }
         #endregion
 
         #region Graphique
@@ -868,7 +879,6 @@ namespace OrionBanque
         private void AppliqueTheme()
         {
             OB ob = (OB)CallContext.GetData(KEY.OB);
-
             switch (ob.Theme)
             {
                 case "kryptonPaletteOffice2010Black":
@@ -994,17 +1004,6 @@ namespace OrionBanque
                     Outils.GestionFichier.Sauvegarde();
                 }
             }
-        }
-
-        private void gestionDesTiersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GestTiersForm gtf = new GestTiersForm(uA);
-            gtf.ShowDialog();
-            if(gtf.bMustSave)
-            {
-                tsSave.Enabled = true;
-            }
-            RemplisTiers();
         }
     }
 }
