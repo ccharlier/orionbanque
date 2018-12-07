@@ -292,6 +292,12 @@
     <Compile Include="Forms\AideForm.Designer.cs">
       <DependentUpon>AideForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FichiersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FichiersForm.Designer.cs">
+      <DependentUpon>FichiersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GestTiersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EcheanciersGestForm.resx">
       <DependentUpon>EcheanciersGestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FichiersForm.resx">
+      <DependentUpon>FichiersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GestTiersForm.resx">
       <DependentUpon>GestTiersForm.cs</DependentUpon>

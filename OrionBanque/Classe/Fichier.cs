@@ -98,7 +98,6 @@ namespace OrionBanque.Classe
         
         public static DataSet ToDataSet(List<Fichier> list)
         {
-            Type elementType = typeof(Fichier);
             DataSet ds = new DataSet();
             DataTable t = new DataTable("Fichiers");
             
@@ -109,8 +108,7 @@ namespace OrionBanque.Classe
             t.Columns.Add("Nom", typeof(string));
             t.Columns.Add("Type", typeof(string));
             t.Columns.Add("Chemin", typeof(string));
-
-            //go through each property on T and add each value to the table
+            
             foreach (Fichier item in list)
             {
                 DataRow row = t.NewRow();
@@ -124,6 +122,41 @@ namespace OrionBanque.Classe
                 t.Rows.Add(row);
             }
 
+            return ds;
+        }
+
+        public static DataSet DataSet()
+        {
+            DataSet ds = new DataSet();
+            DataTable t = new DataTable("Fichiers");
+            ds.Tables.Add(t);
+
+            t.Columns.Add("Id", typeof(int));
+            t.Columns.Add("Date Import", typeof(DateTime));
+            t.Columns.Add("Nom", typeof(string));
+            t.Columns.Add("Type", typeof(string));
+            t.Columns.Add("Chemin", typeof(string));
+            t.Columns.Add("Tiers Op.", typeof(string));
+            t.Columns.Add("Libelle Op.", typeof(string));
+            t.Columns.Add("Montant Op.", typeof(double));
+
+            OB ob = (OB)CallContext.GetData(KEY.OB);
+
+            foreach (Fichier item in ob.Fichiers)
+            {
+                DataRow row = t.NewRow();
+
+                row["Id"] = item.Id;
+                row["Date Import"] = item.Date;
+                row["Type"] = item.Type;
+                row["Nom"] = item.InitialName;
+                row["Chemin"] = item.Chemin;
+                row["Tiers Op."] = item.Operation.Tiers;
+                row["Libelle Op."] = item.Operation.Libelle;
+                row["Montant Op."] = item.Operation.Montant;
+
+                t.Rows.Add(row);
+            }
             return ds;
         }
     }
