@@ -344,9 +344,9 @@ namespace OrionBanque
                     Compte c = GetCompteCourant();
                     ChargeOperations(c);
                     ChargesIndicateurs(c);
-
                     tsSave.Enabled = true;
                 }
+                RemplisCb();
             }
             catch (Exception ex)
             {
@@ -428,6 +428,7 @@ namespace OrionBanque
                     ChargeOperations(c);
                     tsSave.Enabled = true;
                 }
+                RemplisCb();
             }
             catch(Exception ex)
             {
@@ -480,8 +481,8 @@ namespace OrionBanque
                 Compte c = GetCompteCourant();
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
-
                 tsSave.Enabled = true;
+                RemplisCb();
             }
             catch (Exception ex)
             {
@@ -729,6 +730,7 @@ namespace OrionBanque
             ModePaiementForm mp = new ModePaiementForm();
             mp.ShowDialog();
             tsSave.Enabled = true;
+            RemplisModePaiements();
         }
 
         private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -736,6 +738,7 @@ namespace OrionBanque
             CategoriesForm c = new CategoriesForm();
             c.ShowDialog();
             tsSave.Enabled = true;
+            RemplisCategories();
         }
 
         private void RemplisCb()
@@ -1001,6 +1004,7 @@ namespace OrionBanque
             {
                 tsSave.Enabled = true;
             }
+            RemplisTiers();
         }
     }
 }
