@@ -87,10 +87,5 @@ namespace OrionBanque.Forms
         {
             PredictToTiers();
         }
-
-        private void kBtnActiveAll_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

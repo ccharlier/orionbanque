@@ -8,7 +8,6 @@ namespace OrionBanque.Classe
 {
     public class Tiers
     {
-
         public static List<string> ChargeTout()
         {
             Log.Logger.Debug("Debut Tiers.ChargeTout()");
