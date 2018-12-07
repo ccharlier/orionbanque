@@ -655,6 +655,75 @@ namespace OrionBanque
             {
                 e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
             }
+
+            if (e.KeyChar == Convert.ToChar(Keys.Return))
+            {
+                Compte c = GetCompteCourant();
+                Operation o = CreateOperation(c);
+                ChargesIndicateurs(c);
+                ChargeOperations(c);
+                SelectRowOperation(o.Id);
+                tsSave.Enabled = true;
+                ActiveControl = txtOperationDate;
+            }
+        }
+
+        private void SelectRowOperation(int Id)
+        {
+            dgvOperations.Rows[0].Selected = false;
+            foreach (DataGridViewRow row in dgvOperations.Rows)
+            {
+                if (((int)row.Cells["Id"].Value) == Id)
+                {
+                    row.Selected = true;
+                    break;
+                }
+            }
+        }
+
+        private Operation CreateOperation(Compte c)
+        {
+            Operation o = new Operation();
+            o.Compte = c;
+            o.Date = txtOperationDate.Value;
+            o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
+            o.Libelle = txtOperationLibelle.Text;
+            o.Tiers = txtOperationTiers.Text;
+            o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
+            o.Montant = double.Parse(txtOperationMontant.Value.ToString());
+            if (txtOperationPointage.Checked)
+            {
+                o.DatePointage = DateTime.Now;
+            }
+            else
+            {
+                o.DatePointage = null;
+            }
+            return Operation.Sauve(o);
+        }
+
+        private Operation ModifieOperation(Compte c)
+        {
+            Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+            o.Compte = c;
+            o.Date = txtOperationDate.Value;
+            o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
+            o.Libelle = txtOperationLibelle.Text;
+            o.Tiers = txtOperationTiers.Text;
+            o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
+            o.Montant = double.Parse(txtOperationMontant.Value.ToString());
+            if (txtOperationPointage.Checked)
+            {
+                if (o.DatePointage is null)
+                {
+                    o.DatePointage = DateTime.Now;
+                }
+            }
+            else
+            {
+                o.DatePointage = null;
+            }
+            return Operation.Maj(o);
         }
 
         private void btnOperationValide_MouseDown(object sender, MouseEventArgs e)
@@ -663,62 +732,16 @@ namespace OrionBanque
             Operation o;
             if (e.Button == MouseButtons.Right)
             {
-                // Mise à jour de l'Opération sélectionnée 
-                o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
-                o.Compte = c;
-                o.Date = txtOperationDate.Value;
-                o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
-                o.Libelle = txtOperationLibelle.Text;
-                o.Tiers = txtOperationTiers.Text;
-                o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
-                o.Montant = double.Parse(txtOperationMontant.Value.ToString());
-                if (txtOperationPointage.Checked)
-                {
-                    if (o.DatePointage is null)
-                    {
-                        o.DatePointage = DateTime.Now;
-                    }
-                }
-                else
-                {
-                    o.DatePointage = null;
-                }
-                Operation.Maj(o);
+                o = ModifieOperation(c);
             }
             else
             {
-                // Création d'une Opération tel que saisie
-                o = new Operation();
-                o.Compte = c;
-                o.Date = txtOperationDate.Value;
-                o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
-                o.Libelle = txtOperationLibelle.Text;
-                o.Tiers = txtOperationTiers.Text;
-                o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
-                o.Montant = double.Parse(txtOperationMontant.Value.ToString());
-                if (txtOperationPointage.Checked)
-                {
-                    o.DatePointage = DateTime.Now;
-                }
-                else
-                {
-                    o.DatePointage = null;
-                }
-                o = Operation.Sauve(o);
+                o = CreateOperation(c);
             }
             ChargesIndicateurs(c);
             ChargeOperations(c);
-            dgvOperations.Rows[0].Selected = false;
-            foreach (DataGridViewRow row in dgvOperations.Rows)
-            {
-                if (((int)row.Cells["Id"].Value) == o.Id)
-                {
-                    row.Selected = true;
-                    break;
-                }
-            }
+            SelectRowOperation(o.Id);
             tsSave.Enabled = true;
-
             ActiveControl = txtOperationDate;
         }
 
@@ -1008,6 +1031,12 @@ namespace OrionBanque
                     Outils.GestionFichier.Sauvegarde();
                 }
             }
+        }
+
+        private void visualisationDesFichiersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FichiersForm ff = new FichiersForm();
+            ff.ShowDialog();
         }
     }
 }

@@ -160,6 +160,7 @@
             this.kryptonPaletteSparkleOrange = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.visualisationDesFichiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -331,7 +332,7 @@
             // 
             this.fichierJSONToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.blue_document_node;
             this.fichierJSONToolStripMenuItem.Name = "fichierJSONToolStripMenuItem";
-            this.fichierJSONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fichierJSONToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.fichierJSONToolStripMenuItem.Text = "Fichier JSON";
             this.fichierJSONToolStripMenuItem.Click += new System.EventHandler(this.fichierJSONToolStripMenuItem_Click);
             // 
@@ -339,7 +340,7 @@
             // 
             this.fichierXMLToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.blue_document_code;
             this.fichierXMLToolStripMenuItem.Name = "fichierXMLToolStripMenuItem";
-            this.fichierXMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fichierXMLToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.fichierXMLToolStripMenuItem.Text = "Fichier XML";
             this.fichierXMLToolStripMenuItem.Click += new System.EventHandler(this.fichierXMLToolStripMenuItem_Click);
             // 
@@ -347,7 +348,7 @@
             // 
             this.fichierCSVToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.blue_document_excel_csv;
             this.fichierCSVToolStripMenuItem.Name = "fichierCSVToolStripMenuItem";
-            this.fichierCSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fichierCSVToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.fichierCSVToolStripMenuItem.Text = "Fichier CSV";
             this.fichierCSVToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
@@ -495,7 +496,8 @@
             this.toolStripSeparator4,
             this.gérerLécchéancierToolStripMenuItem,
             this.totalDesComptesToolStripMenuItem,
-            this.graphiquesToolStripMenuItem});
+            this.graphiquesToolStripMenuItem,
+            this.visualisationDesFichiersToolStripMenuItem});
             this.comptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins1;
             this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
             this.comptesToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
@@ -645,14 +647,14 @@
             // 
             this.aideToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.help;
             this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-            this.aideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aideToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.aideToolStripMenuItem.Text = "&Aide (Wiki)";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.application_osx;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.aboutToolStripMenuItem.Text = "A &propos de...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -1466,6 +1468,13 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 885;
             // 
+            // visualisationDesFichiersToolStripMenuItem
+            // 
+            this.visualisationDesFichiersToolStripMenuItem.Name = "visualisationDesFichiersToolStripMenuItem";
+            this.visualisationDesFichiersToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.visualisationDesFichiersToolStripMenuItem.Text = "Visualisation des Fichiers";
+            this.visualisationDesFichiersToolStripMenuItem.Click += new System.EventHandler(this.visualisationDesFichiersToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1675,6 +1684,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparklePurple;
         private System.Windows.Forms.ToolStripMenuItem graphiquesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionDesTiersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualisationDesFichiersToolStripMenuItem;
     }
 }
 
