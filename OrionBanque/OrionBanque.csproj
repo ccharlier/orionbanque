@@ -39,7 +39,7 @@
     <SupportUrl>http://code.google.com/p/orionbanque/</SupportUrl>
     <ProductName>OrionBanque</ProductName>
     <PublisherName>Charlier</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -574,6 +574,7 @@
     <None Include="Resources\arrow-curve-180-double.png" />
     <None Include="Resources\arrow-curve-000-left.png" />
     <None Include="Resources\arrow-curve-180.png" />
+    <None Include="Resources\document-copy.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

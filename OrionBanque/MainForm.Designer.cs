@@ -161,6 +161,7 @@
             this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.visualisationDesFichiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -496,8 +497,9 @@
             this.toolStripSeparator4,
             this.gérerLécchéancierToolStripMenuItem,
             this.totalDesComptesToolStripMenuItem,
-            this.graphiquesToolStripMenuItem,
-            this.visualisationDesFichiersToolStripMenuItem});
+            this.visualisationDesFichiersToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.graphiquesToolStripMenuItem});
             this.comptesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.coins1;
             this.comptesToolStripMenuItem.Name = "comptesToolStripMenuItem";
             this.comptesToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
@@ -1470,10 +1472,16 @@
             // 
             // visualisationDesFichiersToolStripMenuItem
             // 
+            this.visualisationDesFichiersToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.document_copy;
             this.visualisationDesFichiersToolStripMenuItem.Name = "visualisationDesFichiersToolStripMenuItem";
             this.visualisationDesFichiersToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.visualisationDesFichiersToolStripMenuItem.Text = "Visualisation des Fichiers";
             this.visualisationDesFichiersToolStripMenuItem.Click += new System.EventHandler(this.visualisationDesFichiersToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(210, 6);
             // 
             // MainForm
             // 
@@ -1685,6 +1693,7 @@
         private System.Windows.Forms.ToolStripMenuItem graphiquesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionDesTiersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualisationDesFichiersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
