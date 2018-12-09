@@ -137,7 +137,7 @@
             this.kCBAfficheRecettes.Location = new System.Drawing.Point(262, 345);
             this.kCBAfficheRecettes.Name = "kCBAfficheRecettes";
             this.kCBAfficheRecettes.Size = new System.Drawing.Size(74, 25);
-            this.kCBAfficheRecettes.TabIndex = 38;
+            this.kCBAfficheRecettes.TabIndex = 9;
             this.kCBAfficheRecettes.Values.Text = "Recettes";
             this.kCBAfficheRecettes.Click += new System.EventHandler(this.kCBAfficheRecettes_Click);
             // 
@@ -147,7 +147,7 @@
             this.kCBAfficheDepenses.Location = new System.Drawing.Point(182, 345);
             this.kCBAfficheDepenses.Name = "kCBAfficheDepenses";
             this.kCBAfficheDepenses.Size = new System.Drawing.Size(74, 25);
-            this.kCBAfficheDepenses.TabIndex = 37;
+            this.kCBAfficheDepenses.TabIndex = 8;
             this.kCBAfficheDepenses.Values.Text = "Dépenses";
             this.kCBAfficheDepenses.Click += new System.EventHandler(this.kCBAfficheDepenses_Click);
             // 
@@ -172,7 +172,7 @@
             this.kCB3D.Location = new System.Drawing.Point(209, 474);
             this.kCB3D.Name = "kCB3D";
             this.kCB3D.Size = new System.Drawing.Size(66, 25);
-            this.kCB3D.TabIndex = 34;
+            this.kCB3D.TabIndex = 15;
             this.kCB3D.Values.Text = "3D";
             this.kCB3D.Click += new System.EventHandler(this.kCB3D_Click);
             // 
@@ -182,7 +182,7 @@
             this.kCB2D.Location = new System.Drawing.Point(137, 474);
             this.kCB2D.Name = "kCB2D";
             this.kCB2D.Size = new System.Drawing.Size(66, 25);
-            this.kCB2D.TabIndex = 33;
+            this.kCB2D.TabIndex = 14;
             this.kCB2D.Values.Text = "2D";
             this.kCB2D.Click += new System.EventHandler(this.kCB2S_Click);
             // 
@@ -209,7 +209,7 @@
             this.kDTPDateMax.Location = new System.Drawing.Point(244, 389);
             this.kDTPDateMax.Name = "kDTPDateMax";
             this.kDTPDateMax.Size = new System.Drawing.Size(92, 21);
-            this.kDTPDateMax.TabIndex = 30;
+            this.kDTPDateMax.TabIndex = 11;
             // 
             // kDTPDateMin
             // 
@@ -218,7 +218,7 @@
             this.kDTPDateMin.Location = new System.Drawing.Point(88, 389);
             this.kDTPDateMin.Name = "kDTPDateMin";
             this.kDTPDateMin.Size = new System.Drawing.Size(92, 21);
-            this.kDTPDateMin.TabIndex = 29;
+            this.kDTPDateMin.TabIndex = 10;
             // 
             // kNUPVal
             // 
@@ -230,7 +230,7 @@
             0});
             this.kNUPVal.Name = "kNUPVal";
             this.kNUPVal.Size = new System.Drawing.Size(61, 22);
-            this.kNUPVal.TabIndex = 14;
+            this.kNUPVal.TabIndex = 5;
             this.kNUPVal.ValueChanged += new System.EventHandler(this.kNUPVal_ValueChanged);
             this.kNUPVal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kNUPVal_KeyPress);
             // 
@@ -240,7 +240,7 @@
             this.kCBChoixGroupGdeCateg.Location = new System.Drawing.Point(262, 262);
             this.kCBChoixGroupGdeCateg.Name = "kCBChoixGroupGdeCateg";
             this.kCBChoixGroupGdeCateg.Size = new System.Drawing.Size(74, 25);
-            this.kCBChoixGroupGdeCateg.TabIndex = 13;
+            this.kCBChoixGroupGdeCateg.TabIndex = 4;
             this.kCBChoixGroupGdeCateg.Values.Text = "Gde Catég.";
             this.kCBChoixGroupGdeCateg.Click += new System.EventHandler(this.kCBChoixGroupGdeCateg_Click);
             // 
@@ -249,7 +249,7 @@
             this.kCBChoixGroupCateg.Location = new System.Drawing.Point(114, 262);
             this.kCBChoixGroupCateg.Name = "kCBChoixGroupCateg";
             this.kCBChoixGroupCateg.Size = new System.Drawing.Size(72, 25);
-            this.kCBChoixGroupCateg.TabIndex = 12;
+            this.kCBChoixGroupCateg.TabIndex = 2;
             this.kCBChoixGroupCateg.Values.Text = "Catégories";
             this.kCBChoixGroupCateg.Click += new System.EventHandler(this.kCBChoixGroupCateg_Click);
             // 
@@ -259,7 +259,7 @@
             this.kCBChoixGroupTiers.Location = new System.Drawing.Point(192, 262);
             this.kCBChoixGroupTiers.Name = "kCBChoixGroupTiers";
             this.kCBChoixGroupTiers.Size = new System.Drawing.Size(64, 25);
-            this.kCBChoixGroupTiers.TabIndex = 11;
+            this.kCBChoixGroupTiers.TabIndex = 3;
             this.kCBChoixGroupTiers.Values.Text = "Tiers";
             this.kCBChoixGroupTiers.Click += new System.EventHandler(this.kCBChoixGroupTiers_Click);
             // 
@@ -276,7 +276,7 @@
             this.kCBMasqueVal.Location = new System.Drawing.Point(262, 304);
             this.kCBMasqueVal.Name = "kCBMasqueVal";
             this.kCBMasqueVal.Size = new System.Drawing.Size(74, 25);
-            this.kCBMasqueVal.TabIndex = 9;
+            this.kCBMasqueVal.TabIndex = 7;
             this.kCBMasqueVal.Values.Text = "Masquer";
             this.kCBMasqueVal.Click += new System.EventHandler(this.kCBMasqueVal_Click);
             // 
@@ -286,7 +286,7 @@
             this.kCBGroupVal.Location = new System.Drawing.Point(182, 304);
             this.kCBGroupVal.Name = "kCBGroupVal";
             this.kCBGroupVal.Size = new System.Drawing.Size(74, 25);
-            this.kCBGroupVal.TabIndex = 8;
+            this.kCBGroupVal.TabIndex = 6;
             this.kCBGroupVal.Values.Text = "Regrouper";
             this.kCBGroupVal.Click += new System.EventHandler(this.kCBGroupVal_Click);
             // 
@@ -296,7 +296,7 @@
             this.kCBBarre.Location = new System.Drawing.Point(209, 431);
             this.kCBBarre.Name = "kCBBarre";
             this.kCBBarre.Size = new System.Drawing.Size(66, 25);
-            this.kCBBarre.TabIndex = 7;
+            this.kCBBarre.TabIndex = 13;
             this.kCBBarre.Values.Image = global::OrionBanque.Properties.Resources.chart_bar1;
             this.kCBBarre.Values.Text = "";
             this.kCBBarre.Click += new System.EventHandler(this.kCBBarre_Click);
@@ -306,7 +306,7 @@
             this.kCBCam.Location = new System.Drawing.Point(137, 431);
             this.kCBCam.Name = "kCBCam";
             this.kCBCam.Size = new System.Drawing.Size(66, 25);
-            this.kCBCam.TabIndex = 6;
+            this.kCBCam.TabIndex = 12;
             this.kCBCam.Values.Image = global::OrionBanque.Properties.Resources.chart_pie;
             this.kCBCam.Values.Text = "";
             this.kCBCam.Click += new System.EventHandler(this.kCBCam_Click);
@@ -324,7 +324,7 @@
             this.kListeComptes.Location = new System.Drawing.Point(3, 58);
             this.kListeComptes.Name = "kListeComptes";
             this.kListeComptes.Size = new System.Drawing.Size(333, 173);
-            this.kListeComptes.TabIndex = 4;
+            this.kListeComptes.TabIndex = 1;
             this.kListeComptes.SelectedIndexChanged += new System.EventHandler(this.kCS_CheckedButtonChanged);
             // 
             // kryptonLabel1

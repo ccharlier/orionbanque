@@ -44,14 +44,14 @@
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.txtDateMvt = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.txtMontant = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
-            this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.txtTiers = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.txtCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.dgvFichiers = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtLibelle = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kLblHeader = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.txtModePaiement = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.txtCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.txtTiers = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -61,11 +61,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichiers)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).BeginInit();
             this.SuspendLayout();
             // 
             // toolTip1
@@ -94,7 +94,7 @@
             this.Fermer.Location = new System.Drawing.Point(210, 467);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
-            this.Fermer.TabIndex = 9;
+            this.Fermer.TabIndex = 10;
             this.toolTip1.SetToolTip(this.Fermer, "Fermer la fenêtre sans enregistrer");
             this.Fermer.Values.Image = global::OrionBanque.Properties.Resources.cross1;
             this.Fermer.Values.Text = "";
@@ -104,7 +104,7 @@
             this.OK.Location = new System.Drawing.Point(356, 467);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
-            this.OK.TabIndex = 8;
+            this.OK.TabIndex = 11;
             this.toolTip1.SetToolTip(this.OK, "Valider l\'opération courante");
             this.OK.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.OK.Values.Text = "";
@@ -115,7 +115,7 @@
             this.btnAddFichier.Location = new System.Drawing.Point(356, 318);
             this.btnAddFichier.Name = "btnAddFichier";
             this.btnAddFichier.Size = new System.Drawing.Size(23, 23);
-            this.btnAddFichier.TabIndex = 10;
+            this.btnAddFichier.TabIndex = 8;
             this.toolTip1.SetToolTip(this.btnAddFichier, "Ajouter un Fichier lié à l\'Opération");
             this.btnAddFichier.Values.Image = global::OrionBanque.Properties.Resources.page_add;
             this.btnAddFichier.Values.Text = "";
@@ -126,7 +126,7 @@
             this.btlDeleteFile.Location = new System.Drawing.Point(356, 368);
             this.btlDeleteFile.Name = "btlDeleteFile";
             this.btlDeleteFile.Size = new System.Drawing.Size(23, 23);
-            this.btlDeleteFile.TabIndex = 11;
+            this.btlDeleteFile.TabIndex = 9;
             this.toolTip1.SetToolTip(this.btlDeleteFile, "Supprimer le Fichier lié à l\'Opération");
             this.btlDeleteFile.Values.Image = global::OrionBanque.Properties.Resources.page_delete;
             this.btlDeleteFile.Values.Text = "";
@@ -248,42 +248,6 @@
             this.txtMontant.TabIndex = 6;
             this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
-            // txtLibelle
-            // 
-            this.txtLibelle.Location = new System.Drawing.Point(39, 199);
-            this.txtLibelle.Name = "txtLibelle";
-            this.txtLibelle.Size = new System.Drawing.Size(339, 23);
-            this.txtLibelle.TabIndex = 5;
-            // 
-            // txtModePaiement
-            // 
-            this.txtModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtModePaiement.DropDownWidth = 185;
-            this.txtModePaiement.Location = new System.Drawing.Point(39, 127);
-            this.txtModePaiement.Name = "txtModePaiement";
-            this.txtModePaiement.Size = new System.Drawing.Size(340, 21);
-            this.txtModePaiement.TabIndex = 3;
-            this.txtModePaiement.SelectedIndexChanged += new System.EventHandler(this.TxtModePaiement_SelectedIndexChanged);
-            // 
-            // txtTiers
-            // 
-            this.txtTiers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtTiers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtTiers.DropDownWidth = 166;
-            this.txtTiers.Location = new System.Drawing.Point(39, 163);
-            this.txtTiers.Name = "txtTiers";
-            this.txtTiers.Size = new System.Drawing.Size(340, 21);
-            this.txtTiers.TabIndex = 4;
-            // 
-            // txtCategorie
-            // 
-            this.txtCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtCategorie.DropDownWidth = 166;
-            this.txtCategorie.Location = new System.Drawing.Point(39, 94);
-            this.txtCategorie.Name = "txtCategorie";
-            this.txtCategorie.Size = new System.Drawing.Size(339, 21);
-            this.txtCategorie.TabIndex = 2;
-            // 
             // dgvFichiers
             // 
             this.dgvFichiers.AllowUserToAddRows = false;
@@ -321,6 +285,13 @@
             this.supprimerToolStripMenuItem.Text = "&Supprimer";
             this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
+            // txtLibelle
+            // 
+            this.txtLibelle.Location = new System.Drawing.Point(39, 199);
+            this.txtLibelle.Name = "txtLibelle";
+            this.txtLibelle.Size = new System.Drawing.Size(339, 23);
+            this.txtLibelle.TabIndex = 5;
+            // 
             // kLblHeader
             // 
             this.kLblHeader.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitlePanel;
@@ -329,6 +300,35 @@
             this.kLblHeader.Size = new System.Drawing.Size(100, 29);
             this.kLblHeader.TabIndex = 0;
             this.kLblHeader.Values.Text = "Opération";
+            // 
+            // txtModePaiement
+            // 
+            this.txtModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtModePaiement.DropDownWidth = 185;
+            this.txtModePaiement.Location = new System.Drawing.Point(39, 127);
+            this.txtModePaiement.Name = "txtModePaiement";
+            this.txtModePaiement.Size = new System.Drawing.Size(340, 21);
+            this.txtModePaiement.TabIndex = 3;
+            this.txtModePaiement.SelectedIndexChanged += new System.EventHandler(this.TxtModePaiement_SelectedIndexChanged);
+            // 
+            // txtCategorie
+            // 
+            this.txtCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtCategorie.DropDownWidth = 166;
+            this.txtCategorie.Location = new System.Drawing.Point(39, 94);
+            this.txtCategorie.Name = "txtCategorie";
+            this.txtCategorie.Size = new System.Drawing.Size(339, 21);
+            this.txtCategorie.TabIndex = 2;
+            // 
+            // txtTiers
+            // 
+            this.txtTiers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtTiers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtTiers.DropDownWidth = 166;
+            this.txtTiers.Location = new System.Drawing.Point(39, 163);
+            this.txtTiers.Name = "txtTiers";
+            this.txtTiers.Size = new System.Drawing.Size(340, 21);
+            this.txtTiers.TabIndex = 4;
             // 
             // OFDImport
             // 
@@ -359,11 +359,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichiers)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtModePaiement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCategorie)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTiers)).EndInit();
             this.ResumeLayout(false);
 
         }

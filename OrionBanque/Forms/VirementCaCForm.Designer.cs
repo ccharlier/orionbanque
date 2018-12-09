@@ -136,7 +136,7 @@
             this.txtDateMvt.Location = new System.Drawing.Point(54, 106);
             this.txtDateMvt.Name = "txtDateMvt";
             this.txtDateMvt.Size = new System.Drawing.Size(164, 21);
-            this.txtDateMvt.TabIndex = 51;
+            this.txtDateMvt.TabIndex = 3;
             // 
             // Fermer
             // 
@@ -144,7 +144,7 @@
             this.Fermer.Location = new System.Drawing.Point(248, 161);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
-            this.Fermer.TabIndex = 48;
+            this.Fermer.TabIndex = 7;
             this.toolTip1.SetToolTip(this.Fermer, "Fermer le fenêtre de virement sans valider");
             this.Fermer.Values.Image = global::OrionBanque.Properties.Resources.cross1;
             this.Fermer.Values.Text = "";
@@ -155,7 +155,7 @@
             this.OK.Location = new System.Drawing.Point(410, 161);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
-            this.OK.TabIndex = 49;
+            this.OK.TabIndex = 8;
             this.toolTip1.SetToolTip(this.OK, "Valider le virement de compte à compte");
             this.OK.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.OK.Values.Text = "";
@@ -168,7 +168,7 @@
             this.txtCategorie.Location = new System.Drawing.Point(54, 134);
             this.txtCategorie.Name = "txtCategorie";
             this.txtCategorie.Size = new System.Drawing.Size(166, 21);
-            this.txtCategorie.TabIndex = 47;
+            this.txtCategorie.TabIndex = 5;
             // 
             // txtMontant
             // 
@@ -181,14 +181,14 @@
             0});
             this.txtMontant.Name = "txtMontant";
             this.txtMontant.Size = new System.Drawing.Size(185, 22);
-            this.txtMontant.TabIndex = 45;
+            this.txtMontant.TabIndex = 6;
             // 
             // txtLibelle
             // 
             this.txtLibelle.Location = new System.Drawing.Point(248, 107);
             this.txtLibelle.Name = "txtLibelle";
             this.txtLibelle.Size = new System.Drawing.Size(185, 23);
-            this.txtLibelle.TabIndex = 44;
+            this.txtLibelle.TabIndex = 4;
             // 
             // kryptonGroupBox1
             // 
@@ -254,7 +254,7 @@
             this.cbCompteOri.Location = new System.Drawing.Point(145, 3);
             this.cbCompteOri.Name = "cbCompteOri";
             this.cbCompteOri.Size = new System.Drawing.Size(164, 21);
-            this.cbCompteOri.TabIndex = 9;
+            this.cbCompteOri.TabIndex = 1;
             this.cbCompteOri.SelectedIndexChanged += new System.EventHandler(this.CbCompteOri_SelectedIndexChanged);
             // 
             // kryptonLabel2
@@ -272,7 +272,7 @@
             this.cbCompteDest.Location = new System.Drawing.Point(145, 30);
             this.cbCompteDest.Name = "cbCompteDest";
             this.cbCompteDest.Size = new System.Drawing.Size(164, 21);
-            this.cbCompteDest.TabIndex = 8;
+            this.cbCompteDest.TabIndex = 2;
             this.cbCompteDest.SelectedIndexChanged += new System.EventHandler(this.CbCompteDest_SelectedIndexChanged);
             // 
             // kryptonLabel1

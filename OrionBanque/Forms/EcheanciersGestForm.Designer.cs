@@ -146,7 +146,7 @@
             this.kBtnInsere.Location = new System.Drawing.Point(877, 16);
             this.kBtnInsere.Name = "kBtnInsere";
             this.kBtnInsere.Size = new System.Drawing.Size(102, 27);
-            this.kBtnInsere.TabIndex = 3;
+            this.kBtnInsere.TabIndex = 5;
             this.kBtnInsere.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.kBtnInsere.Values.Text = "Insérer";
             this.kBtnInsere.Click += new System.EventHandler(this.KryptonButton4_Click);
@@ -156,7 +156,7 @@
             this.kBtnSupprime.Location = new System.Drawing.Point(374, 16);
             this.kBtnSupprime.Name = "kBtnSupprime";
             this.kBtnSupprime.Size = new System.Drawing.Size(102, 27);
-            this.kBtnSupprime.TabIndex = 2;
+            this.kBtnSupprime.TabIndex = 3;
             this.kBtnSupprime.Values.Image = global::OrionBanque.Properties.Resources.calendar_delete;
             this.kBtnSupprime.Values.Text = "Supprimer";
             this.kBtnSupprime.Click += new System.EventHandler(this.KryptonButton3_Click);
@@ -166,7 +166,7 @@
             this.kBtnModifie.Location = new System.Drawing.Point(224, 16);
             this.kBtnModifie.Name = "kBtnModifie";
             this.kBtnModifie.Size = new System.Drawing.Size(102, 27);
-            this.kBtnModifie.TabIndex = 1;
+            this.kBtnModifie.TabIndex = 2;
             this.kBtnModifie.Values.Image = global::OrionBanque.Properties.Resources.calendar_edit;
             this.kBtnModifie.Values.Text = "Modifier";
             this.kBtnModifie.Click += new System.EventHandler(this.KryptonButton2_Click);
@@ -176,7 +176,7 @@
             this.kBtnAjout.Location = new System.Drawing.Point(74, 16);
             this.kBtnAjout.Name = "kBtnAjout";
             this.kBtnAjout.Size = new System.Drawing.Size(102, 27);
-            this.kBtnAjout.TabIndex = 0;
+            this.kBtnAjout.TabIndex = 1;
             this.kBtnAjout.Values.Image = global::OrionBanque.Properties.Resources.calendar_add;
             this.kBtnAjout.Values.Text = "Ajouter";
             this.kBtnAjout.Click += new System.EventHandler(this.KryptonButton1_Click);

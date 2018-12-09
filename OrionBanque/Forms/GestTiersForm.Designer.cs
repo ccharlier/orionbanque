@@ -47,7 +47,7 @@
             this.kLBTiersSaisis.Location = new System.Drawing.Point(71, 69);
             this.kLBTiersSaisis.Name = "kLBTiersSaisis";
             this.kLBTiersSaisis.Size = new System.Drawing.Size(195, 306);
-            this.kLBTiersSaisis.TabIndex = 0;
+            this.kLBTiersSaisis.TabIndex = 1;
             this.kLBTiersSaisis.DoubleClick += new System.EventHandler(this.kLBTiersSaisis_DoubleClick);
             // 
             // kryptonPanel1
@@ -107,7 +107,7 @@
             this.kLBTiersPredict.Location = new System.Drawing.Point(371, 69);
             this.kLBTiersPredict.Name = "kLBTiersPredict";
             this.kLBTiersPredict.Size = new System.Drawing.Size(195, 306);
-            this.kLBTiersPredict.TabIndex = 1;
+            this.kLBTiersPredict.TabIndex = 4;
             this.kLBTiersPredict.DoubleClick += new System.EventHandler(this.kLBTiersPredict_DoubleClick);
             // 
             // GestTiersForm

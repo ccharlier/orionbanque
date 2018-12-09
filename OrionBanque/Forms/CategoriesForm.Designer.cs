@@ -130,7 +130,7 @@
             this.kCkbCategorieParentMajSup.Location = new System.Drawing.Point(20, 34);
             this.kCkbCategorieParentMajSup.Name = "kCkbCategorieParentMajSup";
             this.kCkbCategorieParentMajSup.Size = new System.Drawing.Size(121, 20);
-            this.kCkbCategorieParentMajSup.TabIndex = 21;
+            this.kCkbCategorieParentMajSup.TabIndex = 2;
             this.kCkbCategorieParentMajSup.Values.Text = "Catégorie Parent :";
             this.kCkbCategorieParentMajSup.CheckedChanged += new System.EventHandler(this.KryptonCheckBox2_CheckedChanged);
             // 
@@ -142,14 +142,14 @@
             this.cbModCatPa.Location = new System.Drawing.Point(145, 34);
             this.cbModCatPa.Name = "cbModCatPa";
             this.cbModCatPa.Size = new System.Drawing.Size(171, 21);
-            this.cbModCatPa.TabIndex = 20;
+            this.cbModCatPa.TabIndex = 3;
             // 
             // btnSupCat
             // 
             this.btnSupCat.Location = new System.Drawing.Point(351, 33);
             this.btnSupCat.Name = "btnSupCat";
             this.btnSupCat.Size = new System.Drawing.Size(23, 23);
-            this.btnSupCat.TabIndex = 11;
+            this.btnSupCat.TabIndex = 5;
             this.toolTip1.SetToolTip(this.btnSupCat, "Supprimer la Catégorie");
             this.btnSupCat.Values.Image = global::OrionBanque.Properties.Resources.cancel1;
             this.btnSupCat.Values.Text = "";
@@ -160,7 +160,7 @@
             this.btnValidMod.Location = new System.Drawing.Point(322, 33);
             this.btnValidMod.Name = "btnValidMod";
             this.btnValidMod.Size = new System.Drawing.Size(23, 23);
-            this.btnValidMod.TabIndex = 13;
+            this.btnValidMod.TabIndex = 4;
             this.toolTip1.SetToolTip(this.btnValidMod, "Sauvegarder les changements");
             this.btnValidMod.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.btnValidMod.Values.Text = "";
@@ -171,7 +171,7 @@
             this.txtLibelleMod.Location = new System.Drawing.Point(145, 8);
             this.txtLibelleMod.Name = "txtLibelleMod";
             this.txtLibelleMod.Size = new System.Drawing.Size(171, 23);
-            this.txtLibelleMod.TabIndex = 13;
+            this.txtLibelleMod.TabIndex = 1;
             // 
             // kryptonLabel2
             // 
@@ -203,7 +203,7 @@
             this.kCkbCategorieParentAjout.Location = new System.Drawing.Point(20, 30);
             this.kCkbCategorieParentAjout.Name = "kCkbCategorieParentAjout";
             this.kCkbCategorieParentAjout.Size = new System.Drawing.Size(121, 20);
-            this.kCkbCategorieParentAjout.TabIndex = 18;
+            this.kCkbCategorieParentAjout.TabIndex = 7;
             this.kCkbCategorieParentAjout.Values.Text = "Catégorie Parent :";
             this.kCkbCategorieParentAjout.CheckedChanged += new System.EventHandler(this.KryptonCheckBox1_CheckedChanged);
             // 
@@ -215,14 +215,14 @@
             this.cbCategorieParent.Location = new System.Drawing.Point(145, 30);
             this.cbCategorieParent.Name = "cbCategorieParent";
             this.cbCategorieParent.Size = new System.Drawing.Size(171, 21);
-            this.cbCategorieParent.TabIndex = 17;
+            this.cbCategorieParent.TabIndex = 8;
             // 
             // btnSauvCat
             // 
             this.btnSauvCat.Location = new System.Drawing.Point(322, 29);
             this.btnSauvCat.Name = "btnSauvCat";
             this.btnSauvCat.Size = new System.Drawing.Size(23, 23);
-            this.btnSauvCat.TabIndex = 12;
+            this.btnSauvCat.TabIndex = 9;
             this.toolTip1.SetToolTip(this.btnSauvCat, "Ajouter cette Catégorie");
             this.btnSauvCat.Values.Image = global::OrionBanque.Properties.Resources.add1;
             this.btnSauvCat.Values.Text = "";
@@ -233,7 +233,7 @@
             this.txtLibelleAdd.Location = new System.Drawing.Point(145, 4);
             this.txtLibelleAdd.Name = "txtLibelleAdd";
             this.txtLibelleAdd.Size = new System.Drawing.Size(171, 23);
-            this.txtLibelleAdd.TabIndex = 11;
+            this.txtLibelleAdd.TabIndex = 6;
             // 
             // kryptonLabel1
             // 

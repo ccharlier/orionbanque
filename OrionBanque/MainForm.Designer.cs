@@ -72,6 +72,8 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.gérerLécchéancierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.totalDesComptesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualisationDesFichiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.graphiquesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opérationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,8 +162,6 @@
             this.kryptonPaletteSparkleOrange = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.visualisationDesFichiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -552,6 +552,19 @@
             this.totalDesComptesToolStripMenuItem.Text = "&Total des Comptes";
             this.totalDesComptesToolStripMenuItem.Click += new System.EventHandler(this.totalDesComptesToolStripMenuItem_Click);
             // 
+            // visualisationDesFichiersToolStripMenuItem
+            // 
+            this.visualisationDesFichiersToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.document_copy;
+            this.visualisationDesFichiersToolStripMenuItem.Name = "visualisationDesFichiersToolStripMenuItem";
+            this.visualisationDesFichiersToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.visualisationDesFichiersToolStripMenuItem.Text = "Visualisation des Fichiers";
+            this.visualisationDesFichiersToolStripMenuItem.Click += new System.EventHandler(this.visualisationDesFichiersToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(210, 6);
+            // 
             // graphiquesToolStripMenuItem
             // 
             this.graphiquesToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.chart_pie1;
@@ -741,7 +754,7 @@
             this.btnValidDateEvol.Location = new System.Drawing.Point(124, 551);
             this.btnValidDateEvol.Name = "btnValidDateEvol";
             this.btnValidDateEvol.Size = new System.Drawing.Size(23, 23);
-            this.btnValidDateEvol.TabIndex = 24;
+            this.btnValidDateEvol.TabIndex = 16;
             this.toolTipG.SetToolTip(this.btnValidDateEvol, "Actualiser le graphique avec les dates choisies");
             this.btnValidDateEvol.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.btnValidDateEvol.Values.Text = "";
@@ -851,7 +864,7 @@
             this.cbCompte.Location = new System.Drawing.Point(52, 13);
             this.cbCompte.Name = "cbCompte";
             this.cbCompte.Size = new System.Drawing.Size(161, 21);
-            this.cbCompte.TabIndex = 7;
+            this.cbCompte.TabIndex = 37;
             this.cbCompte.SelectedIndexChanged += new System.EventHandler(this.CbCompte_SelectedIndexChanged);
             // 
             // lblSoldFinal
@@ -921,7 +934,7 @@
             this.txtFiltrePointe.Location = new System.Drawing.Point(780, 11);
             this.txtFiltrePointe.Name = "txtFiltrePointe";
             this.txtFiltrePointe.Size = new System.Drawing.Size(92, 20);
-            this.txtFiltrePointe.TabIndex = 52;
+            this.txtFiltrePointe.TabIndex = 13;
             this.toolTipG.SetToolTip(this.txtFiltrePointe, "Activer pour afficher que les mouvements non pointés");
             this.txtFiltrePointe.Values.Text = "Non Pointée";
             this.txtFiltrePointe.CheckedChanged += new System.EventHandler(this.TxtFiltrePointe_CheckedChanged);
@@ -931,7 +944,7 @@
             this.kFiltreMontant.Location = new System.Drawing.Point(603, 9);
             this.kFiltreMontant.Name = "kFiltreMontant";
             this.kFiltreMontant.Size = new System.Drawing.Size(27, 24);
-            this.kFiltreMontant.TabIndex = 51;
+            this.kFiltreMontant.TabIndex = 10;
             this.toolTipG.SetToolTip(this.kFiltreMontant, "Activer pour filtrer sur la somme du mouvement");
             this.kFiltreMontant.Values.Image = global::OrionBanque.Properties.Resources.money1;
             this.kFiltreMontant.Values.Text = "";
@@ -942,7 +955,7 @@
             this.kFiltreCategorie.Location = new System.Drawing.Point(468, 9);
             this.kFiltreCategorie.Name = "kFiltreCategorie";
             this.kFiltreCategorie.Size = new System.Drawing.Size(27, 24);
-            this.kFiltreCategorie.TabIndex = 50;
+            this.kFiltreCategorie.TabIndex = 8;
             this.toolTipG.SetToolTip(this.kFiltreCategorie, "Activer pour filtrer sur la catégorie du mouvement");
             this.kFiltreCategorie.Values.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
             this.kFiltreCategorie.Values.Text = "";
@@ -953,7 +966,7 @@
             this.kFiltreTiers.Location = new System.Drawing.Point(328, 9);
             this.kFiltreTiers.Name = "kFiltreTiers";
             this.kFiltreTiers.Size = new System.Drawing.Size(27, 24);
-            this.kFiltreTiers.TabIndex = 49;
+            this.kFiltreTiers.TabIndex = 6;
             this.toolTipG.SetToolTip(this.kFiltreTiers, "Activer pour filtrer sur le tiers du mouvement");
             this.kFiltreTiers.Values.Image = global::OrionBanque.Properties.Resources.user_business;
             this.kFiltreTiers.Values.Text = "";
@@ -964,7 +977,7 @@
             this.kFiltreModePaiement.Location = new System.Drawing.Point(181, 9);
             this.kFiltreModePaiement.Name = "kFiltreModePaiement";
             this.kFiltreModePaiement.Size = new System.Drawing.Size(27, 24);
-            this.kFiltreModePaiement.TabIndex = 48;
+            this.kFiltreModePaiement.TabIndex = 4;
             this.toolTipG.SetToolTip(this.kFiltreModePaiement, "Activer pour filtrer sur le mode de paiement du mouvement");
             this.kFiltreModePaiement.Values.Image = global::OrionBanque.Properties.Resources.creditcards;
             this.kFiltreModePaiement.Values.Text = "";
@@ -992,7 +1005,7 @@
             this.cbFiltreMontant.Location = new System.Drawing.Point(636, 10);
             this.cbFiltreMontant.Name = "cbFiltreMontant";
             this.cbFiltreMontant.Size = new System.Drawing.Size(44, 21);
-            this.cbFiltreMontant.TabIndex = 47;
+            this.cbFiltreMontant.TabIndex = 11;
             // 
             // txtFiltreCategorie
             // 
@@ -1001,7 +1014,7 @@
             this.txtFiltreCategorie.Location = new System.Drawing.Point(501, 10);
             this.txtFiltreCategorie.Name = "txtFiltreCategorie";
             this.txtFiltreCategorie.Size = new System.Drawing.Size(96, 21);
-            this.txtFiltreCategorie.TabIndex = 46;
+            this.txtFiltreCategorie.TabIndex = 9;
             // 
             // txtFiltreMontant
             // 
@@ -1019,7 +1032,7 @@
             -2147483648});
             this.txtFiltreMontant.Name = "txtFiltreMontant";
             this.txtFiltreMontant.Size = new System.Drawing.Size(88, 22);
-            this.txtFiltreMontant.TabIndex = 45;
+            this.txtFiltreMontant.TabIndex = 12;
             this.txtFiltreMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltreMontant_KeyPress);
             // 
             // txtFiltreModePaiement
@@ -1029,7 +1042,7 @@
             this.txtFiltreModePaiement.Location = new System.Drawing.Point(214, 10);
             this.txtFiltreModePaiement.Name = "txtFiltreModePaiement";
             this.txtFiltreModePaiement.Size = new System.Drawing.Size(108, 21);
-            this.txtFiltreModePaiement.TabIndex = 42;
+            this.txtFiltreModePaiement.TabIndex = 5;
             // 
             // txtFiltreTiers
             // 
@@ -1039,7 +1052,7 @@
             this.txtFiltreTiers.Location = new System.Drawing.Point(361, 10);
             this.txtFiltreTiers.Name = "txtFiltreTiers";
             this.txtFiltreTiers.Size = new System.Drawing.Size(101, 21);
-            this.txtFiltreTiers.TabIndex = 40;
+            this.txtFiltreTiers.TabIndex = 7;
             // 
             // cbFiltreDate
             // 
@@ -1052,7 +1065,7 @@
             this.cbFiltreDate.Location = new System.Drawing.Point(36, 10);
             this.cbFiltreDate.Name = "cbFiltreDate";
             this.cbFiltreDate.Size = new System.Drawing.Size(44, 21);
-            this.cbFiltreDate.TabIndex = 16;
+            this.cbFiltreDate.TabIndex = 2;
             // 
             // txtFiltreDate
             // 
@@ -1061,7 +1074,7 @@
             this.txtFiltreDate.Location = new System.Drawing.Point(86, 10);
             this.txtFiltreDate.Name = "txtFiltreDate";
             this.txtFiltreDate.Size = new System.Drawing.Size(89, 21);
-            this.txtFiltreDate.TabIndex = 15;
+            this.txtFiltreDate.TabIndex = 3;
             // 
             // kryptonSplitContainer1
             // 
@@ -1469,19 +1482,6 @@
             this.dataGridViewImageColumn1.Image = global::OrionBanque.Properties.Resources.application_osx;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 885;
-            // 
-            // visualisationDesFichiersToolStripMenuItem
-            // 
-            this.visualisationDesFichiersToolStripMenuItem.Image = global::OrionBanque.Properties.Resources.document_copy;
-            this.visualisationDesFichiersToolStripMenuItem.Name = "visualisationDesFichiersToolStripMenuItem";
-            this.visualisationDesFichiersToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.visualisationDesFichiersToolStripMenuItem.Text = "Visualisation des Fichiers";
-            this.visualisationDesFichiersToolStripMenuItem.Click += new System.EventHandler(this.visualisationDesFichiersToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(210, 6);
             // 
             // MainForm
             // 

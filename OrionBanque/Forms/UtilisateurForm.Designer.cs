@@ -83,7 +83,7 @@
             this.chkPwd.Location = new System.Drawing.Point(245, 87);
             this.chkPwd.Name = "chkPwd";
             this.chkPwd.Size = new System.Drawing.Size(68, 20);
-            this.chkPwd.TabIndex = 23;
+            this.chkPwd.TabIndex = 2;
             this.chkPwd.Values.Text = "Montrer";
             this.chkPwd.CheckedChanged += new System.EventHandler(this.ChkPwd_CheckedChanged);
             // 
@@ -93,7 +93,7 @@
             this.Fermer.Location = new System.Drawing.Point(115, 115);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
-            this.Fermer.TabIndex = 21;
+            this.Fermer.TabIndex = 3;
             this.toolTip1.SetToolTip(this.Fermer, "Fermer la fenêtre sans enregistrer");
             this.Fermer.Values.Image = global::OrionBanque.Properties.Resources.cross1;
             this.Fermer.Values.Text = "";
@@ -103,7 +103,7 @@
             this.OK.Location = new System.Drawing.Point(216, 115);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
-            this.OK.TabIndex = 22;
+            this.OK.TabIndex = 4;
             this.toolTip1.SetToolTip(this.OK, "Valider la fenêtre");
             this.OK.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.OK.Values.Text = "";
@@ -115,7 +115,7 @@
             this.txtMdp.Name = "txtMdp";
             this.txtMdp.PasswordChar = '●';
             this.txtMdp.Size = new System.Drawing.Size(124, 23);
-            this.txtMdp.TabIndex = 19;
+            this.txtMdp.TabIndex = 1;
             this.txtMdp.UseSystemPasswordChar = true;
             // 
             // txtLogin
@@ -123,7 +123,7 @@
             this.txtLogin.Location = new System.Drawing.Point(115, 60);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(124, 23);
-            this.txtLogin.TabIndex = 18;
+            this.txtLogin.TabIndex = 0;
             // 
             // kryptonLabel2
             // 

@@ -103,7 +103,7 @@
             this.btnAdd.Location = new System.Drawing.Point(386, 29);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 23);
-            this.btnAdd.TabIndex = 24;
+            this.btnAdd.TabIndex = 8;
             this.toolTip1.SetToolTip(this.btnAdd, "Ajouter un mode de paiement");
             this.btnAdd.Values.Image = global::OrionBanque.Properties.Resources.add1;
             this.btnAdd.Values.Text = "";
@@ -119,7 +119,7 @@
             this.cbDebCredAdd.Location = new System.Drawing.Point(212, 29);
             this.cbDebCredAdd.Name = "cbDebCredAdd";
             this.cbDebCredAdd.Size = new System.Drawing.Size(166, 21);
-            this.cbDebCredAdd.TabIndex = 23;
+            this.cbDebCredAdd.TabIndex = 7;
             // 
             // kryptonLabel5
             // 
@@ -137,7 +137,7 @@
             this.txtLibelleAdd.Name = "txtLibelleAdd";
             this.txtLibelleAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.txtLibelleAdd.Size = new System.Drawing.Size(166, 23);
-            this.txtLibelleAdd.TabIndex = 21;
+            this.txtLibelleAdd.TabIndex = 6;
             // 
             // kryptonLabel4
             // 
@@ -173,7 +173,7 @@
             this.btnSupModePaiement.Location = new System.Drawing.Point(415, 55);
             this.btnSupModePaiement.Name = "btnSupModePaiement";
             this.btnSupModePaiement.Size = new System.Drawing.Size(23, 23);
-            this.btnSupModePaiement.TabIndex = 22;
+            this.btnSupModePaiement.TabIndex = 5;
             this.toolTip1.SetToolTip(this.btnSupModePaiement, "Supprimer le mode de paiement");
             this.btnSupModePaiement.Values.Image = global::OrionBanque.Properties.Resources.cancel1;
             this.btnSupModePaiement.Values.Text = "";
@@ -184,7 +184,7 @@
             this.btnValidMod.Location = new System.Drawing.Point(386, 55);
             this.btnValidMod.Name = "btnValidMod";
             this.btnValidMod.Size = new System.Drawing.Size(23, 23);
-            this.btnValidMod.TabIndex = 23;
+            this.btnValidMod.TabIndex = 4;
             this.toolTip1.SetToolTip(this.btnValidMod, "Valider les changements");
             this.btnValidMod.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.btnValidMod.Values.Text = "";
@@ -200,7 +200,7 @@
             this.cbDebCredMod.Location = new System.Drawing.Point(212, 56);
             this.cbDebCredMod.Name = "cbDebCredMod";
             this.cbDebCredMod.Size = new System.Drawing.Size(166, 21);
-            this.cbDebCredMod.TabIndex = 21;
+            this.cbDebCredMod.TabIndex = 3;
             // 
             // cbModePaiement
             // 
@@ -209,7 +209,7 @@
             this.cbModePaiement.Location = new System.Drawing.Point(212, 3);
             this.cbModePaiement.Name = "cbModePaiement";
             this.cbModePaiement.Size = new System.Drawing.Size(166, 21);
-            this.cbModePaiement.TabIndex = 20;
+            this.cbModePaiement.TabIndex = 1;
             this.cbModePaiement.SelectedIndexChanged += new System.EventHandler(this.CbModePaiement_SelectedIndexChanged);
             // 
             // txtLibelleMod
@@ -218,7 +218,7 @@
             this.txtLibelleMod.Name = "txtLibelleMod";
             this.txtLibelleMod.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.txtLibelleMod.Size = new System.Drawing.Size(166, 23);
-            this.txtLibelleMod.TabIndex = 19;
+            this.txtLibelleMod.TabIndex = 2;
             // 
             // kryptonLabel3
             // 

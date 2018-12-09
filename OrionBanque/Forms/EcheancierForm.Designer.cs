@@ -203,7 +203,7 @@
             this.cbCompte.Location = new System.Drawing.Point(33, 55);
             this.cbCompte.Name = "cbCompte";
             this.cbCompte.Size = new System.Drawing.Size(379, 21);
-            this.cbCompte.TabIndex = 52;
+            this.cbCompte.TabIndex = 1;
             // 
             // kryptonLabel3
             // 
@@ -220,7 +220,7 @@
             this.txtProchaine.Location = new System.Drawing.Point(33, 85);
             this.txtProchaine.Name = "txtProchaine";
             this.txtProchaine.Size = new System.Drawing.Size(166, 21);
-            this.txtProchaine.TabIndex = 49;
+            this.txtProchaine.TabIndex = 2;
             // 
             // kryptonGroupBox1
             // 
@@ -251,7 +251,7 @@
             this.txtDecaleJourFerie.Location = new System.Drawing.Point(246, 109);
             this.txtDecaleJourFerie.Name = "txtDecaleJourFerie";
             this.txtDecaleJourFerie.Size = new System.Drawing.Size(76, 20);
-            this.txtDecaleJourFerie.TabIndex = 51;
+            this.txtDecaleJourFerie.TabIndex = 15;
             this.txtDecaleJourFerie.Values.Text = "Jour Férié";
             // 
             // kryptonLabel4
@@ -269,7 +269,7 @@
             this.txtDecaleDimanche.Location = new System.Drawing.Point(162, 109);
             this.txtDecaleDimanche.Name = "txtDecaleDimanche";
             this.txtDecaleDimanche.Size = new System.Drawing.Size(78, 20);
-            this.txtDecaleDimanche.TabIndex = 49;
+            this.txtDecaleDimanche.TabIndex = 14;
             this.txtDecaleDimanche.Values.Text = "Dimanche";
             // 
             // txtDecaleSamedi
@@ -279,7 +279,7 @@
             this.txtDecaleSamedi.Location = new System.Drawing.Point(81, 109);
             this.txtDecaleSamedi.Name = "txtDecaleSamedi";
             this.txtDecaleSamedi.Size = new System.Drawing.Size(64, 20);
-            this.txtDecaleSamedi.TabIndex = 48;
+            this.txtDecaleSamedi.TabIndex = 13;
             this.txtDecaleSamedi.Values.Text = "Samedi";
             // 
             // txtInsererOuvertureFichier
@@ -289,7 +289,7 @@
             this.txtInsererOuvertureFichier.Location = new System.Drawing.Point(15, 57);
             this.txtInsererOuvertureFichier.Name = "txtInsererOuvertureFichier";
             this.txtInsererOuvertureFichier.Size = new System.Drawing.Size(187, 20);
-            this.txtInsererOuvertureFichier.TabIndex = 47;
+            this.txtInsererOuvertureFichier.TabIndex = 12;
             this.txtInsererOuvertureFichier.Values.Text = "Insérer à l\'ouverture du fichier";
             // 
             // txtIllimite
@@ -299,7 +299,7 @@
             this.txtIllimite.Location = new System.Drawing.Point(15, 5);
             this.txtIllimite.Name = "txtIllimite";
             this.txtIllimite.Size = new System.Drawing.Size(60, 20);
-            this.txtIllimite.TabIndex = 46;
+            this.txtIllimite.TabIndex = 8;
             this.txtIllimite.Values.Text = "Illimité";
             this.txtIllimite.CheckedChanged += new System.EventHandler(this.TxtIlimete_CheckedChanged);
             // 
@@ -321,7 +321,7 @@
             0});
             this.txtRepete.Name = "txtRepete";
             this.txtRepete.Size = new System.Drawing.Size(46, 22);
-            this.txtRepete.TabIndex = 44;
+            this.txtRepete.TabIndex = 10;
             this.txtRepete.Value = new decimal(new int[] {
             1,
             0,
@@ -339,7 +339,7 @@
             this.txtTypeRepete.Location = new System.Drawing.Point(214, 30);
             this.txtTypeRepete.Name = "txtTypeRepete";
             this.txtTypeRepete.Size = new System.Drawing.Size(180, 21);
-            this.txtTypeRepete.TabIndex = 43;
+            this.txtTypeRepete.TabIndex = 11;
             this.txtTypeRepete.Text = "Mois";
             // 
             // kryptonLabel1
@@ -358,7 +358,7 @@
             this.txtDateFin.Location = new System.Drawing.Point(214, 3);
             this.txtDateFin.Name = "txtDateFin";
             this.txtDateFin.Size = new System.Drawing.Size(180, 21);
-            this.txtDateFin.TabIndex = 34;
+            this.txtDateFin.TabIndex = 9;
             // 
             // Fermer
             // 
@@ -366,7 +366,7 @@
             this.Fermer.Location = new System.Drawing.Point(227, 340);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
-            this.Fermer.TabIndex = 40;
+            this.Fermer.TabIndex = 16;
             this.Fermer.Values.Image = global::OrionBanque.Properties.Resources.cross1;
             this.Fermer.Values.Text = "";
             // 
@@ -375,7 +375,7 @@
             this.OK.Location = new System.Drawing.Point(384, 337);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
-            this.OK.TabIndex = 41;
+            this.OK.TabIndex = 17;
             this.OK.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.OK.Values.Text = "";
             this.OK.Click += new System.EventHandler(this.OK_Click);
@@ -387,7 +387,7 @@
             this.txtCategorie.Location = new System.Drawing.Point(33, 139);
             this.txtCategorie.Name = "txtCategorie";
             this.txtCategorie.Size = new System.Drawing.Size(166, 21);
-            this.txtCategorie.TabIndex = 39;
+            this.txtCategorie.TabIndex = 6;
             // 
             // txtTiers
             // 
@@ -397,7 +397,7 @@
             this.txtTiers.Location = new System.Drawing.Point(33, 112);
             this.txtTiers.Name = "txtTiers";
             this.txtTiers.Size = new System.Drawing.Size(166, 21);
-            this.txtTiers.TabIndex = 38;
+            this.txtTiers.TabIndex = 4;
             // 
             // txtMontant
             // 
@@ -410,7 +410,7 @@
             0});
             this.txtMontant.Name = "txtMontant";
             this.txtMontant.Size = new System.Drawing.Size(185, 22);
-            this.txtMontant.TabIndex = 37;
+            this.txtMontant.TabIndex = 7;
             this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
             // txtLibelle
@@ -418,7 +418,7 @@
             this.txtLibelle.Location = new System.Drawing.Point(227, 112);
             this.txtLibelle.Name = "txtLibelle";
             this.txtLibelle.Size = new System.Drawing.Size(185, 23);
-            this.txtLibelle.TabIndex = 36;
+            this.txtLibelle.TabIndex = 5;
             // 
             // txtModePaiement
             // 
@@ -427,7 +427,7 @@
             this.txtModePaiement.Location = new System.Drawing.Point(227, 85);
             this.txtModePaiement.Name = "txtModePaiement";
             this.txtModePaiement.Size = new System.Drawing.Size(185, 21);
-            this.txtModePaiement.TabIndex = 35;
+            this.txtModePaiement.TabIndex = 3;
             // 
             // EcheancierForm
             // 

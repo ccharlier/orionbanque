@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel13 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.Fermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -138,7 +138,7 @@
             this.Fermer.Location = new System.Drawing.Point(801, 522);
             this.Fermer.Name = "Fermer";
             this.Fermer.Size = new System.Drawing.Size(23, 23);
-            this.Fermer.TabIndex = 27;
+            this.Fermer.TabIndex = 15;
             this.Fermer.Values.Image = global::OrionBanque.Properties.Resources.cross1;
             this.Fermer.Values.Text = "";
             // 
@@ -154,7 +154,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(936, 494);
-            this.tabControl1.TabIndex = 30;
+            this.tabControl1.TabIndex = 17;
             // 
             // tabPage1
             // 
@@ -212,7 +212,7 @@
             -2147483648});
             this.txtSeuilAlerteFinal.Name = "txtSeuilAlerteFinal";
             this.txtSeuilAlerteFinal.Size = new System.Drawing.Size(89, 22);
-            this.txtSeuilAlerteFinal.TabIndex = 10;
+            this.txtSeuilAlerteFinal.TabIndex = 14;
             this.txtSeuilAlerteFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Montant_KeyPress);
             // 
             // kryptonLabel12
@@ -247,7 +247,7 @@
             -2147483648});
             this.txtSeuilAlerte.Name = "txtSeuilAlerte";
             this.txtSeuilAlerte.Size = new System.Drawing.Size(89, 22);
-            this.txtSeuilAlerte.TabIndex = 7;
+            this.txtSeuilAlerte.TabIndex = 13;
             this.txtSeuilAlerte.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Montant_KeyPress);
             // 
             // kryptonLabel9
@@ -279,7 +279,7 @@
             this.txtEstDansTotalCompte.Location = new System.Drawing.Point(109, 75);
             this.txtEstDansTotalCompte.Name = "txtEstDansTotalCompte";
             this.txtEstDansTotalCompte.Size = new System.Drawing.Size(213, 20);
-            this.txtEstDansTotalCompte.TabIndex = 25;
+            this.txtEstDansTotalCompte.TabIndex = 3;
             this.txtEstDansTotalCompte.Values.Text = "Afficher dans le Total des Comptes";
             // 
             // txtSoldeInitial
@@ -298,7 +298,7 @@
             -2147483648});
             this.txtSoldeInitial.Name = "txtSoldeInitial";
             this.txtSoldeInitial.Size = new System.Drawing.Size(99, 22);
-            this.txtSoldeInitial.TabIndex = 6;
+            this.txtSoldeInitial.TabIndex = 2;
             this.txtSoldeInitial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Montant_KeyPress);
             // 
             // txtLibelle
@@ -306,7 +306,7 @@
             this.txtLibelle.Location = new System.Drawing.Point(109, 10);
             this.txtLibelle.Name = "txtLibelle";
             this.txtLibelle.Size = new System.Drawing.Size(246, 23);
-            this.txtLibelle.TabIndex = 5;
+            this.txtLibelle.TabIndex = 1;
             // 
             // kryptonLabel1
             // 
@@ -356,14 +356,14 @@
             this.cbEvolType.Location = new System.Drawing.Point(142, 63);
             this.cbEvolType.Name = "cbEvolType";
             this.cbEvolType.Size = new System.Drawing.Size(213, 21);
-            this.cbEvolType.TabIndex = 23;
+            this.cbEvolType.TabIndex = 8;
             // 
             // kRBtnAutre
             // 
             this.kRBtnAutre.Location = new System.Drawing.Point(29, 65);
             this.kRBtnAutre.Name = "kRBtnAutre";
             this.kRBtnAutre.Size = new System.Drawing.Size(52, 20);
-            this.kRBtnAutre.TabIndex = 22;
+            this.kRBtnAutre.TabIndex = 7;
             this.kRBtnAutre.Values.Text = "Autre";
             this.kRBtnAutre.CheckedChanged += new System.EventHandler(this.KryptonRadioButton2_CheckedChanged);
             // 
@@ -372,7 +372,7 @@
             this.kRBtnParDate.Location = new System.Drawing.Point(29, 28);
             this.kRBtnParDate.Name = "kRBtnParDate";
             this.kRBtnParDate.Size = new System.Drawing.Size(68, 20);
-            this.kRBtnParDate.TabIndex = 21;
+            this.kRBtnParDate.TabIndex = 4;
             this.kRBtnParDate.Values.Text = "Par date";
             this.kRBtnParDate.CheckedChanged += new System.EventHandler(this.KryptonRadioButton1_CheckedChanged);
             // 
@@ -399,7 +399,7 @@
             this.txtEvolSoldMax.Location = new System.Drawing.Point(266, 26);
             this.txtEvolSoldMax.Name = "txtEvolSoldMax";
             this.txtEvolSoldMax.Size = new System.Drawing.Size(89, 21);
-            this.txtEvolSoldMax.TabIndex = 19;
+            this.txtEvolSoldMax.TabIndex = 6;
             // 
             // txtEvolSoldeMin
             // 
@@ -408,7 +408,7 @@
             this.txtEvolSoldeMin.Location = new System.Drawing.Point(142, 26);
             this.txtEvolSoldeMin.Name = "txtEvolSoldeMin";
             this.txtEvolSoldeMin.Size = new System.Drawing.Size(89, 21);
-            this.txtEvolSoldeMin.TabIndex = 18;
+            this.txtEvolSoldeMin.TabIndex = 5;
             // 
             // kRib
             // 
@@ -434,7 +434,7 @@
             this.kBanque.Location = new System.Drawing.Point(21, 11);
             this.kBanque.Name = "kBanque";
             this.kBanque.Size = new System.Drawing.Size(69, 23);
-            this.kBanque.TabIndex = 1;
+            this.kBanque.TabIndex = 9;
             // 
             // kryptonLabel6
             // 
@@ -450,7 +450,7 @@
             this.kGuichet.Location = new System.Drawing.Point(96, 11);
             this.kGuichet.Name = "kGuichet";
             this.kGuichet.Size = new System.Drawing.Size(69, 23);
-            this.kGuichet.TabIndex = 2;
+            this.kGuichet.TabIndex = 10;
             // 
             // kryptonLabel5
             // 
@@ -466,7 +466,7 @@
             this.kCompte.Location = new System.Drawing.Point(168, 11);
             this.kCompte.Name = "kCompte";
             this.kCompte.Size = new System.Drawing.Size(165, 23);
-            this.kCompte.TabIndex = 3;
+            this.kCompte.TabIndex = 11;
             // 
             // kryptonLabel4
             // 
@@ -482,7 +482,7 @@
             this.kClef.Location = new System.Drawing.Point(339, 11);
             this.kClef.Name = "kClef";
             this.kClef.Size = new System.Drawing.Size(37, 23);
-            this.kClef.TabIndex = 4;
+            this.kClef.TabIndex = 12;
             // 
             // kryptonLabel3
             // 
@@ -528,8 +528,8 @@
             // 
             // dgvOperations
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvOperations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -635,7 +635,7 @@
             this.OK.Location = new System.Drawing.Point(925, 522);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(23, 23);
-            this.OK.TabIndex = 28;
+            this.OK.TabIndex = 16;
             this.OK.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.OK.Values.Text = "";
             this.OK.Click += new System.EventHandler(this.OK_Click);

@@ -100,7 +100,7 @@
             this.kBtnValidTiers.Location = new System.Drawing.Point(296, 46);
             this.kBtnValidTiers.Name = "kBtnValidTiers";
             this.kBtnValidTiers.Size = new System.Drawing.Size(23, 23);
-            this.kBtnValidTiers.TabIndex = 42;
+            this.kBtnValidTiers.TabIndex = 6;
             this.kBtnValidTiers.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.kBtnValidTiers.Values.Text = "";
             this.kBtnValidTiers.Click += new System.EventHandler(this.kBtnValidTiers_Click);
@@ -113,7 +113,7 @@
             this.kCbTiersVers.Location = new System.Drawing.Point(115, 46);
             this.kCbTiersVers.Name = "kCbTiersVers";
             this.kCbTiersVers.Size = new System.Drawing.Size(166, 21);
-            this.kCbTiersVers.TabIndex = 41;
+            this.kCbTiersVers.TabIndex = 5;
             // 
             // kCbTiersDe
             // 
@@ -122,7 +122,7 @@
             this.kCbTiersDe.Location = new System.Drawing.Point(115, 19);
             this.kCbTiersDe.Name = "kCbTiersDe";
             this.kCbTiersDe.Size = new System.Drawing.Size(166, 21);
-            this.kCbTiersDe.TabIndex = 40;
+            this.kCbTiersDe.TabIndex = 4;
             // 
             // kryptonLabel3
             // 
@@ -162,7 +162,7 @@
             this.btnValidCat.Location = new System.Drawing.Point(296, 46);
             this.btnValidCat.Name = "btnValidCat";
             this.btnValidCat.Size = new System.Drawing.Size(23, 23);
-            this.btnValidCat.TabIndex = 42;
+            this.btnValidCat.TabIndex = 3;
             this.btnValidCat.Values.Image = global::OrionBanque.Properties.Resources.accept1;
             this.btnValidCat.Values.Text = "";
             this.btnValidCat.Click += new System.EventHandler(this.BtnValidCat_Click);
@@ -174,7 +174,7 @@
             this.txtCategorieDest.Location = new System.Drawing.Point(115, 46);
             this.txtCategorieDest.Name = "txtCategorieDest";
             this.txtCategorieDest.Size = new System.Drawing.Size(166, 21);
-            this.txtCategorieDest.TabIndex = 41;
+            this.txtCategorieDest.TabIndex = 2;
             // 
             // txtCategorieOri
             // 
@@ -183,7 +183,7 @@
             this.txtCategorieOri.Location = new System.Drawing.Point(115, 19);
             this.txtCategorieOri.Name = "txtCategorieOri";
             this.txtCategorieOri.Size = new System.Drawing.Size(166, 21);
-            this.txtCategorieOri.TabIndex = 40;
+            this.txtCategorieOri.TabIndex = 1;
             // 
             // kryptonLabel2
             // 

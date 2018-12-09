@@ -106,7 +106,7 @@
             this.kLBCompte.Location = new System.Drawing.Point(0, 0);
             this.kLBCompte.Name = "kLBCompte";
             this.kLBCompte.Size = new System.Drawing.Size(247, 279);
-            this.kLBCompte.TabIndex = 0;
+            this.kLBCompte.TabIndex = 1;
             this.kLBCompte.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.kLBCompte_ItemCheck);
             // 
             // TotalComptesForm
