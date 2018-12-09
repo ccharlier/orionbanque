@@ -50,12 +50,9 @@ namespace OrionBanque
 
                 EcheanciersGestForm ec = new EcheanciersGestForm(uA);
                 ec.ShowDialog();
-
-                Compte c = GetCompteCourant();
-                ChargesIndicateurs(c);
-                ChargeOperations(c);
-
-                tsSave.Enabled = true;
+                ChargesIndicateurs(GetCompteCourant());
+                ChargeOperations(GetCompteCourant());
+                ActiveSauvegarde();
             }
             catch (Exception ex)
             {
@@ -69,7 +66,7 @@ namespace OrionBanque
         {
             UtilisateurForm um = new UtilisateurForm(uA);
             um.ShowDialog();
-            tsSave.Enabled = true;
+            ActiveSauvegarde();
         }
         #endregion
 
@@ -81,14 +78,7 @@ namespace OrionBanque
 
         private void ChangeCouleur(Label l, double montant)
         {
-            if (montant > 0)
-            {
-                l.ForeColor = Color.DarkGreen;
-            }
-            else
-            {
-                l.ForeColor = Color.Red;
-            }
+            l.ForeColor = montant > 0 ? Color.DarkGreen : Color.Red;
         }
 
         private void ChangeAlerte(PictureBox picbox, double montant, double seuil)
@@ -133,11 +123,9 @@ namespace OrionBanque
         {
             try
             {
-                List<Compte> lc = Compte.ChargeTout(uA);
                 cbCompte.DisplayMember = "Libelle";
                 cbCompte.ValueMember = "Id";
-
-                cbCompte.DataSource = lc;
+                cbCompte.DataSource = Compte.ChargeTout(uA);
             }
             catch (Exception ex)
             {
@@ -194,9 +182,9 @@ namespace OrionBanque
         {
             CompteForm ca = new CompteForm(uA);
             ca.ShowDialog();
-            tsSave.Enabled = true;
             if (ca.cont)
             {
+                ActiveSauvegarde();
                 ChargeComboCompte();
             }
         }
@@ -215,9 +203,8 @@ namespace OrionBanque
                 if (cm.cont)
                 {
                     ChargeComboCompte();
+                    ActiveSauvegarde();
                 }
-
-                tsSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -241,7 +228,7 @@ namespace OrionBanque
                     lblSoldPoint.Text = new double().ToString("#0.00");
                     lblAVenir.Text = new double().ToString("#0.00");
                     lblSoldFinal.Text = new double().ToString("#0.00");
-                    tsSave.Enabled = true;
+                    ActiveSauvegarde();
                 }
             }
             catch (Exception ex)
@@ -256,7 +243,7 @@ namespace OrionBanque
             f.ShowDialog();
             if(f.cont)
             {
-                tsSave.Enabled = true;
+                ActiveSauvegarde();
             }
         }
 
@@ -323,39 +310,12 @@ namespace OrionBanque
 
         private void DgvOperations_DoubleClick(object sender, EventArgs e)
         {
-            ModifierOperation();
+            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
         }
 
         private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ModifierOperation();
-        }
-
-        private void ModifierOperation()
-        {
-            try
-            {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
-                OperationForm om = new OperationForm(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), GetCompteCourant(), KEY.MODE_UPDATE);
-                om.ShowDialog();
-
-                if(om.cont)
-                {
-                    Compte c = GetCompteCourant();
-                    ChargeOperations(c);
-                    ChargesIndicateurs(c);
-                    tsSave.Enabled = true;
-                }
-                RemplisCb();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
         }
 
         private void SupprimerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -378,7 +338,7 @@ namespace OrionBanque
                             dgvOperations.Rows.RemoveAt(row.Index);
                         }
                         ChargesIndicateurs(GetCompteCourant());
-                        tsSave.Enabled = true;
+                        ActiveSauvegarde();
                     }
                     catch (Exception ex)
                     {
@@ -413,28 +373,27 @@ namespace OrionBanque
             }
         }
 
-        private void AjouterOperation()
+        private void OuvreFormOperation(Operation o, string mode)
         {
             try
             {
-                if(cbCompte.Items.Count == 0)
+                if (cbCompte.Items.Count == 0)
                 {
                     throw new Exception(erreurPasDeCompteCree);
                 }
 
-                OperationForm of = new OperationForm(new Operation(), GetCompteCourant(), KEY.MODE_INSERT);
-                of.ShowDialog();
+                OperationForm om = new OperationForm(o, GetCompteCourant(), mode);
+                om.ShowDialog();
 
-                if(of.cont)
+                if (om.cont)
                 {
-                    Compte c = GetCompteCourant();
-                    ChargesIndicateurs(c);
-                    ChargeOperations(c);
-                    tsSave.Enabled = true;
+                    ChargeOperations(GetCompteCourant());
+                    ChargesIndicateurs(GetCompteCourant());
+                    ActiveSauvegarde();
                 }
                 RemplisCb();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -442,17 +401,17 @@ namespace OrionBanque
 
         private void AjouterToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            AjouterOperation();
+            OuvreFormOperation(new Operation(), KEY.MODE_INSERT);
         }
 
         private void AjouterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AjouterOperation();
+            OuvreFormOperation(new Operation(), KEY.MODE_INSERT);
         }
 
         private void ModifierToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            ModifierOperation();
+            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
         }
 
         private void SupprimerToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -485,7 +444,7 @@ namespace OrionBanque
                 Compte c = GetCompteCourant();
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
-                tsSave.Enabled = true;
+                ActiveSauvegarde();
                 RemplisCb();
             }
             catch (Exception ex)
@@ -501,8 +460,7 @@ namespace OrionBanque
 
         private void LancePointage()
         {
-            DataGridViewSelectedRowCollection liste = dgvOperations.SelectedRows;
-            foreach(DataGridViewRow row in liste)
+            foreach(DataGridViewRow row in dgvOperations.SelectedRows)
             {
                 Operation otemp = Operation.Charge((int)row.Cells["Id"].Value);
                 if(otemp.DatePointage is null)
@@ -512,10 +470,10 @@ namespace OrionBanque
                     row.Cells["DatePointage"].Value = DateTime.Now;
                 }
             }
-            if(liste.Count != 0)
+            if(dgvOperations.SelectedRows.Count != 0)
             {
                 ChargesIndicateurs(GetCompteCourant());
-                tsSave.Enabled = true;
+                ActiveSauvegarde();
             }
         }
 
@@ -533,7 +491,7 @@ namespace OrionBanque
 
                 if (OMG.cont)
                 {
-                    tsSave.Enabled = true;
+                    ActiveSauvegarde();
                 }
             }
             catch (Exception ex)
@@ -618,7 +576,8 @@ namespace OrionBanque
                         MaxGraphSold = DateTime.Now,
                         SeuilAlerte = 0.0,
                         SeuilAlerteFinal = 0.0,
-                        TypEvol = KEY.COMPTE_VISU_6MOIS
+                        TypEvol = KEY.COMPTE_VISU_6MOIS,
+                        EstDansTotalCompte = true
                     };
                     cT = Compte.Sauve(cT);
                 }
@@ -627,7 +586,7 @@ namespace OrionBanque
                 {
                     Outils.ImportBP.Lance(Path.GetDirectoryName(OFDImport.FileName), Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
                     ChargeComboCompte();
-                    tsSave.Enabled = true;
+                    ActiveSauvegarde();
                 }
                 Cursor = Cursors.Default;
             }
@@ -683,22 +642,18 @@ namespace OrionBanque
 
         private Operation CreateOperation(Compte c)
         {
-            Operation o = new Operation();
-            o.Compte = c;
-            o.Date = txtOperationDate.Value;
-            o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
-            o.Libelle = txtOperationLibelle.Text;
-            o.Tiers = txtOperationTiers.Text;
-            o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
-            o.Montant = double.Parse(txtOperationMontant.Value.ToString());
-            if (txtOperationPointage.Checked)
+            Operation o = new Operation
             {
-                o.DatePointage = DateTime.Now;
-            }
-            else
-            {
-                o.DatePointage = null;
-            }
+                Compte = c,
+                Date = txtOperationDate.Value,
+                Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue),
+                Libelle = txtOperationLibelle.Text,
+                Tiers = txtOperationTiers.Text,
+                ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue),
+                Montant = double.Parse(txtOperationMontant.Value.ToString()),
+                DatePointage = txtOperationPointage.Checked ? (DateTime?)DateTime.Now : null
+            };
+            
             return Operation.Sauve(o);
         }
 
@@ -728,20 +683,11 @@ namespace OrionBanque
 
         private void btnOperationValide_MouseDown(object sender, MouseEventArgs e)
         {
-            Compte c = GetCompteCourant();
-            Operation o;
-            if (e.Button == MouseButtons.Right)
-            {
-                o = ModifieOperation(c);
-            }
-            else
-            {
-                o = CreateOperation(c);
-            }
-            ChargesIndicateurs(c);
-            ChargeOperations(c);
+            Operation o = e.Button == MouseButtons.Right ? ModifieOperation(c) : CreateOperation(c);
+            ChargesIndicateurs(GetCompteCourant());
+            ChargeOperations(GetCompteCourant());
             SelectRowOperation(o.Id);
-            tsSave.Enabled = true;
+            ActiveSauvegarde();
             ActiveControl = txtOperationDate;
         }
 
@@ -756,7 +702,7 @@ namespace OrionBanque
         {
             ModePaiementForm mp = new ModePaiementForm();
             mp.ShowDialog();
-            tsSave.Enabled = true;
+            ActiveSauvegarde();
             RemplisModePaiements();
         }
 
@@ -764,7 +710,7 @@ namespace OrionBanque
         {
             CategoriesForm c = new CategoriesForm();
             c.ShowDialog();
-            tsSave.Enabled = true;
+            ActiveSauvegarde();
             RemplisCategories();
         }
 
@@ -779,15 +725,13 @@ namespace OrionBanque
         {
             try
             {
-                List<ModePaiement> lmp = ModePaiement.ChargeTout();
                 txtFiltreModePaiement.DisplayMember = "Libelle";
                 txtFiltreModePaiement.ValueMember = "Id";
-                txtFiltreModePaiement.DataSource = lmp;
-
-                List<ModePaiement> lmp2 = ModePaiement.ChargeTout();
+                txtFiltreModePaiement.DataSource = ModePaiement.ChargeTout();
+                
                 txtOperationModePaiement.DisplayMember = "Libelle";
                 txtOperationModePaiement.ValueMember = "Id";
-                txtOperationModePaiement.DataSource = lmp;
+                txtOperationModePaiement.DataSource = ModePaiement.ChargeTout();
             }
             catch (Exception ex)
             {
@@ -799,15 +743,13 @@ namespace OrionBanque
         {
             try
             {
-                List<Categorie> lc = Categorie.ChargeToutIdent();
                 txtFiltreCategorie.DisplayMember = "LibelleIdent";
                 txtFiltreCategorie.ValueMember = "Id";
-                txtFiltreCategorie.DataSource = lc;
-
-                List<Categorie> lc2 = Categorie.ChargeToutIdent();
+                txtFiltreCategorie.DataSource = Categorie.ChargeToutIdent();
+                
                 txtOperationCategorie.DisplayMember = "LibelleIdent";
                 txtOperationCategorie.ValueMember = "Id";
-                txtOperationCategorie.DataSource = lc2;
+                txtOperationCategorie.DataSource = Categorie.ChargeToutIdent();
             }
             catch (Exception ex)
             {
@@ -837,7 +779,7 @@ namespace OrionBanque
             gtf.ShowDialog();
             if (gtf.bMustSave)
             {
-                tsSave.Enabled = true;
+                ActiveSauvegarde();
             }
             RemplisTiers();
         }
@@ -887,9 +829,8 @@ namespace OrionBanque
             graph.Series[0].Points.Clear();
             do
             {
-                double dTemp = Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial;
                 ldt.Add(dMin);
-                ld.Add(dTemp);
+                ld.Add(Operation.SoldeCompteAt(dMin, c) + c.SoldeInitial);
                 dMin = dMin.AddDays(1.0);
             }
             while (dMin <= txtEvolSoldMax.Value);
@@ -937,7 +878,7 @@ namespace OrionBanque
             OB ob = (OB)CallContext.GetData(KEY.OB);
             ob.Theme = theme;
             CallContext.SetData(KEY.OB, ob);
-            tsSave.Enabled = true;
+            ActiveSauvegarde();
             AppliqueTheme();
         }
 
@@ -986,7 +927,7 @@ namespace OrionBanque
         private void LanceSauvegarde()
         {
             Outils.GestionFichier.Sauvegarde();
-            tsSave.Enabled = false;
+            ActiveSauvegarde(false);
         }
         #endregion
 
@@ -1037,6 +978,11 @@ namespace OrionBanque
         {
             FichiersForm ff = new FichiersForm();
             ff.ShowDialog();
+        }
+
+        private void ActiveSauvegarde(bool etat=true)
+        {
+            tsSave.Enabled = etat;
         }
     }
 }
