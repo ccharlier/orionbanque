@@ -683,7 +683,7 @@ namespace OrionBanque
 
         private void btnOperationValide_MouseDown(object sender, MouseEventArgs e)
         {
-            Operation o = e.Button == MouseButtons.Right ? ModifieOperation(c) : CreateOperation(c);
+            Operation o = e.Button == MouseButtons.Right ? ModifieOperation(GetCompteCourant()) : CreateOperation(GetCompteCourant());
             ChargesIndicateurs(GetCompteCourant());
             ChargeOperations(GetCompteCourant());
             SelectRowOperation(o.Id);
