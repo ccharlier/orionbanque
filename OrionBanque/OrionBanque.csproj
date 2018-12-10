@@ -547,7 +547,6 @@
     <None Include="Resources\coins1.png" />
     <None Include="Resources\table1.png" />
     <None Include="Resources\error1.png" />
-    <Content Include="Changement.txt" />
     <None Include="Resources\bullet_add_1.png" />
     <None Include="Resources\page_white_text.png" />
     <Content Include="License-LGPL.txt" />
