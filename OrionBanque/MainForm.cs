@@ -23,7 +23,6 @@ namespace OrionBanque
         {
             uA = u;
             InitializeComponent();
-            tsDateJour.Text = " : " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
 
             ApresConnexion();
         }
@@ -43,13 +42,8 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
-                EcheanciersGestForm ec = new EcheanciersGestForm(uA);
-                ec.ShowDialog();
+                TestPasDeCompte();
+                new EcheanciersGestForm(uA).ShowDialog();
                 ChargesIndicateurs(GetCompteCourant());
                 ChargeOperations(GetCompteCourant());
                 ActiveSauvegarde();
@@ -64,13 +58,20 @@ namespace OrionBanque
         #region Utilisateurs
         private void TsModUser_Click(object sender, EventArgs e)
         {
-            UtilisateurForm um = new UtilisateurForm(uA);
-            um.ShowDialog();
+            new UtilisateurForm(uA).ShowDialog();
             ActiveSauvegarde();
         }
         #endregion
 
         #region Comptes
+        private void TestPasDeCompte()
+        {
+            if (cbCompte.Items.Count == 0)
+            {
+                throw new Exception(erreurPasDeCompteCree);
+            }
+        }
+
         private Compte GetCompteCourant()
         {
             return Compte.Charge((int)cbCompte.SelectedValue);
@@ -123,8 +124,6 @@ namespace OrionBanque
         {
             try
             {
-                cbCompte.DisplayMember = "Libelle";
-                cbCompte.ValueMember = "Id";
                 cbCompte.DataSource = Compte.ChargeTout(uA);
             }
             catch (Exception ex)
@@ -193,11 +192,7 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
+                TestPasDeCompte();
                 CompteForm cm = new CompteForm(GetCompteCourant());
                 cm.ShowDialog();
                 if (cm.cont)
@@ -216,11 +211,7 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
+                TestPasDeCompte();
                 if (MessageBox.Show(alerteSuppressionCompte, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Compte.Delete(GetCompteCourant());
@@ -275,7 +266,6 @@ namespace OrionBanque
             kFiltreCategorie.Checked = false;
             kFiltreMontant.Checked = false;
             txtFiltrePointe.Checked = false;
-
             try
             {
                 dgvOperations.DataSource = Operation.ChargeGrilleOperation(c);
@@ -378,14 +368,9 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
+                TestPasDeCompte();
                 OperationForm om = new OperationForm(o, GetCompteCourant(), mode);
                 om.ShowDialog();
-
                 if (om.cont)
                 {
                     ChargeOperations(GetCompteCourant());
@@ -434,14 +419,8 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
-                VirementCaCForm oa = new VirementCaCForm(uA);
-                oa.ShowDialog();
-
+                TestPasDeCompte();
+                new VirementCaCForm(uA).ShowDialog();
                 Compte c = GetCompteCourant();
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
@@ -482,11 +461,7 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-
+                TestPasDeCompte();
                 OperationMajGroupeForm OMG = new OperationMajGroupeForm(GetCompteCourant());
                 OMG.ShowDialog();
 
@@ -701,16 +676,14 @@ namespace OrionBanque
         #region CB
         private void ModeDePaiementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ModePaiementForm mp = new ModePaiementForm();
-            mp.ShowDialog();
+            new ModePaiementForm().ShowDialog();
             ActiveSauvegarde();
             RemplisModePaiements();
         }
 
         private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CategoriesForm c = new CategoriesForm();
-            c.ShowDialog();
+            new CategoriesForm().ShowDialog();
             ActiveSauvegarde();
             RemplisCategories();
         }
@@ -726,12 +699,7 @@ namespace OrionBanque
         {
             try
             {
-                txtFiltreModePaiement.DisplayMember = "Libelle";
-                txtFiltreModePaiement.ValueMember = "Id";
                 txtFiltreModePaiement.DataSource = ModePaiement.ChargeTout();
-                
-                txtOperationModePaiement.DisplayMember = "Libelle";
-                txtOperationModePaiement.ValueMember = "Id";
                 txtOperationModePaiement.DataSource = ModePaiement.ChargeTout();
             }
             catch (Exception ex)
@@ -744,12 +712,7 @@ namespace OrionBanque
         {
             try
             {
-                txtFiltreCategorie.DisplayMember = "LibelleIdent";
-                txtFiltreCategorie.ValueMember = "Id";
                 txtFiltreCategorie.DataSource = Categorie.ChargeToutIdent();
-                
-                txtOperationCategorie.DisplayMember = "LibelleIdent";
-                txtOperationCategorie.ValueMember = "Id";
                 txtOperationCategorie.DataSource = Categorie.ChargeToutIdent();
             }
             catch (Exception ex)
@@ -762,11 +725,9 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.SelectedValue != null)
-                {
-                    txtFiltreTiers.DataSource = Tiers.ChargeTout();
-                    txtOperationTiers.DataSource = Tiers.ChargeTout();
-                }
+                TestPasDeCompte();
+                txtFiltreTiers.DataSource = Tiers.ChargeTout();
+                txtOperationTiers.DataSource = Tiers.ChargeTout();
             }
             catch (Exception ex)
             {
@@ -791,12 +752,8 @@ namespace OrionBanque
         {
             try
             {
-                if (cbCompte.Items.Count == 0)
-                {
-                    throw new Exception(erreurPasDeCompteCree);
-                }
-                ChartForm cf = new ChartForm(GetCompteCourant());
-                cf.ShowDialog();
+                TestPasDeCompte();
+                new ChartForm(GetCompteCourant()).ShowDialog();
             }
             catch (Exception ex)
             {
@@ -930,6 +887,11 @@ namespace OrionBanque
             Outils.GestionFichier.Sauvegarde();
             ActiveSauvegarde(false);
         }
+
+        private void ActiveSauvegarde(bool etat = true)
+        {
+            tsSave.Enabled = etat;
+        }
         #endregion
 
         private void ApresConnexion()
@@ -937,6 +899,7 @@ namespace OrionBanque
             AppliqueTheme();
             ChargeComboCompte();
 
+            tsDateJour.Text = " : " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
             tsUser.Text = " : " + uA.Login;
             cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];
             cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
@@ -944,8 +907,7 @@ namespace OrionBanque
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutBoxForm f = new AboutBoxForm();
-            f.ShowDialog();
+            new AboutBoxForm().ShowDialog();
         }
 
         private void TsBtnConnection_Click(object sender, EventArgs e)
@@ -977,13 +939,7 @@ namespace OrionBanque
 
         private void visualisationDesFichiersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FichiersForm ff = new FichiersForm();
-            ff.ShowDialog();
-        }
-
-        private void ActiveSauvegarde(bool etat=true)
-        {
-            tsSave.Enabled = etat;
+            new FichiersForm().ShowDialog();
         }
     }
 }

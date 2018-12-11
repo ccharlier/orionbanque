@@ -859,12 +859,14 @@
             // 
             this.cbCompte.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCompte.DisplayMember = "Libelle";
             this.cbCompte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCompte.DropDownWidth = 121;
             this.cbCompte.Location = new System.Drawing.Point(52, 13);
             this.cbCompte.Name = "cbCompte";
             this.cbCompte.Size = new System.Drawing.Size(161, 21);
             this.cbCompte.TabIndex = 37;
+            this.cbCompte.ValueMember = "Id";
             this.cbCompte.SelectedIndexChanged += new System.EventHandler(this.CbCompte_SelectedIndexChanged);
             // 
             // lblSoldFinal
@@ -1009,12 +1011,14 @@
             // 
             // txtFiltreCategorie
             // 
+            this.txtFiltreCategorie.DisplayMember = "LibelleIdent";
             this.txtFiltreCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtFiltreCategorie.DropDownWidth = 300;
             this.txtFiltreCategorie.Location = new System.Drawing.Point(501, 10);
             this.txtFiltreCategorie.Name = "txtFiltreCategorie";
             this.txtFiltreCategorie.Size = new System.Drawing.Size(96, 21);
             this.txtFiltreCategorie.TabIndex = 9;
+            this.txtFiltreCategorie.ValueMember = "Id";
             // 
             // txtFiltreMontant
             // 
@@ -1037,12 +1041,14 @@
             // 
             // txtFiltreModePaiement
             // 
+            this.txtFiltreModePaiement.DisplayMember = "Libelle";
             this.txtFiltreModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtFiltreModePaiement.DropDownWidth = 185;
             this.txtFiltreModePaiement.Location = new System.Drawing.Point(214, 10);
             this.txtFiltreModePaiement.Name = "txtFiltreModePaiement";
             this.txtFiltreModePaiement.Size = new System.Drawing.Size(108, 21);
             this.txtFiltreModePaiement.TabIndex = 5;
+            this.txtFiltreModePaiement.ValueMember = "Id";
             // 
             // txtFiltreTiers
             // 
@@ -1240,12 +1246,14 @@
             // 
             // txtOperationCategorie
             // 
+            this.txtOperationCategorie.DisplayMember = "LibelleIdent";
             this.txtOperationCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtOperationCategorie.DropDownWidth = 166;
             this.txtOperationCategorie.Location = new System.Drawing.Point(452, 18);
             this.txtOperationCategorie.Name = "txtOperationCategorie";
             this.txtOperationCategorie.Size = new System.Drawing.Size(153, 21);
             this.txtOperationCategorie.TabIndex = 31;
+            this.txtOperationCategorie.ValueMember = "Id";
             // 
             // txtOperationMontant
             // 
@@ -1325,12 +1333,14 @@
             // 
             // txtOperationModePaiement
             // 
+            this.txtOperationModePaiement.DisplayMember = "Libelle";
             this.txtOperationModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtOperationModePaiement.DropDownWidth = 185;
             this.txtOperationModePaiement.Location = new System.Drawing.Point(159, 18);
             this.txtOperationModePaiement.Name = "txtOperationModePaiement";
             this.txtOperationModePaiement.Size = new System.Drawing.Size(115, 21);
             this.txtOperationModePaiement.TabIndex = 29;
+            this.txtOperationModePaiement.ValueMember = "Id";
             // 
             // pictureBox1
             // 
