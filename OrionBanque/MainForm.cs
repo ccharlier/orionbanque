@@ -14,7 +14,7 @@ namespace OrionBanque
     {
         Utilisateur uA;
         string alerteEnregistrement = "Fichier Sauvegardé sous {0}";
-        string alerteSuppressionCompte = "Etes-vous sur de supprimer ce Compte ? (plus aucun accès aux comptes ne sera possible)";
+        string alerteSuppressionCompte = "Etes-vous sur de supprimer ce Compte ? (plus aucun accès au compte ne sera possible)";
         string alerteSuppressionOperations = "Etes-vous sur de vouloir supprimer les Opérations sélectionnées ?";
         string alerteSuppressionOperation = "Etes-vous sur de vouloir supprimer l'Opérations sélectionnée ?";
         string erreurPasDeCompteCree = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
@@ -224,10 +224,11 @@ namespace OrionBanque
                 if (MessageBox.Show(alerteSuppressionCompte, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Compte.Delete(GetCompteCourant());
+                    dgvOperations.DataSource = null;
+                    lblSoldPoint.Text = new double().ToString("#0.00") + " €";
+                    lblAVenir.Text = new double().ToString("#0.00") + " €";
+                    lblSoldFinal.Text = new double().ToString("#0.00") + " €";
                     ChargeComboCompte();
-                    lblSoldPoint.Text = new double().ToString("#0.00");
-                    lblAVenir.Text = new double().ToString("#0.00");
-                    lblSoldFinal.Text = new double().ToString("#0.00");
                     ActiveSauvegarde();
                 }
             }
