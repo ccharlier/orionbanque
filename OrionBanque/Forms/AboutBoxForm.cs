@@ -39,7 +39,7 @@ namespace OrionBanque.Forms
         {
             get
             {
-                return "1.0.2.3-Beta";
+                return "1.1.0.0-Beta";
             }
         }
 
@@ -48,7 +48,7 @@ namespace OrionBanque.Forms
             get
             {
                 return "OrionBanque  - Logiciel de gestion bancaire." + Environment.NewLine +
-                  "Copyright (C) 2011 Cyril Charlier — Tous droits réservés." + Environment.NewLine +
+                  "Copyright (C) 2018 Cyril Charlier — Tous droits réservés." + Environment.NewLine +
                   "Pour me contacter : cyril.charlier+orionbanque@gmail.com" + Environment.NewLine +
                   "Site : http://www.orionbanque.fr/" + Environment.NewLine +
                   "" + Environment.NewLine +
