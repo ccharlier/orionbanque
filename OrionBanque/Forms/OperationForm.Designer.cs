@@ -53,6 +53,7 @@
             this.txtCategorie = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.txtTiers = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.OFDImport = new System.Windows.Forms.OpenFileDialog();
+            this.kBtnValidStayOpen = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -91,9 +92,9 @@
             // Fermer
             // 
             this.Fermer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Fermer.Location = new System.Drawing.Point(210, 467);
+            this.Fermer.Location = new System.Drawing.Point(17, 467);
             this.Fermer.Name = "Fermer";
-            this.Fermer.Size = new System.Drawing.Size(23, 23);
+            this.Fermer.Size = new System.Drawing.Size(23, 24);
             this.Fermer.TabIndex = 10;
             this.toolTip1.SetToolTip(this.Fermer, "Fermer la fenêtre sans enregistrer");
             this.Fermer.Values.Image = global::OrionBanque.Properties.Resources.cross1;
@@ -103,7 +104,7 @@
             // 
             this.OK.Location = new System.Drawing.Point(356, 467);
             this.OK.Name = "OK";
-            this.OK.Size = new System.Drawing.Size(23, 23);
+            this.OK.Size = new System.Drawing.Size(23, 24);
             this.OK.TabIndex = 11;
             this.toolTip1.SetToolTip(this.OK, "Valider l\'opération courante");
             this.OK.Values.Image = global::OrionBanque.Properties.Resources.accept1;
@@ -202,6 +203,7 @@
             // 
             // kryptonPanel1
             // 
+            this.kryptonPanel1.Controls.Add(this.kBtnValidStayOpen);
             this.kryptonPanel1.Controls.Add(this.pictureBox1);
             this.kryptonPanel1.Controls.Add(this.txtPointage);
             this.kryptonPanel1.Controls.Add(this.btlDeleteFile);
@@ -334,6 +336,16 @@
             // 
             this.OFDImport.Title = "Fichier d\'Opérations à importer";
             // 
+            // kBtnValidStayOpen
+            // 
+            this.kBtnValidStayOpen.Location = new System.Drawing.Point(119, 467);
+            this.kBtnValidStayOpen.Name = "kBtnValidStayOpen";
+            this.kBtnValidStayOpen.Size = new System.Drawing.Size(231, 24);
+            this.kBtnValidStayOpen.TabIndex = 33;
+            this.toolTip1.SetToolTip(this.kBtnValidStayOpen, "Valider l\'opération courante et en saisir une nouvelle");
+            this.kBtnValidStayOpen.Values.Text = "Valider et saisir une nouvelle Opération";
+            this.kBtnValidStayOpen.Click += new System.EventHandler(this.kBtnValidStayOpen_Click);
+            // 
             // OperationForm
             // 
             this.AcceptButton = this.OK;
@@ -394,5 +406,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvFichiers;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddFichier;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btlDeleteFile;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kBtnValidStayOpen;
     }
 }

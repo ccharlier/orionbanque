@@ -119,6 +119,12 @@ namespace OrionBanque.Forms
 
         private void OK_Click(object sender, EventArgs e)
         {
+            Sauvegarde();
+            Close();
+        }
+
+        private void Sauvegarde()
+        {
             if (O.Id != 0)
             {
                 try
@@ -141,7 +147,6 @@ namespace OrionBanque.Forms
 
                     Operation.Maj(O);
                     cont = true;
-                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -174,7 +179,6 @@ namespace OrionBanque.Forms
 
                     Operation.Sauve(o);
                     cont = true;
-                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -289,6 +293,21 @@ namespace OrionBanque.Forms
             {
                 e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
             }
+        }
+
+        private void kBtnValidStayOpen_Click(object sender, EventArgs e)
+        {
+            Sauvegarde();
+            mode = KEY.MODE_INSERT;
+            O = new Operation();
+
+            txtLibelle.Text = string.Empty;
+            txtMontant.Value = new decimal(0.0);
+            txtTiers.Text = string.Empty;
+            ActiveControl = txtDateMvt;
+            dgvFichiers.DataSource = null;
+            dgvFichiers.Enabled = false;
+            btnAddFichier.Enabled = false;
         }
     }
 }
