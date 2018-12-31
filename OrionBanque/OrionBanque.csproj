@@ -182,6 +182,7 @@
     <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -304,6 +305,12 @@
     <Compile Include="Forms\GestTiersForm.Designer.cs">
       <DependentUpon>GestTiersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ImportFichierCSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImportFichierCSV.Designer.cs">
+      <DependentUpon>ImportFichierCSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\OperationMajGroupeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,11 +347,11 @@
     <Compile Include="Forms\VirementCaCForm.Designer.cs">
       <DependentUpon>VirementCaCForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="MainFormRub.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MainFormRub.Designer.cs">
+      <DependentUpon>MainFormRub.cs</DependentUpon>
     </Compile>
     <Compile Include="Outils\GestionFichier.cs" />
     <Compile Include="Outils\ImportBP.cs" />
@@ -381,6 +388,9 @@
     <EmbeddedResource Include="Forms\GestTiersForm.resx">
       <DependentUpon>GestTiersForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImportFichierCSV.resx">
+      <DependentUpon>ImportFichierCSV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModePaiementForm.resx">
       <DependentUpon>ModePaiementForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -399,8 +409,8 @@
     <EmbeddedResource Include="Forms\VirementCaCForm.resx">
       <DependentUpon>VirementCaCForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainFormRub.resx">
+      <DependentUpon>MainFormRub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -550,7 +560,6 @@
     <None Include="Resources\bullet_add_1.png" />
     <None Include="Resources\page_white_text.png" />
     <Content Include="License-LGPL.txt" />
-    <Content Include="log4net.xml" />
     <None Include="Resources\tag.png" />
     <None Include="Resources\disk.png" />
     <None Include="Resources\lightbulb.png" />
@@ -574,6 +583,9 @@
     <None Include="Resources\arrow-curve-000-left.png" />
     <None Include="Resources\arrow-curve-180.png" />
     <None Include="Resources\document-copy.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\paint-can.png" />
+    <None Include="Resources\information-balloon.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

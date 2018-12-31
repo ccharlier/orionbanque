@@ -2,6 +2,11 @@ namespace OrionBanque.Classe
 {
     public class KEY
     {
+        public const string ALERTE_SUPPRESSION_COMPTE = "Etes-vous sur de supprimer ce Compte ? (plus aucun accès au compte ne sera possible)";
+        public const string ALERTE_ENREGISTREMENT = "Fichier Sauvegardé sous {0}";
+        public const string ALERTE_SUPPRESSION_OPERATIONS = "Etes-vous sur de vouloir supprimer les Opérations sélectionnées ?";
+        public const string ALERTE_SUPPRESSION_OPERATION = "Etes-vous sur de vouloir supprimer l'Opérations sélectionnée ?";
+        public const string ERREUR_PAS_DE_COMPTE_CREE = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
         public const string CLE_FICHIER = "CLE_FICHIER";
         public const string MODE_UPDATE = "UPDATE";
         public const string MODE_INSERT = "INSERT";

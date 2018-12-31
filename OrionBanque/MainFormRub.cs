@@ -1,25 +1,22 @@
-using OrionBanque.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
-using OrionBanque.Classe;
 using System.Runtime.Remoting.Messaging;
+using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
+using OrionBanque.Classe;
+using OrionBanque.Forms;
+using Operation = OrionBanque.Classe.Operation;
 
 namespace OrionBanque
 {
-    public partial class MainForm : ComponentFactory.Krypton.Toolkit.KryptonForm
+    public partial class MainFormRub : KryptonForm
     {
         Utilisateur uA;
-        string alerteEnregistrement = "Fichier Sauvegardé sous {0}";
-        string alerteSuppressionCompte = "Etes-vous sur de supprimer ce Compte ? (plus aucun accès au compte ne sera possible)";
-        string alerteSuppressionOperations = "Etes-vous sur de vouloir supprimer les Opérations sélectionnées ?";
-        string alerteSuppressionOperation = "Etes-vous sur de vouloir supprimer l'Opérations sélectionnée ?";
-        string erreurPasDeCompteCree = "Vous devez d'abord créer un compte pour accéder à cette fonctionnalité.";
 
-        public MainForm(Utilisateur u)
+        public MainFormRub(Utilisateur u)
         {
             uA = u;
             InitializeComponent();
@@ -28,12 +25,7 @@ namespace OrionBanque
         }
 
         #region Echéancier
-        private void ToolStripButton1_Click(object sender, EventArgs e)
-        {
-            LanceGestionEcheancier();
-        }
-
-        private void gérerLécchéancierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnOperationEcheancier_Click(object sender, EventArgs e)
         {
             LanceGestionEcheancier();
         }
@@ -56,7 +48,7 @@ namespace OrionBanque
         #endregion
 
         #region Utilisateurs
-        private void TsModUser_Click(object sender, EventArgs e)
+        private void kRBtnConfEditUser_Click(object sender, EventArgs e)
         {
             new UtilisateurForm(uA).ShowDialog();
             ActiveSauvegarde();
@@ -68,7 +60,7 @@ namespace OrionBanque
         {
             if (cbCompte.Items.Count == 0)
             {
-                throw new Exception(erreurPasDeCompteCree);
+                throw new Exception(KEY.ERREUR_PAS_DE_COMPTE_CREE);
             }
         }
 
@@ -138,7 +130,7 @@ namespace OrionBanque
             try
             {
                 Compte c = GetCompteCourant();
-                if(c.TypEvol.Equals(string.Empty))
+                if (c.TypEvol.Equals(string.Empty))
                 {
                     txtEvolSoldeMin.Value = c.MinGraphSold;
                     txtEvolSoldMax.Value = c.MaxGraphSold;
@@ -147,7 +139,7 @@ namespace OrionBanque
                 {
                     DateTime min = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     DateTime max = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    switch(c.TypEvol)
+                    switch (c.TypEvol)
                     {
                         case KEY.COMPTE_VISU_1MOIS:
                             max = max.AddMonths(1);
@@ -177,7 +169,7 @@ namespace OrionBanque
             }
         }
 
-        private void AjouterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnCompteAdd_Click(object sender, EventArgs e)
         {
             CompteForm ca = new CompteForm(uA);
             ca.ShowDialog();
@@ -188,7 +180,7 @@ namespace OrionBanque
             }
         }
 
-        private void ModifierToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void kRBtnCompteEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -207,12 +199,12 @@ namespace OrionBanque
             }
         }
 
-        private void SupprimerToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void kRBtnCompteDelete_Click(object sender, EventArgs e)
         {
             try
             {
                 TestPasDeCompte();
-                if (MessageBox.Show(alerteSuppressionCompte, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(KEY.ALERTE_SUPPRESSION_COMPTE, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Compte.Delete(GetCompteCourant());
                     dgvOperations.DataSource = null;
@@ -229,25 +221,26 @@ namespace OrionBanque
             }
         }
 
-        private void totalDesComptesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnCompteTotCompte_Click(object sender, EventArgs e)
         {
             TotalComptesForm f = new TotalComptesForm(uA);
             f.ShowDialog();
-            if(f.cont)
+            if (f.cont)
             {
                 ActiveSauvegarde();
             }
+
         }
 
-        private void EnregistrerSousToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRQATBSaveAs_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     string fildest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME;
-                    File.Copy(KEY.FILE_PATH, fildest, true);
-                    MessageBox.Show(string.Format(alerteEnregistrement, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    File.Copy((string)CallContext.GetData(KEY.CLE_FICHIER), fildest, true);
+                    MessageBox.Show(string.Format(KEY.ALERTE_ENREGISTREMENT, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception ex)
                 {
@@ -304,12 +297,12 @@ namespace OrionBanque
             OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
         }
 
-        private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnOperationEdit_Click(object sender, EventArgs e)
         {
             OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
         }
 
-        private void SupprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnOperationDelete_Click(object sender, EventArgs e)
         {
             SupprimerOperation();
         }
@@ -318,7 +311,7 @@ namespace OrionBanque
         {
             if (dgvOperations.SelectedRows.Count > 0)
             {
-                string text = dgvOperations.SelectedRows.Count == 1 ? alerteSuppressionOperation : alerteSuppressionOperations;
+                string text = dgvOperations.SelectedRows.Count == 1 ? KEY.ALERTE_SUPPRESSION_OPERATION : KEY.ALERTE_SUPPRESSION_OPERATIONS;
                 if (MessageBox.Show(text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
@@ -385,37 +378,27 @@ namespace OrionBanque
             }
         }
 
-        private void AjouterToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void kRBtnOperationAdd_Click(object sender, EventArgs e)
         {
             OuvreFormOperation(new Operation(), KEY.MODE_INSERT);
         }
 
-        private void AjouterToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ajouterToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             OuvreFormOperation(new Operation(), KEY.MODE_INSERT);
         }
 
-        private void ModifierToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void modifierToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
         }
 
-        private void SupprimerToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void supprimerToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             SupprimerOperation();
         }
 
-        private void TsVirementCaC_Click(object sender, EventArgs e)
-        {
-            LanceVirementCompteACompte();
-        }
-
-        private void virementCompteÀCompteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LanceVirementCompteACompte();
-        }
-
-        private void LanceVirementCompteACompte()
+        private void kRBtnOperationVirCaC_Click(object sender, EventArgs e)
         {
             try
             {
@@ -433,31 +416,26 @@ namespace OrionBanque
             }
         }
 
-        private void pointerLesOpérationsSélectionnéesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnOperationPointe_Click(object sender, EventArgs e)
         {
-            LancePointage();
-        }
-
-        private void LancePointage()
-        {
-            foreach(DataGridViewRow row in dgvOperations.SelectedRows)
+            foreach (DataGridViewRow row in dgvOperations.SelectedRows)
             {
                 Operation otemp = Operation.Charge((int)row.Cells["Id"].Value);
-                if(otemp.DatePointage is null)
-                { 
+                if (otemp.DatePointage is null)
+                {
                     otemp.DatePointage = DateTime.Now;
                     Operation.Maj(otemp);
                     row.Cells["DatePointage"].Value = DateTime.Now;
                 }
             }
-            if(dgvOperations.SelectedRows.Count != 0)
+            if (dgvOperations.SelectedRows.Count != 0)
             {
                 ChargesIndicateurs(GetCompteCourant());
                 ActiveSauvegarde();
             }
         }
 
-        private void GestionOpérationsEnGroupeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnOperationMajGrp_Click(object sender, EventArgs e)
         {
             try
             {
@@ -494,7 +472,7 @@ namespace OrionBanque
             }
         }
 
-        private void fichierJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kCMJson_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -502,7 +480,7 @@ namespace OrionBanque
                 {
                     string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".json";
                     Outils.GestionFichier.ExportJson(filedest);
-                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show(string.Format(KEY.ALERTE_ENREGISTREMENT, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception ex)
                 {
@@ -511,7 +489,7 @@ namespace OrionBanque
             }
         }
 
-        private void fichierXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kCMXml_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -519,7 +497,7 @@ namespace OrionBanque
                 {
                     string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".xml";
                     Outils.GestionFichier.ExportXml(filedest);
-                    MessageBox.Show(string.Format(alerteEnregistrement, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show(string.Format(KEY.ALERTE_ENREGISTREMENT, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 catch (Exception ex)
                 {
@@ -528,43 +506,14 @@ namespace OrionBanque
             }
         }
 
-        private void unFichierCSVBPToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kCMFichierBP_Click(object sender, EventArgs e)
         {
-            if (OFDImport.ShowDialog() == DialogResult.OK)
+            ImportFichierCSV ifCSV = new ImportFichierCSV(uA);
+            ifCSV.ShowDialog();
+            if (ifCSV.cont)
             {
-                Compte cT;
-                if (MessageBox.Show("Importer les Opérations dans le compte en cours ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    cT = GetCompteCourant();
-                }
-                else
-                {
-                    cT = new Compte
-                    {
-                        Libelle = Path.GetFileNameWithoutExtension(OFDImport.FileName),
-                        SoldeInitial = 0.0,
-                        Utilisateur = Utilisateur.Charge(uA.Id),
-                        Banque = string.Empty,
-                        Guichet = string.Empty,
-                        NoCompte = string.Empty,
-                        Clef = string.Empty,
-                        MinGraphSold = DateTime.Now,
-                        MaxGraphSold = DateTime.Now,
-                        SeuilAlerte = 0.0,
-                        SeuilAlerteFinal = 0.0,
-                        TypEvol = KEY.COMPTE_VISU_6MOIS,
-                        EstDansTotalCompte = true
-                    };
-                    cT = Compte.Sauve(cT);
-                }
-                Cursor = Cursors.WaitCursor;
-                if (File.Exists(OFDImport.FileName))
-                {
-                    Outils.ImportBP.Lance(Path.GetDirectoryName(OFDImport.FileName), Path.GetFileNameWithoutExtension(OFDImport.FileName), OFDImport.FileName, cT);
-                    ChargeComboCompte();
-                    ActiveSauvegarde();
-                }
-                Cursor = Cursors.Default;
+                ChargeComboCompte();
+                ActiveSauvegarde();
             }
         }
 
@@ -591,14 +540,14 @@ namespace OrionBanque
                 e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
             }
 
-            if (e.KeyChar == Convert.ToChar(Keys.Return))
+            if (e.KeyChar == Convert.ToChar(Keys.Return) && ((KryptonNumericUpDown)sender).Name == "txtOperationMontant")
             {
                 Compte c = GetCompteCourant();
                 Operation o = CreateOperation(c);
                 ChargesIndicateurs(c);
                 ChargeOperations(c);
                 SelectRowOperation(o.Id);
-                tsSave.Enabled = true;
+                kRQATBSave.Enabled = true;
                 ActiveControl = txtOperationDate;
             }
         }
@@ -629,7 +578,7 @@ namespace OrionBanque
                 Montant = double.Parse(txtOperationMontant.Value.ToString()),
                 DatePointage = txtOperationPointage.Checked ? (DateTime?)DateTime.Now : null
             };
-            
+
             return Operation.Sauve(o);
         }
 
@@ -667,6 +616,16 @@ namespace OrionBanque
             ActiveControl = txtOperationDate;
         }
 
+        private void btnOperationValide_Click(object sender, EventArgs e)
+        {
+            Operation o = CreateOperation(GetCompteCourant());
+            ChargesIndicateurs(GetCompteCourant());
+            ChargeOperations(GetCompteCourant());
+            SelectRowOperation(o.Id);
+            ActiveSauvegarde();
+            ActiveControl = txtOperationDate;
+        }
+
         private void KFiltreDate_Click(object sender, EventArgs e)
         {
             LanceFiltreOperation();
@@ -674,14 +633,14 @@ namespace OrionBanque
         #endregion
 
         #region CB
-        private void ModeDePaiementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfMdP_Click(object sender, EventArgs e)
         {
             new ModePaiementForm().ShowDialog();
             ActiveSauvegarde();
             RemplisModePaiements();
         }
 
-        private void CatégoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfCategorie_Click(object sender, EventArgs e)
         {
             new CategoriesForm().ShowDialog();
             ActiveSauvegarde();
@@ -735,7 +694,7 @@ namespace OrionBanque
             }
         }
 
-        private void gestionDesTiersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfTiers_Click(object sender, EventArgs e)
         {
             GestTiersForm gtf = new GestTiersForm(uA);
             gtf.ShowDialog();
@@ -748,7 +707,7 @@ namespace OrionBanque
         #endregion
 
         #region Graphique
-        private void LanceFormChart()
+        private void kRBtnCompteGraph_Click(object sender, EventArgs e)
         {
             try
             {
@@ -761,17 +720,7 @@ namespace OrionBanque
             }
         }
 
-        private void TsMontreGraph_Click(object sender, EventArgs e)
-        {
-            LanceFormChart();
-        }
-
-        private void graphiquesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LanceFormChart();
-        }
-
-        private void BtnValidDateEvol_Click(object sender, EventArgs e)
+        private void btnValidDateEvol_Click_1(object sender, EventArgs e)
         {
             ChargeGraph(GetCompteCourant());
         }
@@ -840,44 +789,39 @@ namespace OrionBanque
             AppliqueTheme();
         }
 
-        private void office2010BlueToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfThemeOffice2010Bleu_Click(object sender, EventArgs e)
         {
             SauveTheme("kryptonPaletteOffice2010Blue");
         }
 
-        private void office2010SilverToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SauveTheme("kryptonPaletteOffice2010Silver");
-        }
-
-        private void office2010BlackToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfThemeOffice2010Noir_Click(object sender, EventArgs e)
         {
             SauveTheme("kryptonPaletteOffice2010Black");
         }
 
-        private void sparkleBlueToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfThemeOffice2010Argent_Click(object sender, EventArgs e)
+        {
+            SauveTheme("kryptonPaletteOffice2010Silver");
+        }
+
+        private void kRBtnConfThemeSparkleBleu_Click(object sender, EventArgs e)
         {
             SauveTheme("kryptonPaletteSparkleBlue");
         }
 
-        private void sparklePurpleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfThemeSparkleViolet_Click(object sender, EventArgs e)
         {
             SauveTheme("kryptonPaletteSparklePurple");
         }
 
-        private void sparkleOrangeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnConfThemeSparkleOrange_Click(object sender, EventArgs e)
         {
             SauveTheme("kryptonPaletteSparkleOrange");
         }
         #endregion
 
         #region Sauvegarde
-        private void tsSave_Click(object sender, EventArgs e)
-        {
-            LanceSauvegarde();
-        }
-
-        private void sauvegarderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRQATBSave_Click(object sender, EventArgs e)
         {
             LanceSauvegarde();
         }
@@ -890,7 +834,7 @@ namespace OrionBanque
 
         private void ActiveSauvegarde(bool etat = true)
         {
-            tsSave.Enabled = etat;
+            kRQATBSave.Enabled = etat;
         }
         #endregion
 
@@ -905,12 +849,12 @@ namespace OrionBanque
             cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
         }
 
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnSpecAbout_Click(object sender, EventArgs e)
         {
             new AboutBoxForm().ShowDialog();
         }
 
-        private void TsBtnConnection_Click(object sender, EventArgs e)
+        private void kCMChgFichier_Click(object sender, EventArgs e)
         {
             ConnexionForm c = new ConnexionForm();
             c.ShowDialog();
@@ -921,14 +865,14 @@ namespace OrionBanque
             }
         }
 
-        private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kCMQuitter_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tsSave.Enabled)
+            if (kRQATBSave.Enabled)
             {
                 if (MessageBox.Show("Souhaitez-vous sauvegarder avant de quitter ?", "Sauvegarde", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -937,7 +881,7 @@ namespace OrionBanque
             }
         }
 
-        private void visualisationDesFichiersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void kRBtnOperationFileView_Click(object sender, EventArgs e)
         {
             new FichiersForm().ShowDialog();
         }
