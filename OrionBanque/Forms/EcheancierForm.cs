@@ -16,6 +16,8 @@ namespace OrionBanque.Forms
             InitializeComponent();
             uA = u;
             eA = e;
+            txtProchaine.CalendarTodayDate = DateTime.Now;
+            txtDateFin.CalendarTodayDate = DateTime.Now;
             RemplisCb();
             if (mode.Equals("UPDATE"))
             {

@@ -25,6 +25,8 @@ namespace OrionBanque.Forms
             kDTPDateMin.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             kDTPDateMax.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
             UpdateGraph();
+            kDTPDateMin.CalendarTodayDate = DateTime.Now;
+            kDTPDateMax.CalendarTodayDate = DateTime.Now;
         }
 
         private void ChargeListeComptes()

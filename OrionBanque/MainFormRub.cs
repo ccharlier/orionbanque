@@ -22,6 +22,8 @@ namespace OrionBanque
             InitializeComponent();
 
             ApresConnexion();
+            txtFiltreDate.CalendarTodayDate = DateTime.Now;
+            txtOperationDate.CalendarTodayDate = DateTime.Now;
         }
 
         #region Echéancier

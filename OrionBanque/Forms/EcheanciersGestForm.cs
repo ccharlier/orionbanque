@@ -15,7 +15,7 @@ namespace OrionBanque.Forms
         {
             InitializeComponent();
             uA = u;
-
+            txtDateInsereEch.CalendarTodayDate = DateTime.Now;
             ChargeGrille();
         }
 

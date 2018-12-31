@@ -25,6 +25,8 @@ namespace OrionBanque.Forms
                 kClef.Text = cA.Clef;
                 txtEvolSoldeMin.Value = cA.MinGraphSold;
                 txtEvolSoldMax.Value = cA.MaxGraphSold;
+                txtEvolSoldeMin.CalendarTodayDate = DateTime.Now;
+                txtEvolSoldMax.CalendarTodayDate = DateTime.Now;
                 txtSeuilAlerte.Value = new decimal(cA.SeuilAlerte);
                 txtSeuilAlerteFinal.Value = new decimal(cA.SeuilAlerteFinal);
                 cbEvolType.Text = cA.TypEvol;

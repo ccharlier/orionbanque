@@ -18,7 +18,7 @@ namespace OrionBanque.Forms
         public OperationForm(Operation oP, Compte cP, string modeP)
         {
             InitializeComponent();
-
+            txtDateMvt.CalendarTodayDate = DateTime.Now;
             compte = cP;
             mode = modeP;
             RemplisCb();

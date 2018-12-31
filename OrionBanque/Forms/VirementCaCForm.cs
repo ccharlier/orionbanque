@@ -15,6 +15,7 @@ namespace OrionBanque.Forms
             InitializeComponent();
             ChargeComboCompte();
             RemplisCategories();
+            txtDateMvt.CalendarTodayDate = DateTime.Now;
         }
 
         private void ChargeComboCompte()
