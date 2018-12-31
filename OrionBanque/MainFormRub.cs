@@ -231,7 +231,6 @@ namespace OrionBanque
             {
                 ActiveSauvegarde();
             }
-
         }
 
         private void kRQATBSaveAs_Click(object sender, EventArgs e)
