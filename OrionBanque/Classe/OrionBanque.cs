@@ -28,6 +28,8 @@ namespace OrionBanque.Classe
         public string Theme { get; set; }
         [DataMember()]
         public List<string> Tiers { get; set; }
+        [DataMember()]
+        public bool? PredictTiers { get; set; }
 
         public OB()
         {
@@ -40,6 +42,7 @@ namespace OrionBanque.Classe
             Utilisateurs = new List<Utilisateur>();
             Fichiers = new List<Fichier>();
             Tiers = new List<string>();
+            PredictTiers = true;
         }
     }
 }

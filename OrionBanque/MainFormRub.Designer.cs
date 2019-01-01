@@ -158,6 +158,9 @@
             this.kryptonPaletteSparkleBlue = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparkleOrange = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonPaletteSparklePurple = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.kryptonRibbonGroup7 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup();
+            this.kRGLPredict = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLines();
+            this.kRGBtnPredictTiers = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
             ((System.ComponentModel.ISupportInitialize)(this.kMainRuban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -233,8 +236,7 @@
             this.kRibbonTabOperation,
             this.kRibbonTabCompte,
             this.kRibbonTabConfiguration});
-            this.kMainRuban.SelectedContext = null;
-            this.kMainRuban.SelectedTab = this.kRibbonTabOperation;
+            this.kMainRuban.SelectedTab = this.kRibbonTabConfiguration;
             this.kMainRuban.Size = new System.Drawing.Size(1260, 115);
             this.kMainRuban.TabIndex = 0;
             // 
@@ -504,6 +506,7 @@
             // 
             this.kRibbonTabConfiguration.Groups.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup[] {
             this.kryptonRibbonGroup5,
+            this.kryptonRibbonGroup7,
             this.kryptonRibbonGroup6});
             this.kRibbonTabConfiguration.Text = "Configuration";
             // 
@@ -1344,6 +1347,25 @@
             // 
             this.kryptonPaletteSparklePurple.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparklePurple;
             // 
+            // kryptonRibbonGroup7
+            // 
+            this.kryptonRibbonGroup7.Items.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer[] {
+            this.kRGLPredict});
+            this.kryptonRibbonGroup7.TextLine1 = "Prédiction";
+            // 
+            // kRGLPredict
+            // 
+            this.kRGLPredict.Items.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem[] {
+            this.kRGBtnPredictTiers});
+            // 
+            // kRGBtnPredictTiers
+            // 
+            this.kRGBtnPredictTiers.ButtonType = ComponentFactory.Krypton.Ribbon.GroupButtonType.Check;
+            this.kRGBtnPredictTiers.ImageLarge = global::OrionBanque.Properties.Resources.user_business;
+            this.kRGBtnPredictTiers.ImageSmall = global::OrionBanque.Properties.Resources.user_business;
+            this.kRGBtnPredictTiers.TextLine1 = "Tiers";
+            this.kRGBtnPredictTiers.Click += new System.EventHandler(this.kRGBtnPredictTiers_Click);
+            // 
             // MainFormRub
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1352,6 +1374,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.kMainRuban);
+            this.CustomCaptionArea = new System.Drawing.Rectangle(357, 0, 855, 26);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFormRub";
             this.Text = "Gestion de Comptes Bancaires";
@@ -1535,5 +1558,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparkleOrange;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPaletteSparklePurple;
         private ComponentFactory.Krypton.Toolkit.ButtonSpecAny btnSpecAbout;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup kryptonRibbonGroup7;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLines kRGLPredict;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kRGBtnPredictTiers;
     }
 }

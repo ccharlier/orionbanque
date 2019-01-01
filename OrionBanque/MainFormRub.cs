@@ -62,6 +62,7 @@ namespace OrionBanque
         {
             if (cbCompte.Items.Count == 0)
             {
+                Log.Logger.Error(KEY.ERREUR_PAS_DE_COMPTE_CREE);
                 throw new Exception(KEY.ERREUR_PAS_DE_COMPTE_CREE);
             }
         }
@@ -633,7 +634,7 @@ namespace OrionBanque
         }
         #endregion
 
-        #region CB
+        #region ComboBox
         private void kRBtnConfMdP_Click(object sender, EventArgs e)
         {
             new ModePaiementForm().ShowDialog();
@@ -686,6 +687,8 @@ namespace OrionBanque
             try
             {
                 TestPasDeCompte();
+                txtFiltreTiers.DataSource = null;
+                txtOperationTiers.DataSource = null;
                 txtFiltreTiers.DataSource = Tiers.ChargeTout();
                 txtOperationTiers.DataSource = Tiers.ChargeTout();
             }
@@ -751,10 +754,11 @@ namespace OrionBanque
         }
         #endregion
 
-        #region Gestion du Thème
-        private void AppliqueTheme()
+        #region Gestion Config Général
+        private void AppliqueConfig()
         {
             OB ob = (OB)CallContext.GetData(KEY.OB);
+            kRGBtnPredictTiers.Checked = ob.PredictTiers ?? true;
             switch (ob.Theme)
             {
                 case "kryptonPaletteOffice2010Black":
@@ -779,6 +783,7 @@ namespace OrionBanque
                     kManager.GlobalPalette = kryptonPaletteOffice2010Silver;
                     break;
             }
+            RemplisTiers();
         }
 
         private void SauveTheme(string theme)
@@ -787,7 +792,7 @@ namespace OrionBanque
             ob.Theme = theme;
             CallContext.SetData(KEY.OB, ob);
             ActiveSauvegarde();
-            AppliqueTheme();
+            AppliqueConfig();
         }
 
         private void kRBtnConfThemeOffice2010Bleu_Click(object sender, EventArgs e)
@@ -819,6 +824,15 @@ namespace OrionBanque
         {
             SauveTheme("kryptonPaletteSparkleOrange");
         }
+
+        private void kRGBtnPredictTiers_Click(object sender, EventArgs e)
+        {
+            OB ob = (OB)CallContext.GetData(KEY.OB);
+            ob.PredictTiers = kRGBtnPredictTiers.Checked;
+            CallContext.SetData(KEY.OB, ob);
+            ActiveSauvegarde();
+            AppliqueConfig();
+        }
         #endregion
 
         #region Sauvegarde
@@ -841,9 +855,8 @@ namespace OrionBanque
 
         private void ApresConnexion()
         {
-            AppliqueTheme();
             ChargeComboCompte();
-
+            AppliqueConfig();
             tsDateJour.Text = " : " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
             tsUser.Text = " : " + uA.Login;
             cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];

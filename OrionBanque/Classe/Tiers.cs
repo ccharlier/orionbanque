@@ -10,7 +10,13 @@ namespace OrionBanque.Classe
     {
         public static List<string> ChargeTout()
         {
-            Log.Logger.Debug("Debut Tiers.ChargeTout()");
+            OB ob = (OB)CallContext.GetData(KEY.OB);
+            return (ob.PredictTiers ?? true) ? ChargeToutPredict() : ChargeToutSansPredict();
+        }
+
+        public static List<string> ChargeToutPredict()
+        {
+            Log.Logger.Debug("Debut Tiers.ChargeToutPredict()");
             List<string> lt = new List<string>();
             try
             {
@@ -24,6 +30,24 @@ namespace OrionBanque.Classe
                 throw;
             }
             return lt;
+        }
+
+        public static List<string> ChargeToutSansPredict()
+        {
+            Log.Logger.Debug("Debut Tiers.ChargeToutSansPredict()");
+
+            List<string> ls = new List<string>();
+            List<Compte> lc = Compte.ChargeTout();
+            foreach(Compte c in lc)
+            {
+                List<Operation> lo = Compte.Charge(c.Id).Operations().OrderBy(o => o.Tiers).ToList();
+                foreach (Operation o in lo)
+                {
+                    ls.Add(o.Tiers);
+                }
+            }
+            ls.Sort();
+            return ls.Distinct().ToList();
         }
     }
 }
