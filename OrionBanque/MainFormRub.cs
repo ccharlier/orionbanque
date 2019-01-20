@@ -320,7 +320,18 @@ namespace OrionBanque
                     {
                         foreach (DataGridViewRow row in dgvOperations.SelectedRows)
                         {
-                            Operation.Delete(Operation.Charge((int)row.Cells["Id"].Value));
+                            Operation OpeASup = Operation.Charge((int)row.Cells["Id"].Value);
+                            
+                            //Contrôle si Operation Liee est un transfert
+                            if (OpeASup.TypeLien == KEY.TYPE_LIEN_OPERATION_TRANSFERT)
+                            {
+                                Operation OpeLiee = Operation.Charge(OpeASup.IdOperationLiee);
+                                if(MessageBox.Show("Souhaitez-vous également supprimer l'opération liée réglée par "+OpeLiee.ModePaiement.Libelle+" le " + OpeLiee.Date.ToShortDateString() + " du compte " + OpeLiee.Compte.Libelle + " ?", "Confirmation", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                                {
+                                    Operation.Delete(OpeLiee);
+                                }
+                            }
+                            Operation.Delete(OpeASup);
                             dgvOperations.Rows.RemoveAt(row.Index);
                         }
                         ChargesIndicateurs(GetCompteCourant());

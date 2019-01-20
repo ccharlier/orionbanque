@@ -133,6 +133,7 @@
             // 
             // txtDateMvt
             // 
+            this.txtDateMvt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDateMvt.Location = new System.Drawing.Point(54, 106);
             this.txtDateMvt.Name = "txtDateMvt";
             this.txtDateMvt.Size = new System.Drawing.Size(164, 21);

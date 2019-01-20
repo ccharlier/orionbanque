@@ -73,9 +73,10 @@ namespace OrionBanque.Forms
                 ModePaiement = ModePaiement.Charge(4),
                 Libelle = txtLibelle.Text,
                 Montant = double.Parse(txtMontant.Value.ToString()),
-                Tiers = string.Empty
+                Tiers = string.Empty,
+                TypeLien = KEY.TYPE_LIEN_OPERATION_TRANSFERT
             };
-            Operation.Sauve(op1);
+            op1 = Operation.Sauve(op1);
             
             Operation op2 = new Operation
             {
@@ -85,9 +86,13 @@ namespace OrionBanque.Forms
                 ModePaiement = ModePaiement.Charge(5),
                 Libelle = txtLibelle.Text,
                 Montant = double.Parse(txtMontant.Value.ToString()),
-                Tiers = string.Empty
+                Tiers = string.Empty,
+                TypeLien = KEY.TYPE_LIEN_OPERATION_TRANSFERT,
+                IdOperationLiee = op1.Id
             };
-            Operation.Sauve(op2);
+            op2 = Operation.Sauve(op2);
+            op1.IdOperationLiee = op2.Id;
+            op1 = Operation.Maj(op1);
 
             Close();
          }

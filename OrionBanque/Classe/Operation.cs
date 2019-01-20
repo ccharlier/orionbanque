@@ -29,6 +29,10 @@ namespace OrionBanque.Classe
         public Categorie Categorie { get; set; }
         [DataMember()]
         public Compte Compte { get; set; }
+        [DataMember()]
+        public int IdOperationLiee { get; set; }
+        [DataMember()]
+        public string TypeLien { get; set; }
 
         public static Operation Sauve(Operation o)
         {
