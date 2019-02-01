@@ -205,6 +205,9 @@
   <data name="user_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="information-balloon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\information-balloon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="chart_pie1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chart_pie1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -319,7 +322,7 @@
   <data name="coins1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\coins1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="information-balloon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\information-balloon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clock-history-frame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clock-history-frame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

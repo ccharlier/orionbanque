@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
@@ -16,6 +17,24 @@ namespace OrionBanque.Classe
         public string Libelle { get; set; }
         [DataMember()]
         public string Type { get; set; }
+        [DataMember()]
+        public bool Differe { get; set; }
+        [DataMember()]
+        public Compte CompteGestion { get; set; }
+        [DataMember()]
+        public Compte CompteDebite { get; set; }
+        [DataMember()]
+        public int PerdiodeDebut { get; set; }
+        [DataMember()]
+        public string TypeDiffere { get; set; } // Fin de mois, 30 jrs fin de mois, 60 jrs fin de mois
+        [DataMember()]
+        public int Decalage { get; set; }
+        [DataMember()]
+        public bool DecalageSamedi { get; set; }
+        [DataMember()]
+        public bool DecalageDimanche { get; set; }
+        [DataMember()]
+        public bool DecalageFerie { get; set; }
 
         public static List<ModePaiement> ChargeTout()
         {
@@ -32,6 +51,20 @@ namespace OrionBanque.Classe
                 throw;
             }
             return lmp;
+        }
+
+        public static DataSet ChargeToutDS()
+        {
+            Log.Logger.Debug("Debut ModePaiement.ChargeToutDS()");
+            try
+            {
+                return ToDataSet(ChargeTout());
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex.Message);
+                throw;
+            }
         }
 
         public static ModePaiement Charge(int id)
@@ -143,6 +176,32 @@ namespace OrionBanque.Classe
                 throw;
             }
             return mpA;
+        }
+
+        public static DataSet ToDataSet(List<ModePaiement> list)
+        {
+            Type elementType = typeof(ModePaiement);
+            DataSet ds = new DataSet();
+            DataTable t = new DataTable("ModePaiements");
+
+            ds.Tables.Add(t);
+            t.Columns.Add("Id", typeof(int));
+            t.Columns.Add("Libelle", typeof(string));
+            t.Columns.Add("Type", typeof(string));
+            t.Columns.Add("Differe", typeof(string));
+            
+            foreach (ModePaiement item in list)
+            {
+                DataRow row = t.NewRow();
+
+                row["Id"] = item.Id;
+                row["Libelle"] = item.Libelle;
+                row["Type"] = item.Type;
+                row["Differe"] = item.Differe;
+                t.Rows.Add(row);
+            }
+
+            return ds;
         }
     }
 }

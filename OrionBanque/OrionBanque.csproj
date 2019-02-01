@@ -586,6 +586,7 @@
     <None Include="Resources\pencil.png" />
     <None Include="Resources\paint-can.png" />
     <None Include="Resources\information-balloon.png" />
+    <None Include="Resources\clock-history-frame.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
