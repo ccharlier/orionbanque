@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShaNetHoliday.Engine</name>
+    </assembly>
+    <members>
+        <member name="T:ShaNetHoliday.Engine.HolidaySystem">
+            <summary>
+            Wrapper de base pour la récupération de données particulières dans l'environnement des jours particuliers.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Engine.HolidaySystem.CountriesAvailable">
+            <summary>
+            Liste des pays disponible.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.All(System.Int32,System.String,ShaNetHoliday.Models.RuleType,ShaNetHoliday.Models.Calendar)">
+            <summary>
+            Méthode qui permet d'éxécuter toutes les règles souhaitées pour une année en particulier.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="type">Type de règle.</param>
+            <param name="calendar">Type de calendrier des règles.</param>
+            <returns>Une liste des jours.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.All(System.Int32,System.String,System.String,ShaNetHoliday.Models.RuleType,ShaNetHoliday.Models.Calendar)">
+            <summary>
+            Méthode qui permet d'éxécuter toutes les règles souhaitées pour une année en particulier.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="type">Type de règle.</param>
+            <param name="calendar">Type de calendrier des règles.</param>
+            <returns>Une liste des jours.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.All(System.Int32,System.String,System.String,System.String,ShaNetHoliday.Models.RuleType,ShaNetHoliday.Models.Calendar)">
+            <summary>
+            Méthode qui permet d'éxécuter toutes les règles souhaitées pour une année en particulier.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="regionCode">Région.</param>
+            <param name="type">Type de règle.</param>
+            <param name="calendar">Type de calendrier des règles.</param>
+            <returns>Une liste des jours.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.Between(System.DateTime,System.DateTime,System.String,ShaNetHoliday.Models.RuleType)">
+            <summary>
+            Méthode qui permet d'éxécuter toutes les règles souhaitées entre une date de début et une date de fin.
+            </summary>
+            <param name="startDate">Date de début.</param>
+            <param name="endDate">Date de fin.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="type">Type de règle.</param>
+            <returns>Une liste des jours.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.Between(System.DateTime,System.DateTime,System.String,System.String,ShaNetHoliday.Models.RuleType)">
+            <summary>
+            Méthode qui permet d'éxécuter toutes les règles souhaitées entre une date de début et une date de fin.
+            </summary>
+            <param name="startDate">Date de début.</param>
+            <param name="endDate">Date de fin.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="type">Type de règle.</param>
+            <returns>Une liste des jours.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.Between(System.DateTime,System.DateTime,System.String,System.String,System.String,ShaNetHoliday.Models.RuleType)">
+            <summary>
+            Méthode qui permet d'éxécuter toutes les règles souhaitées entre une date de début et une date de fin.
+            </summary>
+            <param name="startDate">Date de début.</param>
+            <param name="endDate">Date de fin.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="regionCode">Région.</param>
+            <param name="type">Type de règle.</param>
+            <returns>Une liste des jours.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.Single(System.DateTime,System.String,ShaNetHoliday.Models.RuleType)">
+            <summary>
+            Méthode qui permet pour une date donnée de vérifier si un jour particulier est trouvé à l'éxécution des règles. 
+            </summary>
+            <param name="date">Date à trouver.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="type">Type de règle.</param>
+            <returns>Le jour particulier à la date donnée si il est trouvé, sinon <see langword="null"/>.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.Single(System.DateTime,System.String,System.String,ShaNetHoliday.Models.RuleType)">
+            <summary>
+            Méthode qui permet pour une date donnée de vérifier si un jour particulier est trouvé à l'éxécution des règles. 
+            </summary>
+            <param name="date">Date à trouver.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="type">Type de règle.</param>
+            <returns>Le jour particulier à la date donnée si il est trouvé, sinon <see langword="null"/>.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.Single(System.DateTime,System.String,System.String,System.String,ShaNetHoliday.Models.RuleType)">
+            <summary>
+            Méthode qui permet pour une date donnée de vérifier si un jour particulier est trouvé à l'éxécution des règles. 
+            </summary>
+            <param name="date">Date à trouver.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="regionCode">Région.</param>
+            <param name="type">Type de règle.</param>
+            <returns>Le jour particulier à la date donnée si il est trouvé, sinon <see langword="null"/>.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.LongWeekEnds(System.Int32,System.String)">
+            <summary>
+            Méthode qui permet de trouver tous les longs week-ends pour une année.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <param name="countryCode">Pays.</param>
+            <returns>La liste des longs week-ends, un long week-end est un période d'au moins 3 jours, avec potentiellement un jour ouvrés entre 2 jours non ouvrés.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.LongWeekEnds(System.Int32,System.String,System.String)">
+            <summary>
+            Méthode qui permet de trouver tous les longs week-ends pour une année.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <returns>La liste des longs week-ends, un long week-end est un période d'au moins 3 jours, avec potentiellement un jour ouvrés entre 2 jours non ouvrés.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Engine.HolidaySystem.LongWeekEnds(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Méthode qui permet de trouver tous les longs week-ends pour une année.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <param name="countryCode">Pays.</param>
+            <param name="stateCode">Etat.</param>
+            <param name="regionCode">Région.</param>
+            <returns>La liste des longs week-ends, un long week-end est un période d'au moins 3 jours, avec potentiellement un jour ouvrés entre 2 jours non ouvrés.</returns>
+        </member>
+    </members>
+</doc>

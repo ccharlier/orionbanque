@@ -145,33 +145,6 @@
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="ID3iCore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iCore.1.0.3\lib\net462\ID3iCore.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iDate, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iDate.1.0.2\lib\net462\ID3iDate.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iHoliday.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iHoliday.Core.1.0.14\lib\net462\ID3iHoliday.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iHoliday.Countries, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iHoliday.Countries.1.0.14\lib\net462\ID3iHoliday.Countries.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iHoliday.Engine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iHoliday.Engine.1.0.14\lib\net462\ID3iHoliday.Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iHoliday.Engine.Standard, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iHoliday.Engine.Standard.1.0.14\lib\net462\ID3iHoliday.Engine.Standard.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iHoliday.Models, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iHoliday.Models.1.0.14\lib\net462\ID3iHoliday.Models.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iHoliday.Syntax, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iHoliday.Syntax.1.0.14\lib\net462\ID3iHoliday.Syntax.dll</HintPath>
-    </Reference>
-    <Reference Include="ID3iRegex, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ID3iRegex.1.0.1\lib\net462\ID3iRegex.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -183,6 +156,33 @@
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
+    <Reference Include="ShaNetCore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetCore.1.0.0\lib\net462\ShaNetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetDate, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetDate.1.0.0\lib\net462\ShaNetDate.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetHoliday.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetHoliday.Core.1.0.0\lib\net462\ShaNetHoliday.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetHoliday.Countries, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetHoliday.Countries.1.0.0\lib\net462\ShaNetHoliday.Countries.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetHoliday.Engine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetHoliday.Engine.1.0.0\lib\net462\ShaNetHoliday.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetHoliday.Engine.Standard, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetHoliday.Engine.Standard.1.0.0\lib\net462\ShaNetHoliday.Engine.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetHoliday.Models, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetHoliday.Models.1.0.0\lib\net462\ShaNetHoliday.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetHoliday.Syntax, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetHoliday.Syntax.1.0.0\lib\net462\ShaNetHoliday.Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaNetRegex, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShaNetRegex.1.0.0\lib\net462\ShaNetRegex.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />

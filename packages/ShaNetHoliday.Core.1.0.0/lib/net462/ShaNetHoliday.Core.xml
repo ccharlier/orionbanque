@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShaNetHoliday.Core</name>
+    </assembly>
+    <members>
+        <member name="T:ShaNetHoliday.Core.Models.ExpressionElement">
+            <summary>
+            Classe de base pour un élément.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Models.ExpressionElement.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Models.ExpressionElement.Expression">
+            <summary>
+            Expression de l'élément.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Models.ExpressionElement.Parent">
+            <summary>
+            Elément parent.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Models.ExpressionElement.Parser">
+            <summary>
+            Parser associé à l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Core.Models.ExpressionElement.#ctor(ShaNetHoliday.Core.Models.ExpressionElement)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Core.Models.ExpressionElement"/>.
+            </summary>
+            <param name="parent">Elément parent.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Core.Models.ExpressionElement.Parse(System.Int32)">
+            <summary>
+            Méthode qui permet de parser l'élément.
+            </summary>
+            <param name="year">Année souhaitée.</param>
+            <returns>Le <see cref="T:ShaNetHoliday.Core.Parsers.ParserResult"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Models.ExpressionElement.IsMatch">
+            <summary>
+            Méthode qui permet de déterminer si l'expression peut être interpréter par le parser.
+            </summary>
+            <returns>
+            <see langword="true"/> si l'expression match le pattern, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="T:ShaNetHoliday.Core.Parsers.ParserBase">
+            <summary>
+            Classe de base pour un parser d'expression.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Core.Parsers.ParserBase.Parse(System.String,System.Int32)">
+            <summary>
+            Méthode qui permet de parser une expression.
+            </summary>
+            <param name="expression">Expression à parser.</param>
+            <param name="year">Année souhaitée.</param>
+            <returns>Le <see cref="T:ShaNetHoliday.Core.Parsers.ParserResult"/> correspondant.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Core.Parsers.ParserBase.IsMatch(System.String)">
+            <summary>
+            Méthode qui permet de déterminer si une expression peut être interpréter par le parser.
+            </summary>
+            <param name="expression">Expression à tester.</param>
+            <returns>
+            <see langword="true"/> si l'expression match le pattern, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="T:ShaNetHoliday.Core.Parsers.ParserResult">
+            <summary>
+            Résultat du parsing d'une expression.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Parsers.ParserResult.DatesToAdd">
+            <summary>
+            Dates correspondantes à l'expression.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Core.Parsers.ParserResult.DateToRemove">
+            <summary>
+            Date à supprimée.
+            </summary>
+        </member>
+    </members>
+</doc>

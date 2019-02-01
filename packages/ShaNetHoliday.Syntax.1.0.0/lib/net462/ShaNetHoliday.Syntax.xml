@@ -1,0 +1,695 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShaNetHoliday.Syntax</name>
+    </assembly>
+    <members>
+        <member name="T:ShaNetHoliday.Syntax.ChineseElement">
+            <summary>
+            Enumération pour les éléments du calendrier Chinois.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseElement.Wood">
+            <summary>
+            Bois.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseElement.Fire">
+            <summary>
+            Feu.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseElement.Earth">
+            <summary>
+            Terre.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseElement.Metal">
+            <summary>
+            Métal.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseElement.Water">
+            <summary>
+            Eau.
+            </summary>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.ChineseZodiac">
+            <summary>
+            Enumérations pour les animaux du calendrier Chinois.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Rat">
+            <summary>
+            Rat.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Ox">
+            <summary>
+            Boeuf.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Tiger">
+            <summary>
+            tigre.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Rabbit">
+            <summary>
+            Lapin.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Dragon">
+            <summary>
+            Dragon.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Snake">
+            <summary>
+            Serpent.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Horse">
+            <summary>
+            Cheval.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Shepp">
+            <summary>
+            Mouton.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Monkey">
+            <summary>
+            Singe.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Rooster">
+            <summary>
+            Coq.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Dog">
+            <summary>
+            Chien.
+            </summary>
+        </member>
+        <member name="F:ShaNetHoliday.Syntax.ChineseZodiac.Pig">
+            <summary>
+            Cochon.
+            </summary>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.After">
+            <summary>
+            Elément de syntax pour indiquer que c'est après une date précise.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.After.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.After.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.String)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.After"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="value">Date.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.After.ThenStartAt(System.String)">
+            <summary>
+            Elément de syntax pour changer l'heure.
+            </summary>
+            <param name="value">Nouvelle heure.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.ThenStart"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.After.Every(System.Int32)">
+            <summary>
+            Elément de syntax pour gérer la récurrence selon un nombre de période.
+            </summary>
+            <param name="number">Nombre de période.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Every"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.After.In(ShaNetHoliday.Syntax.YearType)">
+            <summary>
+            Elément de syntax pour gérer le type d'année pris en charge.
+            </summary>
+            <param name="year">Type de l'année.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.InYear"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.AfterMovable">
+            <summary>
+            Elément de syntax pour définir la date après laquelle le jour sera trouvé.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.AfterMovable.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.AfterMovable.Parser">
+            <summary>
+            <see cref="T:ShaNetHoliday.Syntax.Parsers.ParserMovableFromMovable"/> associé à l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.AfterMovable.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,ShaNetHoliday.Syntax.Count,System.DayOfWeek)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.AfterMovable"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="count">Adjectif numéral pour la position du jour.</param>
+            <param name="dayOfWeek">Jour particulier.</param>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.AndChineseZodiac">
+            <summary>
+            Elément de syntax pour définir l'animal.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.AndChineseZodiac.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.AndChineseZodiac.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,ShaNetHoliday.Syntax.ChineseZodiac)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.AndChineseZodiac"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="value">Animal du Zodiac Chinois.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.AndChineseZodiac.If(System.DayOfWeek)">
+            <summary>
+            Elément de syntax pour déplacer le jour à un autre si il tombe un certain jour.
+            </summary>
+            <param name="dayOfWeek">Jour particulier.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.IfDay"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Before">
+            <summary>
+            Elément de syntax pour indiquer que c'est avant une date précise.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Before.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Before.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.String)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Before"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="value">Date.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Before.ThenStartAt(System.String)">
+            <summary>
+            Elément de syntax pour changer l'heure.
+            </summary>
+            <param name="value">Nouvelle heure.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.ThenStart"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Before.Every(System.Int32)">
+            <summary>
+            Elément de syntax pour gérer la récurrence selon un nombre de période.
+            </summary>
+            <param name="number">Nombre de période.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Every"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Before.In(ShaNetHoliday.Syntax.YearType)">
+            <summary>
+            Elément de syntax pour gérer le type d'année pris en charge.
+            </summary>
+            <param name="year">Type de l'année.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.InYear"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.BeforeMovable">
+            <summary>
+            Elément de syntax pour définir la date avant laquelle le jour sera trouvé.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.BeforeMovable.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.BeforeMovable.Parser">
+            <summary>
+            <see cref="T:ShaNetHoliday.Syntax.Parsers.ParserMovableFromMovable"/> associé à l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.BeforeMovable.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,ShaNetHoliday.Syntax.Count,System.DayOfWeek)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.BeforeMovable"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="count">Adjectif numéral pour la position du jour.</param>
+            <param name="dayOfWeek">Jour particulier.</param>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Catholic">
+            <summary>
+            Elément d'expression <see cref="T:ShaNetHoliday.Syntax.Composition.Catholic"/>.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Catholic.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Catholic.#ctor(ShaNetHoliday.Core.Models.ExpressionElement)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Catholic"/>.
+            </summary>
+            <param name="parent">Elément parent.</param>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Chinese">
+            <summary>
+            Racine pour les expressions chinoises.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Chinese.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Chinese.#ctor">
+            <summary>
+            Initialise une nouvelle instance pour la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Chinese"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Chinese.LunarDate(System.String)">
+            <summary>
+            Elément de syntax pour définir une date lunaire.
+            </summary>
+            <param name="value">Définition d'un jour dans un mois lunaire.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.LunarDate"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Chinese.SolarDate(ShaNetDate.SolarTerm)">
+            <summary>
+            Elément de syntax pour définir une date solaire.
+            </summary>
+            <param name="value">Terme solaire.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.SolarDate"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Christianism">
+            <summary>
+            Elément d'expression <see cref="T:ShaNetHoliday.Syntax.Composition.Christianism"/>.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.CarnivalMonday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.CarnivalMonday"/> 48 jours avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.CarnivalTuesday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.CarnivalTuesday"/> 47 jours avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.AshWednesday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.AshWednesday"/> 46 jours avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.PalmSunday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.PalmSunday"/> 7 jours avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.MaundyThursday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.MaundyThursday"/> 3 jours avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.GoodFriday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.GoodFriday"/> 2 jours avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.HolySaturday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.HolySaturday"/> 1 jour avant le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.Easter">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.Easter"/> le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.EasterMonday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.EasterMonday"/> 1 jour après le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.AscensionDay">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.AscensionDay"/> 39 jours après le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.Pentecost">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.Pentecost"/> 49 jours après le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.WhitMonday">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.WhitMonday"/> 50 jours après le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.CorpusChristi">
+            <summary>
+            Expression pour <see cref="P:ShaNetHoliday.Syntax.Composition.Christianism.CorpusChristi"/> 60 jours après le dimanche de Pâques.
+            </summary>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Christianism.CustomDay(System.String)">
+            <summary>
+            Expression pour un <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> personalisé par rapport au dimanche de Pâques..
+            </summary>
+            <param name="value">Expression du jour particulier.</param>
+            <returns>Le <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/> correspondant.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Christianism.Parser">
+            <summary>
+            <see cref="T:ShaNetHoliday.Syntax.Parsers.ParserEaster"/> associé à l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Christianism.#ctor(ShaNetHoliday.Core.Models.ExpressionElement)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Christianism"/>.
+            </summary>
+            <param name="parent">Elément parent.</param>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Date">
+            <summary>
+            Syntax pour la création d'une expression de date.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Date.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Date.#ctor">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Date"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Date.Fix(System.DateTime)">
+            <summary>
+            Elément de syntax pour mettre en place une date fixe dans n'importe quelle année.
+            </summary>
+            <param name="dateTime">Date.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Day"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Date.Specific(System.DateTime)">
+            <summary>
+            Elément de syntax pour mettre en place une date fixe dans une année en particulier.
+            </summary>
+            <param name="dateTime">Date.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.SpecificDay"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Date.Catholic">
+            <summary>
+            Elément de syntax pour les dates calculées par rapport au dimanche de Pâques dans la religion catholique.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Catholic"/>.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Date.Orthodox">
+            <summary>
+            Elément de syntax pour les dates calculées par rapport au dimanche de Pâques dans la religion othodoxe.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Orthodox"/>.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Date.Movable(ShaNetHoliday.Syntax.Count,System.DayOfWeek)">
+            <summary>
+            Elément de syntax pour changer au jour de la semaine spécifié.
+            </summary>
+            <param name="count">Nombre d'apparition.</param>
+            <param name="dayOfWeek">Jour particulier.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Move"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Date.MovableFromMovable(ShaNetHoliday.Syntax.Count,System.DayOfWeek)">
+            <summary>
+            Elément de syntax pour changer au jour de la semaine spécifié à partir d'une date fixe déjà changée.
+            </summary>
+            <param name="count">Nombre d'apparition.</param>
+            <param name="dayOfWeek">Jour particulier.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Move"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Day">
+            <summary>
+            Elément de syntax pour mettre en place une date fixe dans n'importe quelle année.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.Parser">
+            <summary>
+            <see cref="T:ShaNetHoliday.Syntax.Parsers.ParserDate"/> associé à l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Day.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.DateTime)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Day"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="dateTime">Date.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Day.StartAt(System.String)">
+            <summary>
+            Elément de syntax pour indiquer l'heure de début.
+            </summary>
+            <param name="value">L'heure de début au format HH:mm</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.StartAtNoon">
+            <summary>
+            Elément de syntax pour indiquer que l'heure de début est midi.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.StartAt1PM">
+            <summary>
+            Elément de syntax pour indiquer que l'heure de début est 13h.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.StartAt2PM">
+            <summary>
+            Elément de syntax pour indiquer que l'heure de début est 14h.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.StartAtMidnight">
+            <summary>
+            Elément de syntax pour indiquer que l'heure de début est minuit.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Day.Since(System.Int32)">
+            <summary>
+            Elément de syntax pour gérer le début d'application de l'expression.
+            </summary>
+            <param name="year">Année de départ.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Since"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Day.Over">
+            <summary>
+            Elément de syntax pour affecter le calendrier à utiliser pour interpréter la date.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Over"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Duration">
+            <summary>
+            Elément de syntax pour gérer la durée.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Duration.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.P5D">
+            <summary>
+            Indique que la durée est de 5 jours.
+            </summary>
+            <returns>L'élément <see cref="T:ShaNetHoliday.Syntax.Composition.Duration"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.P4D">
+            <summary>
+            Indique que la durée est de 5 jours.
+            </summary>
+            <returns>L'élément <see cref="T:ShaNetHoliday.Syntax.Composition.Duration"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.P3D">
+            <summary>
+            Indique que la durée est de 5 jours.
+            </summary>
+            <returns>L'élément <see cref="T:ShaNetHoliday.Syntax.Composition.Duration"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.P2D">
+            <summary>
+            Indique que la durée est de 5 jours.
+            </summary>
+            <returns>L'élément <see cref="T:ShaNetHoliday.Syntax.Composition.Duration"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.Spec(System.String)">
+            <summary>
+            Indique que la durée est personalisée.
+            </summary>
+            <param name="value">Durée.</param>
+            <returns>L'élément <see cref="T:ShaNetHoliday.Syntax.Composition.Duration"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.#ctor(ShaNetHoliday.Core.Models.ExpressionElement)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Duration"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.Every(System.Int32)">
+            <summary>
+            Elément de syntax pour gérer la récurrence selon un nombre de période.
+            </summary>
+            <param name="number">Nombre de période.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Every"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.In(ShaNetHoliday.Syntax.YearType)">
+            <summary>
+            Elément de syntax pour gérer le type d'année pris en charge.
+            </summary>
+            <param name="year">Type de l'année.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.InYear"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Duration.If(System.DayOfWeek)">
+            <summary>
+            Elément de syntax pour changer l'heure de début selon le jour.
+            </summary>
+            <param name="dayOfWeek">Jour particulier.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.If"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Duration.Over">
+            <summary>
+            Elément de syntax pour gérer le calendrier à utiliser pour interpréter la date.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Over"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.EasterDay">
+            <summary>
+            Elément de syntax pour la définition d'un jour en rapport avec le dimanche de Pâques.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.EasterDay.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.EasterDay.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.String)">
+            <summary>
+            Initialise une nouvelle classe de <see cref="T:ShaNetHoliday.Syntax.Composition.EasterDay"/>.
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.EasterDay.StartAt(System.String)">
+            <summary>
+            Elément de syntax pour indiquer l'heure de début.
+            </summary>
+            <param name="value">L'heure de début au format HH:mm</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.EasterDay.StartAtMidnight">
+            <summary>
+            Elément de syntax pour indiquer que l'heure de début est à minuit.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.Start"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.Every">
+            <summary>
+            Elément de syntax pour gérer la récurrence selon un nombre de périodes.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Every.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.Every.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.Int32)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.Every"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="number">Nombre de périodes.</param>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.Every.Year">
+            <summary>
+            Elément de syntax pour le récurrence par nombre d'années.
+            </summary>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.If">
+            <summary>
+            Elément de syntax pour changer l'heure de début selon le jour.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.If.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.If.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.DayOfWeek)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.If"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="dayOfWeek">Jour particulier.</param>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.If.ThenStartAt(System.String)">
+            <summary>
+            Elément de syntax pour changer l'heure.
+            </summary>
+            <param name="value">Nouvelle heure.</param>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.ThenStart"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.If.ThenStartAtMidnight">
+            <summary>
+            Elément de syntax pour changer l'heure à minuit.
+            </summary>
+            <returns>L'élément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.ThenStart"/> pour ajouter d'autres comportements.</returns>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.IfDay">
+            <summary>
+            Elément de syntax pour déplacer le jour à un autre si il tombe un certain jour.
+            </summary>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.IfDay.Token">
+            <summary>
+            Token de l'élément.
+            </summary>
+        </member>
+        <member name="M:ShaNetHoliday.Syntax.Composition.IfDay.#ctor(ShaNetHoliday.Core.Models.ExpressionElement,System.DayOfWeek)">
+            <summary>
+            Initialise une nouvelle instance de la classe <see cref="T:ShaNetHoliday.Syntax.Composition.IfDay"/>.
+            </summary>
+            <param name="parent">Elément de syntax parent.</param>
+            <param name="dayOfWeek">Jour particulier.</param>
+        </member>
+        <member name="P:ShaNetHoliday.Syntax.Composition.IfDay.Then">
+            <summary>
+            Elément de syntax <see cref="T:ShaNetHoliday.Syntax.Composition.ThenAction"/> pour choisir l'action à réaliser.
+            </summary>
+        </member>
+        <member name="T:ShaNetHoliday.Syntax.Composition.InYear">

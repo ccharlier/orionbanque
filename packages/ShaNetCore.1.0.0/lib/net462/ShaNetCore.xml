@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShaNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:ShaNetCore.ExtensionsDecimal">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Decimal"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsDecimal.ToCurrencyString(System.Nullable{System.Decimal},System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne avec le formattage monaie
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre mais sous forme de monaie avec le symbôle.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsDecimal.ToCurrencyString(System.Decimal,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne avec le formattage monaie
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre mais sous forme de monaie avec le symbôle.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsDecimal.ToString(System.Nullable{System.Decimal},System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne à partir d'un nombre.
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsDecimal.PercentOf(System.Decimal,System.Double)">
+            <summary>
+            Fonction qui permet d'obtenir un pourcentage d'une valeur.
+            </summary>
+            <param name="this">Pourcentage à appliquer.</param>
+            <param name="value">Valeur à laquelle appliquer le pourcentage.</param>
+            <returns>Le pourcentage souhaité de la valeur.</returns>
+        </member>
+        <member name="T:ShaNetCore.ExtensionsDouble">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Double"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsDouble.ToCurrencyString(System.Double,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Fonction qui permet d'obtenir une chaîne avec le formattage monaie
+            </summary>
+            <param name="this">Nombre à utiliser.</param>
+            <param name="format">Format à utiliser.</param>
+            <param name="culture">Culture à utiliser.</param>
+            <returns>
+            Une chaîne représentant le nombre mais sous forme de monaie avec le symbôle.
+            </returns>
+        </member>
+        <member name="T:ShaNetCore.ExtensionsEnum">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Enum"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsEnum.Description(System.Enum)">
+            <summary>
+            Fonction qui permet d'obtenir la valeur de l'attribut description d'un membre d'une énumération.
+            </summary>
+            <param name="enumeration">Type de l'énumération.</param>
+            <returns>
+            La valeur de l'attribut description d'un membre d'une énumération.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsEnum.GetAttributeValue``2(System.Enum,System.Func{``0,``1})">
+            <summary>
+            Fonction qui permet de récupérer une valeur d'un attribut sur le membre d'une énumération.
+            </summary>
+            <typeparam name="T">Type de l'attribut.</typeparam>
+            <typeparam name="TResult">Type de la valeur de retour.</typeparam>
+            <param name="enumeration">Membre de l'énumération.</param>
+            <param name="action">Fonction à utiliser pour récupérer la valeur.</param>
+            <returns>
+            Une valeur sur l'attribut.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsEnum.GetAttributeValue``2(System.Enum,System.Func{``0,``1},``1)">
+            <summary>
+            Fonction qui permet de récupérer une valeur d'un attribut sur le membre d'une énumération.
+            </summary>
+            <typeparam name="T">Type de l'attribut.</typeparam>
+            <typeparam name="TResult">Type de la valeur de retour.</typeparam>
+            <param name="enumeration">Membre de l'énumération.</param>
+            <param name="action">Fonction à utiliser pour récupérer la valeur.</param>
+            <param name="defaultValue">Valeur à retourner si l'attribut n'a pas été trouvé.</param>
+            <returns>
+            Une valeur sur l'attribut.
+            </returns>
+        </member>
+        <member name="T:ShaNetCore.ExtensionsException">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Exception"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsException.FullStackTrace(System.Exception)">
+            <summary>
+            Fonction qui permet de récupérer toute la stacktrace d'une exception sour la forme d'une string.
+            </summary>
+            <param name="ex">Exception.</param>
+            <returns>
+            Une string qui contient toute la stacktrace.
+            </returns>
+        </member>
+        <member name="T:ShaNetCore.ExtensionsICollection">
+            <summary>
+            Cette classe contient toutes les méthodes d'extensions relatives au type <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.AddIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0)">
+            <summary>
+            Ajoute à la collection l'élément <paramref name="value"/> si l'éxécution de la fonction <paramref name="predicate"/> retourne <see langword="true"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="predicate">Fonction de test.</param>
+            <param name="value">Elément à tester et à ajouter.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+            <example> 
+            Voilà un exemple d'utilisation.
+            <code lang="C#">
+            public class Element 
+            {
+                public int Id { get; set; }
+            }
+            public void Test()
+            {
+                Element element = new Element() { Id = 1 };
+                Collection&lt;Element&gt; collection = new Collection&lt;Element&gt;();
+                collection.AddIf(x => x.Id > 0, element);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.AddIfNotContains``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            Ajoute à la collection l'élément <paramref name="value"/> si l'élément n'est pas déjà présent.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="value">Elément à tester et à ajouter.</param>
+            <returns>
+            <see langword="true"/> si l'ajout à été réalisé, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.AddRange``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Ajoute à la collection les éléments de <paramref name="values"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Eléments à ajouter.</param>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0[])">
+            <summary>
+            Ajoute à la collection les éléments de <paramref name="values"/>, chaque élément est soumis à la fonction <paramref name="predicate"/> et n'est ajouté que si elle retourne <see langword="true"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="predicate">Fonction de test.</param>
+            <param name="values">Eléments à ajouter.</param>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Ajoute à la collection les éléments de <paramref name="values"/> si ils ne sont pas déjà présents.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Elément à tester et à ajouter.</param>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.ContainsAll``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si la collection contient tous les éléments de <paramref name="values"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Eléments à tester.</param>
+            <returns>
+            <see langword="true"/> si tous les éléments sont présent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.ContainsAny``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary>
+            Fonction qui permet de déterminer si la collection contient au moins un des éléments de <paramref name="values"/>.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection d'éléments.</param>
+            <param name="values">Eléments à tester.</param>
+            <returns>
+            <see langword="true"/> si au moins un des éléments sont présent, <see langword="false"/> sinon.
+            </returns>
+        </member>
+        <member name="M:ShaNetCore.ExtensionsICollection.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Fonction qui permet de déterminer si une collection est vide.
+            </summary>
+            <typeparam name="T">Type des éléments dans la collection (<paramref name="this"/>).</typeparam>
+            <param name="this">ICollection

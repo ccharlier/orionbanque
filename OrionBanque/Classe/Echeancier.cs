@@ -4,8 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
-using ID3iHoliday.Engine.Standard;
-using ID3iHoliday.Models;
+using ShaNetHoliday.Engine.Standard;
+using ShaNetHoliday.Models;
 
 namespace OrionBanque.Classe
 {
