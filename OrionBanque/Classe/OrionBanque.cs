@@ -30,6 +30,8 @@ namespace OrionBanque.Classe
         public List<string> Tiers { get; set; }
         [DataMember()]
         public bool? PredictTiers { get; set; }
+        [DataMember()]
+        public List<TotalCompte> ListeTotalCompte { get; set; }
 
         public OB()
         {
@@ -41,6 +43,7 @@ namespace OrionBanque.Classe
             Params = new List<Param>();
             Utilisateurs = new List<Utilisateur>();
             Fichiers = new List<Fichier>();
+            ListeTotalCompte = new List<TotalCompte>();
             Tiers = new List<string>();
             PredictTiers = true;
         }

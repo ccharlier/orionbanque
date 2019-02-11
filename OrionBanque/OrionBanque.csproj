@@ -149,6 +149,7 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
@@ -237,6 +238,7 @@
     <Compile Include="Classe\IniFile.cs" />
     <Compile Include="Classe\KEY.cs" />
     <Compile Include="Classe\Log.cs" />
+    <Compile Include="Classe\TotalCompte.cs" />
     <Compile Include="Classe\Tiers.cs" />
     <Compile Include="Classe\ModePaiement.cs" />
     <Compile Include="Classe\Operation.cs" />

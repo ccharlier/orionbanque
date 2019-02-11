@@ -21,7 +21,7 @@ namespace OrionBanque
             fc.ShowDialog();
             if(fc.cont)
             {
-                MainFormRub mf = new MainFormRub(fc.uA);
+                MainFormRub mf = new MainFormRub(fc.uA, fc.activSauv);
                 Application.Run(mf);
             }
         }

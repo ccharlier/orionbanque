@@ -16,7 +16,7 @@ namespace OrionBanque
     {
         Utilisateur uA;
 
-        public MainFormRub(Utilisateur u)
+        public MainFormRub(Utilisateur u, Boolean activeSauvegarde=false)
         {
             uA = u;
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace OrionBanque
             ApresConnexion();
             txtFiltreDate.CalendarTodayDate = DateTime.Now;
             txtOperationDate.CalendarTodayDate = DateTime.Now;
+            ActiveSauvegarde(activeSauvegarde);
         }
 
         #region Echéancier

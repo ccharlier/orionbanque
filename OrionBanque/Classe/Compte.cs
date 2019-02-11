@@ -225,7 +225,7 @@ namespace OrionBanque.Classe
             return rPositif - rNegatif + SoldeInitial;
         }
 
-        public static DataSet DataSetTotalComptes(Utilisateur u)
+        public static DataSet DataSetTotalComptes(TotalCompte tc)
         {
             double totPointe = 0.0;
             double totaVenir = 0.0;
@@ -241,7 +241,7 @@ namespace OrionBanque.Classe
             t.Columns.Add("A venir", typeof(double));
             t.Columns.Add("Solde", typeof(double));
             
-            List<Compte> list = ChargeTout(u).Where(c => c.EstDansTotalCompte ?? true).ToList();
+            List<Compte> list = tc.Comptes;
 
             //go through each property on T and add each value to the table
             foreach (Compte item in list)
