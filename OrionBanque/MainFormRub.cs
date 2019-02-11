@@ -477,6 +477,31 @@ namespace OrionBanque
         {
             LanceFiltreOperation();
         }
+        
+        private void kFiltreModePaiement_Click(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
+
+        private void kFiltreTiers_Click(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
+
+        private void kFiltreCategorie_Click(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
+
+        private void kFiltreMontant_Click(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
+
+        private void KFiltreDate_Click(object sender, EventArgs e)
+        {
+            LanceFiltreOperation();
+        }
 
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -638,11 +663,6 @@ namespace OrionBanque
             SelectRowOperation(o.Id);
             ActiveSauvegarde();
             ActiveControl = txtOperationDate;
-        }
-
-        private void KFiltreDate_Click(object sender, EventArgs e)
-        {
-            LanceFiltreOperation();
         }
         #endregion
 

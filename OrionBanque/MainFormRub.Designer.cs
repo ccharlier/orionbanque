@@ -236,7 +236,6 @@
             this.kRibbonTabOperation,
             this.kRibbonTabCompte,
             this.kRibbonTabConfiguration});
-            this.kMainRuban.SelectedContext = null;
             this.kMainRuban.SelectedTab = this.kRibbonTabOperation;
             this.kMainRuban.Size = new System.Drawing.Size(1260, 115);
             this.kMainRuban.TabIndex = 0;
@@ -893,6 +892,7 @@
             this.kFiltreMontant.TabIndex = 10;
             this.kFiltreMontant.Values.Image = global::OrionBanque.Properties.Resources.money1;
             this.kFiltreMontant.Values.Text = "";
+            this.kFiltreMontant.Click += new System.EventHandler(this.kFiltreMontant_Click);
             // 
             // kFiltreCategorie
             // 
@@ -902,6 +902,7 @@
             this.kFiltreCategorie.TabIndex = 8;
             this.kFiltreCategorie.Values.Image = global::OrionBanque.Properties.Resources.chart_organisation1;
             this.kFiltreCategorie.Values.Text = "";
+            this.kFiltreCategorie.Click += new System.EventHandler(this.kFiltreCategorie_Click);
             // 
             // kFiltreTiers
             // 
@@ -911,6 +912,7 @@
             this.kFiltreTiers.TabIndex = 6;
             this.kFiltreTiers.Values.Image = global::OrionBanque.Properties.Resources.user_business;
             this.kFiltreTiers.Values.Text = "";
+            this.kFiltreTiers.Click += new System.EventHandler(this.kFiltreTiers_Click);
             // 
             // kFiltreModePaiement
             // 
@@ -920,6 +922,7 @@
             this.kFiltreModePaiement.TabIndex = 4;
             this.kFiltreModePaiement.Values.Image = global::OrionBanque.Properties.Resources.creditcards;
             this.kFiltreModePaiement.Values.Text = "";
+            this.kFiltreModePaiement.Click += new System.EventHandler(this.kFiltreModePaiement_Click);
             // 
             // kFiltreDate
             // 
