@@ -140,7 +140,7 @@ namespace OrionBanque.Forms
             bool[] temp = new bool[kLBCompte.Items.Count];
             TotalCompte tc = TotalCompte.Charge((int)kCbListTotalCompte.SelectedValue);
 
-            for (int i = 0;i<kLBCompte.Items.Count;i++)
+            for (int i = 0; i<kLBCompte.Items.Count; i++)
             {
                 Compte c = (Compte)kLBCompte.Items[i];
                 foreach(Compte ct in tc.Comptes)
