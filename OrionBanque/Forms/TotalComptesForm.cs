@@ -157,7 +157,7 @@ namespace OrionBanque.Forms
                 }
             }
             estConstructeur = true;
-            for (int i=0;i<temp.Length;i++)
+            for (int i=0; i<temp.Length; i++)
             {
                 kLBCompte.SetItemChecked(i, temp[i]);
             }
