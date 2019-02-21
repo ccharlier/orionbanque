@@ -452,22 +452,22 @@
             // 
             // kRBtnCompteAdd
             // 
-            this.kRBtnCompteAdd.ImageLarge = global::OrionBanque.Properties.Resources.coins_add;
-            this.kRBtnCompteAdd.ImageSmall = global::OrionBanque.Properties.Resources.coins_add;
+            this.kRBtnCompteAdd.ImageLarge = global::OrionBanque.Properties.Resources.bookadd;
+            this.kRBtnCompteAdd.ImageSmall = global::OrionBanque.Properties.Resources.bookadd;
             this.kRBtnCompteAdd.TextLine1 = "Ajouter";
             this.kRBtnCompteAdd.Click += new System.EventHandler(this.kRBtnCompteAdd_Click);
             // 
             // kRBtnCompteEdit
             // 
-            this.kRBtnCompteEdit.ImageLarge = global::OrionBanque.Properties.Resources.coins1;
-            this.kRBtnCompteEdit.ImageSmall = global::OrionBanque.Properties.Resources.coins1;
+            this.kRBtnCompteEdit.ImageLarge = global::OrionBanque.Properties.Resources.bookedit;
+            this.kRBtnCompteEdit.ImageSmall = global::OrionBanque.Properties.Resources.bookedit;
             this.kRBtnCompteEdit.TextLine1 = "Modifier";
             this.kRBtnCompteEdit.Click += new System.EventHandler(this.kRBtnCompteEdit_Click);
             // 
             // kRBtnCompteDelete
             // 
-            this.kRBtnCompteDelete.ImageLarge = global::OrionBanque.Properties.Resources.coins_delete;
-            this.kRBtnCompteDelete.ImageSmall = global::OrionBanque.Properties.Resources.coins_delete;
+            this.kRBtnCompteDelete.ImageLarge = global::OrionBanque.Properties.Resources.bookdelete;
+            this.kRBtnCompteDelete.ImageSmall = global::OrionBanque.Properties.Resources.bookdelete;
             this.kRBtnCompteDelete.TextLine1 = "Supprimer";
             this.kRBtnCompteDelete.Click += new System.EventHandler(this.kRBtnCompteDelete_Click);
             // 

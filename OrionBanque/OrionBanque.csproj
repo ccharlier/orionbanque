@@ -56,6 +56,7 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -67,6 +68,7 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -605,6 +607,9 @@
     <None Include="Resources\paintcan.png" />
     <None Include="Resources\error.png" />
     <None Include="Resources\error2.png" />
+    <None Include="Resources\book-add.png" />
+    <None Include="Resources\book-edit.png" />
+    <None Include="Resources\book-delete.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
