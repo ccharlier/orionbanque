@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormRub));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormRub));
             this.kMainRuban = new ComponentFactory.Krypton.Ribbon.KryptonRibbon();
             this.btnSpecAbout = new ComponentFactory.Krypton.Toolkit.ButtonSpecAny();
             this.kRQATBSave = new ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton();
@@ -53,7 +53,6 @@
             this.kRBtnOperationAdd = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
             this.kRBtnOperationEdit = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
             this.kRBtnOperationDelete = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
-            this.kryptonRibbonGroupSeparator1 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator();
             this.kryptonRibbonGroup2 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup();
             this.kryptonRibbonGroupTriple2 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple();
             this.kRBtnOperationVirCaC = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
@@ -236,13 +235,14 @@
             this.kRibbonTabOperation,
             this.kRibbonTabCompte,
             this.kRibbonTabConfiguration});
+            this.kMainRuban.SelectedContext = null;
             this.kMainRuban.SelectedTab = this.kRibbonTabOperation;
             this.kMainRuban.Size = new System.Drawing.Size(1260, 115);
             this.kMainRuban.TabIndex = 0;
             // 
             // btnSpecAbout
             // 
-            this.btnSpecAbout.Image = global::OrionBanque.Properties.Resources.information_balloon;
+            this.btnSpecAbout.Image = global::OrionBanque.Properties.Resources.informationballoon;
             this.btnSpecAbout.UniqueName = "E326D4562C10452A3D9B87AFF509DAAA";
             this.btnSpecAbout.Click += new System.EventHandler(this.btnSpecAbout_Click);
             // 
@@ -265,36 +265,36 @@
             // kCMHExport
             // 
             this.kCMHExport.ExtraText = "";
-            this.kCMHExport.Image = global::OrionBanque.Properties.Resources.blue_document_export;
+            this.kCMHExport.Image = global::OrionBanque.Properties.Resources.bluedocumentexport;
             this.kCMHExport.Text = "Exporter";
             // 
             // kCMJson
             // 
-            this.kCMJson.Image = global::OrionBanque.Properties.Resources.blue_document_node;
+            this.kCMJson.Image = global::OrionBanque.Properties.Resources.bluedocumentnode;
             this.kCMJson.Text = "JSON";
             this.kCMJson.Click += new System.EventHandler(this.kCMJson_Click);
             // 
             // kCMXml
             // 
-            this.kCMXml.Image = global::OrionBanque.Properties.Resources.blue_document_code;
+            this.kCMXml.Image = global::OrionBanque.Properties.Resources.bluedocumentcode;
             this.kCMXml.Text = "XML";
             this.kCMXml.Click += new System.EventHandler(this.kCMXml_Click);
             // 
             // kCMCsv
             // 
-            this.kCMCsv.Image = global::OrionBanque.Properties.Resources.blue_document_excel_csv;
+            this.kCMCsv.Image = global::OrionBanque.Properties.Resources.bluedocumentexcelcsv;
             this.kCMCsv.Text = "CSV";
             this.kCMCsv.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // kCMHImport
             // 
             this.kCMHImport.ExtraText = "";
-            this.kCMHImport.Image = global::OrionBanque.Properties.Resources.blue_document_import;
+            this.kCMHImport.Image = global::OrionBanque.Properties.Resources.bluedocumentimport;
             this.kCMHImport.Text = "Importer";
             // 
             // kCMFichierBP
             // 
-            this.kCMFichierBP.Image = global::OrionBanque.Properties.Resources.blue_document_excel_csv;
+            this.kCMFichierBP.Image = global::OrionBanque.Properties.Resources.bluedocumentexcelcsv;
             this.kCMFichierBP.Text = "Fichier CSV BP";
             this.kCMFichierBP.Click += new System.EventHandler(this.kCMFichierBP_Click);
             // 
@@ -324,8 +324,7 @@
             // kryptonRibbonGroup1
             // 
             this.kryptonRibbonGroup1.Items.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer[] {
-            this.kryptonRibbonGroupTriple1,
-            this.kryptonRibbonGroupSeparator1});
+            this.kryptonRibbonGroupTriple1});
             this.kryptonRibbonGroup1.TextLine1 = "Gérer";
             // 
             // kryptonRibbonGroupTriple1
@@ -337,24 +336,24 @@
             // 
             // kRBtnOperationAdd
             // 
-            this.kRBtnOperationAdd.ImageLarge = global::OrionBanque.Properties.Resources.add1;
-            this.kRBtnOperationAdd.ImageSmall = global::OrionBanque.Properties.Resources.add1;
+            this.kRBtnOperationAdd.ImageLarge = global::OrionBanque.Properties.Resources.add;
+            this.kRBtnOperationAdd.ImageSmall = global::OrionBanque.Properties.Resources.add;
             this.kRBtnOperationAdd.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.kRBtnOperationAdd.TextLine1 = "Ajouter";
             this.kRBtnOperationAdd.Click += new System.EventHandler(this.kRBtnOperationAdd_Click);
             // 
             // kRBtnOperationEdit
             // 
-            this.kRBtnOperationEdit.ImageLarge = global::OrionBanque.Properties.Resources.pencil;
-            this.kRBtnOperationEdit.ImageSmall = global::OrionBanque.Properties.Resources.pencil;
+            this.kRBtnOperationEdit.ImageLarge = global::OrionBanque.Properties.Resources.pencil1;
+            this.kRBtnOperationEdit.ImageSmall = global::OrionBanque.Properties.Resources.pencil1;
             this.kRBtnOperationEdit.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.kRBtnOperationEdit.TextLine1 = "Modifier";
             this.kRBtnOperationEdit.Click += new System.EventHandler(this.kRBtnOperationEdit_Click);
             // 
             // kRBtnOperationDelete
             // 
-            this.kRBtnOperationDelete.ImageLarge = global::OrionBanque.Properties.Resources.cross1;
-            this.kRBtnOperationDelete.ImageSmall = global::OrionBanque.Properties.Resources.cross1;
+            this.kRBtnOperationDelete.ImageLarge = global::OrionBanque.Properties.Resources.cross;
+            this.kRBtnOperationDelete.ImageSmall = global::OrionBanque.Properties.Resources.cross;
             this.kRBtnOperationDelete.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.kRBtnOperationDelete.TextLine1 = "Supprimer";
             this.kRBtnOperationDelete.Click += new System.EventHandler(this.kRBtnOperationDelete_Click);
@@ -378,8 +377,8 @@
             // 
             // kRBtnOperationVirCaC
             // 
-            this.kRBtnOperationVirCaC.ImageLarge = global::OrionBanque.Properties.Resources.tag;
-            this.kRBtnOperationVirCaC.ImageSmall = global::OrionBanque.Properties.Resources.tag;
+            this.kRBtnOperationVirCaC.ImageLarge = global::OrionBanque.Properties.Resources.tag1;
+            this.kRBtnOperationVirCaC.ImageSmall = global::OrionBanque.Properties.Resources.tag1;
             this.kRBtnOperationVirCaC.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.V)));
             this.kRBtnOperationVirCaC.TextLine1 = "Virement";
@@ -388,8 +387,8 @@
             // 
             // kRBtnOperationPointe
             // 
-            this.kRBtnOperationPointe.ImageLarge = global::OrionBanque.Properties.Resources.accept1;
-            this.kRBtnOperationPointe.ImageSmall = global::OrionBanque.Properties.Resources.accept1;
+            this.kRBtnOperationPointe.ImageLarge = global::OrionBanque.Properties.Resources.accept;
+            this.kRBtnOperationPointe.ImageSmall = global::OrionBanque.Properties.Resources.accept;
             this.kRBtnOperationPointe.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.kRBtnOperationPointe.TextLine1 = "Pointer les";
             this.kRBtnOperationPointe.TextLine2 = "Opérations ";
@@ -415,16 +414,16 @@
             // 
             // kRBtnOperationEcheancier
             // 
-            this.kRBtnOperationEcheancier.ImageLarge = global::OrionBanque.Properties.Resources.calendar_2;
-            this.kRBtnOperationEcheancier.ImageSmall = global::OrionBanque.Properties.Resources.calendar_2;
+            this.kRBtnOperationEcheancier.ImageLarge = global::OrionBanque.Properties.Resources.calendar;
+            this.kRBtnOperationEcheancier.ImageSmall = global::OrionBanque.Properties.Resources.calendar;
             this.kRBtnOperationEcheancier.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.kRBtnOperationEcheancier.TextLine1 = "Echéancier";
             this.kRBtnOperationEcheancier.Click += new System.EventHandler(this.kRBtnOperationEcheancier_Click);
             // 
             // kRBtnOperationFileView
             // 
-            this.kRBtnOperationFileView.ImageLarge = global::OrionBanque.Properties.Resources.document_copy;
-            this.kRBtnOperationFileView.ImageSmall = global::OrionBanque.Properties.Resources.document_copy;
+            this.kRBtnOperationFileView.ImageLarge = global::OrionBanque.Properties.Resources.pagecopy;
+            this.kRBtnOperationFileView.ImageSmall = global::OrionBanque.Properties.Resources.pagecopy;
             this.kRBtnOperationFileView.TextLine1 = "Visualiser";
             this.kRBtnOperationFileView.TextLine2 = "les Fichiers";
             this.kRBtnOperationFileView.ToolTipBody = "Test";
@@ -488,8 +487,8 @@
             // 
             // kRBtnCompteTotCompte
             // 
-            this.kRBtnCompteTotCompte.ImageLarge = global::OrionBanque.Properties.Resources.application_osx;
-            this.kRBtnCompteTotCompte.ImageSmall = global::OrionBanque.Properties.Resources.application_osx;
+            this.kRBtnCompteTotCompte.ImageLarge = global::OrionBanque.Properties.Resources.applicationosx;
+            this.kRBtnCompteTotCompte.ImageSmall = global::OrionBanque.Properties.Resources.applicationosx;
             this.kRBtnCompteTotCompte.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
             this.kRBtnCompteTotCompte.TextLine1 = "Total des";
             this.kRBtnCompteTotCompte.TextLine2 = "comptes";
@@ -497,8 +496,8 @@
             // 
             // kRBtnCompteGraph
             // 
-            this.kRBtnCompteGraph.ImageLarge = global::OrionBanque.Properties.Resources.chart_pie1;
-            this.kRBtnCompteGraph.ImageSmall = global::OrionBanque.Properties.Resources.chart_pie1;
+            this.kRBtnCompteGraph.ImageLarge = global::OrionBanque.Properties.Resources.chartpie;
+            this.kRBtnCompteGraph.ImageSmall = global::OrionBanque.Properties.Resources.chartpie;
             this.kRBtnCompteGraph.TextLine1 = "Graphiques";
             this.kRBtnCompteGraph.Click += new System.EventHandler(this.kRBtnCompteGraph_Click);
             // 
@@ -525,22 +524,23 @@
             // 
             // kRBtnConfMdP
             // 
-            this.kRBtnConfMdP.ImageLarge = global::OrionBanque.Properties.Resources.creditcards;
+            this.kRBtnConfMdP.ImageLarge = global::OrionBanque.Properties.Resources.toolbarbutton;
+            this.kRBtnConfMdP.ImageSmall = global::OrionBanque.Properties.Resources.toolbarbutton;
             this.kRBtnConfMdP.TextLine1 = "Modes de";
             this.kRBtnConfMdP.TextLine2 = "paiements";
             this.kRBtnConfMdP.Click += new System.EventHandler(this.kRBtnConfMdP_Click);
             // 
             // kRBtnConfCategorie
             // 
-            this.kRBtnConfCategorie.ImageLarge = global::OrionBanque.Properties.Resources.chart_organisation1;
-            this.kRBtnConfCategorie.ImageSmall = global::OrionBanque.Properties.Resources.chart_organisation1;
+            this.kRBtnConfCategorie.ImageLarge = global::OrionBanque.Properties.Resources.chartorganisation;
+            this.kRBtnConfCategorie.ImageSmall = global::OrionBanque.Properties.Resources.chartorganisation;
             this.kRBtnConfCategorie.TextLine1 = "Catégories";
             this.kRBtnConfCategorie.Click += new System.EventHandler(this.kRBtnConfCategorie_Click);
             // 
             // kRBtnConfTiers
             // 
-            this.kRBtnConfTiers.ImageLarge = global::OrionBanque.Properties.Resources.user_business;
-            this.kRBtnConfTiers.ImageSmall = global::OrionBanque.Properties.Resources.user_business;
+            this.kRBtnConfTiers.ImageLarge = global::OrionBanque.Properties.Resources.group1;
+            this.kRBtnConfTiers.ImageSmall = global::OrionBanque.Properties.Resources.group1;
             this.kRBtnConfTiers.TextLine1 = "Gestion prédictive";
             this.kRBtnConfTiers.TextLine2 = "des Tiers";
             this.kRBtnConfTiers.Click += new System.EventHandler(this.kRBtnConfTiers_Click);
@@ -559,8 +559,8 @@
             // kRGBtnPredictTiers
             // 
             this.kRGBtnPredictTiers.ButtonType = ComponentFactory.Krypton.Ribbon.GroupButtonType.Check;
-            this.kRGBtnPredictTiers.ImageLarge = global::OrionBanque.Properties.Resources.user_business;
-            this.kRGBtnPredictTiers.ImageSmall = global::OrionBanque.Properties.Resources.user_business;
+            this.kRGBtnPredictTiers.ImageLarge = global::OrionBanque.Properties.Resources.group1;
+            this.kRGBtnPredictTiers.ImageSmall = global::OrionBanque.Properties.Resources.group1;
             this.kRGBtnPredictTiers.TextLine1 = "Tiers";
             this.kRGBtnPredictTiers.Click += new System.EventHandler(this.kRGBtnPredictTiers_Click);
             // 
@@ -578,8 +578,8 @@
             // 
             // kRBtnConfEditUser
             // 
-            this.kRBtnConfEditUser.ImageLarge = global::OrionBanque.Properties.Resources.user_edit;
-            this.kRBtnConfEditUser.ImageSmall = global::OrionBanque.Properties.Resources.user_edit;
+            this.kRBtnConfEditUser.ImageLarge = global::OrionBanque.Properties.Resources.useredit;
+            this.kRBtnConfEditUser.ImageSmall = global::OrionBanque.Properties.Resources.useredit;
             this.kRBtnConfEditUser.TextLine1 = "Modifier";
             this.kRBtnConfEditUser.TextLine2 = "l\'Utilisateur";
             this.kRBtnConfEditUser.Click += new System.EventHandler(this.kRBtnConfEditUser_Click);
@@ -597,43 +597,43 @@
             // 
             // kRBtnConfThemeOffice2010Bleu
             // 
-            this.kRBtnConfThemeOffice2010Bleu.ImageLarge = global::OrionBanque.Properties.Resources.paint_can;
-            this.kRBtnConfThemeOffice2010Bleu.ImageSmall = global::OrionBanque.Properties.Resources.paint_can;
+            this.kRBtnConfThemeOffice2010Bleu.ImageLarge = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeOffice2010Bleu.ImageLarge")));
+            this.kRBtnConfThemeOffice2010Bleu.ImageSmall = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeOffice2010Bleu.ImageSmall")));
             this.kRBtnConfThemeOffice2010Bleu.TextLine1 = "Office 2010 - Bleu";
             this.kRBtnConfThemeOffice2010Bleu.Click += new System.EventHandler(this.kRBtnConfThemeOffice2010Bleu_Click);
             // 
             // kRBtnConfThemeOffice2010Argent
             // 
-            this.kRBtnConfThemeOffice2010Argent.ImageLarge = global::OrionBanque.Properties.Resources.paint_can;
-            this.kRBtnConfThemeOffice2010Argent.ImageSmall = global::OrionBanque.Properties.Resources.paint_can;
+            this.kRBtnConfThemeOffice2010Argent.ImageLarge = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeOffice2010Argent.ImageLarge")));
+            this.kRBtnConfThemeOffice2010Argent.ImageSmall = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeOffice2010Argent.ImageSmall")));
             this.kRBtnConfThemeOffice2010Argent.TextLine1 = "Office 2010 - Argent";
             this.kRBtnConfThemeOffice2010Argent.Click += new System.EventHandler(this.kRBtnConfThemeOffice2010Argent_Click);
             // 
             // kRBtnConfThemeOffice2010Noir
             // 
-            this.kRBtnConfThemeOffice2010Noir.ImageLarge = global::OrionBanque.Properties.Resources.paint_can;
-            this.kRBtnConfThemeOffice2010Noir.ImageSmall = global::OrionBanque.Properties.Resources.paint_can;
+            this.kRBtnConfThemeOffice2010Noir.ImageLarge = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeOffice2010Noir.ImageLarge")));
+            this.kRBtnConfThemeOffice2010Noir.ImageSmall = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeOffice2010Noir.ImageSmall")));
             this.kRBtnConfThemeOffice2010Noir.TextLine1 = "Office 2010 - Noir";
             this.kRBtnConfThemeOffice2010Noir.Click += new System.EventHandler(this.kRBtnConfThemeOffice2010Noir_Click);
             // 
             // kRBtnConfThemeSparkleBleu
             // 
-            this.kRBtnConfThemeSparkleBleu.ImageLarge = global::OrionBanque.Properties.Resources.paint_can;
-            this.kRBtnConfThemeSparkleBleu.ImageSmall = global::OrionBanque.Properties.Resources.paint_can;
+            this.kRBtnConfThemeSparkleBleu.ImageLarge = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeSparkleBleu.ImageLarge")));
+            this.kRBtnConfThemeSparkleBleu.ImageSmall = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeSparkleBleu.ImageSmall")));
             this.kRBtnConfThemeSparkleBleu.TextLine1 = "Sparkle - Bleu";
             this.kRBtnConfThemeSparkleBleu.Click += new System.EventHandler(this.kRBtnConfThemeSparkleBleu_Click);
             // 
             // kRBtnConfThemeSparkleOrange
             // 
-            this.kRBtnConfThemeSparkleOrange.ImageLarge = global::OrionBanque.Properties.Resources.paint_can;
-            this.kRBtnConfThemeSparkleOrange.ImageSmall = global::OrionBanque.Properties.Resources.paint_can;
+            this.kRBtnConfThemeSparkleOrange.ImageLarge = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeSparkleOrange.ImageLarge")));
+            this.kRBtnConfThemeSparkleOrange.ImageSmall = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeSparkleOrange.ImageSmall")));
             this.kRBtnConfThemeSparkleOrange.TextLine1 = "Sparkle - Orange";
             this.kRBtnConfThemeSparkleOrange.Click += new System.EventHandler(this.kRBtnConfThemeSparkleOrange_Click);
             // 
             // kRBtnConfThemeSparkleViolet
             // 
-            this.kRBtnConfThemeSparkleViolet.ImageLarge = global::OrionBanque.Properties.Resources.paint_can;
-            this.kRBtnConfThemeSparkleViolet.ImageSmall = global::OrionBanque.Properties.Resources.paint_can;
+            this.kRBtnConfThemeSparkleViolet.ImageLarge = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeSparkleViolet.ImageLarge")));
+            this.kRBtnConfThemeSparkleViolet.ImageSmall = ((System.Drawing.Image)(resources.GetObject("kRBtnConfThemeSparkleViolet.ImageSmall")));
             this.kRBtnConfThemeSparkleViolet.TextLine1 = "Sparkle - Violet";
             this.kRBtnConfThemeSparkleViolet.Click += new System.EventHandler(this.kRBtnConfThemeSparkleViolet_Click);
             // 
@@ -686,7 +686,7 @@
             // pb
             // 
             this.pb.BackColor = System.Drawing.Color.Transparent;
-            this.pb.Image = global::OrionBanque.Properties.Resources.error1;
+            this.pb.Image = ((System.Drawing.Image)(resources.GetObject("pb.Image")));
             this.pb.Location = new System.Drawing.Point(16, 56);
             this.pb.Name = "pb";
             this.pb.Size = new System.Drawing.Size(16, 16);
@@ -1446,7 +1446,6 @@
         private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kRBtnOperationAdd;
         private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kRBtnOperationEdit;
         private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kRBtnOperationDelete;
-        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator kryptonRibbonGroupSeparator1;
         private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup kryptonRibbonGroup2;
         private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple kryptonRibbonGroupTriple2;
         private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kRBtnOperationVirCaC;

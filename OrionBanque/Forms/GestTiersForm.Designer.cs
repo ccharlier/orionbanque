@@ -87,7 +87,7 @@
             this.kBtnDesactiveOne.Size = new System.Drawing.Size(93, 25);
             this.kBtnDesactiveOne.TabIndex = 3;
             this.toolTip.SetToolTip(this.kBtnDesactiveOne, "Désactiver le Tiers sélectionné");
-            this.kBtnDesactiveOne.Values.Image = global::OrionBanque.Properties.Resources.arrow_180;
+            this.kBtnDesactiveOne.Values.Image = global::OrionBanque.Properties.Resources.arrow180;
             this.kBtnDesactiveOne.Values.Text = "";
             this.kBtnDesactiveOne.Click += new System.EventHandler(this.kBtnDesactiveOne_Click);
             // 

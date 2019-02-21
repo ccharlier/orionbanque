@@ -472,9 +472,6 @@
     <None Include="Resources\help.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\application_osx.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\lock_go.png" />
   </ItemGroup>
   <ItemGroup>
@@ -588,6 +585,26 @@
     <None Include="Resources\paint-can.png" />
     <None Include="Resources\information-balloon.png" />
     <None Include="Resources\clock-history-frame.png" />
+    <None Include="Resources\add2.png" />
+    <None Include="Resources\pen.png" />
+    <None Include="Resources\pen1.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\pencil1.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\tag1.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\calendar.png" />
+    <None Include="Resources\page-copy.png" />
+    <None Include="Resources\applicationosx.png" />
+    <None Include="Resources\chartpie.png" />
+    <None Include="Resources\toolbarbutton.png" />
+    <None Include="Resources\chartorganisation.png" />
+    <None Include="Resources\group1.png" />
+    <None Include="Resources\useredit.png" />
+    <None Include="Resources\paintcan.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\error2.png" />
     <Content Include="_.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

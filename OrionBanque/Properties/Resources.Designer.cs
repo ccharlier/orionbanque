@@ -63,9 +63,29 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap accept {
+            get {
+                object obj = ResourceManager.GetObject("accept", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap accept1 {
             get {
                 object obj = ResourceManager.GetObject("accept1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add {
+            get {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +103,19 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap application_osx {
+        internal static System.Drawing.Bitmap add2 {
             get {
-                object obj = ResourceManager.GetObject("application_osx", resourceCulture);
+                object obj = ResourceManager.GetObject("add2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap applicationosx {
+            get {
+                object obj = ResourceManager.GetObject("applicationosx", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +133,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_180 {
+        internal static System.Drawing.Bitmap arrow180 {
             get {
-                object obj = ResourceManager.GetObject("arrow-180", resourceCulture);
+                object obj = ResourceManager.GetObject("arrow180", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +143,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_curve_000_double {
+        internal static System.Drawing.Bitmap arrowcurve000double {
             get {
-                object obj = ResourceManager.GetObject("arrow-curve-000-double", resourceCulture);
+                object obj = ResourceManager.GetObject("arrowcurve000double", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +153,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_curve_000_left {
+        internal static System.Drawing.Bitmap arrowcurve000left {
             get {
-                object obj = ResourceManager.GetObject("arrow-curve-000-left", resourceCulture);
+                object obj = ResourceManager.GetObject("arrowcurve000left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +163,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_curve_180 {
+        internal static System.Drawing.Bitmap arrowcurve180 {
             get {
-                object obj = ResourceManager.GetObject("arrow-curve-180", resourceCulture);
+                object obj = ResourceManager.GetObject("arrowcurve180", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +173,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_curve_180_double {
+        internal static System.Drawing.Bitmap arrowcurve180double {
             get {
-                object obj = ResourceManager.GetObject("arrow-curve-180-double", resourceCulture);
+                object obj = ResourceManager.GetObject("arrowcurve180double", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +193,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_document_code {
+        internal static System.Drawing.Bitmap bluedocumentcode {
             get {
-                object obj = ResourceManager.GetObject("blue-document-code", resourceCulture);
+                object obj = ResourceManager.GetObject("bluedocumentcode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +203,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_document_excel_csv {
+        internal static System.Drawing.Bitmap bluedocumentexcelcsv {
             get {
-                object obj = ResourceManager.GetObject("blue-document-excel-csv", resourceCulture);
+                object obj = ResourceManager.GetObject("bluedocumentexcelcsv", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +213,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_document_export {
+        internal static System.Drawing.Bitmap bluedocumentexport {
             get {
-                object obj = ResourceManager.GetObject("blue-document-export", resourceCulture);
+                object obj = ResourceManager.GetObject("bluedocumentexport", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +223,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_document_import {
+        internal static System.Drawing.Bitmap bluedocumentimport {
             get {
-                object obj = ResourceManager.GetObject("blue-document-import", resourceCulture);
+                object obj = ResourceManager.GetObject("bluedocumentimport", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +233,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_document_node {
+        internal static System.Drawing.Bitmap bluedocumentnode {
             get {
-                object obj = ResourceManager.GetObject("blue-document-node", resourceCulture);
+                object obj = ResourceManager.GetObject("bluedocumentnode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +246,16 @@ namespace OrionBanque.Properties {
         internal static System.Drawing.Bitmap bullet_add_1 {
             get {
                 object obj = ResourceManager.GetObject("bullet_add_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap calendar {
+            get {
+                object obj = ResourceManager.GetObject("calendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +383,29 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clock_history_frame {
+        internal static System.Drawing.Bitmap chartorganisation {
             get {
-                object obj = ResourceManager.GetObject("clock-history-frame", resourceCulture);
+                object obj = ResourceManager.GetObject("chartorganisation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chartpie {
+            get {
+                object obj = ResourceManager.GetObject("chartpie", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clockhistoryframe {
+            get {
+                object obj = ResourceManager.GetObject("clockhistoryframe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,9 +483,29 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cross {
+            get {
+                object obj = ResourceManager.GetObject("cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cross1 {
             get {
                 object obj = ResourceManager.GetObject("cross1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -453,9 +533,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap document_copy {
+        internal static System.Drawing.Bitmap documentcopy {
             get {
-                object obj = ResourceManager.GetObject("document-copy", resourceCulture);
+                object obj = ResourceManager.GetObject("documentcopy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -466,6 +546,16 @@ namespace OrionBanque.Properties {
         internal static System.Drawing.Bitmap door_in {
             get {
                 object obj = ResourceManager.GetObject("door_in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap error {
+            get {
+                object obj = ResourceManager.GetObject("error", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -503,6 +593,16 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap group1 {
+            get {
+                object obj = ResourceManager.GetObject("group1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap help {
             get {
                 object obj = ResourceManager.GetObject("help", resourceCulture);
@@ -513,9 +613,9 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap information_balloon {
+        internal static System.Drawing.Bitmap informationballoon {
             get {
-                object obj = ResourceManager.GetObject("information-balloon", resourceCulture);
+                object obj = ResourceManager.GetObject("informationballoon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -593,9 +693,49 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap paint_can {
+        internal static System.Drawing.Bitmap pagecopy {
             get {
-                object obj = ResourceManager.GetObject("paint-can", resourceCulture);
+                object obj = ResourceManager.GetObject("pagecopy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paintcan {
+            get {
+                object obj = ResourceManager.GetObject("paintcan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paintcan1 {
+            get {
+                object obj = ResourceManager.GetObject("paintcan1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pen {
+            get {
+                object obj = ResourceManager.GetObject("pen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pen1 {
+            get {
+                object obj = ResourceManager.GetObject("pen1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -606,6 +746,16 @@ namespace OrionBanque.Properties {
         internal static System.Drawing.Bitmap pencil {
             get {
                 object obj = ResourceManager.GetObject("pencil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pencil1 {
+            get {
+                object obj = ResourceManager.GetObject("pencil1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -673,9 +823,29 @@ namespace OrionBanque.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tag1 {
+            get {
+                object obj = ResourceManager.GetObject("tag1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tick {
             get {
                 object obj = ResourceManager.GetObject("tick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toolbarbutton {
+            get {
+                object obj = ResourceManager.GetObject("toolbarbutton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -736,6 +906,16 @@ namespace OrionBanque.Properties {
         internal static System.Drawing.Bitmap user_suit {
             get {
                 object obj = ResourceManager.GetObject("user_suit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap useredit {
+            get {
+                object obj = ResourceManager.GetObject("useredit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
