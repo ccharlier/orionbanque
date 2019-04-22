@@ -440,6 +440,17 @@ namespace OrionBanque
                     otemp.DatePointage = DateTime.Now;
                     Operation.Maj(otemp);
                     row.Cells["DatePointage"].Value = DateTime.Now;
+
+                    //Contrôle si Operation Liee est un transfert
+                    if (otemp.TypeLien == KEY.TYPE_LIEN_OPERATION_TRANSFERT)
+                    {
+                        Operation OpeLiee = Operation.Charge(otemp.IdOperationLiee);
+                        if (MessageBox.Show("Souhaitez-vous également pointer l'opération liée réglée par " + OpeLiee.ModePaiement.Libelle + " le " + OpeLiee.Date.ToShortDateString() + " du compte " + OpeLiee.Compte.Libelle + " ?", "Confirmation", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            OpeLiee.DatePointage = DateTime.Now;
+                            Operation.Maj(OpeLiee);
+                        }
+                    }
                 }
             }
             if (dgvOperations.SelectedRows.Count != 0)

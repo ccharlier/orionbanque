@@ -14,7 +14,6 @@ namespace OrionBanque.Forms
 {
     public partial class FichiersForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        private Utilisateur uA;
         public bool bMustSave = false;
 
         public FichiersForm()
