@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace OrionBanque.Classe
 {
-    public class Tiers
+    public static class Tiers
     {
         public static List<string> ChargeTout()
         {

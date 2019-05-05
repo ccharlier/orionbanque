@@ -1,26 +1,20 @@
 ﻿using OrionBanque.Classe;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OrionBanque.Forms
 {
     public partial class FichiersForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
-        public bool bMustSave = false;
+        private bool bMustSave = false;
 
         public FichiersForm()
         {
             InitializeComponent();
             ChargeGrille();
         }
+
+        public bool BMustSave { get => bMustSave; set => bMustSave = value; }
 
         private void ChargeGrille()
         {
@@ -33,21 +27,14 @@ namespace OrionBanque.Forms
 
         private void kDgvFichiers_DoubleClick(object sender, EventArgs e)
         {
-            try
+            if (kDgvFichiers.Rows.Count == 0)
             {
-                if (kDgvFichiers.Rows.Count == 0)
-                {
-                    return;
-                }
+                return;
+            }
 
-                string chemin = kDgvFichiers.SelectedRows[0].Cells["Chemin"].Value.ToString();
-                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
-                System.Diagnostics.Process.Start(psi);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            string chemin = kDgvFichiers.SelectedRows[0].Cells["Chemin"].Value.ToString();
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
+            System.Diagnostics.Process.Start(psi);
         }
     }
 }

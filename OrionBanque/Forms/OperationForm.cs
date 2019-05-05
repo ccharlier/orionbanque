@@ -11,9 +11,11 @@ namespace OrionBanque.Forms
     {
         Operation O;
         private Compte compte;
-        public bool cont = false;
+        private bool cont = false;
         private bool PointageModif = false;
         private string mode = string.Empty;
+
+        public bool Cont { get => cont; set => cont = value; }
 
         public OperationForm(Operation oP, Compte cP, string modeP)
         {
@@ -23,13 +25,13 @@ namespace OrionBanque.Forms
             mode = modeP;
             RemplisCb();
 
-            if (mode.Equals(KEY.MODE_INSERT))
+            if (string.Equals(mode, KEY.MODEINSERT, StringComparison.CurrentCulture))
             {
                 O = new Operation();
                 dgvFichiers.Enabled = false;
                 btnAddFichier.Enabled = false;
             }
-            else if(mode.Equals(KEY.MODE_UPDATE))
+            else if(string.Equals(mode,KEY.MODEUPDATE, StringComparison.CurrentCulture))
             {
                 O = oP;
                 ChargeDgv();
@@ -55,66 +57,38 @@ namespace OrionBanque.Forms
 
         private void ChargeForm()
         {
-            try
+            txtDateMvt.Value = O.Date;
+            txtCategorie.SelectedValue = O.Categorie.Id;
+            txtLibelle.Text = O.Libelle;
+            txtModePaiement.SelectedValue = O.ModePaiement.Id;
+            txtMontant.Value = new decimal(O.Montant);
+            if (O.DatePointage != null)
             {
-                txtDateMvt.Value = O.Date;
-                txtCategorie.SelectedValue = O.Categorie.Id;
-                txtLibelle.Text = O.Libelle;
-                txtModePaiement.SelectedValue = O.ModePaiement.Id;
-                txtMontant.Value = new decimal(O.Montant);
-                if (O.DatePointage != null)
-                {
-                    txtPointage.Checked = true;
-                }
+                txtPointage.Checked = true;
+            }
 
-                txtTiers.Text = O.Tiers;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            txtTiers.Text = O.Tiers;
         }
 
         private void RemplisModePaiements()
         {
-            try
-            {
-                List<ModePaiement> lmp = ModePaiement.ChargeTout();
-                txtModePaiement.DisplayMember = "Libelle";
-                txtModePaiement.ValueMember = "Id";
-                txtModePaiement.DataSource = lmp;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            List<ModePaiement> lmp = ModePaiement.ChargeTout();
+            txtModePaiement.DisplayMember = "Libelle";
+            txtModePaiement.ValueMember = "Id";
+            txtModePaiement.DataSource = lmp;
         }
 
         private void RemplisCategories()
         {
-            try
-            {
-                List<Categorie> lc = Categorie.ChargeToutIdent();
-                txtCategorie.DisplayMember = "LibelleIdent";
-                txtCategorie.ValueMember = "Id";
-                txtCategorie.DataSource = lc;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            List<Categorie> lc = Categorie.ChargeToutIdent();
+            txtCategorie.DisplayMember = "LibelleIdent";
+            txtCategorie.ValueMember = "Id";
+            txtCategorie.DataSource = lc;
         }
 
         private void RemplisTiers()
         {
-            try
-            {
-                txtTiers.DataSource = Tiers.ChargeTout();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            txtTiers.DataSource = Tiers.ChargeTout();
         }
 
         private void OK_Click(object sender, EventArgs e)
@@ -127,63 +101,49 @@ namespace OrionBanque.Forms
         {
             if (O.Id != 0)
             {
-                try
+                O.Date = txtDateMvt.Value;
+                O.Categorie = Categorie.Charge((int)txtCategorie.SelectedValue);
+                O.ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue);
+                O.Libelle = txtLibelle.Text;
+                O.Montant = double.Parse(txtMontant.Value.ToString(System.Globalization.CultureInfo.CurrentCulture), System.Globalization.CultureInfo.CurrentCulture);
+                O.Tiers = txtTiers.Text;
+                if (txtPointage.Checked && PointageModif)
                 {
-                    O.Date = txtDateMvt.Value;
-                    O.Categorie = Categorie.Charge((int)txtCategorie.SelectedValue);
-                    O.ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue);
-                    O.Libelle = txtLibelle.Text;
-                    O.Montant = double.Parse(txtMontant.Value.ToString());
-                    O.Tiers = txtTiers.Text;
-                    if (txtPointage.Checked && PointageModif)
-                    {
-                        O.DatePointage = DateTime.Now;
-                    }
-
-                    if (!txtPointage.Checked)
-                    {
-                        O.DatePointage = null;
-                    }
-
-                    Operation.Maj(O);
-                    cont = true;
+                    O.DatePointage = DateTime.Now;
                 }
-                catch (Exception ex)
+
+                if (!txtPointage.Checked)
                 {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    O.DatePointage = null;
                 }
+
+                Operation.Maj(O);
+                cont = true;
             }
             else
             {
-                try
+                Operation o = new Operation
                 {
-                    Operation o = new Operation
-                    {
-                        Date = txtDateMvt.Value,
-                        Categorie = Categorie.Charge((int)txtCategorie.SelectedValue),
-                        Compte = compte,
-                        ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue),
-                        Libelle = txtLibelle.Text,
-                        Montant = double.Parse(txtMontant.Value.ToString()),
-                        Tiers = txtTiers.Text
-                    };
-                    if (txtPointage.Checked && PointageModif)
-                    {
-                        o.DatePointage = DateTime.Now;
-                    }
-
-                    if (!txtPointage.Checked)
-                    {
-                        o.DatePointage = null;
-                    }
-
-                    Operation.Sauve(o);
-                    cont = true;
-                }
-                catch (Exception ex)
+                    Date = txtDateMvt.Value,
+                    Categorie = Categorie.Charge((int)txtCategorie.SelectedValue),
+                    Compte = compte,
+                    ModePaiement = ModePaiement.Charge((int)txtModePaiement.SelectedValue),
+                    Libelle = txtLibelle.Text,
+                    Montant = double.Parse(txtMontant.Value.ToString(System.Globalization.CultureInfo.CurrentCulture), System.Globalization.CultureInfo.CurrentCulture),
+                    Tiers = txtTiers.Text
+                };
+                if (txtPointage.Checked && PointageModif)
                 {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    o.DatePointage = DateTime.Now;
                 }
+
+                if (!txtPointage.Checked)
+                {
+                    o.DatePointage = null;
+                }
+
+                Operation.Sauve(o);
+                cont = true;
             }
         }
 
@@ -214,7 +174,7 @@ namespace OrionBanque.Forms
 
         private void TxtModePaiement_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(txtModePaiement.SelectedValue.ToString() == "8" && mode != KEY.MODE_UPDATE)
+            if(txtModePaiement.SelectedValue.ToString() == "8" && mode != KEY.MODEUPDATE)
             {
                 txtLibelle.Text = "n°" + Operation.ChercheChequeSuivant(compte);
             }
@@ -230,11 +190,11 @@ namespace OrionBanque.Forms
                 
                 if (File.Exists(OFDImport.FileName))
                 {
-                    string dirFileOpe = Path.GetDirectoryName((string)CallContext.GetData(KEY.CLE_FICHIER)) + @"\" + KEY.FILE_OPERATION_PATH;
+                    string dirFileOpe = Path.GetDirectoryName((string)CallContext.GetData(KEY.CLEFICHIER)) + @"\" + KEY.FILEOPERATIONPATH;
                     f.InitialName = Path.GetFileName(OFDImport.FileName);
                     f.Date = DateTime.Now;
                     f.Chemin = dirFileOpe + g.ToString() + Path.GetExtension(OFDImport.FileName);
-                    f.Type = KEY.TYPE_FICHIER_FILE;
+                    f.Type = KEY.TYPEFICHIERFILE;
                     f.Operation = O;
 
                     Fichier.Sauve(f);
@@ -253,21 +213,14 @@ namespace OrionBanque.Forms
 
         private void dgvFichiers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
+            if (dgvFichiers.Rows.Count == 0)
             {
-                if (dgvFichiers.Rows.Count == 0)
-                {
-                    return;
-                }
+                return;
+            }
 
-                string chemin = dgvFichiers.SelectedRows[0].Cells["Chemin"].Value.ToString();
-                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
-                System.Diagnostics.Process.Start(psi);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            string chemin = dgvFichiers.SelectedRows[0].Cells["Chemin"].Value.ToString();
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
+            System.Diagnostics.Process.Start(psi);
         }
 
         private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -298,7 +251,7 @@ namespace OrionBanque.Forms
         private void kBtnValidStayOpen_Click(object sender, EventArgs e)
         {
             Sauvegarde();
-            mode = KEY.MODE_INSERT;
+            mode = KEY.MODEINSERT;
             O = new Operation();
 
             txtLibelle.Text = string.Empty;

@@ -88,7 +88,7 @@ namespace OrionBanque.Classe
         public string GetValue(string section, string key, object defaut)
         {
             string val = this[section][key];
-            if (val == "")
+            if (string.IsNullOrEmpty(val))
             {
                 this[section][key] = defaut.ToString();
                 return defaut.ToString();
@@ -138,7 +138,7 @@ namespace OrionBanque.Classe
         /// </summary>
         public void Save()
         {
-            if (sFileName != "")
+            if (!string.IsNullOrEmpty(sFileName))
             {
                 Save(sFileName);
             }
@@ -188,12 +188,12 @@ namespace OrionBanque.Classe
             {
                 string ligne = lignes[i];
 
-                if (ligne.StartsWith("[") && ligne.EndsWith("]"))
+                if (ligne.StartsWith("[", StringComparison.CurrentCulture) && ligne.EndsWith("]", StringComparison.CurrentCulture))
                 {
                     currentSection = ligne.Substring(1, ligne.Length - 2);
                     AddSection(currentSection);
                 }
-                else if (ligne != "")
+                else if (!string.IsNullOrEmpty(ligne))
                 {
                     char[] ca = new char[1] { '=' };
                     string[] scts = ligne.Split(ca, 2);
@@ -219,7 +219,7 @@ namespace OrionBanque.Classe
             /// <param name="value">Valeur de la clef</param>
             public void SetKey(string key, string value)
             {
-                if (key.IndexOf("=") > 0)
+                if (key.IndexOf("=", StringComparison.CurrentCulture) > 0)
                 {
                     throw new Exception("Caractère '=' interdit");
                 }

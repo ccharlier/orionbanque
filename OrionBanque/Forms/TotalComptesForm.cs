@@ -11,7 +11,8 @@ namespace OrionBanque.Forms
     {
         private Utilisateur uA;
         private bool estConstructeur = true;
-        public bool cont = false;
+
+        public bool Cont { get; set; } = false;
 
         public TotalComptesForm(Utilisateur u)
         {
@@ -44,49 +45,37 @@ namespace OrionBanque.Forms
 
         private void ChargeGrille()
         {
-            try
-            {
-                kDgvTotalCompte.DataSource = null;
+            kDgvTotalCompte.DataSource = null;
 
-                if(kCbListTotalCompte.SelectedValue != null)
-                { 
-                    DataSet ds = Compte.DataSetTotalComptes(TotalCompte.Charge((int)kCbListTotalCompte.SelectedValue));
-                    kDgvTotalCompte.DataSource = ds;
-                    kDgvTotalCompte.DataMember = "TotalComptes";
-                    kDgvTotalCompte.Columns["Pointé"].DefaultCellStyle.Format = "c";
-                    kDgvTotalCompte.Columns["Pointé"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    kDgvTotalCompte.Columns["A venir"].DefaultCellStyle.Format = "c";
-                    kDgvTotalCompte.Columns["A venir"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    kDgvTotalCompte.Columns["Solde"].DefaultCellStyle.Format = "c";
-                    kDgvTotalCompte.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                }
-            }
-            catch (Exception ex)
+            if (kCbListTotalCompte.SelectedValue != null)
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DataSet ds = Compte.DataSetTotalComptes(TotalCompte.Charge((int)kCbListTotalCompte.SelectedValue));
+                kDgvTotalCompte.DataSource = ds;
+                kDgvTotalCompte.DataMember = "TotalComptes";
+                kDgvTotalCompte.Columns["Pointé"].DefaultCellStyle.Format = "c";
+                kDgvTotalCompte.Columns["Pointé"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                kDgvTotalCompte.Columns["A venir"].DefaultCellStyle.Format = "c";
+                kDgvTotalCompte.Columns["A venir"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                kDgvTotalCompte.Columns["Solde"].DefaultCellStyle.Format = "c";
+                kDgvTotalCompte.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
         }
 
         private void kDgvTotalCompte_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0)
             {
                 e.CellStyle.Font = new Font(DefaultFont, FontStyle.Bold);
             }
-            if(e.RowIndex == kDgvTotalCompte.Rows.Count-1)
+            if (e.RowIndex == kDgvTotalCompte.Rows.Count - 1)
             {
                 e.CellStyle.Font = new Font(DefaultFont, FontStyle.Bold);
             }
-            try
+            double num = double.Parse(e.Value.ToString(), System.Globalization.CultureInfo.CurrentCulture);
+            if (num < 0)
             {
-                double num = double.Parse(e.Value.ToString());
-                if(num < 0)
-                {
-                    e.CellStyle.ForeColor = Color.Red;
-                }
+                e.CellStyle.ForeColor = Color.Red;
             }
-            catch (Exception)
-            { }
         }
 
         private void kLBCompte_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -105,14 +94,14 @@ namespace OrionBanque.Forms
                 }
                 TotalCompte.Maj(tc);
                 ChargeGrille();
-                cont = true;
+                Cont = true;
             }
         }
 
         private void btnSpecTtCpteAjout_Click(object sender, EventArgs e)
         {
             string ret = ComponentFactory.Krypton.Toolkit.KryptonInputBox.Show("Entrer le nom du nouveau paramétrage", "Nouveau", "Vue_1");
-            if(!ret.Equals(string.Empty))
+            if(!string.IsNullOrEmpty(ret))
             {
                 TotalCompte tc = new TotalCompte();
                 tc.Libelle = ret;
@@ -120,7 +109,7 @@ namespace OrionBanque.Forms
                 TotalCompte.Sauve(tc);
                 ChargeCbTotalCompte();
                 ChargeGrille();
-                cont = true;
+                Cont = true;
             }
         }
 
@@ -131,7 +120,7 @@ namespace OrionBanque.Forms
                 TotalCompte.Delete(TotalCompte.Charge((int)kCbListTotalCompte.SelectedValue));
                 ChargeCbTotalCompte();
                 ChargeGrille();
-                cont = true;
+                Cont = true;
             }
         }
 

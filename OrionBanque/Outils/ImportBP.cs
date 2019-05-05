@@ -36,7 +36,7 @@ namespace OrionBanque.Outils
                         // Prise en charge du compte
                         Compte = c,
                         // Prise en charge de la date
-                        Date = new DateTime(int.Parse(t[0].Split('/')[2]), int.Parse(t[0].Split('/')[1]), int.Parse(t[0].Split('/')[0])),
+                        Date = new DateTime(int.Parse(t[0].Split('/')[2], System.Globalization.CultureInfo.CurrentCulture), int.Parse(t[0].Split('/')[1], System.Globalization.CultureInfo.CurrentCulture), int.Parse(t[0].Split('/')[0], System.Globalization.CultureInfo.CurrentCulture)),
                         // Prise en charge du mode de paiement
                         ModePaiement = GetModePaiement(t[1], t[6]),
                         // Prise en charge du Tiers
@@ -50,11 +50,11 @@ namespace OrionBanque.Outils
                     // Prise en charge du montant
                     if (t[2] == "Solde initial")
                     {
-                        o.Montant = double.Parse(t[6]);
+                        o.Montant = double.Parse(t[6], System.Globalization.CultureInfo.CurrentCulture);
                     }
                     else
                     {
-                        o.Montant = Math.Abs(double.Parse(t[6]));
+                        o.Montant = Math.Abs(double.Parse(t[6], System.Globalization.CultureInfo.CurrentCulture));
                     }
 
                     // Prise en charge du pointage
@@ -77,7 +77,7 @@ namespace OrionBanque.Outils
 
         public static Categorie GetCategorie(string catL, string scatL)
         {
-            if(catL == string.Empty)
+            if(string.IsNullOrEmpty(catL))
             {
                 catL = "Aucune";
             }
@@ -93,7 +93,7 @@ namespace OrionBanque.Outils
             }
 
             // Exist-il une sous catégorie dans le fichier BP
-            if (scatL != string.Empty)
+            if (!string.IsNullOrEmpty(scatL))
             {
                 bool found = false;
                 List<Categorie> lscat = Categorie.ChargeCategorieDeParent(retour);
@@ -146,7 +146,7 @@ namespace OrionBanque.Outils
             {
                 // Création du mode de paiement car il n'existe pas
                 retour.Libelle = mp;
-                if (double.Parse(mnt) > 0)
+                if (double.Parse(mnt, System.Globalization.CultureInfo.CurrentCulture) > 0)
                 {
                     // Le montant est positif=> Crédit
                     retour.Type = "C";

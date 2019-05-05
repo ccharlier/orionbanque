@@ -94,8 +94,8 @@ namespace OrionBanque.Forms
 
             foreach (string[] s in ls)
             {
-                montant = double.Parse(s[1]);
-                if (Math.Abs(montant) < double.Parse(kNUPVal.Value.ToString()))
+                montant = double.Parse(s[1], System.Globalization.CultureInfo.CurrentCulture);
+                if (Math.Abs(montant) < double.Parse(kNUPVal.Value.ToString(System.Globalization.CultureInfo.CurrentCulture), System.Globalization.CultureInfo.CurrentCulture))
                 {
                     if(montant > 0 && kCBAfficheRecettes.Checked)
                     {

@@ -74,14 +74,14 @@ namespace OrionBanque.Classe
                 ob.Categories.Add(c30);
                 ob.Categories.Add(c31);
 
-                ob.ModePaiements.Add(new ModePaiement { Id = 1, Libelle = "Carte", Type = KEY.MODEPAIEMENT_DEBIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 2, Libelle = "Retrait DAB", Type = KEY.MODEPAIEMENT_DEBIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 3, Libelle = "Prélèvement", Type = KEY.MODEPAIEMENT_DEBIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 4, Libelle = "Virement émis", Type = KEY.MODEPAIEMENT_DEBIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 5, Libelle = "Virement reçu", Type = KEY.MODEPAIEMENT_CREDIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 6, Libelle = "Versement", Type = KEY.MODEPAIEMENT_CREDIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 7, Libelle = "Dépôt de chèque", Type = KEY.MODEPAIEMENT_CREDIT });
-                ob.ModePaiements.Add(new ModePaiement { Id = 8, Libelle = "Chèque émis", Type = KEY.MODEPAIEMENT_DEBIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 1, Libelle = "Carte", Type = KEY.MODEPAIEMENTDEBIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 2, Libelle = "Retrait DAB", Type = KEY.MODEPAIEMENTDEBIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 3, Libelle = "Prélèvement", Type = KEY.MODEPAIEMENTDEBIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 4, Libelle = "Virement émis", Type = KEY.MODEPAIEMENTDEBIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 5, Libelle = "Virement reçu", Type = KEY.MODEPAIEMENTCREDIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 6, Libelle = "Versement", Type = KEY.MODEPAIEMENTCREDIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 7, Libelle = "Dépôt de chèque", Type = KEY.MODEPAIEMENTCREDIT });
+                ob.ModePaiements.Add(new ModePaiement { Id = 8, Libelle = "Chèque émis", Type = KEY.MODEPAIEMENTDEBIT });
 
                 CallContext.SetData(KEY.OB, ob);
 

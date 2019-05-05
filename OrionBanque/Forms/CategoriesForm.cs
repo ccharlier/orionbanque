@@ -20,8 +20,7 @@ namespace OrionBanque.Forms
         private void ChargeCombo()
         {
             tvCategorie.Nodes.Clear();
-            try
-            {
+            
                 List<Categorie> lc = Categorie.ChargeTout();
                 List<Categorie> lct = new List<Categorie>();
                 foreach (Categorie c in lc)
@@ -31,7 +30,7 @@ namespace OrionBanque.Forms
                         lct.Add(c);
                         TreeNode tn = new TreeNode(c.Libelle)
                         {
-                            Name = c.Id.ToString()
+                            Name = c.Id.ToString(System.Globalization.CultureInfo.CurrentCulture)
                         };
                         foreach (Categorie ctemp in lc)
                         {
@@ -39,7 +38,7 @@ namespace OrionBanque.Forms
                             {
                                 TreeNode tne = new TreeNode(ctemp.Libelle)
                                 {
-                                    Name = ctemp.Id.ToString()
+                                    Name = ctemp.Id.ToString(System.Globalization.CultureInfo.CurrentCulture)
                                 };
                                 tn.Nodes.Add(tne);
                             }
@@ -56,79 +55,53 @@ namespace OrionBanque.Forms
                 cbModCatPa.DisplayMember = "libelle";
                 cbModCatPa.ValueMember = "id";
                 cbModCatPa.DataSource = lct;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void BtnSupCat_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(alerteSuppressionCategorie, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                try
-                {
-                    Categorie.Delete(Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name)));
-                    ChargeCombo();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                Categorie.Delete(Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name, System.Globalization.CultureInfo.CurrentCulture)));
+                ChargeCombo();
             }
         }
 
         private void BtnSauvCat_Click(object sender, EventArgs e)
         {
-            try
+            Categorie c = new Categorie
             {
-                Categorie c = new Categorie
-                {
-                    Libelle = txtLibelleAdd.Text.Trim()
-                };
-                if (kCkbCategorieParentAjout.Checked)
-                {
-                    c.CategorieParent = Categorie.Charge((int)cbCategorieParent.SelectedValue);
-                }
-                else
-                {
-                    c.CategorieParent = new Categorie();
-                }
+                Libelle = txtLibelleAdd.Text.Trim()
+            };
+            if (kCkbCategorieParentAjout.Checked)
+            {
+                c.CategorieParent = Categorie.Charge((int)cbCategorieParent.SelectedValue);
+            }
+            else
+            {
+                c.CategorieParent = new Categorie();
+            }
 
-                Categorie.Sauve(c);
-                ChargeCombo();
-                txtLibelleAdd.Text = string.Empty;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Categorie.Sauve(c);
+            ChargeCombo();
+            txtLibelleAdd.Text = string.Empty;
         }
 
         private void BtnValidMod_Click(object sender, EventArgs e)
         {
-            try
+            Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name, System.Globalization.CultureInfo.CurrentCulture));
+            c.Libelle = txtLibelleMod.Text.Trim();
+            if (kCkbCategorieParentMajSup.Checked)
             {
-                Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name));
-                c.Libelle = txtLibelleMod.Text.Trim();
-                if (kCkbCategorieParentMajSup.Checked)
-                {
-                    c.CategorieParent = Categorie.Charge((int)cbModCatPa.SelectedValue);
-                }
-                else
-                {
-                    c.CategorieParent = new Categorie();
-                }
-
-                Categorie.Maj(c);
-
-                ChargeCombo();
+                c.CategorieParent = Categorie.Charge((int)cbModCatPa.SelectedValue);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                c.CategorieParent = new Categorie();
             }
+
+            Categorie.Maj(c);
+
+            ChargeCombo();
         }
 
         private void KryptonCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -143,23 +116,16 @@ namespace OrionBanque.Forms
 
         private void TvCategorie_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            try
+            Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name, System.Globalization.CultureInfo.CurrentCulture));
+            txtLibelleMod.Text = c.Libelle;
+            if (c.CategorieParent.Id.Equals(0))
             {
-                Categorie c = Categorie.Charge(int.Parse(tvCategorie.SelectedNode.Name));
-                txtLibelleMod.Text = c.Libelle;
-                if (c.CategorieParent.Id.Equals(0))
-                {
-                    kCkbCategorieParentMajSup.Checked = false;
-                }
-                else
-                {
-                    kCkbCategorieParentMajSup.Checked = true;
-                    cbModCatPa.SelectedValue = c.CategorieParent.Id;
-                }
+                kCkbCategorieParentMajSup.Checked = false;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                kCkbCategorieParentMajSup.Checked = true;
+                cbModCatPa.SelectedValue = c.CategorieParent.Id;
             }
         }
     }

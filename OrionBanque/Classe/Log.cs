@@ -5,7 +5,7 @@
 
 namespace OrionBanque.Classe
 {
-    public class Log
+    public static class Log
     {
         #region Data Members
         public static readonly ILog Logger = LogManager.GetLogger("OrionBanqueApplication"); 

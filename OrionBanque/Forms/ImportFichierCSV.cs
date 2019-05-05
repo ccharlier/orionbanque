@@ -16,7 +16,9 @@ namespace OrionBanque.Forms
     public partial class ImportFichierCSV : KryptonForm
     {
         private Utilisateur uA;
-        public bool cont = false;
+        private bool cont = false;
+
+        public bool Cont { get => cont; set => cont = value; }
 
         public ImportFichierCSV(Utilisateur u)
         {
@@ -27,14 +29,7 @@ namespace OrionBanque.Forms
 
         private void ChargeComboCompte()
         {
-            try
-            {
-                cbCompte.DataSource = Compte.ChargeTout(uA);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cbCompte.DataSource = Compte.ChargeTout(uA);
         }
 
         private void btnSpecParcourir_Click(object sender, EventArgs e)
@@ -56,7 +51,7 @@ namespace OrionBanque.Forms
                 Outils.ImportBP.Lance(Path.GetDirectoryName(ODFImport.FileName), Path.GetFileNameWithoutExtension(ODFImport.FileName), ODFImport.FileName, cT);
             }
             Cursor = Cursors.Default;
-            cont = true;
+            Cont = true;
             Close();
         }
     }

@@ -81,7 +81,7 @@
             this.toolTip1.SetToolTip(this.kBtnTrashRefFileOB, "Supprime la référence à ce fichier OrionBanque");
             this.kBtnTrashRefFileOB.Values.Image = global::OrionBanque.Properties.Resources.bin_closed;
             this.kBtnTrashRefFileOB.Values.Text = "";
-            this.kBtnTrashRefFileOB.Click += new System.EventHandler(this.kBtnTrashRefFileOB_Click);
+            this.kBtnTrashRefFileOB.Click += new System.EventHandler(this.KBtnTrashRefFileOB_Click);
             // 
             // kBtnCreerFichierCompteOB
             // 
@@ -92,7 +92,7 @@
             this.toolTip1.SetToolTip(this.kBtnCreerFichierCompteOB, "Créer un nouveau fichier de Compte OrionBanque");
             this.kBtnCreerFichierCompteOB.Values.Image = global::OrionBanque.Properties.Resources.page_add;
             this.kBtnCreerFichierCompteOB.Values.Text = "";
-            this.kBtnCreerFichierCompteOB.Click += new System.EventHandler(this.kBtnCreerFichierCompteOB_Click);
+            this.kBtnCreerFichierCompteOB.Click += new System.EventHandler(this.KBtnCreerFichierCompteOB_Click);
             // 
             // kBtnOuvrirFichierCompteOB
             // 
@@ -103,7 +103,7 @@
             this.toolTip1.SetToolTip(this.kBtnOuvrirFichierCompteOB, "Ouvrir un fichier de compte OrionBanque");
             this.kBtnOuvrirFichierCompteOB.Values.Image = global::OrionBanque.Properties.Resources.folder_page;
             this.kBtnOuvrirFichierCompteOB.Values.Text = "";
-            this.kBtnOuvrirFichierCompteOB.Click += new System.EventHandler(this.kBtnOuvrirFichierCompteOB_Click);
+            this.kBtnOuvrirFichierCompteOB.Click += new System.EventHandler(this.KBtnOuvrirFichierCompteOB_Click);
             // 
             // kLbFile
             // 
@@ -111,7 +111,7 @@
             this.kLbFile.Name = "kLbFile";
             this.kLbFile.Size = new System.Drawing.Size(381, 143);
             this.kLbFile.TabIndex = 31;
-            this.kLbFile.SelectedIndexChanged += new System.EventHandler(this.kLbFile_SelectedIndexChanged);
+            this.kLbFile.SelectedIndexChanged += new System.EventHandler(this.KLbFile_SelectedIndexChanged);
             // 
             // kLblHeader
             // 

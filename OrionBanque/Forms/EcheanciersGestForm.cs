@@ -21,53 +21,32 @@ namespace OrionBanque.Forms
 
         private void ChargeGrille()
         {
-            try
-            {
-                DataSet ds = Echeancier.ChargeGrilleEcheance(uA);
-                dgvEcheance.DataSource = ds;
-                dgvEcheance.DataMember = "echeancier";
-                dgvEcheance.Columns["Id"].Visible = false;
-                dgvEcheance.Columns["ModePaiementType"].Visible = false;
-                dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
-                dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
-                dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
-                dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            DataSet ds = Echeancier.ChargeGrilleEcheance(uA);
+            dgvEcheance.DataSource = ds;
+            dgvEcheance.DataMember = "echeancier";
+            dgvEcheance.Columns["Id"].Visible = false;
+            dgvEcheance.Columns["ModePaiementType"].Visible = false;
+            dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
+            dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
+            dgvEcheance.Columns["Montant Débit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
+            dgvEcheance.Columns["Montant Crédit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void KryptonButton1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                EcheancierForm ea = new EcheancierForm(new Echeancier(), uA, "INSERT");
-                ea.ShowDialog();
+            EcheancierForm ea = new EcheancierForm(new Echeancier(), uA, "INSERT");
+            ea.ShowDialog();
 
-                ChargeGrille();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ChargeGrille();
         }
 
         private void KryptonButton3_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Etes-vous sur de supprimer cette échéance ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                try
-                {
-                    Echeancier.Delete(Echeancier.Charge((int)dgvEcheance.SelectedRows[0].Cells["Id"].Value));
-                    ChargeGrille();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                Echeancier.Delete(Echeancier.Charge((int)dgvEcheance.SelectedRows[0].Cells["Id"].Value));
+                ChargeGrille();
             }
         }
 
@@ -78,23 +57,16 @@ namespace OrionBanque.Forms
 
         private void KryptonButton4_Click(object sender, EventArgs e)
         {
-            try
+            List<string> nbE = Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
+            if (nbE.Count != 0)
             {
-                List<string> nbE = Echeancier.InsereEcheanceFromGest(txtDateInsereEch.Value, uA);
-                if (nbE.Count != 0)
-                {
-                    MessageBox.Show("Opérations insérées : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("0 Opération insérée.");
-                }
-                ChargeGrille();
+                MessageBox.Show("Opérations insérées : " + Environment.NewLine + string.Join(Environment.NewLine, nbE.ToArray()), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("0 Opération insérée.");
             }
+            ChargeGrille();
         }
 
         private void DgvEcheance_DoubleClick(object sender, EventArgs e)
@@ -104,17 +76,10 @@ namespace OrionBanque.Forms
 
         private void LanceMajEcheance()
         {
-            try
-            {
-                EcheancierForm em = new EcheancierForm(Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString())), uA, "UPDATE");
-                em.ShowDialog();
+            EcheancierForm em = new EcheancierForm(Echeancier.Charge(int.Parse(dgvEcheance.SelectedRows[0].Cells["Id"].Value.ToString(), System.Globalization.CultureInfo.CurrentCulture)), uA, "UPDATE");
+            em.ShowDialog();
 
-                ChargeGrille();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ChargeGrille();
         }
 
         private void AjouterToolStripMenuItem_Click(object sender, EventArgs e)

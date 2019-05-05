@@ -185,44 +185,33 @@ namespace OrionBanque.Classe
 
         public double AVenir()
         {
-            double rPositif = 0.0;
-            double rNegatif = 0.0;
-
-            foreach (Operation o in Operations().Where(o => o.DatePointage is null).ToList())
-            {
-                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_DEBIT))
-                {
-                    rNegatif += o.Montant;
-                }
-
-                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_CREDIT))
-                {
-                    rPositif += o.Montant;
-                }
-            }
-
-            return rPositif - rNegatif;
+            return CalculSoldeOperation(Operations().Where(o => o.DatePointage is null).ToList(), false);
         }
 
         public double SoldeOperationPointee()
         {
+            return CalculSoldeOperation(Operations().Where(o => o.DatePointage != null).ToList(), true);
+        }
+
+        private double CalculSoldeOperation(List<Operation> lo, Boolean prendreSoldeInitiale = false)
+        {
             double rPositif = 0.0;
             double rNegatif = 0.0;
 
-            foreach (Operation o in Operations().Where(o => o.DatePointage != null).ToList())
+            foreach (Operation o in lo)
             {
-                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_DEBIT))
+                switch(o.ModePaiement.Type)
                 {
-                    rNegatif += o.Montant;
-                }
-
-                if (o.ModePaiement.Type.Equals(KEY.MODEPAIEMENT_CREDIT))
-                {
-                    rPositif += o.Montant;
+                    case KEY.MODEPAIEMENTDEBIT:
+                        rNegatif += o.Montant;
+                        break;
+                    case KEY.MODEPAIEMENTCREDIT:
+                        rPositif += o.Montant;
+                        break;
                 }
             }
 
-            return rPositif - rNegatif + SoldeInitial;
+            return rPositif - rNegatif + (prendreSoldeInitiale ? SoldeInitial : 0);
         }
 
         public static DataSet DataSetTotalComptes(TotalCompte tc)

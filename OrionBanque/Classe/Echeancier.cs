@@ -100,7 +100,7 @@ namespace OrionBanque.Classe
 
         public static List<string> InsereEcheance(List<Echeancier> le)
         {
-            IEnumerable<SpecificDay> specificDays = HolidaySystem.Instance.All(DateTime.Now.Year, "FR", RuleType.Public);
+            IEnumerable<SpecificDay> specificDays = HolidaySystem.Instance.All(DateTime.Now.Year, Alpha2.FR, RuleType.Public);
             
             List<string> retour = new List<string>();
             foreach (Echeancier ec in le)
@@ -142,13 +142,13 @@ namespace OrionBanque.Classe
 
                 switch (ec.TypeRepete)
                 {
-                    case KEY.ECHEANCIER_JOUR:
+                    case KEY.ECHEANCIERJOUR:
                         ec.Prochaine = ec.Prochaine.AddDays(ec.Repete);
                         break;
-                    case KEY.ECHEANCIER_MOIS:
+                    case KEY.ECHEANCIERMOIS:
                         ec.Prochaine = ec.Prochaine.AddMonths(ec.Repete);
                         break;
-                    case KEY.ECHEANCIER_ANNEE:
+                    case KEY.ECHEANCIERANNEE:
                         ec.Prochaine = ec.Prochaine.AddYears(ec.Repete);
                         break;
                 }
@@ -311,7 +311,7 @@ namespace OrionBanque.Classe
                 row["ModePaiement"] = item.ModePaiement.Libelle;
                 row["ModePaiementType"] = item.ModePaiement.Type;
 
-                if (item.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT)
+                if (item.ModePaiement.Type == KEY.MODEPAIEMENTCREDIT)
                 {
                     row["Montant Crédit"] = item.Montant;
                     row["Montant Débit"] = DBNull.Value;
@@ -323,17 +323,17 @@ namespace OrionBanque.Classe
                 }
                 row["Categorie"] = item.Categorie.Libelle;
 
-                if (item.TypeRepete == Classe.KEY.ECHEANCIER_JOUR)
+                if (item.TypeRepete == Classe.KEY.ECHEANCIERJOUR)
                 {
                     row["Répétition"] = item.Repete + " " + "Jour(s)";
                 }
 
-                if (item.TypeRepete == Classe.KEY.ECHEANCIER_MOIS)
+                if (item.TypeRepete == Classe.KEY.ECHEANCIERMOIS)
                 {
                     row["Répétition"] = item.Repete + " " + "Mois";
                 }
 
-                if (item.TypeRepete == Classe.KEY.ECHEANCIER_ANNEE)
+                if (item.TypeRepete == Classe.KEY.ECHEANCIERANNEE)
                 {
                     row["Répétition"] = item.Repete + " " + "Année(s)";
                 }

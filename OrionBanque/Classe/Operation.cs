@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
@@ -151,42 +152,37 @@ namespace OrionBanque.Classe
 
         public static List<string[]> GroupByTiers(Compte cP)
         {
-            // TODO: Passage par un GroupBy et/ou SUM sur la liste
             Log.Logger.Debug("Debut Operations.GroupByTiers(" + cP.Id + ")");
-
-            IDictionary<string, double> dict = new Dictionary<string, double>();
-            List<string[]> ls = new List<string[]>();
-
-            foreach (Operation o in Compte.Charge(cP.Id).Operations())
-            {
-                string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
-                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
-                dict[temp] = dict.ContainsKey(temp) ? dict[temp] + montant : montant;
-            }
-
-            foreach (string key in dict.Keys)
-            {
-                string[] t = new string[2];
-                t[0] = key;
-                t[1] = Convert.ToString(dict[key]);
-                ls.Add(t);
-            }
-
-            return ls;
+            return CalculGroupByTiers(Compte.Charge(cP.Id).Operations());
         }
 
         public static List<string[]> GroupByTiers(Compte cP, DateTime dmin, DateTime dmax)
         {
-            // TODO: Passage par un GroupBy et/ou SUM sur la liste
             Log.Logger.Debug("Debut Operations.GroupByTiers(" + cP.Id + ")");
+            return CalculGroupByTiers(Compte.Charge(cP.Id).Operations().Where(x => x.Date >= dmin).Where(y => y.Date <= dmax));
+        }
 
+        public static List<string[]> GroupByCategories(Compte cP)
+        {
+            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
+            return CalculGroupByCategories(Compte.Charge(cP.Id).Operations());
+        }
+
+        public static List<string[]> GroupByCategories(Compte cP, DateTime dmin, DateTime dmax)
+        {
+            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
+            return CalculGroupByCategories(Compte.Charge(cP.Id).Operations().Where(x => x.Date >= dmin).Where(y => y.Date <= dmax));
+        }
+
+        private static List<string[]> CalculGroupByTiers(IEnumerable<Operation> list)
+        {
             IDictionary<string, double> dict = new Dictionary<string, double>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in Compte.Charge(cP.Id).Operations().Where(x => x.Date >= dmin).Where(y => y.Date <= dmax))
+            foreach (Operation o in list)
             {
-                string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
-                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                string temp = string.IsNullOrEmpty(o.Tiers) ? "Sans Tiers" : o.Tiers;
+                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENTDEBIT ? o.Montant * -1 : o.Montant;
                 dict[temp] = dict.ContainsKey(temp) ? dict[temp] + montant : montant;
             }
 
@@ -194,24 +190,21 @@ namespace OrionBanque.Classe
             {
                 string[] t = new string[2];
                 t[0] = key;
-                t[1] = Convert.ToString(dict[key]);
+                t[1] = Convert.ToString(dict[key], CultureInfo.CurrentCulture);
                 ls.Add(t);
             }
 
             return ls;
         }
 
-        public static List<string[]> GroupByCategories(Compte cP)
+        private static List<string[]> CalculGroupByCategories(IEnumerable<Operation> list)
         {
-            // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
-
             Dictionary<int, double> dict = new Dictionary<int, double>();
             List<string[]> ls = new List<string[]>();
 
-            foreach (Operation o in Compte.Charge(cP.Id).Operations())
+            foreach (Operation o in list)
             {
-                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
+                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENTDEBIT ? o.Montant * -1 : o.Montant;
                 dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
             }
 
@@ -219,32 +212,7 @@ namespace OrionBanque.Classe
             {
                 string[] t = new string[2];
                 t[0] = Categorie.Charge(key).Libelle;
-                t[1] = Convert.ToString(dict[key]);
-                ls.Add(t);
-            }
-
-            return ls;
-        }
-
-        public static List<string[]> GroupByCategories(Compte cP, DateTime dmin, DateTime dmax)
-        {
-            // TODO: Passage par un GroupBy et/ou SUM sur la liste
-            Log.Logger.Debug("Debut Operations.GroupByCategories(" + cP.Id + ")");
-
-            Dictionary<int, double> dict = new Dictionary<int, double>();
-            List<string[]> ls = new List<string[]>();
-
-            foreach (Operation o in Compte.Charge(cP.Id).Operations().Where(x => x.Date >= dmin).Where(y => y.Date <= dmax))
-            {
-                double montant = o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT ? o.Montant * -1 : o.Montant;
-                dict[o.Categorie.Id] = dict.ContainsKey(o.Categorie.Id) ? dict[o.Categorie.Id] + montant : montant;
-            }
-
-            foreach (int key in dict.Keys)
-            {
-                string[] t = new string[2];
-                t[0] = Categorie.Charge(key).Libelle;
-                t[1] = Convert.ToString(dict[key]);
+                t[1] = Convert.ToString(dict[key], CultureInfo.CurrentCulture);
                 ls.Add(t);
             }
 
@@ -263,8 +231,8 @@ namespace OrionBanque.Classe
 
             foreach (Operation o in Compte.Charge(cP.Id).Operations())
             {
-                string temp = o.Tiers == string.Empty ? "Sans Tiers" : o.Tiers;
-                if (o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT)
+                string temp = string.IsNullOrEmpty(o.Tiers) ? "Sans Tiers" : o.Tiers;
+                if (o.ModePaiement.Type == KEY.MODEPAIEMENTDEBIT)
                 {
                     dictD[temp] = dictD.ContainsKey(temp) ? dictD[temp] + o.Montant : o.Montant;
                 }
@@ -282,8 +250,8 @@ namespace OrionBanque.Classe
             {
                 string[] t = new string[3];
                 t[0] = key;
-                t[1] = dictD.ContainsKey(key) ? Convert.ToString(dictD[key]) : Convert.ToString(0.0);
-                t[2] = dictC.ContainsKey(key) ? Convert.ToString(dictC[key]) : Convert.ToString(0.0);
+                t[1] = dictD.ContainsKey(key) ? Convert.ToString(dictD[key], System.Globalization.CultureInfo.CurrentCulture) : Convert.ToString(0.0, System.Globalization.CultureInfo.CurrentCulture);
+                t[2] = dictC.ContainsKey(key) ? Convert.ToString(dictC[key], System.Globalization.CultureInfo.CurrentCulture) : Convert.ToString(0.0, System.Globalization.CultureInfo.CurrentCulture);
                 ls.Add(t);
             }
             return ls.ToList();
@@ -301,7 +269,7 @@ namespace OrionBanque.Classe
 
             foreach (Operation o in Compte.Charge(cP.Id).Operations())
             {
-                if (o.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT)
+                if (o.ModePaiement.Type == KEY.MODEPAIEMENTDEBIT)
                 {
                     dictD[o.Categorie.Id] = dictD.ContainsKey(o.Categorie.Id) ? dictD[o.Categorie.Id] + o.Montant : o.Montant;
                 }
@@ -320,8 +288,8 @@ namespace OrionBanque.Classe
             {
                 string[] t = new string[3];
                 t[0] = Categorie.Charge(key).Libelle;
-                t[1] = dictD.ContainsKey(key) ? Convert.ToString(dictD[key]) : Convert.ToString(0.0);
-                t[2] = dictC.ContainsKey(key) ? Convert.ToString(dictC[key]) : Convert.ToString(0.0);
+                t[1] = dictD.ContainsKey(key) ? Convert.ToString(dictD[key], System.Globalization.CultureInfo.CurrentCulture) : Convert.ToString(0.0, System.Globalization.CultureInfo.CurrentCulture);
+                t[2] = dictC.ContainsKey(key) ? Convert.ToString(dictC[key], System.Globalization.CultureInfo.CurrentCulture) : Convert.ToString(0.0, System.Globalization.CultureInfo.CurrentCulture);
                 retour.Add(t);
             }
             return retour.ToList();
@@ -335,8 +303,8 @@ namespace OrionBanque.Classe
             try
             {
                 OB ob = (OB)CallContext.GetData(KEY.OB);
-                retour = ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT).Sum(s => s.Montant);
-                retour = retour - ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENT_DEBIT).Sum(s => s.Montant);
+                retour = ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENTCREDIT).Sum(s => s.Montant);
+                retour = retour - ob.Operations.Where(ot => ot.Compte.Id == cP.Id && ot.Date <= dt && ot.ModePaiement.Type == KEY.MODEPAIEMENTDEBIT).Sum(s => s.Montant);
             }
             catch (Exception ex)
             {
@@ -401,13 +369,13 @@ namespace OrionBanque.Classe
             {
                 switch (cbFiltreDate)
                 {
-                    case KEY.COMPARAISON_INF_EGALE:
+                    case KEY.COMPARAISONINFEGALE:
                         lo = lo.Where(x => x.Date.Date <= txtFiltreDate.Date).ToList();
                         break;
-                    case KEY.COMPARAISON_EGALE:
+                    case KEY.COMPARAISONEGALE:
                         lo = lo.Where(x => x.Date.Date == txtFiltreDate.Date).ToList();
                         break;
-                    case KEY.COMPARAISON_SUP_EGALE:
+                    case KEY.COMPARAISONSUPEGALE:
                         lo = lo.Where(x => x.Date.Date >= txtFiltreDate.Date).ToList();
                         break;
                 }
@@ -432,13 +400,13 @@ namespace OrionBanque.Classe
             {
                 switch (cbFiltreMontant)
                 {
-                    case KEY.COMPARAISON_INF_EGALE:
+                    case KEY.COMPARAISONINFEGALE:
                         lo = lo.Where(x => x.Montant <= txtFiltreMontant).ToList();
                         break;
-                    case KEY.COMPARAISON_EGALE:
+                    case KEY.COMPARAISONEGALE:
                         lo = lo.Where(x => x.Montant == txtFiltreMontant).ToList();
                         break;
-                    case KEY.COMPARAISON_SUP_EGALE:
+                    case KEY.COMPARAISONSUPEGALE:
                         lo = lo.Where(x => x.Montant >= txtFiltreMontant).ToList();
                         break;
                 }
@@ -565,7 +533,7 @@ namespace OrionBanque.Classe
                 row["ModePaiement"] = item.ModePaiement.Libelle;
                 row["ModePaiementType"] = item.ModePaiement.Type;
 
-                if (item.ModePaiement.Type == KEY.MODEPAIEMENT_CREDIT)
+                if (item.ModePaiement.Type == KEY.MODEPAIEMENTCREDIT)
                 {
                     solde += item.Montant;
                     row["Montant Crédit"] = item.Montant;
@@ -586,7 +554,7 @@ namespace OrionBanque.Classe
                 {
                     row["DatePointage"] = item.DatePointage;
                 }
-                row["Solde"] = string.Format("{0,12:0,0.00}", solde) + " €";
+                row["Solde"] = string.Format(CultureInfo.CurrentCulture, "{0,12:0,0.00}", solde) + " €";
                 row["ordre"] = count;
                 count++;
                 t.Rows.Add(row);

@@ -30,31 +30,17 @@ namespace OrionBanque.Forms
             {
                 if (uA != null)
                 {
-                    try
-                    {
-                        uA.Mdp = txtMdp.Text.Trim();
-                        Utilisateur.Maj(uA);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    uA.Mdp = txtMdp.Text.Trim();
+                    Utilisateur.Maj(uA);
                 }
                 else
                 {
-                    try
+                    Utilisateur u = new Utilisateur
                     {
-                        Utilisateur u = new Utilisateur
-                        {
-                            Login = txtLogin.Text.Trim(),
-                            Mdp = txtMdp.Text.Trim()
-                        };
-                        Utilisateur.Sauve(u);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                        Login = txtLogin.Text.Trim(),
+                        Mdp = txtMdp.Text.Trim()
+                    };
+                    Utilisateur.Sauve(u);
                 }
 
                 OB ob = (OB)CallContext.GetData(KEY.OB);
@@ -67,7 +53,7 @@ namespace OrionBanque.Forms
         private bool ValideForm()
         {
             bool retour = false;
-            if (txtMdp.Text.Trim() != string.Empty)
+            if (!string.IsNullOrEmpty(txtMdp.Text.Trim()))
             {
                 retour = true;
             }

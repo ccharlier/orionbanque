@@ -5,7 +5,7 @@ using PdfSharp.Pdf;
 
 namespace OrionBanque.Outils
 {
-    public class RIB
+    public static class RIB
     {
         public static string DonneCleRIB(string codeBanque, string codeGuichet, string numCompte)
         {
@@ -18,13 +18,13 @@ namespace OrionBanque.Outils
                                  .Replace("G","7").Replace("P","7").Replace("X","7")
                                  .Replace("H","8").Replace("Q","8").Replace("Y","8")
                                  .Replace("I","9").Replace("R","9").Replace("Z","9");
-            int b = int.Parse(codeBanque);
-            int g = int.Parse(codeGuichet);
-            int c = int.Parse(numCompte);
+            int b = int.Parse(codeBanque, System.Globalization.CultureInfo.CurrentCulture);
+            int g = int.Parse(codeGuichet, System.Globalization.CultureInfo.CurrentCulture);
+            int c = int.Parse(numCompte, System.Globalization.CultureInfo.CurrentCulture);
 
             int k = 97 - (((89 * b) + (15 * g) + (3 * c)) % 97);
 
-            return k.ToString("00");
+            return k.ToString("00", System.Globalization.CultureInfo.CurrentCulture);
         }
 
         public static void CreateRibPdf()

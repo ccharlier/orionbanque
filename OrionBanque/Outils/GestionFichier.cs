@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace OrionBanque.Outils
 {
-    public class GestionFichier
+    public static class GestionFichier
     {
         public static void ExportCSV(string fileName, DataTable dTable)
         {
@@ -22,10 +22,9 @@ namespace OrionBanque.Outils
 
             int intClmn = dTable.Columns.Count;
 
-            int i = 0;
-            for (i = 0; i <= intClmn - 1; i += 1)
+            for (int i = 0; i <= intClmn - 1; i += 1)
             {
-                writer.Write(@"""" + dTable.Columns[i].ColumnName.ToString() + @"""");
+                writer.Write(@"""" + dTable.Columns[i].ColumnName.ToString(System.Globalization.CultureInfo.CurrentCulture) + @"""");
                 if (i == intClmn - 1)
                 {
                     writer.Write(" ");
@@ -39,8 +38,7 @@ namespace OrionBanque.Outils
 
             foreach (DataRow row in dTable.Rows)
             {
-                int ir = 0;
-                for (ir = 0; ir <= intClmn - 1; ir += 1)
+                for (int ir = 0; ir <= intClmn - 1; ir += 1)
                 {
                     writer.Write(@"""" + row[ir].ToString().Replace(@"""", @"""""") + @"""");
                     if (ir == intClmn - 1)
@@ -97,7 +95,7 @@ namespace OrionBanque.Outils
 
         public static void Sauvegarde()
         {
-            FileStream writer = new FileStream((string)CallContext.GetData(KEY.CLE_FICHIER), FileMode.Create);
+            FileStream writer = new FileStream((string)CallContext.GetData(KEY.CLEFICHIER), FileMode.Create);
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -112,13 +110,13 @@ namespace OrionBanque.Outils
             {
                 writer.Close();
             }
-            RoulementSauvegarde((string)CallContext.GetData(KEY.CLE_FICHIER));
+            RoulementSauvegarde((string)CallContext.GetData(KEY.CLEFICHIER));
         }
 
         public static void RoulementSauvegarde(string fileName)
         {
             string fn = Path.GetFileNameWithoutExtension(fileName);
-            string dir = Path.GetDirectoryName(fileName) + @"\" + KEY.FILE_BACKUP_PATH;
+            string dir = Path.GetDirectoryName(fileName) + @"\" + KEY.FILEBACKUPPATH;
 
             if(!Directory.Exists(dir))
             {
@@ -155,7 +153,7 @@ namespace OrionBanque.Outils
                 }
 
                 CallContext.SetData(KEY.OB, ob);
-                CallContext.SetData(KEY.CLE_FICHIER, fileName);
+                CallContext.SetData(KEY.CLEFICHIER, fileName);
             }
             catch (SerializationException e)
             {
@@ -171,9 +169,9 @@ namespace OrionBanque.Outils
         public static List<string> ChargeListeFichier()
         {
             List<string> retour = new List<string>();
-            if (File.Exists(KEY.FILE_LIST_PATH))
+            if (File.Exists(KEY.FILELISTPATH))
             {
-                FileStream reader = new FileStream(KEY.FILE_LIST_PATH, FileMode.Open);
+                FileStream reader = new FileStream(KEY.FILELISTPATH, FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
@@ -194,7 +192,7 @@ namespace OrionBanque.Outils
         public static List<string> SauveListeFichier(string fileName)
         {
             List<string> retour = ChargeListeFichier();
-            FileStream writer = new FileStream(KEY.FILE_LIST_PATH, FileMode.Create);
+            FileStream writer = new FileStream(KEY.FILELISTPATH, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
@@ -215,7 +213,7 @@ namespace OrionBanque.Outils
 
         public static void SauveListeFichier(List<string> fileNames)
         {
-            FileStream writer = new FileStream(KEY.FILE_LIST_PATH, FileMode.Create);
+            FileStream writer = new FileStream(KEY.FILELISTPATH, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {

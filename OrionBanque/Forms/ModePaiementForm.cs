@@ -22,16 +22,9 @@ namespace OrionBanque.Forms
 
         private void Charge()
         {
-            try
-            {
-                ChargeDgv();
-                ChargeCompte(cbCompteGestion);
-                ChargeCompte(cbCompteDeb);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ChargeDgv();
+            ChargeCompte(cbCompteGestion);
+            ChargeCompte(cbCompteDeb);
         }
 
         private void ChargeDgv()
@@ -41,7 +34,7 @@ namespace OrionBanque.Forms
             dgvModePaiements.Columns["Id"].Visible = false;
         }
 
-        private void ChargeCompte(KryptonComboBox cb)
+        private static void ChargeCompte(KryptonComboBox cb)
         {
             cb.DataSource = Compte.ChargeTout();
         }
@@ -52,31 +45,17 @@ namespace OrionBanque.Forms
             {
                 if (MessageBox.Show("Etes-vous sur de supprimer ce Mode de Paiement ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    try
-                    {
-                        ModePaiement.Delete(ModePaiement.Charge((int)dgvModePaiements.SelectedRows[0].Cells["Id"].Value));
-                        Charge();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    ModePaiement.Delete(ModePaiement.Charge((int)dgvModePaiements.SelectedRows[0].Cells["Id"].Value));
+                    Charge();
                 }
             }
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                etatNew = true;
-                txtLibelle.Text = string.Empty;
-                kCbDiffere.Checked = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            etatNew = true;
+            txtLibelle.Text = string.Empty;
+            kCbDiffere.Checked = false;
         }
 
         private void dgvModePaiements_SelectionChanged(object sender, EventArgs e)
@@ -86,7 +65,7 @@ namespace OrionBanque.Forms
                 etatNew = false;
                 ModePaiement mp = ModePaiement.Charge((int)dgvModePaiements.SelectedRows[0].Cells["Id"].Value);
                 txtLibelle.Text = mp.Libelle;
-                cbDebCred.SelectedItem = mp.Type == KEY.MODEPAIEMENT_CREDIT ? KEY.MODEPAIEMENT_CREDIT_LIB : KEY.MODEPAIEMENT_DEBIT_LIB;
+                cbDebCred.SelectedItem = mp.Type == KEY.MODEPAIEMENTCREDIT ? KEY.MODEPAIEMENTCREDITLIB : KEY.MODEPAIEMENTDEBITLIB;
                 kCbDiffere.Checked = mp.Differe;
                 if (mp.CompteGestion != null)
                 {
@@ -103,7 +82,7 @@ namespace OrionBanque.Forms
                 txtDecaleDimanche.Checked = mp.DecalageDimanche;
                 txtDecaleJourFerie.Checked = mp.DecalageFerie;
 
-                if (mp.Type == KEY.MODEPAIEMENT_CREDIT)
+                if (mp.Type == KEY.MODEPAIEMENTCREDIT)
                 {
                     kCbDiffere.Enabled = false;
                 }
@@ -121,7 +100,7 @@ namespace OrionBanque.Forms
 
         private void cbDebCred_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((string)cbDebCred.SelectedItem == KEY.MODEPAIEMENT_CREDIT_LIB)
+            if ((string)cbDebCred.SelectedItem == KEY.MODEPAIEMENTCREDITLIB)
             {
                 kCbDiffere.Checked = false;
                 kCbDiffere.Enabled = false;
@@ -137,7 +116,7 @@ namespace OrionBanque.Forms
             ModePaiement mp = etatNew ? new ModePaiement() : ModePaiement.Charge((int)dgvModePaiements.SelectedRows[0].Cells["Id"].Value);
 
             mp.Libelle = txtLibelle.Text;
-            mp.Type = (string)cbDebCred.SelectedItem == KEY.MODEPAIEMENT_CREDIT_LIB ? KEY.MODEPAIEMENT_CREDIT : KEY.MODEPAIEMENT_DEBIT;
+            mp.Type = (string)cbDebCred.SelectedItem == KEY.MODEPAIEMENTCREDITLIB ? KEY.MODEPAIEMENTCREDIT : KEY.MODEPAIEMENTDEBIT;
             mp.Differe = kCbDiffere.Checked;
             mp.CompteGestion = (Compte)cbCompteGestion.SelectedItem;
             mp.CompteDebite = (Compte)cbCompteDeb.SelectedItem;

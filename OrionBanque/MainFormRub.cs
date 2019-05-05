@@ -35,18 +35,11 @@ namespace OrionBanque
 
         private void LanceGestionEcheancier()
         {
-            try
-            {
-                TestPasDeCompte();
-                new EcheanciersGestForm(uA).ShowDialog();
-                ChargesIndicateurs(GetCompteCourant());
-                ChargeOperations(GetCompteCourant());
-                ActiveSauvegarde();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            TestPasDeCompte();
+            new EcheanciersGestForm(uA).ShowDialog();
+            ChargesIndicateurs(GetCompteCourant());
+            ChargeOperations(GetCompteCourant());
+            ActiveSauvegarde();
         }
         #endregion
 
@@ -63,8 +56,8 @@ namespace OrionBanque
         {
             if (cbCompte.Items.Count == 0)
             {
-                Log.Logger.Error(KEY.ERREUR_PAS_DE_COMPTE_CREE);
-                throw new Exception(KEY.ERREUR_PAS_DE_COMPTE_CREE);
+                Log.Logger.Error(KEY.ERREURPASDECOMPTECREE);
+                throw new Exception(KEY.ERREURPASDECOMPTECREE);
             }
         }
 
@@ -73,7 +66,7 @@ namespace OrionBanque
             return Compte.Charge((int)cbCompte.SelectedValue);
         }
 
-        private void ChangeCouleur(Label l, double montant)
+        private static void ChangeCouleur(Label l, double montant)
         {
             l.ForeColor = montant > 0 ? Color.DarkGreen : Color.Red;
         }
@@ -93,91 +86,70 @@ namespace OrionBanque
 
         private void ChargesIndicateurs(Compte c)
         {
-            try
-            {
-                double soldOpePoint = c.SoldeOperationPointee();
-                double aVenir = c.AVenir();
-                double soldFinal = soldOpePoint + aVenir;
+            double soldOpePoint = c.SoldeOperationPointee();
+            double aVenir = c.AVenir();
+            double soldFinal = soldOpePoint + aVenir;
 
-                lblSoldPoint.Text = string.Format("{0,12:0,0.00}", soldOpePoint) + " €";
-                lblAVenir.Text = string.Format("{0,12:0,0.00}", aVenir) + " €";
-                lblSoldFinal.Text = string.Format("{0,12:0,0.00}", soldFinal) + " €";
+            lblSoldPoint.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0,12:0,0.00}", soldOpePoint) + " €";
+            lblAVenir.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0,12:0,0.00}", aVenir) + " €";
+            lblSoldFinal.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0,12:0,0.00}", soldFinal) + " €";
 
-                ChargeGraph(c);
-                ChangeCouleur(lblSoldPoint, soldOpePoint);
-                ChangeCouleur(lblAVenir, aVenir);
-                ChangeCouleur(lblSoldFinal, soldFinal);
-                ChangeAlerte(pb, soldOpePoint, c.SeuilAlerte);
-                ChangeAlerte(pb, soldFinal, c.SeuilAlerteFinal);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ChargeGraph(c);
+            ChangeCouleur(lblSoldPoint, soldOpePoint);
+            ChangeCouleur(lblAVenir, aVenir);
+            ChangeCouleur(lblSoldFinal, soldFinal);
+            ChangeAlerte(pb, soldOpePoint, c.SeuilAlerte);
+            ChangeAlerte(pb, soldFinal, c.SeuilAlerteFinal);
         }
 
         private void ChargeComboCompte()
         {
-            try
-            {
-                cbCompte.DataSource = Compte.ChargeTout(uA);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cbCompte.DataSource = Compte.ChargeTout(uA);
             RemplisCb();
         }
 
         private void CbCompte_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            Compte c = GetCompteCourant();
+            if (string.IsNullOrEmpty(c.TypEvol))
             {
-                Compte c = GetCompteCourant();
-                if (c.TypEvol.Equals(string.Empty))
-                {
-                    txtEvolSoldeMin.Value = c.MinGraphSold;
-                    txtEvolSoldMax.Value = c.MaxGraphSold;
-                }
-                else
-                {
-                    DateTime min = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    DateTime max = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    switch (c.TypEvol)
-                    {
-                        case KEY.COMPTE_VISU_1MOIS:
-                            max = max.AddMonths(1);
-                            break;
-                        case KEY.COMPTE_VISU_3MOIS:
-                            max = max.AddMonths(1);
-                            min = min.AddMonths(-2);
-                            break;
-                        case KEY.COMPTE_VISU_6MOIS:
-                            max = max.AddMonths(1);
-                            min = min.AddMonths(-5);
-                            break;
-                        case KEY.COMPTE_VISU_1AN:
-                            max = max.AddMonths(1);
-                            min = min.AddMonths(-11);
-                            break;
-                    }
-                    txtEvolSoldeMin.Value = min;
-                    txtEvolSoldMax.Value = max;
-                }
-                ChargeOperations(c);
-                ChargesIndicateurs(c);
+                txtEvolSoldeMin.Value = c.MinGraphSold;
+                txtEvolSoldMax.Value = c.MaxGraphSold;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DateTime min = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime max = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                switch (c.TypEvol)
+                {
+                    case KEY.COMPTEVISU1MOIS:
+                        max = max.AddMonths(1);
+                        break;
+                    case KEY.COMPTEVISU3MOIS:
+                        max = max.AddMonths(1);
+                        min = min.AddMonths(-2);
+                        break;
+                    case KEY.COMPTEVISU6MOIS:
+                        max = max.AddMonths(1);
+                        min = min.AddMonths(-5);
+                        break;
+                    case KEY.COMPTEVISU1AN:
+                        max = max.AddMonths(1);
+                        min = min.AddMonths(-11);
+                        break;
+                }
+                txtEvolSoldeMin.Value = min;
+                txtEvolSoldMax.Value = max;
             }
+            ChargeOperations(c);
+            ChargesIndicateurs(c);
         }
 
         private void kRBtnCompteAdd_Click(object sender, EventArgs e)
         {
             CompteForm ca = new CompteForm(uA);
             ca.ShowDialog();
-            if (ca.cont)
+            if (ca.Cont)
             {
                 ActiveSauvegarde();
                 ChargeComboCompte();
@@ -186,42 +158,28 @@ namespace OrionBanque
 
         private void kRBtnCompteEdit_Click(object sender, EventArgs e)
         {
-            try
+            TestPasDeCompte();
+            CompteForm cm = new CompteForm(GetCompteCourant());
+            cm.ShowDialog();
+            if (cm.Cont)
             {
-                TestPasDeCompte();
-                CompteForm cm = new CompteForm(GetCompteCourant());
-                cm.ShowDialog();
-                if (cm.cont)
-                {
-                    ChargeComboCompte();
-                    ActiveSauvegarde();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ChargeComboCompte();
+                ActiveSauvegarde();
             }
         }
 
         private void kRBtnCompteDelete_Click(object sender, EventArgs e)
         {
-            try
+            TestPasDeCompte();
+            if (MessageBox.Show(KEY.ALERTESUPPRESSIONCOMPTE, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                TestPasDeCompte();
-                if (MessageBox.Show(KEY.ALERTE_SUPPRESSION_COMPTE, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    Compte.Delete(GetCompteCourant());
-                    dgvOperations.DataSource = null;
-                    lblSoldPoint.Text = new double().ToString("#0.00") + " €";
-                    lblAVenir.Text = new double().ToString("#0.00") + " €";
-                    lblSoldFinal.Text = new double().ToString("#0.00") + " €";
-                    ChargeComboCompte();
-                    ActiveSauvegarde();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Compte.Delete(GetCompteCourant());
+                dgvOperations.DataSource = null;
+                lblSoldPoint.Text = new double().ToString("#0.00", System.Globalization.CultureInfo.CurrentCulture) + " €";
+                lblAVenir.Text = new double().ToString("#0.00", System.Globalization.CultureInfo.CurrentCulture) + " €";
+                lblSoldFinal.Text = new double().ToString("#0.00", System.Globalization.CultureInfo.CurrentCulture) + " €";
+                ChargeComboCompte();
+                ActiveSauvegarde();
             }
         }
 
@@ -229,7 +187,7 @@ namespace OrionBanque
         {
             TotalComptesForm f = new TotalComptesForm(uA);
             f.ShowDialog();
-            if (f.cont)
+            if (f.Cont)
             {
                 ActiveSauvegarde();
             }
@@ -239,16 +197,9 @@ namespace OrionBanque
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    string fildest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME;
-                    File.Copy((string)CallContext.GetData(KEY.CLE_FICHIER), fildest, true);
-                    MessageBox.Show(string.Format(KEY.ALERTE_ENREGISTREMENT, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
-                }
+                string fildest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILENAME;
+                File.Copy((string)CallContext.GetData(KEY.CLEFICHIER), fildest, true);
+                MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentCulture, KEY.ALERTEENREGISTREMENT, fildest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
         #endregion
@@ -262,28 +213,21 @@ namespace OrionBanque
             kFiltreCategorie.Checked = false;
             kFiltreMontant.Checked = false;
             txtFiltrePointe.Checked = false;
-            try
-            {
-                dgvOperations.DataSource = Operation.ChargeGrilleOperation(c);
-                dgvOperations.DataMember = "Operations";
-                dgvOperations.Columns["Id"].Visible = false;
-                dgvOperations.Columns["ModePaiementType"].Visible = false;
-                dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
-                dgvOperations.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
-                dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
-                dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvOperations.Columns["DatePointage"].DefaultCellStyle.Format = "d";
-                dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvOperations.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
-                dgvOperations.Columns["ordre"].Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            dgvOperations.DataSource = Operation.ChargeGrilleOperation(c);
+            dgvOperations.DataMember = "Operations";
+            dgvOperations.Columns["Id"].Visible = false;
+            dgvOperations.Columns["ModePaiementType"].Visible = false;
+            dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Format = "c";
+            dgvOperations.Columns["Montant Débit"].DefaultCellStyle.ForeColor = Color.Red;
+            dgvOperations.Columns["Montant Débit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Format = "c";
+            dgvOperations.Columns["Montant Crédit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvOperations.Columns["DatePointage"].DefaultCellStyle.Format = "d";
+            dgvOperations.Columns["DatePointage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvOperations.Columns["Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvOperations.Columns["Solde"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
+            dgvOperations.Columns["ordre"].Visible = false;
         }
 
         private void dgvOperations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -297,12 +241,12 @@ namespace OrionBanque
 
         private void DgvOperations_DoubleClick(object sender, EventArgs e)
         {
-            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
+            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString(), System.Globalization.CultureInfo.CurrentCulture)), KEY.MODEUPDATE);
         }
 
         private void kRBtnOperationEdit_Click(object sender, EventArgs e)
         {
-            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
+            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString(), System.Globalization.CultureInfo.CurrentCulture)), KEY.MODEUPDATE);
         }
 
         private void kRBtnOperationDelete_Click(object sender, EventArgs e)
@@ -314,34 +258,27 @@ namespace OrionBanque
         {
             if (dgvOperations.SelectedRows.Count > 0)
             {
-                string text = dgvOperations.SelectedRows.Count == 1 ? KEY.ALERTE_SUPPRESSION_OPERATION : KEY.ALERTE_SUPPRESSION_OPERATIONS;
+                string text = dgvOperations.SelectedRows.Count == 1 ? KEY.ALERTESUPPRESSIONOPERATION : KEY.ALERTESUPPRESSIONOPERATIONS;
                 if (MessageBox.Show(text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    try
+                    foreach (DataGridViewRow row in dgvOperations.SelectedRows)
                     {
-                        foreach (DataGridViewRow row in dgvOperations.SelectedRows)
+                        Operation OpeASup = Operation.Charge((int)row.Cells["Id"].Value);
+
+                        //Contrôle si Operation Liee est un transfert
+                        if (OpeASup.TypeLien == KEY.TYPELIENOPERATIONTRANSFERT)
                         {
-                            Operation OpeASup = Operation.Charge((int)row.Cells["Id"].Value);
-                            
-                            //Contrôle si Operation Liee est un transfert
-                            if (OpeASup.TypeLien == KEY.TYPE_LIEN_OPERATION_TRANSFERT)
+                            Operation OpeLiee = Operation.Charge(OpeASup.IdOperationLiee);
+                            if (MessageBox.Show("Souhaitez-vous également supprimer l'opération liée réglée par " + OpeLiee.ModePaiement.Libelle + " le " + OpeLiee.Date.ToShortDateString() + " du compte " + OpeLiee.Compte.Libelle + " ?", "Confirmation", MessageBoxButtons.OKCancel) == DialogResult.OK)
                             {
-                                Operation OpeLiee = Operation.Charge(OpeASup.IdOperationLiee);
-                                if(MessageBox.Show("Souhaitez-vous également supprimer l'opération liée réglée par "+OpeLiee.ModePaiement.Libelle+" le " + OpeLiee.Date.ToShortDateString() + " du compte " + OpeLiee.Compte.Libelle + " ?", "Confirmation", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                                {
-                                    Operation.Delete(OpeLiee);
-                                }
+                                Operation.Delete(OpeLiee);
                             }
-                            Operation.Delete(OpeASup);
-                            dgvOperations.Rows.RemoveAt(row.Index);
                         }
-                        ChargesIndicateurs(GetCompteCourant());
-                        ActiveSauvegarde();
+                        Operation.Delete(OpeASup);
+                        dgvOperations.Rows.RemoveAt(row.Index);
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    ChargesIndicateurs(GetCompteCourant());
+                    ActiveSauvegarde();
                 }
             }
         }
@@ -350,61 +287,47 @@ namespace OrionBanque
         {
             if (txtFiltreModePaiement.SelectedValue != null)
             {
-                try
-                {
-                    DataSet ds = Operation
-                        .ChargeGrilleOperationFiltre(GetCompteCourant(),
-                                    kFiltreDate.Checked, cbFiltreDate.SelectedItem.ToString(), txtFiltreDate.Value,
-                                    kFiltreModePaiement.Checked, ModePaiement.Charge((int)txtFiltreModePaiement.SelectedValue),
-                                    kFiltreTiers.Checked, txtFiltreTiers.Text,
-                                    kFiltreCategorie.Checked, Categorie.Charge((int)txtFiltreCategorie.SelectedValue),
-                                    kFiltreMontant.Checked, cbFiltreMontant.SelectedItem.ToString(), double.Parse(txtFiltreMontant.Value.ToString()),
-                                    txtFiltrePointe.Checked);
-                    dgvOperations.DataSource = ds;
-                    dgvOperations.DataMember = "Operations";
-                    dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataSet ds = Operation
+                    .ChargeGrilleOperationFiltre(GetCompteCourant(),
+                                kFiltreDate.Checked, cbFiltreDate.SelectedItem.ToString(), txtFiltreDate.Value,
+                                kFiltreModePaiement.Checked, ModePaiement.Charge((int)txtFiltreModePaiement.SelectedValue),
+                                kFiltreTiers.Checked, txtFiltreTiers.Text,
+                                kFiltreCategorie.Checked, Categorie.Charge((int)txtFiltreCategorie.SelectedValue),
+                                kFiltreMontant.Checked, cbFiltreMontant.SelectedItem.ToString(), double.Parse(txtFiltreMontant.Value.ToString(System.Globalization.CultureInfo.CurrentCulture), System.Globalization.CultureInfo.CurrentCulture),
+                                txtFiltrePointe.Checked);
+                dgvOperations.DataSource = ds;
+                dgvOperations.DataMember = "Operations";
+                dgvOperations.Sort(dgvOperations.Columns["ordre"], System.ComponentModel.ListSortDirection.Descending);
             }
         }
 
         private void OuvreFormOperation(Operation o, string mode)
         {
-            try
+            TestPasDeCompte();
+            OperationForm om = new OperationForm(o, GetCompteCourant(), mode);
+            om.ShowDialog();
+            if (om.Cont)
             {
-                TestPasDeCompte();
-                OperationForm om = new OperationForm(o, GetCompteCourant(), mode);
-                om.ShowDialog();
-                if (om.cont)
-                {
-                    ChargeOperations(GetCompteCourant());
-                    ChargesIndicateurs(GetCompteCourant());
-                    ActiveSauvegarde();
-                }
-                RemplisCb();
+                ChargeOperations(GetCompteCourant());
+                ChargesIndicateurs(GetCompteCourant());
+                ActiveSauvegarde();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            RemplisCb();
         }
 
         private void kRBtnOperationAdd_Click(object sender, EventArgs e)
         {
-            OuvreFormOperation(new Operation(), KEY.MODE_INSERT);
+            OuvreFormOperation(new Operation(), KEY.MODEINSERT);
         }
 
         private void ajouterToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            OuvreFormOperation(new Operation(), KEY.MODE_INSERT);
+            OuvreFormOperation(new Operation(), KEY.MODEINSERT);
         }
 
         private void modifierToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString())), KEY.MODE_UPDATE);
+            OuvreFormOperation(Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString(), System.Globalization.CultureInfo.CurrentCulture)), KEY.MODEUPDATE);
         }
 
         private void supprimerToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -414,20 +337,13 @@ namespace OrionBanque
 
         private void kRBtnOperationVirCaC_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TestPasDeCompte();
-                new VirementCaCForm(uA).ShowDialog();
-                Compte c = GetCompteCourant();
-                ChargesIndicateurs(c);
-                ChargeOperations(c);
-                ActiveSauvegarde();
-                RemplisCb();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            TestPasDeCompte();
+            new VirementCaCForm(uA).ShowDialog();
+            Compte c = GetCompteCourant();
+            ChargesIndicateurs(c);
+            ChargeOperations(c);
+            ActiveSauvegarde();
+            RemplisCb();
         }
 
         private void kRBtnOperationPointe_Click(object sender, EventArgs e)
@@ -442,7 +358,7 @@ namespace OrionBanque
                     row.Cells["DatePointage"].Value = DateTime.Now;
 
                     //Contrôle si Operation Liee est un transfert
-                    if (otemp.TypeLien == KEY.TYPE_LIEN_OPERATION_TRANSFERT)
+                    if (otemp.TypeLien == KEY.TYPELIENOPERATIONTRANSFERT)
                     {
                         Operation OpeLiee = Operation.Charge(otemp.IdOperationLiee);
                         if (MessageBox.Show("Souhaitez-vous également pointer l'opération liée réglée par " + OpeLiee.ModePaiement.Libelle + " le " + OpeLiee.Date.ToShortDateString() + " du compte " + OpeLiee.Compte.Libelle + " ?", "Confirmation", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -462,20 +378,13 @@ namespace OrionBanque
 
         private void kRBtnOperationMajGrp_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TestPasDeCompte();
-                OperationMajGroupeForm OMG = new OperationMajGroupeForm(GetCompteCourant());
-                OMG.ShowDialog();
+            TestPasDeCompte();
+            OperationMajGroupeForm OMG = new OperationMajGroupeForm(GetCompteCourant());
+            OMG.ShowDialog();
 
-                if (OMG.cont)
-                {
-                    ActiveSauvegarde();
-                }
-            }
-            catch (Exception ex)
+            if (OMG.Cont)
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ActiveSauvegarde();
             }
         }
 
@@ -526,16 +435,9 @@ namespace OrionBanque
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".json";
-                    Outils.GestionFichier.ExportJson(filedest);
-                    MessageBox.Show(string.Format(KEY.ALERTE_ENREGISTREMENT, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
-                }
+                string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILENAME + ".json";
+                Outils.GestionFichier.ExportJson(filedest);
+                MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentCulture, KEY.ALERTEENREGISTREMENT, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -543,16 +445,9 @@ namespace OrionBanque
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILE_NAME + ".xml";
-                    Outils.GestionFichier.ExportXml(filedest);
-                    MessageBox.Show(string.Format(KEY.ALERTE_ENREGISTREMENT, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message, "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1);
-                }
+                string filedest = folderBrowserDialog.SelectedPath + @"\" + KEY.FILENAME + ".xml";
+                Outils.GestionFichier.ExportXml(filedest);
+                MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentCulture, KEY.ALERTEENREGISTREMENT, filedest), "Opération Réussie", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -560,7 +455,7 @@ namespace OrionBanque
         {
             ImportFichierCSV ifCSV = new ImportFichierCSV(uA);
             ifCSV.ShowDialog();
-            if (ifCSV.cont)
+            if (ifCSV.Cont)
             {
                 ChargeComboCompte();
                 ActiveSauvegarde();
@@ -571,7 +466,7 @@ namespace OrionBanque
         {
             if (dgvOperations.SelectedRows.Count != 0)
             {
-                Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+                Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString(), System.Globalization.CultureInfo.CurrentCulture));
 
                 txtOperationDate.Value = o.Date;
                 txtOperationCategorie.SelectedValue = o.Categorie.Id;
@@ -590,7 +485,7 @@ namespace OrionBanque
                 e.KeyChar = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
             }
 
-            if (e.KeyChar == Convert.ToChar(Keys.Return) && ((KryptonNumericUpDown)sender).Name == "txtOperationMontant")
+            if (e.KeyChar == Convert.ToChar(Keys.Return, System.Globalization.CultureInfo.CurrentCulture) && ((KryptonNumericUpDown)sender).Name == "txtOperationMontant")
             {
                 Compte c = GetCompteCourant();
                 Operation o = CreateOperation(c);
@@ -625,7 +520,7 @@ namespace OrionBanque
                 Libelle = txtOperationLibelle.Text,
                 Tiers = txtOperationTiers.Text,
                 ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue),
-                Montant = double.Parse(txtOperationMontant.Value.ToString()),
+                Montant = double.Parse(txtOperationMontant.Value.ToString(System.Globalization.CultureInfo.CurrentCulture), System.Globalization.CultureInfo.CurrentCulture),
                 DatePointage = txtOperationPointage.Checked ? (DateTime?)DateTime.Now : null
             };
 
@@ -634,14 +529,14 @@ namespace OrionBanque
 
         private Operation ModifieOperation(Compte c)
         {
-            Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString()));
+            Operation o = Operation.Charge(int.Parse(dgvOperations.SelectedRows[0].Cells[0].Value.ToString(), System.Globalization.CultureInfo.CurrentCulture));
             o.Compte = c;
             o.Date = txtOperationDate.Value;
             o.Categorie = Categorie.Charge((int)txtOperationCategorie.SelectedValue);
             o.Libelle = txtOperationLibelle.Text;
             o.Tiers = txtOperationTiers.Text;
             o.ModePaiement = ModePaiement.Charge((int)txtOperationModePaiement.SelectedValue);
-            o.Montant = double.Parse(txtOperationMontant.Value.ToString());
+            o.Montant = double.Parse(txtOperationMontant.Value.ToString(System.Globalization.CultureInfo.CurrentCulture), System.Globalization.CultureInfo.CurrentCulture);
             if (txtOperationPointage.Checked)
             {
                 if (o.DatePointage is null)
@@ -701,51 +596,30 @@ namespace OrionBanque
 
         private void RemplisModePaiements()
         {
-            try
-            {
-                txtFiltreModePaiement.DataSource = ModePaiement.ChargeTout();
-                txtOperationModePaiement.DataSource = ModePaiement.ChargeTout();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            txtFiltreModePaiement.DataSource = ModePaiement.ChargeTout();
+            txtOperationModePaiement.DataSource = ModePaiement.ChargeTout();
         }
 
         private void RemplisCategories()
         {
-            try
-            {
-                txtFiltreCategorie.DataSource = Categorie.ChargeToutIdent();
-                txtOperationCategorie.DataSource = Categorie.ChargeToutIdent();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            txtFiltreCategorie.DataSource = Categorie.ChargeToutIdent();
+            txtOperationCategorie.DataSource = Categorie.ChargeToutIdent();
         }
 
         private void RemplisTiers()
         {
-            try
-            {
-                TestPasDeCompte();
-                txtFiltreTiers.DataSource = null;
-                txtOperationTiers.DataSource = null;
-                txtFiltreTiers.DataSource = Tiers.ChargeTout();
-                txtOperationTiers.DataSource = Tiers.ChargeTout();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            TestPasDeCompte();
+            txtFiltreTiers.DataSource = null;
+            txtOperationTiers.DataSource = null;
+            txtFiltreTiers.DataSource = Tiers.ChargeTout();
+            txtOperationTiers.DataSource = Tiers.ChargeTout();
         }
 
         private void kRBtnConfTiers_Click(object sender, EventArgs e)
         {
             GestTiersForm gtf = new GestTiersForm(uA);
             gtf.ShowDialog();
-            if (gtf.bMustSave)
+            if (gtf.BMustSave)
             {
                 ActiveSauvegarde();
             }
@@ -756,15 +630,8 @@ namespace OrionBanque
         #region Graphique
         private void kRBtnCompteGraph_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TestPasDeCompte();
-                new ChartForm(GetCompteCourant()).ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            TestPasDeCompte();
+            new ChartForm(GetCompteCourant()).ShowDialog();
         }
 
         private void btnValidDateEvol_Click_1(object sender, EventArgs e)
@@ -900,7 +767,7 @@ namespace OrionBanque
         {
             ChargeComboCompte();
             AppliqueConfig();
-            tsDateJour.Text = " : " + DateTime.Now.Day.ToString("00") + "/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year;
+            tsDateJour.Text = " : " + DateTime.Now.Day.ToString("00", System.Globalization.CultureInfo.CurrentCulture) + "/" + DateTime.Now.Month.ToString("00", System.Globalization.CultureInfo.CurrentCulture) + "/" + DateTime.Now.Year;
             tsUser.Text = " : " + uA.Login;
             cbFiltreDate.SelectedItem = cbFiltreDate.Items[0];
             cbFiltreMontant.SelectedItem = cbFiltreMontant.Items[0];
@@ -915,9 +782,9 @@ namespace OrionBanque
         {
             ConnexionForm c = new ConnexionForm();
             c.ShowDialog();
-            if (c.cont)
+            if (c.Cont)
             {
-                uA = c.uA;
+                uA = c.UA;
                 ApresConnexion();
             }
         }

@@ -15,7 +15,9 @@ namespace OrionBanque.Forms
     public partial class GestTiersForm : ComponentFactory.Krypton.Toolkit.KryptonForm
     {
         private Utilisateur uA;
-        public bool bMustSave = false;
+        private bool bMustSave = false;
+
+        public bool BMustSave { get => bMustSave; set => bMustSave = value; }
 
         public GestTiersForm(Utilisateur u)
         {
