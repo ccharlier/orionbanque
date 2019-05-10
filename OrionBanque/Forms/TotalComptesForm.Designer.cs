@@ -65,7 +65,7 @@
             this.kDgvTotalCompte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.kDgvTotalCompte.Size = new System.Drawing.Size(504, 323);
             this.kDgvTotalCompte.TabIndex = 0;
-            this.kDgvTotalCompte.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.kDgvTotalCompte_CellFormatting);
+            this.kDgvTotalCompte.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.KDgvTotalCompte_CellFormatting);
             // 
             // miniToolStrip
             // 
@@ -114,7 +114,7 @@
             this.kLBCompte.Name = "kLBCompte";
             this.kLBCompte.Size = new System.Drawing.Size(262, 296);
             this.kLBCompte.TabIndex = 1;
-            this.kLBCompte.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.kLBCompte_ItemCheck);
+            this.kLBCompte.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.KLBCompte_ItemCheck);
             // 
             // kCbListTotalCompte
             // 
@@ -130,21 +130,21 @@
             this.kCbListTotalCompte.Size = new System.Drawing.Size(261, 24);
             this.kCbListTotalCompte.TabIndex = 1;
             this.kCbListTotalCompte.ValueMember = "Id";
-            this.kCbListTotalCompte.SelectedIndexChanged += new System.EventHandler(this.kCbListTotalCompte_SelectedIndexChanged);
+            this.kCbListTotalCompte.SelectedIndexChanged += new System.EventHandler(this.KCbListTotalCompte_SelectedIndexChanged);
             // 
             // btnSpecTtCpteAjout
             // 
             this.btnSpecTtCpteAjout.Image = global::OrionBanque.Properties.Resources.add1;
             this.btnSpecTtCpteAjout.ToolTipBody = "Permet d\'ajouter une configuration de Total des Comptes";
             this.btnSpecTtCpteAjout.UniqueName = "DAC7921262A24A9E069DAF0E2ACB3326";
-            this.btnSpecTtCpteAjout.Click += new System.EventHandler(this.btnSpecTtCpteAjout_Click);
+            this.btnSpecTtCpteAjout.Click += new System.EventHandler(this.BtnSpecTtCpteAjout_Click);
             // 
             // btnSpecTtCpteSupprime
             // 
             this.btnSpecTtCpteSupprime.Image = global::OrionBanque.Properties.Resources.cross1;
             this.btnSpecTtCpteSupprime.ToolTipBody = "Permet de Supprimer la configuration actuelle de Total des Comptes";
             this.btnSpecTtCpteSupprime.UniqueName = "571357E9D3244D5F6BA182783B2EE658";
-            this.btnSpecTtCpteSupprime.Click += new System.EventHandler(this.btnSpecTtCpteSupprime_Click);
+            this.btnSpecTtCpteSupprime.Click += new System.EventHandler(this.BtnSpecTtCpteSupprime_Click);
             // 
             // TotalComptesForm
             // 

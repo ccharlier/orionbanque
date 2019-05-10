@@ -61,7 +61,7 @@ namespace OrionBanque.Forms
             }
         }
 
-        private void kDgvTotalCompte_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void KDgvTotalCompte_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.ColumnIndex == 0)
             {
@@ -71,14 +71,19 @@ namespace OrionBanque.Forms
             {
                 e.CellStyle.Font = new Font(DefaultFont, FontStyle.Bold);
             }
-            double num = double.Parse(e.Value.ToString(), System.Globalization.CultureInfo.CurrentCulture);
-            if (num < 0)
+            try
             {
-                e.CellStyle.ForeColor = Color.Red;
+                double num = double.Parse(e.Value.ToString(), System.Globalization.CultureInfo.CurrentCulture);
+                if (num < 0)
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                }
             }
+            catch (FormatException)
+            { }
         }
 
-        private void kLBCompte_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void KLBCompte_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (!estConstructeur)
             {
@@ -98,13 +103,15 @@ namespace OrionBanque.Forms
             }
         }
 
-        private void btnSpecTtCpteAjout_Click(object sender, EventArgs e)
+        private void BtnSpecTtCpteAjout_Click(object sender, EventArgs e)
         {
             string ret = ComponentFactory.Krypton.Toolkit.KryptonInputBox.Show("Entrer le nom du nouveau paramétrage", "Nouveau", "Vue_1");
             if(!string.IsNullOrEmpty(ret))
             {
-                TotalCompte tc = new TotalCompte();
-                tc.Libelle = ret;
+                TotalCompte tc = new TotalCompte
+                {
+                    Libelle = ret
+                };
 
                 TotalCompte.Sauve(tc);
                 ChargeCbTotalCompte();
@@ -113,7 +120,7 @@ namespace OrionBanque.Forms
             }
         }
 
-        private void btnSpecTtCpteSupprime_Click(object sender, EventArgs e)
+        private void BtnSpecTtCpteSupprime_Click(object sender, EventArgs e)
         {
             if(ComponentFactory.Krypton.Toolkit.KryptonTaskDialog.Show("Confirmation", "Etes-vous certain de supprimer ce paramétrage ?", "", MessageBoxIcon.Question, ComponentFactory.Krypton.Toolkit.TaskDialogButtons.Yes|ComponentFactory.Krypton.Toolkit.TaskDialogButtons.No) == DialogResult.Yes)
             {
@@ -124,7 +131,7 @@ namespace OrionBanque.Forms
             }
         }
 
-        private void kCbListTotalCompte_SelectedIndexChanged(object sender, EventArgs e)
+        private void KCbListTotalCompte_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool[] temp = new bool[kLBCompte.Items.Count];
             TotalCompte tc = TotalCompte.Charge((int)kCbListTotalCompte.SelectedValue);
