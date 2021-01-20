@@ -62,6 +62,10 @@ namespace OrionBanque.Classe
 
         public static void Delete(Compte c)
         {
+            if (c is null)
+            {
+                throw new Exception("Le compte ne peut pas être null.");
+            }
             Delete(c.Id);
         }
 
@@ -118,6 +122,10 @@ namespace OrionBanque.Classe
 
         public static Compte Maj(Compte cA)
         {
+            if (cA is null)
+            {
+                throw new Exception("Le compte ne peut pas être null.");
+            }
             Log.Logger.Debug("Debut Compte.Maj(" + cA.Id + ")");
             try
             {
@@ -150,6 +158,10 @@ namespace OrionBanque.Classe
 
         public static Compte Sauve(Compte cA)
         {
+            if (cA is null)
+            {
+                throw new Exception("Le compte ne peut pas être null.");
+            }
             Log.Logger.Debug("Debut Copmpte.Sauve(" + cA.Libelle + ")");
             try
             {
@@ -216,11 +228,14 @@ namespace OrionBanque.Classe
 
         public static DataSet DataSetTotalComptes(TotalCompte tc)
         {
+            if (tc is null)
+            {
+                throw new Exception("Le TotalCompte ne peut pas être null.");
+            }
             double totPointe = 0.0;
             double totaVenir = 0.0;
             double totSolde = 0.0;
 
-            Type elementType = typeof(Operation);
             DataSet ds = new DataSet();
             DataTable t = new DataTable("TotalComptes");
             ds.Tables.Add(t);

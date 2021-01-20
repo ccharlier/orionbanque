@@ -127,9 +127,14 @@ namespace OrionBanque.Classe
 
         public static void DeletePossible(Categorie c)
         {
-            Log.Logger.Debug("Debut Categorie.DeletePossible(" + c.Id + ")");
             try
             {
+                if (c is null)
+                {
+                    throw new Exception("La catégorie ne peut pas être nulle.");
+                }
+                Log.Logger.Debug("Debut Categorie.DeletePossible(" + c.Id + ")");
+            
                 OB ob = (OB)CallContext.GetData(KEY.OB);
                 List<Operation> lo = ob.Operations.Where(ct => ct.Categorie.Id == c.Id).ToList();
                 if (lo.Count != 0)
@@ -146,6 +151,10 @@ namespace OrionBanque.Classe
 
         public static void Delete(Categorie c)
         {
+            if (c is null)
+            {
+                throw new Exception("La catégorie ne peut pas être nulle.");
+            }
             Log.Logger.Debug("Debut Categorie.Delete(" + c.Id + ")");
             try
             {
@@ -162,6 +171,10 @@ namespace OrionBanque.Classe
 
         public static Categorie Maj(Categorie cA)
         {
+            if (cA is null)
+            {
+                throw new Exception("La catégorie ne peut pas être nulle.");
+            }
             Log.Logger.Debug("Debut Categorie.Maj(" + cA.Id + ")");
             try
             {
@@ -181,9 +194,14 @@ namespace OrionBanque.Classe
 
         public static Categorie Sauve(Categorie cA)
         {
-            Log.Logger.Debug("Debut Categorie.Sauve(" + cA.Libelle + ")");
             try
             {
+                if (cA is null)
+                {
+                    throw new Exception("La catégorie ne peut pas être nulle.");
+                }
+                Log.Logger.Debug("Debut Categorie.Sauve(" + cA.Libelle + ")");
+            
                 OB ob = (OB)CallContext.GetData(KEY.OB);
                 cA.Id = ob.Categories.Count != 0 ? ob.Categories.Max(u => u.Id) + 1 : 1;
                 ob.Categories.Add(cA);
