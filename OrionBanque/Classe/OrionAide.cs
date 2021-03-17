@@ -4,8 +4,8 @@ namespace OrionBanque.Classe
 {
     public static class OrionAide
     {
-        private const string titreImport = "Aide à l'import";
-        private static readonly string textImport = "Pour qu'OrionBanque importe correctement vos opérations, vous devez les présenter d'une façon bien précise." +
+        private static string titreImport = "Aide à l'import";
+        private static string textImport = "Pour qu'OrionBanque importe correctement vos opérations, vous devez les présenter d'une façon bien précise." +
             Environment.NewLine + "Voici la structure du fichier que vous devez constituer :" +
             Environment.NewLine + "* Une opération par ligne" +
             Environment.NewLine + "* Chaque champs est séparé par des ';' ce qui implique qu'aucun ';' ne dois être présent dans les libellés" +
